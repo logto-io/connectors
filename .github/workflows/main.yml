@@ -1,0 +1,31 @@
+name: Main
+
+on:
+  push:
+    branches:
+      - master
+      - 'push-action/**'
+  pull_request:
+
+concurrency:
+  group: main-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node and pnpm
+        uses: silverhand-io/actions-node-pnpm-run-steps@v1.2.3
+
+      - name: Build
+        run: pnpm -- lerna run --stream build
+
+      - name: Lint
+        run: pnpm -- lerna run --parallel lint
+
+      - name: Test
+        run: pnpm -- lerna run --parallel test:coverage
