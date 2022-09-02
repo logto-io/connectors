@@ -8,7 +8,9 @@
 
 # Logto Connectors
 
-The monorepo for offical connectors.
+The monorepo for official connectors.
+
+Please checkout the sub folders in [packages](./packages) for more details of the connectors. And hit this [link](https://docs.logto.io/docs/recipes/create-your-connector/) to see how to develop a connector.
 
 ## Resources
 
