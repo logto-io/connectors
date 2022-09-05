@@ -30,8 +30,6 @@ import {
 } from './types';
 
 // eslint-disable-next-line @silverhand/fp/no-let
-let clientApplication: ConfidentialClientApplication;
-// eslint-disable-next-line @silverhand/fp/no-let
 let authCodeRequest: AuthorizationCodeRequest;
 
 // This `cryptoProvider` seems not used.
@@ -52,8 +50,7 @@ const getAuthorizationUri =
       redirectUri,
     };
 
-    // eslint-disable-next-line @silverhand/fp/no-mutation
-    clientApplication = new ConfidentialClientApplication({
+    const clientApplication = new ConfidentialClientApplication({
       auth: {
         clientId,
         clientSecret,
@@ -70,13 +67,23 @@ const getAuthorizationUri =
     return authCodeUrl;
   };
 
-const getAccessToken = async (code: string, redirectUri: string) => {
+const getAccessToken = async (config: AzureADConfig, code: string, redirectUri: string) => {
   const codeRequest: AuthorizationCodeRequest = {
     ...authCodeRequest,
     redirectUri,
     scopes: ['User.Read'],
     code,
   };
+
+  const { clientId, clientSecret, cloudInstance, tenantId } = config;
+
+  const clientApplication = new ConfidentialClientApplication({
+    auth: {
+      clientId,
+      clientSecret,
+      authority: new URL(path.join(cloudInstance, tenantId)).toString(),
+    },
+  });
 
   const authResult = await clientApplication.acquireTokenByCode(codeRequest);
 
@@ -97,12 +104,12 @@ const getUserInfo =
   (getConfig: GetConnectorConfig): GetUserInfo =>
   async (data) => {
     const { code, redirectUri } = await authorizationCallbackHandler(data);
-    const { accessToken } = await getAccessToken(code, redirectUri);
 
-    // This `config` seems not used. `config` are used to initialize `clientApplication`.
     // Temporarily keep this as this is a refactor, which should not change the logics.
     const config = await getConfig(defaultMetadata.id);
     validateConfig<AzureADConfig>(config, azureADConfigGuard);
+
+    const { accessToken } = await getAccessToken(config, code, redirectUri);
 
     try {
       const httpResponse = await got.get(graphAPIEndpoint, {
