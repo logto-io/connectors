@@ -16,10 +16,10 @@ export const defaultMetadata: ConnectorMetadata = {
   logo: './logo.svg',
   logoDark: null,
   description: {
-    en: 'Azure Active Directory is the biggest AD provider.',
-    'zh-CN': 'Azure Active Directory is the biggest AD provider.',
-    'tr-TR': 'Azure Active Directory en büyük AD servisidir.',
-    'ko-KR': 'Azure Active Directory is the biggest AD provider.',
+    en: 'Azure Active Directory is a leading AD provider.',
+    'zh-CN': 'Azure Active Directory 是领先的 AD 服务提供商。',
+    'tr-TR': 'Azure Active Directory en büyük AD servisidir.', // Update REQUIRED
+    'ko-KR': 'Azure Active Directory is the biggest AD provider.', // UNTRANSLATED
   },
   readme: './README.md',
   configTemplate: './docs/config-template.json',
