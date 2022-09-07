@@ -18,7 +18,7 @@ export const defaultMetadata: ConnectorMetadata = {
   description: {
     en: 'Azure Active Directory is a leading AD provider.',
     'zh-CN': 'Azure Active Directory 是领先的 AD 服务提供商。',
-    'tr-TR': 'Azure Active Directory en büyük AD servisidir.', // Update REQUIRED
+    'tr-TR': 'Azure Active Directory en büyük AD servisidir.', // UNTRANSLATED
     'ko-KR': 'Azure Active Directory is the biggest AD provider.', // UNTRANSLATED
   },
   readme: './README.md',

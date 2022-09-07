@@ -19,8 +19,8 @@ export const defaultMetadata: ConnectorMetadata = {
   description: {
     en: 'Kakao is a famous social network service provider in South Korea',
     'zh-CN': 'Kakao 是韩国著名的社交网络服务提供商。',
-    'tr-TR': 'Kakao is a famous social network service provider in South Korea', // Update REQUIRED
-    'ko-KR': '카카오는 한국에서 가장 유명한 SNS 서비스 제공자 입니다.', // Update REQUIRED
+    'tr-TR': 'Kakao is a famous social network service provider in South Korea', // UNTRANSLATED
+    'ko-KR': '카카오는 한국에서 가장 유명한 SNS 서비스 제공자 입니다.', // UNTRANSLATED
   },
   readme: './README.md',
   configTemplate: './docs/config-template.json',
