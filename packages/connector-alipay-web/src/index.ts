@@ -30,7 +30,6 @@ import {
   defaultMetadata,
   defaultTimeout,
   timestampFormat,
-  fallbackCharset,
   invalidAccessTokenCode,
   invalidAccessTokenSubCode,
 } from './constant';
@@ -66,7 +65,6 @@ const getAuthorizationUri =
   };
 
 export const getAccessToken = async (code: string, config: AlipayConfig) => {
-  const { charset, ...rest } = config;
   const initSearchParameters = {
     method: methodForAccessToken,
     format: 'JSON',
@@ -74,8 +72,7 @@ export const getAccessToken = async (code: string, config: AlipayConfig) => {
     version: '1.0',
     grant_type: 'authorization_code',
     code,
-    ...rest,
-    charset: charset ?? fallbackCharset,
+    ...config,
   };
   const signedSearchParameters = signingParameters(initSearchParameters);
 
@@ -118,7 +115,6 @@ const getUserInfo =
       new ConnectorError(ConnectorErrorCodes.InsufficientRequestParameters)
     );
 
-    const { charset, ...rest } = config;
     const initSearchParameters = {
       method: methodForUserInfo,
       format: 'JSON',
@@ -127,8 +123,7 @@ const getUserInfo =
       grant_type: 'authorization_code',
       auth_token: accessToken,
       biz_content: JSON.stringify({}),
-      ...rest,
-      charset: charset ?? fallbackCharset,
+      ...config,
     };
     const signedSearchParameters = signingParameters(initSearchParameters);
 
