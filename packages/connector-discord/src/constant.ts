@@ -30,9 +30,8 @@ export const defaultMetadata: ConnectorMetadata = {
   logoDark: null,
   description: {
     en: 'Discord is the easiest way to talk over voice, video, and text.',
-    // Dependencies not updated to latest v1.0.0-beta.9, remove these comments later
-    // 'pt-PT': 'Discord é a forma mais fácil de comunicar por voz, vídeo e texto.',
-    'zh-CN': 'Discord is the easiest way to talk over voice, video, and text.', // UNTRANSLATED
+    'pt-PT': 'Discord é a forma mais fácil de comunicar por voz, vídeo e texto.',
+    'zh-CN': 'Discord 是一款专为社群设计的免费网络实时通话软件与数字发行平台。',
     'tr-TR': 'Discord, sesli, görüntülü ve metin üzerinden konuşmanın en kolay yoludur.',
     'ko-KR': 'Discord는 음성, 비디오 및 텍스트로 대화하는 가장 쉬운 방법입니다.',
   },

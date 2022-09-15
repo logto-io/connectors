@@ -315,7 +315,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-core': 1.0.0-beta.8
+      '@logto/connector-core': 1.0.0-beta.9
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.0.0_556mfp7b5dutuj2jcrj5i7zc5q
       got: 11.8.5
@@ -3984,8 +3984,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      JSONStream: 1.3.5
       is-text-path: 1.0.1
+      JSONStream: 1.3.5
       lodash: 4.17.21
       meow: 8.1.2
       split2: 3.2.2
