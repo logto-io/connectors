@@ -11,7 +11,7 @@ export const alipaySigningAlgorithmMapping = {
   RSA2: 'RSA-SHA256',
 } as const;
 export const alipaySigningAlgorithms = ['RSA', 'RSA2'] as const;
-export const charsetEnum = ['GBK', 'utf8'] as const;
+export const charsetEnum = ['gbk', 'utf8'] as const;
 export const fallbackCharset = 'utf8';
 
 export const invalidAccessTokenCode = ['20001'];
