@@ -81,6 +81,7 @@ describe('Discord connector', () => {
         username: 'Whumpus',
         avatar: 'avatar_id',
         email: 'whumpus@discord.com',
+        verified: true,
       });
       const connector = await createConnector({ getConfig });
       const socialUserInfo = await connector.getUserInfo({
