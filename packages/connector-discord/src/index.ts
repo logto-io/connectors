@@ -13,7 +13,7 @@ import {
   CreateConnector,
   SocialConnector,
   ConnectorType,
-} from '@logto/connector-core';
+} from '@logto/connector-kit';
 import { assert, conditional } from '@silverhand/essentials';
 import got, { HTTPError } from 'got';
 
@@ -111,7 +111,8 @@ const getUserInfo =
         id,
         name,
         avatar: conditional(avatar && `https://cdn.discordapp.com/avatars/${id}/${avatar}`),
-        email: conditional(verified && email),
+        email: conditional(email),
+        email_verified: verified,
       };
     } catch (error: unknown) {
       if (error instanceof HTTPError) {
