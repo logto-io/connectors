@@ -15,7 +15,7 @@ import {
   SocialConnector,
   validateConfig,
   ConnectorType,
-} from '@logto/connector-core';
+} from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
 import dayjs from 'dayjs';
 import got from 'got';

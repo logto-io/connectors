@@ -1,4 +1,4 @@
-import { ConnectorError, ConnectorErrorCodes } from '@logto/connector-core';
+import { ConnectorError, ConnectorErrorCodes } from '@logto/connector-kit';
 import nock from 'nock';
 
 import createConnector, { getAccessToken } from '.';
