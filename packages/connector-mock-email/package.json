@@ -1,6 +1,6 @@
 {
   "name": "@logto/connector-mock-email",
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0-beta.9",
   "description": "Mock Email Service connector implementation for integration tests only.",
   "main": "./lib/index.js",
   "exports": "./lib/index.js",

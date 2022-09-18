@@ -1,6 +1,6 @@
 {
   "name": "@logto/connector-apple",
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0-beta.9",
   "description": "Apple web connector implementation.",
   "main": "./lib/index.js",
   "exports": "./lib/index.js",
