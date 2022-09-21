@@ -79,7 +79,7 @@ export const getAccessToken = async (code: string, config: AlipayNativeConfig) =
   const result = accessTokenResponseGuard.safeParse(JSON.parse(httpResponse.body));
 
   if (!result.success) {
-    throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error.message);
+    throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error);
   }
 
   const { error_response, alipay_system_oauth_token_response } = result.data;
@@ -132,7 +132,7 @@ const getUserInfo =
     const result = userInfoResponseGuard.safeParse(JSON.parse(httpResponse.body));
 
     if (!result.success) {
-      throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error.message);
+      throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error);
     }
 
     const { alipay_user_info_share_response } = result.data;

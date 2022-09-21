@@ -70,7 +70,7 @@ export const getAccessToken = async (
   const result = accessTokenResponseGuard.safeParse(JSON.parse(httpResponse.body));
 
   if (!result.success) {
-    throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error.message);
+    throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error);
   }
 
   const { access_token: accessToken, openid } = result.data;
@@ -98,7 +98,7 @@ const getUserInfo =
       const result = userInfoResponseGuard.safeParse(JSON.parse(httpResponse.body));
 
       if (!result.success) {
-        throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error.message);
+        throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error);
       }
 
       const { unionid, headimgurl, nickname } = result.data;
