@@ -8,7 +8,7 @@ import {
   CreateConnector,
   SocialConnector,
   ConnectorType,
-} from '@logto/connector-core';
+} from '@logto/connector-kit';
 import { createRemoteJWKSet, jwtVerify } from 'jose';
 
 import { scope, defaultMetadata, jwksUri, issuer, authorizationEndpoint } from './constant';

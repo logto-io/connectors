@@ -1,4 +1,4 @@
-import { ConnectorMetadata, ConnectorPlatform } from '@logto/connector-core';
+import { ConnectorMetadata, ConnectorPlatform } from '@logto/connector-kit';
 
 export const defaultMetadata: ConnectorMetadata = {
   id: 'mock-social-connector',

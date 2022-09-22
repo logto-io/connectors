@@ -1,5 +1,6 @@
 import * as crypto from 'crypto';
 
+import { parseJson } from '@logto/connector-kit';
 import * as iconv from 'iconv-lite';
 import snakeCaseKeys from 'snakecase-keys';
 
@@ -19,7 +20,7 @@ export const signingParameters: SigningParameters = (
     biz_content
       ? {
           ...rest,
-          bizContent: JSON.stringify(snakeCaseKeys(JSON.parse(biz_content))),
+          bizContent: JSON.stringify(snakeCaseKeys(parseJson(biz_content))),
         }
       : rest
   );

@@ -8,7 +8,7 @@ import {
   CreateConnector,
   SocialConnector,
   ConnectorType,
-} from '@logto/connector-core';
+} from '@logto/connector-kit';
 import { z } from 'zod';
 
 import { defaultMetadata } from './constant';

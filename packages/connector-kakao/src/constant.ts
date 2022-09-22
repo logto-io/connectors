@@ -1,4 +1,4 @@
-import { ConnectorMetadata, ConnectorPlatform } from '@logto/connector-core';
+import { ConnectorMetadata, ConnectorPlatform } from '@logto/connector-kit';
 
 export const authorizationEndpoint = 'https://kauth.kakao.com/oauth/authorize';
 export const accessTokenEndpoint = 'https://kauth.kakao.com/oauth/token';
