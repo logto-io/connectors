@@ -16,7 +16,8 @@ import {
   CreateConnector,
   SocialConnector,
   ConnectorType,
-} from '@logto/connector-core';
+  parseJson,
+} from '@logto/connector-kit';
 import { assert, conditional } from '@silverhand/essentials';
 import got, { HTTPError } from 'got';
 
@@ -119,7 +120,7 @@ const getUserInfo =
         timeout: defaultTimeout,
       });
 
-      const result = userInfoResponseGuard.safeParse(JSON.parse(httpResponse.body));
+      const result = userInfoResponseGuard.safeParse(parseJson(httpResponse.body));
 
       if (!result.success) {
         throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error.message);

@@ -1,4 +1,4 @@
-import { MessageTypes } from '@logto/connector-core';
+import { MessageTypes } from '@logto/connector-kit';
 
 import createConnector from '.';
 import { mockedConnectorConfig, phoneTest, codeTest } from './mock';

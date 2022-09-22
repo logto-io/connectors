@@ -10,7 +10,7 @@ import {
   EmailConnector,
   validateConfig,
   ConnectorType,
-} from '@logto/connector-core';
+} from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
 
 import { defaultMetadata } from './constant';

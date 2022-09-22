@@ -7,7 +7,8 @@ import {
   CreateConnector,
   validateConfig,
   ConnectorType,
-} from '@logto/connector-core';
+  parseJson,
+} from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
 import { HTTPError } from 'got';
 
@@ -76,7 +77,7 @@ const sendMessage =
   };
 
 const parseResponseString = (response: string) => {
-  const result = sendSmsResponseGuard.safeParse(JSON.parse(response));
+  const result = sendSmsResponseGuard.safeParse(parseJson(response));
 
   if (!result.success) {
     throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error.message);

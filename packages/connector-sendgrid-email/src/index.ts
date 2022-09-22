@@ -7,7 +7,7 @@ import {
   CreateConnector,
   EmailConnector,
   ConnectorType,
-} from '@logto/connector-core';
+} from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
 import got, { HTTPError } from 'got';
 
