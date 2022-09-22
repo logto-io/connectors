@@ -59,7 +59,7 @@ const sendMessage =
       const result = sendEmailResponseGuard.safeParse(JSON.parse(httpResponse.body));
 
       if (!result.success) {
-        throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error.message);
+        throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error);
       }
 
       return result.data;
@@ -85,7 +85,7 @@ const errorHandler = (errorResponseBody: string) => {
   const result = sendMailErrorResponseGuard.safeParse(JSON.parse(errorResponseBody));
 
   if (!result.success) {
-    throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error.message);
+    throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error);
   }
 
   const { Message: errorDescription, ...rest } = result.data;

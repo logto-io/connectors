@@ -90,7 +90,7 @@ const getAccessToken = async (config: AzureADConfig, code: string, redirectUri: 
   const result = accessTokenResponseGuard.safeParse(authResult);
 
   if (!result.success) {
-    throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error.message);
+    throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error);
   }
 
   const { accessToken } = result.data;
@@ -122,7 +122,7 @@ const getUserInfo =
       const result = userInfoResponseGuard.safeParse(JSON.parse(httpResponse.body));
 
       if (!result.success) {
-        throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error.message);
+        throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error);
       }
 
       const { id, mail, displayName } = result.data;

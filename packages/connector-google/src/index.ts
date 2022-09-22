@@ -72,7 +72,7 @@ export const getAccessToken = async (
   const result = accessTokenResponseGuard.safeParse(JSON.parse(httpResponse.body));
 
   if (!result.success) {
-    throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error.message);
+    throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error);
   }
 
   const { access_token: accessToken } = result.data;
@@ -101,7 +101,7 @@ const getUserInfo =
       const result = userInfoResponseGuard.safeParse(JSON.parse(httpResponse.body));
 
       if (!result.success) {
-        throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error.message);
+        throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error);
       }
 
       const { sub: id, picture: avatar, email, email_verified, name } = result.data;
