@@ -26,7 +26,7 @@ export const userInfoResponseGuard = z.object({
   jobTitle: z.string().nullish(),
   mail: z.string().nullish(),
   mobilePhone: z.string().nullish(),
-  officeLocation: z.boolean().nullish(),
+  officeLocation: z.string().nullish(),
   preferredLanguage: z.string().nullish(),
   businessPhones: z.array(z.string()).nullish(),
 });
