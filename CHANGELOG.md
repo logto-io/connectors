@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.0-beta.10](https://github.com/logto-io/connectors/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2022-09-27)
+
+
+### Bug Fixes
+
+* **connector-azuread:** officeLocation attribute bug fix ([#19](https://github.com/logto-io/connectors/issues/19)) ([09241b1](https://github.com/logto-io/connectors/commit/09241b1b75e11bdce134d3d3c788f977eb6f4c32))
+
+
+
 ## 1.0.0-beta.9 (2022-09-18)
 
 
