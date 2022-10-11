@@ -1,8 +1,10 @@
 {
   "host": "<test.smtp.host>",
   "port": 80,
-  "password": "<password>",
-  "username": "<username>",
+  "auth": {
+    "pass": "<password>",
+    "user": "<username>"
+  },
   "fromEmail": "<notice@test.smtp>",
   "templates": [
       {

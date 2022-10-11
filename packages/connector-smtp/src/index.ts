@@ -11,18 +11,19 @@ import {
 import { assert } from '@silverhand/essentials';
 import nodemailer from 'nodemailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
+import * as socks from 'socks';
 
 import { defaultMetadata } from './constant';
 import { ContextType, smtpConfigGuard, SmtpConfig } from './types';
 
 const sendMessage =
   (getConfig: GetConnectorConfig): SendMessageFunction =>
+  // eslint-disable-next-line complexity
   async (data, inputConfig) => {
     const { to, type, payload } = data;
     const config = inputConfig ?? (await getConfig(defaultMetadata.id));
     validateConfig<SmtpConfig>(config, smtpConfigGuard);
-    const { host, port, username, password, fromEmail, replyTo, templates } = config;
-    const template = templates.find((template) => template.usageType === type);
+    const template = config.templates.find((template) => template.usageType === type);
 
     assert(
       template,
@@ -32,21 +33,14 @@ const sendMessage =
       )
     );
 
-    const configOptions: SMTPTransport.Options = {
-      host,
-      port,
-      auth: {
-        user: username,
-        pass: password,
-      },
-      // Set `secure` to be false and `requireTLS` to be true to make sure `nodemailer` calls STARTTLS, which is wildly adopted in email servers.
-      secure: false,
-      requireTLS: true,
-      // Enable `logger` to help debugging.
-      logger: true,
-    };
+    const configOptions: SMTPTransport.Options = config;
 
     const transporter = nodemailer.createTransport(configOptions);
+
+    // See https://nodemailer.com/smtp/proxies/#2-using-socks-proxy.
+    if (config.proxy?.startsWith('socks')) {
+      transporter.set('proxy_socks_module', socks);
+    }
 
     const contentsObject = parseContents(
       typeof payload.code === 'string'
@@ -57,8 +51,8 @@ const sendMessage =
 
     const mailOptions = {
       to,
-      from: fromEmail,
-      replyTo,
+      from: config.fromEmail,
+      replyTo: config.replyTo,
       subject: template.subject,
       ...contentsObject,
     };
