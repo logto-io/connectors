@@ -51,8 +51,10 @@ By following the post, your connector JSON should be like this:
 {
     "host": "smtp.gmail.com",
     "port": 587, // your SMTP port
-    "username": "<your-gmail-address>",
-    "password": "<password-to-previous-gmail-address>",
+    "auth": {
+        "user": "<your-gmail-address>",
+        "pass": "<password-to-previous-gmail-address>",
+    },
     "fromEmail": "<your-gmail-address>",
     "templates": [
         {
@@ -79,8 +81,10 @@ After going through the guide, your connector JSON should look like this:
 {
     "host": "smtp.sendgrid.net",
     "port": 587, // your SMTP port
-    "username": "apiKey",
-    "password": "<api-key-with-at-least-mail-permission>",
+    "auth": {
+        "user": "apiKey",
+        "pass": "<api-key-with-at-least-mail-permission>",
+    },
     "fromEmail": "<email-address-of-a-verified-sender>",
     "templates": [
         {
@@ -109,8 +113,10 @@ After going through the guide, your connector JSON should look like this:
 {
     "host": "<SMTP-service-address>",
     "port": 1234, // your SMTP port
-    "username": "<email-address-of-chosen-sender-address>",
-    "password": "<api-key-with-at-least-mail-permission>",
+    "auth": {
+        "user": "<email-address-of-chosen-sender-address>",
+        "pass": "<api-key-with-at-least-mail-permission>",
+    },
     "fromEmail": "<email-address-of-a-verified-sender-should-be-the-same-as-`username`>",
     "templates": [
         {
@@ -141,8 +147,6 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 |-----------|------------|
 | host      | string     |
 | port      | string     |
-| username  | string     |
-| password  | string     |
 | fromEmail | string     |
 | templates | Template[] |
 
@@ -153,12 +157,25 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 | usageType           | enum string | 'Register' \| 'SignIn' \| 'Test' |
 | contentType         | enum string | 'text/plain' \| 'text/html'      |
 
+**Username and password Auth Options**
+
+| Name | Type                   | Enum values |
+|------|------------------------|-------------|
+| user | string                 | N/A         |
+| pass | string                 | N/A         |
+| type | enum string (OPTIONAL) | 'login'     |
+
+You can also configure [OAuth2 Auth Options](https://nodemailer.com/smtp/oauth2/) and other advanced configurations. See [here](https://nodemailer.com/smtp/) for more details.
+
+We gave an example config with all configurable parameters in the text box to help you to set up own configuration. (You are responsible to the configuration, some values are for demonstration purpose and may not fit your use case.)
+
 ## References
 
 - [Gmail - Send email from a printer, scanner, or app](https://support.google.com/a/answer/176600)
 - [SendGrid - Integrating with the SMTP API](https://docs.sendgrid.com/for-developers/sending-email/integrating-with-the-smtp-api)
 - [Aliyun Direct Mail - Send emails using SMTP](https://www.alibabacloud.com/help/en/directmail/latest/send-emails-using-smtp)
 - [Aliyun Direct Mail - SMTP Reference](https://www.alibabacloud.com/help/en/directmail/latest/smtp-reference)
+- [Nodemailer - SMTP Transport](https://nodemailer.com/smtp/)
 
 # SMTP 连接器
 
@@ -189,8 +206,10 @@ SMTP 是一个所有邮件服务提供商通用的传输协议。
 {
     "host": "smtp.gmail.com",
     "port": 587, // your SMTP port
-    "username": "<your-gmail-address>",
-    "password": "<password-to-previous-gmail-address>",
+    "auth": {
+        "user": "<your-gmail-address>",
+        "pass": "<password-to-previous-gmail-address>",
+    },
     "fromEmail": "<your-gmail-address>",
     "templates": [
         {
@@ -217,8 +236,10 @@ SMTP 是一个所有邮件服务提供商通用的传输协议。
 {
     "host": "smtp.sendgrid.net",
     "port": 587, // your SMTP port
-    "username": "apiKey",
-    "password": "<api-key-with-at-least-mail-permission>",
+    "auth": {
+        "user": "apiKey",
+        "pass": "<api-key-with-at-least-mail-permission>",
+    },
     "fromEmail": "<email-address-of-a-verified-sender>",
     "templates": [
         {
@@ -247,8 +268,10 @@ SMTP 是一个所有邮件服务提供商通用的传输协议。
 {
     "host": "<SMTP-service-address>",
     "port": 1234, // your SMTP port
-    "username": "<email-address-of-chosen-sender-address>",
-    "password": "<api-key-with-at-least-mail-permission>",
+    "auth": {
+        "user": "<email-address-of-chosen-sender-address>",
+        "pass": "<api-key-with-at-least-mail-permission>",
+    },
     "fromEmail": "<email-address-of-a-verified-sender-should-be-the-same-as-`username`>",
     "templates": [
         {
@@ -279,8 +302,6 @@ SMTP 是一个所有邮件服务提供商通用的传输协议。
 |-----------|------------|
 | host      | string     |
 | port      | string     |
-| username  | string     |
-| password  | string     |
 | fromEmail | string     |
 | templates | Template[] |
 
@@ -291,9 +312,22 @@ SMTP 是一个所有邮件服务提供商通用的传输协议。
 | usageType   | enum string | 'Register' \| 'SignIn' \| 'Test' |
 | contentType | enum string | 'text/plain' \| 'text/html'      |
 
+**用户名密码的授权配置**
+
+| 模板属性  | 类型                    | 枚举值   |
+|----------|------------------------|---------|
+| user     | string                 | N/A     |
+| pass     | string                 | N/A     |
+| type     | enum string (OPTIONAL) | 'login' |
+
+你也可以使用 [OAuth2 授权配置](https://nodemailer.com/smtp/oauth2/) 和其他高级的 SMTP 配置。点按 [这里](https://nodemailer.com/smtp/) 了解更多.
+
+我们在文本输入框预填的配置样例里预填了所有可配置的参数，以便你可以用来参考并建立自己的配置。（你需要对自己的配置负责，样例配置中展示的一些值是为了示意，可能并不适用你的用户场景。）
+
 ## 参考
 
 - [Gmail - 从打印机、扫描仪或应用发送电子邮件](https://support.google.com/a/answer/176600?hl=zh-Hans)
 - [SendGrid - Integrating with the SMTP API](https://docs.sendgrid.com/for-developers/sending-email/integrating-with-the-smtp-api)
 - [阿里云邮件推送 - 使用 SMTP 发送邮件](https://www.alibabacloud.com/help/zh/directmail/latest/send-emails-using-smtp)
 - [阿里云邮件推送 - SMTP 参考](https://www.alibabacloud.com/help/zh/directmail/latest/smtp-reference)
+- [Nodemailer - SMTP Transport](https://nodemailer.com/smtp/)
