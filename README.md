@@ -10,7 +10,7 @@
 
 The monorepo for official connectors.
 
-Please checkout the sub folders in [packages](./packages) for more details of the connectors. And hit this [link](https://docs.logto.io/docs/recipes/create-your-connector/) to see how to develop a connector.
+Please checkout the sub folders in [packages](./packages) for more details of the connectors. Click on here to see [how to contribute to Logto Connectors](./.github/CONTRIBUTING.md).
 
 ## Resources
 
