@@ -10,4 +10,4 @@ Here is a [link](https://docs.logto.io/docs/recipes/create-your-connector/) for 
 
 You need to test your connector on your local machine, and it would be good if you could attach screenshots to show your testing results in different cases. After finishing the implementation, you may also write a README file to show how to compose the connector's configuration.
 
-All new connectors added to this repo will be published as Logto official connectors, which could be used by lots of users.
+All new connectors added to this repo will be published as Logto's official connectors, which could be used by lots of users. We will have Logto Team members with you to solve potential questions.
