@@ -1,8 +1,10 @@
 {
   "host": "<test.smtp.host>",
   "port": 80,
-  "password": "<password>",
-  "username": "<username>",
+  "auth": {
+    "pass": "<password>",
+    "user": "<username>"
+  },
   "fromEmail": "<notice@test.smtp>",
   "templates": [
       {
@@ -29,5 +31,22 @@
           "subject": "Logto Forgot Password with SMTP",
           "usageType": "ForgotPassword"
       }
-  ]
+  ],
+  "secure": true,
+  "tls": {
+    "rejectUnauthorized":false
+  },
+  "servername": "<my-server>",
+  "ignoreTLS": false,
+  "requireTLS": true,
+  "name": "<my-host-name>",
+  "localAddress": "<local-address>",
+  "connectionTimeout": 120000,
+  "greetingTimeout": 30000,
+  "socketTimeout": 600000,
+  "dnsTimeout": 30000,
+  "logger": true,
+  "debug": true,
+  "disableFileAccess": false,
+  "disableUrlAccess": false
 }
