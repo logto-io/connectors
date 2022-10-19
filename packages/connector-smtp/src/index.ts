@@ -11,14 +11,12 @@ import {
 import { assert } from '@silverhand/essentials';
 import nodemailer from 'nodemailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
-import * as socks from 'socks';
 
 import { defaultMetadata } from './constant';
 import { ContextType, smtpConfigGuard, SmtpConfig } from './types';
 
 const sendMessage =
   (getConfig: GetConnectorConfig): SendMessageFunction =>
-  // eslint-disable-next-line complexity
   async (data, inputConfig) => {
     const { to, type, payload } = data;
     const config = inputConfig ?? (await getConfig(defaultMetadata.id));
@@ -36,11 +34,6 @@ const sendMessage =
     const configOptions: SMTPTransport.Options = config;
 
     const transporter = nodemailer.createTransport(configOptions);
-
-    // See https://nodemailer.com/smtp/proxies/#2-using-socks-proxy.
-    if (config.proxy?.startsWith('socks')) {
-      transporter.set('proxy_socks_module', socks);
-    }
 
     const contentsObject = parseContents(
       typeof payload.code === 'string'

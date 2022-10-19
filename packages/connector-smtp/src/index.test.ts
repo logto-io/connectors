@@ -9,7 +9,6 @@ import {
   mockedConnectionOptionsInvalid,
   mockedDebuggingOptions,
   mockedSecurityOptions,
-  mockedProxyOptions,
 } from './mock';
 import { smtpConfigGuard } from './types';
 
@@ -65,12 +64,11 @@ describe('Test config guard', () => {
     expect(result.success && result.data).toMatchObject(expect.objectContaining(mockedConfig));
   });
 
-  it('config with debugging, security and proxy options', () => {
+  it('config with debugging and security options', () => {
     const testConfig = {
       ...mockedConfig,
       ...mockedDebuggingOptions,
       ...mockedSecurityOptions,
-      ...mockedProxyOptions,
     };
     const result = smtpConfigGuard.safeParse(testConfig);
     expect(result.success && result.data).toMatchObject(expect.objectContaining(testConfig));

@@ -58,7 +58,3 @@ export const mockedSecurityOptions = {
   disableFileAccess: true,
   disableUrlAccess: false,
 };
-
-export const mockedProxyOptions = {
-  proxy: 'socks5://123.4.5.678:9000',
-};

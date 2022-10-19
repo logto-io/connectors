@@ -94,14 +94,6 @@ const securityGuard = z.object({
   disableUrlAccess: z.boolean().optional(),
 });
 
-/**
- * Proxy Options
- * See https://nodemailer.com/smtp/#proxy-options and https://nodemailer.com/smtp/proxies/.
- */
-const proxyGuard = z.object({
-  proxy: z.string().optional(),
-});
-
 export const smtpBaseConfigGuard = z
   .object({
     host: z.string(),
@@ -112,8 +104,7 @@ export const smtpBaseConfigGuard = z
     templates: z.array(templateGuard),
   })
   .merge(debuggingGuard)
-  .merge(securityGuard)
-  .merge(proxyGuard);
+  .merge(securityGuard);
 
 export const smtpBaseConfigWithTlsGuard = smtpBaseConfigGuard.merge(tlsGuard);
 

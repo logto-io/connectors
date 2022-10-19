@@ -48,6 +48,5 @@
   "logger": true,
   "debug": true,
   "disableFileAccess": false,
-  "disableUrlAccess": false,
-  "proxy": "socks5://123.4.5.678:9000"
+  "disableUrlAccess": false
 }
