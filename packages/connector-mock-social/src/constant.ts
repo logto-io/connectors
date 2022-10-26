@@ -7,7 +7,7 @@ export const defaultMetadata: ConnectorMetadata = {
   name: {
     en: 'Mock Social',
     'zh-CN': 'Mock 社交登录',
-    'ko-KR': 'Mock Social',
+    ko: 'Mock Social',
     'tr-TR': 'Mock Social',
   },
   logo: './logo.svg',
@@ -15,7 +15,7 @@ export const defaultMetadata: ConnectorMetadata = {
   description: {
     en: 'Social mock connector description',
     'zh-CN': 'Mock 社交登录连接器的描述',
-    'ko-KR': 'Social mock connector description',
+    ko: 'Social mock connector description',
     'tr-TR': 'Social mock connector description',
   },
   readme: './README.md',
