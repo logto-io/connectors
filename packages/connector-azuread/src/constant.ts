@@ -11,7 +11,7 @@ export const defaultMetadata: ConnectorMetadata = {
     en: 'Azure Active Directory',
     'zh-CN': 'Azure Active Directory',
     'tr-TR': 'Azure Active Directory',
-    'ko-KR': 'Azure Active Directory',
+    ko: 'Azure Active Directory',
   },
   logo: './logo.svg',
   logoDark: null,
@@ -19,7 +19,7 @@ export const defaultMetadata: ConnectorMetadata = {
     en: 'Azure Active Directory is a leading AD provider.',
     'zh-CN': 'Azure Active Directory 是领先的 AD 服务提供商。',
     'tr-TR': 'Azure Active Directory en büyük AD servisidir.', // UNTRANSLATED
-    'ko-KR': 'Azure Active Directory is the biggest AD provider.', // UNTRANSLATED
+    ko: 'Azure Active Directory is the biggest AD provider.', // UNTRANSLATED
   },
   readme: './README.md',
   configTemplate: './docs/config-template.json',

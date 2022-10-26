@@ -33,7 +33,7 @@ export const defaultMetadata: ConnectorMetadata = {
     'pt-PT': 'Discord é a forma mais fácil de comunicar por voz, vídeo e texto.',
     'zh-CN': 'Discord 是一款专为社群设计的免费网络实时通话软件与数字发行平台。',
     'tr-TR': 'Discord, sesli, görüntülü ve metin üzerinden konuşmanın en kolay yoludur.',
-    'ko-KR': 'Discord는 음성, 비디오 및 텍스트로 대화하는 가장 쉬운 방법입니다.',
+    ko: 'Discord는 음성, 비디오 및 텍스트로 대화하는 가장 쉬운 방법입니다.',
   },
   readme: './README.md',
   configTemplate: './docs/config-template.json',
