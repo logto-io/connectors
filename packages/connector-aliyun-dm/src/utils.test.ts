@@ -18,7 +18,7 @@ describe('getSignature', () => {
 });
 
 describe('request', () => {
-  it('should call axios.post with extended params', async () => {
+  it('should call got.post with extended params', async () => {
     const parameters = mockedParameters;
     await request('http://test.endpoint.com', parameters, 'testsecret');
     const calledData = (got.post as jest.MockedFunction<typeof got.post>).mock.calls[0];
