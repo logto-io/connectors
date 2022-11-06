@@ -1,6 +1,6 @@
 {
   "name": "@logto/connector-mock-sms",
-  "version": "1.0.0-beta.10",
+  "version": "1.0.0-beta.11",
   "description": "Mock SMS connector implementation for integration tests only.",
   "main": "./lib/index.js",
   "exports": "./lib/index.js",

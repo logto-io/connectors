@@ -1,6 +1,6 @@
 {
   "name": "@logto/connector-twilio-sms",
-  "version": "1.0.0-beta.10",
+  "version": "1.0.0-beta.11",
   "description": "Twilio SMS connector implementation.",
   "main": "./lib/index.js",
   "exports": "./lib/index.js",
