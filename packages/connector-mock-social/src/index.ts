@@ -1,14 +1,12 @@
 import { randomUUID } from 'crypto';
 
-import {
-  ConnectorError,
-  ConnectorErrorCodes,
+import type {
   GetAuthorizationUri,
   GetUserInfo,
   CreateConnector,
   SocialConnector,
-  ConnectorType,
 } from '@logto/connector-kit';
+import { ConnectorError, ConnectorErrorCodes, ConnectorType } from '@logto/connector-kit';
 import { z } from 'zod';
 
 import { defaultMetadata } from './constant';

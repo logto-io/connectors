@@ -1,11 +1,11 @@
-import {
+import type {
   Content,
-  ContextType,
   EmailData,
   Personalization,
   PublicParameters,
   SendGridMailConfig,
 } from './types';
+import { ContextType } from './types';
 
 const receivers: EmailData[] = [{ email: 'foo@logto.io' }];
 const sender: EmailData = { email: 'noreply@logto.test.io', name: 'Logto Test' };

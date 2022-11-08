@@ -1,4 +1,5 @@
-import { ConnectorMetadata, ConnectorPlatform } from '@logto/connector-kit';
+import type { ConnectorMetadata } from '@logto/connector-kit';
+import { ConnectorPlatform } from '@logto/connector-kit';
 
 export const authorizationEndpoint = 'https://open.weixin.qq.com/connect/qrconnect';
 export const accessTokenEndpoint = 'https://api.weixin.qq.com/sns/oauth2/access_token';

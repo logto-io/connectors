@@ -1,4 +1,5 @@
-import { ConnectorMetadata, ConnectorPlatform } from '@logto/connector-kit';
+import type { ConnectorMetadata } from '@logto/connector-kit';
+import { ConnectorPlatform } from '@logto/connector-kit';
 
 export const authorizationEndpoint = 'https://github.com/login/oauth/authorize';
 export const scope = 'read:user';

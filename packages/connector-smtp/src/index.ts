@@ -1,19 +1,22 @@
-import {
-  ConnectorError,
-  ConnectorErrorCodes,
+import type {
   GetConnectorConfig,
   CreateConnector,
   EmailConnector,
   SendMessageFunction,
+} from '@logto/connector-kit';
+import {
+  ConnectorError,
+  ConnectorErrorCodes,
   validateConfig,
   ConnectorType,
 } from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
 import nodemailer from 'nodemailer';
-import SMTPTransport from 'nodemailer/lib/smtp-transport';
+import type SMTPTransport from 'nodemailer/lib/smtp-transport';
 
 import { defaultMetadata } from './constant';
-import { ContextType, smtpConfigGuard, SmtpConfig } from './types';
+import type { SmtpConfig } from './types';
+import { ContextType, smtpConfigGuard } from './types';
 
 const sendMessage =
   (getConfig: GetConnectorConfig): SendMessageFunction =>

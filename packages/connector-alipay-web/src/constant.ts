@@ -1,4 +1,5 @@
-import { ConnectorMetadata, ConnectorPlatform } from '@logto/connector-kit';
+import type { ConnectorMetadata } from '@logto/connector-kit';
+import { ConnectorPlatform } from '@logto/connector-kit';
 
 export const authorizationEndpoint = 'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm';
 export const alipayEndpoint = 'https://openapi.alipay.com/gateway.do';

@@ -3,15 +3,17 @@
  * https://developers.weixin.qq.com/doc/oplatform/Website_App/WeChat_Login/Wechat_Login.html
  */
 
-import {
+import type {
   GetAuthorizationUri,
   GetUserInfo,
-  ConnectorError,
-  ConnectorErrorCodes,
   GetConnectorConfig,
-  validateConfig,
   CreateConnector,
   SocialConnector,
+} from '@logto/connector-kit';
+import {
+  ConnectorError,
+  ConnectorErrorCodes,
+  validateConfig,
   ConnectorType,
   parseJson,
 } from '@logto/connector-kit';
@@ -28,13 +30,15 @@ import {
   invalidAccessTokenErrcode,
   invalidAuthCodeErrcode,
 } from './constant';
+import type {
+  GetAccessTokenErrorHandler,
+  UserInfoResponseMessageParser,
+  WechatConfig,
+} from './types';
 import {
   wechatConfigGuard,
   accessTokenResponseGuard,
-  GetAccessTokenErrorHandler,
   userInfoResponseGuard,
-  UserInfoResponseMessageParser,
-  WechatConfig,
   authResponseGuard,
 } from './types';
 

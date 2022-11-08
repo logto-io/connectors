@@ -1,10 +1,12 @@
-import {
-  ConnectorError,
-  ConnectorErrorCodes,
+import type {
   GetConnectorConfig,
   SendMessageFunction,
   SmsConnector,
   CreateConnector,
+} from '@logto/connector-kit';
+import {
+  ConnectorError,
+  ConnectorErrorCodes,
   validateConfig,
   ConnectorType,
   parseJson,
@@ -14,7 +16,8 @@ import { HTTPError } from 'got';
 
 import { defaultMetadata } from './constant';
 import { sendSms } from './single-send-text';
-import { aliyunSmsConfigGuard, AliyunSmsConfig, sendSmsResponseGuard } from './types';
+import type { AliyunSmsConfig } from './types';
+import { aliyunSmsConfigGuard, sendSmsResponseGuard } from './types';
 
 const sendMessage =
   (getConfig: GetConnectorConfig): SendMessageFunction =>

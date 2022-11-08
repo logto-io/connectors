@@ -3,14 +3,16 @@
  * https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow
  */
 
-import {
-  ConnectorError,
-  ConnectorErrorCodes,
+import type {
   CreateConnector,
   SocialConnector,
   GetAuthorizationUri,
   GetUserInfo,
   GetConnectorConfig,
+} from '@logto/connector-kit';
+import {
+  ConnectorError,
+  ConnectorErrorCodes,
   validateConfig,
   ConnectorType,
   parseJson,
@@ -26,11 +28,11 @@ import {
   defaultMetadata,
   defaultTimeout,
 } from './constant';
+import type { FacebookConfig } from './types';
 import {
   authorizationCallbackErrorGuard,
   facebookConfigGuard,
   accessTokenResponseGuard,
-  FacebookConfig,
   userInfoResponseGuard,
   authResponseGuard,
 } from './types';

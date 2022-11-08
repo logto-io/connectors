@@ -2,15 +2,17 @@
  * The Implementation of OpenID Connect of Kakao.
  * https://developers.kakao.com/docs/latest/en/kakaologin/rest-api
  */
-import {
-  ConnectorError,
-  ConnectorErrorCodes,
-  ConnectorType,
+import type {
   CreateConnector,
   GetAuthorizationUri,
   GetConnectorConfig,
   GetUserInfo,
   SocialConnector,
+} from '@logto/connector-kit';
+import {
+  ConnectorError,
+  ConnectorErrorCodes,
+  ConnectorType,
   validateConfig,
   parseJson,
 } from '@logto/connector-kit';
@@ -24,10 +26,10 @@ import {
   defaultTimeout,
   userInfoEndpoint,
 } from './constant';
+import type { KakaoConfig } from './types';
 import {
   accessTokenResponseGuard,
   authResponseGuard,
-  KakaoConfig,
   kakaoConfigGuard,
   userInfoResponseGuard,
 } from './types';
@@ -83,7 +85,6 @@ export const getAccessToken = async (
 
 const getUserInfo =
   (getConfig: GetConnectorConfig): GetUserInfo =>
-  // eslint-disable-next-line complexity
   async (data) => {
     const { code, redirectUri } = await authorizationCallbackHandler(data);
     const config = await getConfig(defaultMetadata.id);

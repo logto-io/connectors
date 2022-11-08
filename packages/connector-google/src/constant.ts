@@ -1,4 +1,5 @@
-import { ConnectorMetadata, ConnectorPlatform } from '@logto/connector-kit';
+import type { ConnectorMetadata } from '@logto/connector-kit';
+import { ConnectorPlatform } from '@logto/connector-kit';
 
 export const authorizationEndpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
 export const accessTokenEndpoint = 'https://oauth2.googleapis.com/token';

@@ -1,18 +1,21 @@
-import {
+import type {
   GetAuthorizationUri,
   GetUserInfo,
-  ConnectorError,
-  ConnectorErrorCodes,
   GetConnectorConfig,
-  validateConfig,
   CreateConnector,
   SocialConnector,
+} from '@logto/connector-kit';
+import {
+  ConnectorError,
+  ConnectorErrorCodes,
+  validateConfig,
   ConnectorType,
 } from '@logto/connector-kit';
 import { createRemoteJWKSet, jwtVerify } from 'jose';
 
 import { scope, defaultMetadata, jwksUri, issuer, authorizationEndpoint } from './constant';
-import { appleConfigGuard, AppleConfig, dataGuard } from './types';
+import type { AppleConfig } from './types';
+import { appleConfigGuard, dataGuard } from './types';
 
 // TO-DO: support nonce validation
 

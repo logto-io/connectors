@@ -5,14 +5,16 @@
  * https://opendocs.alipay.com/open/01emu5
  */
 
-import {
-  ConnectorError,
-  ConnectorErrorCodes,
+import type {
   GetConnectorConfig,
   GetAuthorizationUri,
   GetUserInfo,
   CreateConnector,
   SocialConnector,
+} from '@logto/connector-kit';
+import {
+  ConnectorError,
+  ConnectorErrorCodes,
   validateConfig,
   ConnectorType,
   parseJson,
@@ -34,13 +36,8 @@ import {
   invalidAccessTokenCode,
   invalidAccessTokenSubCode,
 } from './constant';
-import {
-  alipayConfigGuard,
-  AlipayConfig,
-  accessTokenResponseGuard,
-  userInfoResponseGuard,
-  ErrorHandler,
-} from './types';
+import type { AlipayConfig, ErrorHandler } from './types';
+import { alipayConfigGuard, accessTokenResponseGuard, userInfoResponseGuard } from './types';
 import { signingParameters } from './utils';
 
 export type { AlipayConfig } from './types';
