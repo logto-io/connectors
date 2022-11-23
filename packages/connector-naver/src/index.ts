@@ -2,15 +2,17 @@
  * The Implementation of OAuth2 of Naver.
  * https://developers.naver.com/docs/login/api/api.md
  */
-import {
-  ConnectorError,
-  ConnectorErrorCodes,
-  ConnectorType,
+import type {
   CreateConnector,
   GetAuthorizationUri,
   GetConnectorConfig,
   GetUserInfo,
   SocialConnector,
+} from '@logto/connector-kit';
+import {
+  ConnectorError,
+  ConnectorErrorCodes,
+  ConnectorType,
   validateConfig,
   parseJson,
 } from '@logto/connector-kit';
@@ -24,10 +26,10 @@ import {
   defaultTimeout,
   userInfoEndpoint,
 } from './constant';
+import type { NaverConfig } from './types';
 import {
   accessTokenResponseGuard,
   authResponseGuard,
-  NaverConfig,
   naverConfigGuard,
   userInfoResponseGuard,
 } from './types';

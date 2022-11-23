@@ -1,4 +1,5 @@
-import { ConnectorMetadata, ConnectorPlatform } from '@logto/connector-kit';
+import type { ConnectorMetadata } from '@logto/connector-kit';
+import { ConnectorPlatform } from '@logto/connector-kit';
 
 export const authorizationEndpoint = 'https://nid.naver.com/oauth2.0/authorize';
 export const accessTokenEndpoint = 'https://nid.naver.com/oauth2.0/token';

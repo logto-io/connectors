@@ -2,15 +2,17 @@
  * The Implementation of OpenID Connect of Google Identity Platform.
  * https://developers.google.com/identity/protocols/oauth2/openid-connect
  */
-import {
-  ConnectorError,
-  ConnectorErrorCodes,
+import type {
   GetAuthorizationUri,
   GetUserInfo,
   GetConnectorConfig,
-  validateConfig,
   CreateConnector,
   SocialConnector,
+} from '@logto/connector-kit';
+import {
+  ConnectorError,
+  ConnectorErrorCodes,
+  validateConfig,
   ConnectorType,
   parseJson,
 } from '@logto/connector-kit';
@@ -25,9 +27,9 @@ import {
   defaultMetadata,
   defaultTimeout,
 } from './constant';
+import type { GoogleConfig } from './types';
 import {
   googleConfigGuard,
-  GoogleConfig,
   accessTokenResponseGuard,
   userInfoResponseGuard,
   authResponseGuard,

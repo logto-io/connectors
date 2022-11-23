@@ -1,4 +1,5 @@
-import { ConnectorMetadata, ConnectorPlatform } from '@logto/connector-kit';
+import type { ConnectorMetadata } from '@logto/connector-kit';
+import { ConnectorPlatform } from '@logto/connector-kit';
 
 export const graphAPIEndpoint = 'https://graph.microsoft.com/v1.0/me';
 export const scopes = ['User.Read'];

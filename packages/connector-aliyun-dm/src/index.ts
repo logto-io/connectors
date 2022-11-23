@@ -1,11 +1,13 @@
-import {
-  ConnectorError,
-  ConnectorErrorCodes,
-  ConnectorType,
+import type {
   CreateConnector,
   EmailConnector,
   GetConnectorConfig,
   SendMessageFunction,
+} from '@logto/connector-kit';
+import {
+  ConnectorError,
+  ConnectorErrorCodes,
+  ConnectorType,
   validateConfig,
   parseJson,
 } from '@logto/connector-kit';
@@ -14,16 +16,11 @@ import { HTTPError } from 'got';
 
 import { defaultMetadata } from './constant';
 import { singleSendMail } from './single-send-mail';
-import {
-  AliyunDmConfig,
-  aliyunDmConfigGuard,
-  sendEmailResponseGuard,
-  sendMailErrorResponseGuard,
-} from './types';
+import type { AliyunDmConfig } from './types';
+import { aliyunDmConfigGuard, sendEmailResponseGuard, sendMailErrorResponseGuard } from './types';
 
 const sendMessage =
   (getConfig: GetConnectorConfig): SendMessageFunction =>
-  // eslint-disable-next-line complexity
   async (data, inputConfig) => {
     const { to, type, payload } = data;
     const config = inputConfig ?? (await getConfig(defaultMetadata.id));

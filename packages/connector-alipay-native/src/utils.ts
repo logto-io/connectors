@@ -5,7 +5,7 @@ import * as iconv from 'iconv-lite';
 import snakeCaseKeys from 'snakecase-keys';
 
 import { alipaySigningAlgorithmMapping } from './constant';
-import { AlipayNativeConfig } from './types';
+import type { AlipayNativeConfig } from './types';
 
 export type SigningParameters = (
   parameters: AlipayNativeConfig & Record<string, string | undefined>

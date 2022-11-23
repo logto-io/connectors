@@ -3,15 +3,17 @@
  * https://discord.com/developers/docs/topics/oauth2
  */
 
-import {
+import type {
   GetConnectorConfig,
   GetAuthorizationUri,
-  validateConfig,
-  ConnectorError,
-  ConnectorErrorCodes,
   GetUserInfo,
   CreateConnector,
   SocialConnector,
+} from '@logto/connector-kit';
+import {
+  validateConfig,
+  ConnectorError,
+  ConnectorErrorCodes,
   ConnectorType,
   parseJson,
 } from '@logto/connector-kit';
@@ -26,8 +28,8 @@ import {
   defaultTimeout,
   userInfoEndpoint,
 } from './constant';
+import type { DiscordConfig } from './types';
 import {
-  DiscordConfig,
   discordConfigGuard,
   authResponseGuard,
   accessTokenResponseGuard,
@@ -83,7 +85,6 @@ export const getAccessToken = async (
   return { accessToken };
 };
 
-/* eslint-disable complexity */
 const getUserInfo =
   (getConfig: GetConnectorConfig): GetUserInfo =>
   async (data) => {
@@ -129,7 +130,6 @@ const getUserInfo =
       throw error;
     }
   };
-/* eslint-enable complexity */
 
 const authorizationCallbackHandler = async (parameterObject: unknown) => {
   const result = authResponseGuard.safeParse(parameterObject);

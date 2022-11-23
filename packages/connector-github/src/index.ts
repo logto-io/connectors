@@ -1,11 +1,13 @@
-import {
+import type {
   GetAuthorizationUri,
   GetUserInfo,
-  ConnectorError,
-  ConnectorErrorCodes,
   SocialConnector,
   CreateConnector,
   GetConnectorConfig,
+} from '@logto/connector-kit';
+import {
+  ConnectorError,
+  ConnectorErrorCodes,
   validateConfig,
   ConnectorType,
   parseJson,
@@ -22,11 +24,11 @@ import {
   defaultMetadata,
   defaultTimeout,
 } from './constant';
+import type { GithubConfig } from './types';
 import {
   authorizationCallbackErrorGuard,
   githubConfigGuard,
   accessTokenResponseGuard,
-  GithubConfig,
   userInfoResponseGuard,
   authResponseGuard,
 } from './types';

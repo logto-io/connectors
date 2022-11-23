@@ -1,5 +1,5 @@
 import { endpoint, staticConfigs } from './constant';
-import { PublicParameters, SendSms } from './types';
+import type { PublicParameters, SendSms } from './types';
 import { request } from './utils';
 
 /**

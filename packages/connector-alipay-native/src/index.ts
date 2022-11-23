@@ -7,14 +7,16 @@
  * https://opendocs.alipay.com/open/204/105296/
  */
 
-import {
-  ConnectorError,
-  ConnectorErrorCodes,
+import type {
   GetAuthorizationUri,
   GetUserInfo,
   GetConnectorConfig,
   CreateConnector,
   SocialConnector,
+} from '@logto/connector-kit';
+import {
+  ConnectorError,
+  ConnectorErrorCodes,
   validateConfig,
   ConnectorType,
   parseJson,
@@ -35,13 +37,8 @@ import {
   invalidAccessTokenCode,
   invalidAccessTokenSubCode,
 } from './constant';
-import {
-  alipayNativeConfigGuard,
-  AlipayNativeConfig,
-  accessTokenResponseGuard,
-  userInfoResponseGuard,
-  ErrorHandler,
-} from './types';
+import type { AlipayNativeConfig, ErrorHandler } from './types';
+import { alipayNativeConfigGuard, accessTokenResponseGuard, userInfoResponseGuard } from './types';
 import { signingParameters } from './utils';
 
 export type { AlipayNativeConfig } from './types';

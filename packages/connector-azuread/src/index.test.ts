@@ -1,4 +1,4 @@
-import { GetConnectorConfig } from '@logto/connector-kit';
+import type { GetConnectorConfig } from '@logto/connector-kit';
 
 import createConnector from '.';
 

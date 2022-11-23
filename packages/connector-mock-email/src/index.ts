@@ -1,20 +1,23 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-import {
-  ConnectorError,
-  ConnectorErrorCodes,
+import type {
   GetConnectorConfig,
   SendMessageFunction,
   CreateConnector,
   EmailConnector,
+} from '@logto/connector-kit';
+import {
+  ConnectorError,
+  ConnectorErrorCodes,
   validateConfig,
   ConnectorType,
 } from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
 
 import { defaultMetadata } from './constant';
-import { mockMailConfigGuard, MockMailConfig } from './types';
+import type { MockMailConfig } from './types';
+import { mockMailConfigGuard } from './types';
 
 const sendMessage =
   (getConfig: GetConnectorConfig): SendMessageFunction =>

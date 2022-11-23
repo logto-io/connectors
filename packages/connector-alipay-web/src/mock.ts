@@ -1,4 +1,4 @@
-import { AlipayConfig } from './types';
+import type { AlipayConfig } from './types';
 
 export const mockedTimestamp = '2022-02-22 22:22:22';
 

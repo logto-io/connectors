@@ -1,20 +1,18 @@
 import path from 'path';
 
-import {
-  ConfidentialClientApplication,
-  AuthorizationCodeRequest,
-  AuthorizationUrlRequest,
-  CryptoProvider,
-} from '@azure/msal-node';
-import {
-  ConnectorError,
-  ConnectorErrorCodes,
+import type { AuthorizationCodeRequest, AuthorizationUrlRequest } from '@azure/msal-node';
+import { ConfidentialClientApplication, CryptoProvider } from '@azure/msal-node';
+import type {
   GetAuthorizationUri,
   GetUserInfo,
   GetConnectorConfig,
-  validateConfig,
   CreateConnector,
   SocialConnector,
+} from '@logto/connector-kit';
+import {
+  ConnectorError,
+  ConnectorErrorCodes,
+  validateConfig,
   ConnectorType,
   parseJson,
 } from '@logto/connector-kit';
@@ -22,9 +20,9 @@ import { assert, conditional } from '@silverhand/essentials';
 import got, { HTTPError } from 'got';
 
 import { scopes, defaultMetadata, defaultTimeout, graphAPIEndpoint } from './constant';
+import type { AzureADConfig } from './types';
 import {
   azureADConfigGuard,
-  AzureADConfig,
   accessTokenResponseGuard,
   userInfoResponseGuard,
   authResponseGuard,

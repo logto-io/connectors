@@ -1,29 +1,30 @@
+import type {
+  GetConnectorConfig,
+  SendMessageFunction,
+  CreateConnector,
+  EmailConnector,
+} from '@logto/connector-kit';
 import {
   ConnectorError,
   ConnectorErrorCodes,
-  GetConnectorConfig,
-  SendMessageFunction,
   validateConfig,
-  CreateConnector,
-  EmailConnector,
   ConnectorType,
 } from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
 import got, { HTTPError } from 'got';
 
 import { defaultMetadata, endpoint } from './constant';
-import {
-  sendGridMailConfigGuard,
+import type {
   SendGridMailConfig,
   EmailData,
   Personalization,
   Content,
   PublicParameters,
 } from './types';
+import { sendGridMailConfigGuard } from './types';
 
 const sendMessage =
   (getConfig: GetConnectorConfig): SendMessageFunction =>
-  // eslint-disable-next-line complexity
   async (data, inputConfig) => {
     const { to, type, payload } = data;
     const config = inputConfig ?? (await getConfig(defaultMetadata.id));
