@@ -25,7 +25,7 @@ importers:
   packages/connector-alipay-native:
     specifiers:
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@shopify/jest-koa-mocks': ^5.0.0
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
@@ -50,7 +50,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
       dayjs: 1.11.5
@@ -80,7 +80,7 @@ importers:
   packages/connector-alipay-web:
     specifiers:
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@logto/core-kit': 1.0.0-beta.26
       '@shopify/jest-koa-mocks': ^5.0.0
       '@silverhand/eslint-config': 1.3.0
@@ -106,7 +106,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@logto/core-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
@@ -137,7 +137,7 @@ importers:
   packages/connector-aliyun-dm:
     specifiers:
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
@@ -153,7 +153,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
       got: 11.8.5
@@ -174,7 +174,7 @@ importers:
   packages/connector-aliyun-sms:
     specifiers:
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
@@ -190,7 +190,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
       got: 11.8.5
@@ -211,7 +211,7 @@ importers:
   packages/connector-apple:
     specifiers:
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
@@ -230,7 +230,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
       got: 11.8.5
@@ -255,7 +255,7 @@ importers:
     specifiers:
       '@azure/msal-node': ^1.12.0
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
@@ -274,7 +274,7 @@ importers:
       zod: ^3.14.3
     dependencies:
       '@azure/msal-node': 1.12.1
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
       got: 11.8.5
@@ -297,7 +297,7 @@ importers:
   packages/connector-discord:
     specifiers:
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
@@ -315,7 +315,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
       got: 11.8.5
@@ -338,7 +338,7 @@ importers:
   packages/connector-facebook:
     specifiers:
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
@@ -356,7 +356,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
       got: 11.8.5
@@ -379,7 +379,7 @@ importers:
   packages/connector-github:
     specifiers:
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
@@ -398,7 +398,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
       got: 11.8.5
@@ -422,7 +422,7 @@ importers:
   packages/connector-google:
     specifiers:
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
@@ -440,7 +440,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
       got: 11.8.5
@@ -463,7 +463,7 @@ importers:
   packages/connector-kakao:
     specifiers:
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
@@ -481,7 +481,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
       got: 11.8.5
@@ -503,7 +503,7 @@ importers:
 
   packages/connector-mock-email:
     specifiers:
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/ts-config': 1.2.1
@@ -515,7 +515,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       zod: 3.18.0
     devDependencies:
@@ -530,7 +530,7 @@ importers:
 
   packages/connector-mock-sms:
     specifiers:
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/ts-config': 1.2.1
@@ -542,7 +542,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       zod: 3.18.0
     devDependencies:
@@ -557,7 +557,7 @@ importers:
 
   packages/connector-mock-social:
     specifiers:
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/ts-config': 1.2.1
@@ -569,7 +569,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       zod: 3.18.0
     devDependencies:
@@ -585,7 +585,7 @@ importers:
   packages/connector-naver:
     specifiers:
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
@@ -603,7 +603,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
       got: 11.8.5
@@ -626,7 +626,7 @@ importers:
   packages/connector-sendgrid-email:
     specifiers:
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
@@ -642,7 +642,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
       got: 11.8.5
@@ -663,7 +663,7 @@ importers:
   packages/connector-smtp:
     specifiers:
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@logto/shared': ^1.0.0-beta.8
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
@@ -681,7 +681,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@logto/shared': 1.0.0-beta.8
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
@@ -704,7 +704,7 @@ importers:
   packages/connector-twilio-sms:
     specifiers:
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
@@ -720,7 +720,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
       got: 11.8.5
@@ -741,7 +741,7 @@ importers:
   packages/connector-wechat-native:
     specifiers:
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
@@ -759,7 +759,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
       got: 11.8.5
@@ -782,7 +782,7 @@ importers:
   packages/connector-wechat-web:
     specifiers:
       '@jest/types': ^28.1.3
-      '@logto/connector-kit': ^1.0.0-beta.20
+      '@logto/connector-kit': ^1.0.0-beta.26
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
@@ -800,7 +800,7 @@ importers:
       typescript: ^4.7.4
       zod: ^3.14.3
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.20
+      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
       '@silverhand/essentials': 1.2.0
       '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
       got: 11.8.5
@@ -2336,23 +2336,15 @@ packages:
       write-file-atomic: 4.0.2
     dev: true
 
-  /@logto/connector-kit/1.0.0-beta.20:
-    resolution: {integrity: sha512-Z9rrrjpUJFKdxfs7CKrabiTmrHFyTFnUuPFfl6HG38I6EUOaURITJ3c6FJjCdu60nIRuwaM29+i/h4AChzLwew==}
-    engines: {node: ^16.0.0}
+  /@logto/connector-kit/1.0.0-beta.26_zod@3.18.0:
+    resolution: {integrity: sha512-qspmxyD50mVpKwWOHyU2MD44IuTTkj4AAHmtBICyiU0+VdbiCJwE1NFxcqo8CN2qUw//oG2tEiWmbN3Wcxdhag==}
+    engines: {node: ^16.13.0 || ^18.12.0}
+    peerDependencies:
+      zod: ^3.19.1
     dependencies:
-      '@logto/core-kit': 1.0.0-beta.20
-      '@logto/language-kit': 1.0.0-beta.20
-      '@silverhand/essentials': 1.2.1
-      zod: 3.18.0
-    dev: false
-
-  /@logto/core-kit/1.0.0-beta.20:
-    resolution: {integrity: sha512-seYvL/aGYRfO4d0FYfKIW/Cu9PnFMRpRM5/oRXwXbcbv+LY1a3TcAX0itrVXeBygIrxiAmWd9DL7CGIWzb48Qg==}
-    engines: {node: ^16.0.0}
-    dependencies:
+      '@logto/core-kit': 1.0.0-beta.26_zod@3.18.0
       '@logto/language-kit': 1.0.0-beta.26_zod@3.18.0
-      color: 4.2.3
-      nanoid: 3.3.4
+      '@silverhand/essentials': 1.2.1
       zod: 3.18.0
     dev: false
 
@@ -2365,13 +2357,6 @@ packages:
       '@logto/language-kit': 1.0.0-beta.26_zod@3.18.0
       color: 4.2.3
       nanoid: 3.3.4
-      zod: 3.18.0
-    dev: false
-
-  /@logto/language-kit/1.0.0-beta.20:
-    resolution: {integrity: sha512-nBqWQo2xGAlVcD9O/txpCzRyy7eKXNXBAHm8J1y/u5Fp3BMObMmJv+v4Zk+UhckdFpsnFJF0wYIX45ta2+IipA==}
-    engines: {node: ^16.0.0}
-    dependencies:
       zod: 3.18.0
     dev: false
 
