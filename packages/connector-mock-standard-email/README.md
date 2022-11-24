@@ -1,3 +1,3 @@
-# Mock mail connector
+# Mock standard mail connector
 
 For integration tests only.
