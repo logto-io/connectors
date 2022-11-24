@@ -21,4 +21,5 @@ export const defaultMetadata: ConnectorMetadata = {
   },
   readme: './README.md',
   configTemplate: './docs/config-template.json',
+  isStandard: true,
 };
