@@ -15,6 +15,16 @@
       "content": "<register-template-content>"
     },
     {
+      "usageType": "ForgotPassword",
+      "subject": "<register-template-subject>",
+      "content": "<register-template-content>"
+    },
+    {
+      "usageType": "Continue",
+      "subject": "<register-template-subject>",
+      "content": "<register-template-content>"
+    },
+    {
       "usageType": "Test",
       "subject": "<test-template-subject>",
       "content": "<test-template-content>"

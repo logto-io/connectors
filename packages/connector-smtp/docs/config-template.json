@@ -30,6 +30,12 @@
           "content": "This is for forgot-password purposes only. Your verification code is {{code}}.",
           "subject": "Logto Forgot Password with SMTP",
           "usageType": "ForgotPassword"
+      },
+      {
+          "contentType": "text/plain",
+          "content": "This is for fulfilling profile purposes only. Your verification code is {{code}}.",
+          "subject": "Logto Continue with SMTP",
+          "usageType": "Continue"
       }
   ],
   "secure": true,
