@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.0-beta.13](https://github.com/logto-io/connectors/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2022-11-29)
+
+**Note:** Version bump only for package @logto/connector-twilio-sms
+
+
+
+
+
 ## [1.0.0-beta.12](https://github.com/logto-io/connectors/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2022-11-29)
 
 
