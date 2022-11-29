@@ -59,7 +59,7 @@ After finishing setup, there are two different ways to test:
     - You can add multiple DM connector templates for different cases. Here is an example of adding a single template:
         - Fill out the `subject` field, which will work as title of the sending email.
         - Fill out the `content` field with arbitrary string-type contents. Do not forget to leave `{{code}}` placeholder for random passcode.
-        - Fill out `usageType` field with either `Register`, `SignIn` or `Test` for different use cases. (`usageType` is a Logto property to identify the proper use case.)
+        - Fill out `usageType` field with either `Register`, `SignIn`, `ForgotPassword`, `Continue` or `Test` for different use cases. (`usageType` is a Logto property to identify the proper use case.)
 
 Here is an example of Aliyun DM connector config JSON.
 
@@ -79,6 +79,16 @@ Here is an example of Aliyun DM connector config JSON.
             "subject": "<sign-in-template-subject>",
             "content": "<Logto: Your passcode is {{code}}. (sign-in template)>",
             "usageType": "SignIn"
+        },
+        {
+            "subject": "<forgot-password-template-subject>",
+            "content": "<Logto: Your passcode is {{code}}. (forgot-password template)>",
+            "usageType": "ForgotPassword"
+        },
+        {
+            "subject": "<continue-template-subject>",
+            "content": "<Logto: Your passcode is {{code}}. (continue template)>",
+            "usageType": "Continue"
         },
         {
             "subject": "<test-template-subject>",
@@ -105,11 +115,11 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 | fromAlias       | string (OPTIONAL) |
 | templates       | Template[]        |
 
-| Template Properties | Type        | Enum values                      |
-|---------------------|-------------|----------------------------------|
-| subject             | string      | N/A                              |
-| content             | string      | N/A                              |
-| usageType           | enum string | 'Register' \| 'SignIn' \| 'Test' |
+| Template Properties | Type        | Enum values                                                        |
+|---------------------|-------------|--------------------------------------------------------------------|
+| subject             | string      | N/A                                                                |
+| content             | string      | N/A                                                                |
+| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Continue' \| 'Test' |
 
 # 阿里云邮件连接器
 
@@ -151,7 +161,7 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
     - 你可以添加多个邮件服务模板以应对不同的用户场景。这里展示填写单个模板的例子：
       - 在 `subject` 栏填写发送邮件的 _标题_。
       - 在 `content` 栏中填写字符形式的内容。不要忘了在内容中插入 `{{code}}` 占位符，在真实发送时他会被替换成随机生成的验证码。
-      - `usageType` 栏填写 `Register`，`SignIn` 或者 `Test` 其中之一以分别对应 _注册_，_登录_ 和 _测试_ 的不同场景。（`usageType` 是 Logto 的属性，用来确定使用场景。）
+      - `usageType` 栏填写 `Register`，`SignIn`，`ForgotPassword`，`Continue` 或者 `Test` 其中之一以分别对应 _注册_，_登录_，_忘记密码_，_用户档案补全_ 和 _测试_ 的不同场景。（`usageType` 是 Logto 的属性，用来确定使用场景。）
 
 这是一个阿里云邮件服务连接器 JSON 配置的样例。
 
@@ -171,6 +181,16 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
             "subject": "<sign-in-template-subject>",
             "content": "<Logto: Your passcode is {{code}}. (sign-in template)>",
             "usageType": "SignIn"
+        },
+        {
+            "subject": "<forgot-password-template-subject>",
+            "content": "<Logto: Your passcode is {{code}}. (forgot-password template)>",
+            "usageType": "ForgotPassword"
+        },
+        {
+            "subject": "<continue-template-subject>",
+            "content": "<Logto: Your passcode is {{code}}. (continue template)>",
+            "usageType": "Continue"
         },
         {
             "subject": "<test-template-subject>",
@@ -197,8 +217,8 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 | fromAlias       | string (OPTIONAL) |
 | templates       | Template[]        |
 
-| 模板属性   | 类型        | 枚举值                             |
-|-----------|-------------|----------------------------------|
-| subject   | string      | N/A                              |
-| content   | string      | N/A                              |
-| usageType | enum string | 'Register' \| 'SignIn' \| 'Test' |
+| 模板属性   | 类型        | 枚举值                                                               |
+|-----------|-------------|--------------------------------------------------------------------|
+| subject   | string      | N/A                                                                |
+| content   | string      | N/A                                                                |
+| usageType | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Continue' \| 'Test' |
