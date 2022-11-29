@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.0-beta.12](https://github.com/logto-io/connectors/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2022-11-29)
+
+
+### Features
+
+* add forgot password and continue templates for sms and email ([#36](https://github.com/logto-io/connectors/issues/36)) ([4ad3551](https://github.com/logto-io/connectors/commit/4ad35516c0770ec344caf0bcc68b572c832b30a0))
+* add mock standard email connector ([#35](https://github.com/logto-io/connectors/issues/35)) ([479114e](https://github.com/logto-io/connectors/commit/479114e847fb4b11c6fbd697a36b7f5eb56305ed))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @logto/core-kit to v1.0.0-beta.26 ([#33](https://github.com/logto-io/connectors/issues/33)) ([876b635](https://github.com/logto-io/connectors/commit/876b63528bcaf69de4293196e8ab9d1e20b5571d))
+
+
+
 ## [1.0.0-beta.11](https://github.com/logto-io/connectors/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2022-11-06)
 
 **Note:** Version bump only for package root

@@ -1,6 +1,6 @@
 {
   "name": "@logto/connector-naver",
-  "version": "1.0.0-beta.11",
+  "version": "1.0.0-beta.12",
   "description": "Naver connector implementation.",
   "main": "./lib/index.js",
   "exports": "./lib/index.js",
