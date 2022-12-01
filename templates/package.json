@@ -20,7 +20,7 @@
     "prepack": "pnpm build"
   },
   "dependencies": {
-    "@logto/connector-kit": "1.0.0-beta.29",
+    "@logto/connector-kit": "1.0.0-beta.30",
     "@silverhand/essentials": "^1.2.0",
     "got": "^11.8.2",
     "snakecase-keys": "^5.1.0",
