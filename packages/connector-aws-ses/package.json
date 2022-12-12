@@ -1,7 +1,7 @@
 {
-  "name": "logto-connertor-aws",
+  "name": "@logto/connector-aws-ses",
   "version": "1.0.0",
-  "description": "Logto Connector for AWS",
+  "description": "Logto Connector for Amazon SES",
   "main": "./lib/index.js",
   "exports": "./lib/index.js",
   "author": "Jeff <admin@breadth.app>",
