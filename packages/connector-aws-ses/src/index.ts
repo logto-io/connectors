@@ -58,7 +58,7 @@ const sendMessage =
     }
   };
 
-const createAwsDmConnector: CreateConnector<EmailConnector> = async ({ getConfig }) => {
+const createAwsSesConnector: CreateConnector<EmailConnector> = async ({ getConfig }) => {
   return {
     metadata: defaultMetadata,
     type: ConnectorType.Email,
@@ -67,4 +67,4 @@ const createAwsDmConnector: CreateConnector<EmailConnector> = async ({ getConfig
   };
 };
 
-export default createAwsDmConnector;
+export default createAwsSesConnector;
