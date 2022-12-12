@@ -1,0 +1,1 @@
+# AWS direct mail connector
