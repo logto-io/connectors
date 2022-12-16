@@ -16,19 +16,25 @@ const getAuthorizationUri: GetAuthorizationUri = async ({ state, redirectUri }) 
   return `http://mock.social.com/?state=${state}&redirect_uri=${redirectUri}`;
 };
 
-const getAccessToken = async () => randomUUID();
-
 const getUserInfo: GetUserInfo = async (data) => {
-  const dataGuard = z.object({ code: z.string(), userId: z.optional(z.string()) });
+  const dataGuard = z.object({
+    code: z.string(),
+    userId: z.optional(z.string()),
+    email: z.string().optional(),
+    phone: z.string().optional(),
+  });
   const result = dataGuard.safeParse(data);
 
   if (!result.success) {
     throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, JSON.stringify(data));
   }
 
+  const { code, userId, ...rest } = result.data;
+
   // For mock use only. Use to track the created user entity
   return {
-    id: result.data.userId ?? `mock-social-sub-${randomUUID()}`,
+    id: userId ?? `mock-social-sub-${randomUUID()}`,
+    ...rest,
   };
 };
 
