@@ -20,19 +20,19 @@ describe('sendMessage()', () => {
 
   it('should call SendMail() and replace code in content', async () => {
     const connector = await createConnector({ getConfig });
-    const to_mail = 'to@email.com';
+    const toMail = 'to@email.com';
     const { emailAddress } = mockedConfig;
     await connector.sendMessage({
-      to: to_mail,
+      to: toMail,
       type: MessageTypes.SignIn,
       payload: { code: '1234' },
     });
-    const to_expected = [to_mail];
+    const toExpected = [toMail];
     expect(SESv2Client.prototype.send).toHaveBeenCalledWith(
       expect.objectContaining({
         input: {
           FromEmailAddress: emailAddress,
-          Destination: { ToAddresses: to_expected },
+          Destination: { ToAddresses: toExpected },
           Content: {
             Simple: {
               Subject: { Data: 'subject', Charset: 'utf8' },

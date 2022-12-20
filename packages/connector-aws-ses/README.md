@@ -40,8 +40,8 @@ Go to [AWS](https://aws.amazon.com/) and register an account.
 ### Create a identity
 
 - Go to `Amazon Simple Email Service` Console
-- Create a identity, choose one of the following options
-  - Create a domain
+- Create an identity, choose one of the following options
+  - Create an domain
   - Create an email address
 
 
@@ -53,7 +53,7 @@ Go to [AWS](https://aws.amazon.com/) and register an account.
    - `region`: Fill in the `region` field with the region of the identity you use to send mail.
    - `emailAddress`: The email address you use to send mail, in the format of `Logto<noreply@logto.io>` or `<noreply@logto.io>`
 
-thor following parameters are optional; parameters description can be found in the [AWS SES API documentation](https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendEmail.html).
+the following parameters are optional; parameters description can be found in the [AWS SES API documentation](https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendEmail.html).
 
 - `feedbackForwardingEmailAddress`
 - `feedbackForwardingEmailAddressIdentityArn`
@@ -80,13 +80,13 @@ Here is an example of the JSON of the `Amazon SES` connector:
     },
     {
       "usageType": "ForgotPassword",
-      "subject": "<register-template-subject>",
-      "content": "<register-template-content>"
+      "subject": "<forgot-password-template-subject>",
+      "content": "<forgot-password-template-content>"
     },
     {
       "usageType": "Continue",
-      "subject": "<register-template-subject>",
-      "content": "<register-template-content>"
+      "subject": "<continue-template-subject>",
+      "content": "<continue-template-content>"
     },
     {
       "usageType": "Test",
@@ -100,7 +100,7 @@ Here is an example of the JSON of the `Amazon SES` connector:
 
 ### Test the `Amazon SES` connector
 
-You can type in an email address and click on "Send" to see whether the settings can work before "Save and Done".
+You can type in an email address and click on "Send" to see whether the settings work before "Save and Done".
 
 That's it. Don't forget to [Enable connector in sign-in experience](https://docs.logto.io/docs/tutorials/get-started/enable-passcode-sign-in/#enable-connector-in-sign-in-experience).
 
@@ -152,11 +152,11 @@ Amazon SES 是云电子邮件发送服务，它可以集成到任何应用程序
 
 ## 编写连接器的 JSON
 
-1. 在 Amazon 控制台右上角点击你的用户名，进入`安全凭证`， 如果你没有，请创建`AccessKey`, 并妥善保存
-2. 完成`Amazon Simple Email Service`连接器的设置:
-   - 使用在步骤 1 中拿到的一对「AccessKey ID」和「AccessKey Secret」来分别填入 `accessKeyId` 和 `accessKeySecret`。
-   - `region`: 使用发信身份所在的region填入`region`字段
-   - `emailAddress`: 你使用发信的邮箱，格式: `Logto<noreply@logto.io>`, 也可以仅使用`<noreply@logto.io>`
+1. 在 Amazon 控制台右上角点击你的用户名，进入`安全凭证`，如果你没有，请创建 `AccessKey`，并妥善保存
+2. 完成 `Amazon Simple Email Service` 连接器的设置：
+    - 使用在步骤 1 中拿到的一对「AccessKey ID」和「AccessKey Secret」来分别填入 `accessKeyId` 和 `accessKeySecret`
+    - `region`：使用发信身份所在的 region 填入`region` 字段
+    - `emailAddress`：发信人邮箱地址，格式：`Logto<noreply@logto.io>`，也可以仅使用 `<noreply@logto.io>`
 
 以下参数通常不需要配置，除非你明确知道你需要做什么；参数的含义可以参考 [AWS SES DOC](https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendEmail.html)。
 - `feedbackForwardingEmailAddress`
@@ -184,13 +184,13 @@ Amazon SES 是云电子邮件发送服务，它可以集成到任何应用程序
     },
     {
       "usageType": "ForgotPassword",
-      "subject": "<register-template-subject>",
-      "content": "<register-template-content>"
+      "subject": "<forgot-password-template-subject>",
+      "content": "<forgot-password-template-content>"
     },
     {
       "usageType": "Continue",
-      "subject": "<register-template-subject>",
-      "content": "<register-template-content>"
+      "subject": "<continue-template-subject>",
+      "content": "<continue-template-content>"
     },
     {
       "usageType": "Test",
