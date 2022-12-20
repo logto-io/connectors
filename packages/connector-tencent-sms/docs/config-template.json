@@ -1,0 +1,29 @@
+{
+  "accessKeyId": "<access-key-id>",
+  "accessKeySecret": "<access-key-secret>",
+  "signName": "<sign-name>",
+  "sdkAppId": "<sdk-app-id>",
+  "region": "<region>",
+  "templates": [
+    {
+      "usageType": "SignIn",
+      "templateCode": "<template-code>"
+    },
+    {
+      "usageType": "Register",
+      "templateCode": "<template-code>"
+    },
+    {
+      "usageType": "ForgotPassword",
+      "templateCode": "<template-code>"
+    },
+    {
+      "usageType": "Continue",
+      "templateCode": "<template-code>"
+    },
+    {
+      "usageType": "Test",
+      "templateCode": "<template-code>"
+    }
+  ]
+}
