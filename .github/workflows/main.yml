@@ -22,7 +22,9 @@ jobs:
         uses: silverhand-io/actions-node-pnpm-run-steps@v2
         with:
           run-install: false
-      - run: pnpm package:sync && pnpm i
+      
+      - name: Sync package.json and install deps
+        run: pnpm package:sync --silent && pnpm i
 
       - name: Build
         run: pnpm -- lerna run --stream build

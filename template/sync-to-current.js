@@ -40,7 +40,7 @@ const sync = async () => {
     })
   );
 
-  if (shouldError) {
+  if (!process.argv.includes('--silent') && shouldError) {
     console.log(
       '**CONNECTOR SYNC SCRIPT**\n\nNew `package.json` created, run `pnpm i` again to update lockfile.'
     );
