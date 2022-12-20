@@ -2,8 +2,8 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "package:sync": "node template/sync-to-current.js",
-    "package:update": "node template/sync-from-current.js",
+    "package:sync": "node templates/sync-to-current.js",
+    "package:update": "node templates/sync-from-current.js",
     "pnpm:devPreinstall": "pnpm package:sync",
     "preinstall": "npx only-allow pnpm",
     "version": "pnpm i --frozen-lockfile=false && pnpm package:update && git add pnpm-lock.yaml packages/*/package.extend.json",

@@ -943,12 +943,14 @@ importers:
     specifiers:
       '@jest/types': ^29.3.1
       '@logto/connector-kit': 1.0.0-beta.29
+      '@logto/shared': 1.0.0-beta.8
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
       '@silverhand/ts-config': 1.2.1
       '@types/jest': ^29.2.4
       '@types/node': ^16.3.1
+      '@types/nodemailer': ^6.4.4
       '@types/supertest': ^2.0.11
       '@vercel/ncc': ^0.36.0
       eslint: ^8.21.0
@@ -966,6 +968,7 @@ importers:
       zod: ^3.20.2
     dependencies:
       '@logto/connector-kit': 1.0.0-beta.29_zod@3.20.2
+      '@logto/shared': 1.0.0-beta.8
       '@silverhand/essentials': 1.2.0
       got: 11.8.5
       nodemailer: 6.7.8
@@ -978,6 +981,7 @@ importers:
       '@silverhand/ts-config': 1.2.1_typescript@4.9.4
       '@types/jest': 29.2.4
       '@types/node': 16.11.56
+      '@types/nodemailer': 6.4.7
       '@types/supertest': 2.0.12
       '@vercel/ncc': 0.36.0
       eslint: 8.23.0
@@ -3515,6 +3519,16 @@ packages:
       zod: 3.20.2
     dev: false
 
+  /@logto/shared/1.0.0-beta.8:
+    resolution: {integrity: sha512-qgG/vTTBCyfpveGRQZ7GcGDUz2dkoUhPkRO4eQhtYpxkV9lA8BP6gOQen6hnlwZKc4YnnbSuTqh2HZRZY0YyMw==}
+    engines: {node: ^16.0.0}
+    deprecated: this package has been deprecated, use `@logto/core-kit` instead
+    dependencies:
+      color: 4.2.3
+      nanoid: 3.3.4
+      zod: 3.20.2
+    dev: false
+
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -4110,6 +4124,12 @@ packages:
 
   /@types/node/18.7.13:
     resolution: {integrity: sha512-46yIhxSe5xEaJZXWdIBP7GU4HDTG8/eo0qd9atdiL+lFpA03y8KS+lkTN834TWJj5767GbWv4n/P6efyTFt1Dw==}
+
+  /@types/nodemailer/6.4.7:
+    resolution: {integrity: sha512-f5qCBGAn/f0qtRcd4SEn88c8Fp3Swct1731X4ryPKqS61/A3LmmzN8zaEz7hneJvpjFbUUgY7lru/B/7ODTazg==}
+    dependencies:
+      '@types/node': 18.7.13
+    dev: true
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}

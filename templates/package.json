@@ -16,7 +16,7 @@
     "lint": "eslint --ext .ts src",
     "lint:report": "pnpm lint --format json --output-file report.json",
     "test": "jest",
-    "test:coverage": "jest --coverage --silent",
+    "test:coverage": "pnpm run test --coverage --silent",
     "prepack": "pnpm build"
   },
   "dependencies": {

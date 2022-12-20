@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/package",
   "name": "@logto/connector-naver",
   "version": "1.0.0-beta.12",
   "description": "Naver connector implementation.",

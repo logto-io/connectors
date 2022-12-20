@@ -13,8 +13,9 @@ node_modules
 /packages/*/lib
 /packages/*/build
 
-# generated package.json
+# generated files
 /packages/*/package.json
+/packages/*/tsconfig.*
 
 # logs
 logs
