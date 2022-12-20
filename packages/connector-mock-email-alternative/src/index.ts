@@ -44,7 +44,9 @@ const sendMessage =
     return { address: to, data: payload };
   };
 
-const createMockEmailConnector: CreateConnector<EmailConnector> = async ({ getConfig }) => {
+const createAlternativeMockEmailConnector: CreateConnector<EmailConnector> = async ({
+  getConfig,
+}) => {
   return {
     metadata: defaultMetadata,
     type: ConnectorType.Email,
@@ -53,4 +55,4 @@ const createMockEmailConnector: CreateConnector<EmailConnector> = async ({ getCo
   };
 };
 
-export default createMockEmailConnector;
+export default createAlternativeMockEmailConnector;
