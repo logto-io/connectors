@@ -1,0 +1,12 @@
+{
+  "name": "@logto/connector-alipay-web",
+  "version": "1.0.0-beta.12",
+  "description": "Alipay implementation.",
+  "dependencies": {
+    "@logto/core-kit": "1.0.0-beta.29",
+    "dayjs": "^1.10.5"
+  },
+  "devDependencies": {
+    "@shopify/jest-koa-mocks": "^5.0.0"
+  }
+}

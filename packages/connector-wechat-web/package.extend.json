@@ -1,0 +1,6 @@
+{
+  "name": "@logto/connector-wechat-web",
+  "version": "1.0.0-beta.12",
+  "description": "Wechat Web connector implementation.",
+  "author": "Silverhand Inc. <contact@silverhand.io>"
+}

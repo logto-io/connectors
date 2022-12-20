@@ -13,6 +13,9 @@ node_modules
 /packages/*/lib
 /packages/*/build
 
+# generated package.json
+/packages/*/package.json
+
 # logs
 logs
 *.log

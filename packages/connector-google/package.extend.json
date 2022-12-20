@@ -1,0 +1,6 @@
+{
+  "name": "@logto/connector-google",
+  "version": "1.0.0-beta.12",
+  "description": "Google web connector implementation.",
+  "author": "Silverhand Inc. <contact@silverhand.io>"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@logto/connector-github",
+  "version": "1.0.0-beta.12",
+  "description": "Github web connector implementation.",
+  "author": "Silverhand Inc. <contact@silverhand.io>",
+  "dependencies": {
+    "query-string": "^7.0.1"
+  }
+}

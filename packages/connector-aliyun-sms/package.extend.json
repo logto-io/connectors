@@ -1,0 +1,5 @@
+{
+  "name": "@logto/connector-aliyun-sms",
+  "version": "1.0.0-beta.13",
+  "description": "Aliyun SMS connector implementation."
+}

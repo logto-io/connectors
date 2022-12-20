@@ -1,0 +1,9 @@
+{
+  "name": "@logto/connector-azuread",
+  "version": "1.0.0-beta.12",
+  "description": "Azure AD connector implementation.",
+  "author": "Mobilist Inc. <info@mobilist.com.tr>",
+  "dependencies": {
+    "@azure/msal-node": "^1.12.0"
+  }
+}

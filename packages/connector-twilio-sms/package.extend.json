@@ -1,0 +1,6 @@
+{
+  "name": "@logto/connector-twilio-sms",
+  "version": "1.0.0-beta.13",
+  "description": "Twilio SMS connector implementation.",
+  "author": "Silverhand Inc. <contact@silverhand.io>"
+}
