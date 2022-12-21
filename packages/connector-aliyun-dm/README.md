@@ -94,7 +94,7 @@ Here is an example of Aliyun DM connector config JSON.
             "subject": "<test-template-subject>",
             "content": "<Logto: Your passcode is {{code}}. (test template)>",
             "usageType": "Test"
-        },
+        }
     ]
 }
 ```
@@ -196,7 +196,7 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
             "subject": "<test-template-subject>",
             "content": "<Logto: Your passcode is {{code}}. (test template)>",
             "usageType": "Test"
-        },
+        }
     ]
 }
 ```
