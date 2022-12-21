@@ -10,15 +10,15 @@ Amazon SES邮件推送服务 Logto 官方连接器[中文文档](#aws-ses邮件�
     - [Register AWS account](#register-aws-account)
     - [Create a identity](#create-a-identity)
     - [Edit the JSON of the connector](#edit-the-json-of-the-connector)
-    - [Test the `Amazon SES` connector](#test-the-amazon-ses-connector)
+    - [Test the Amazon SES connector](#test-the-amazon-ses-connector)
     - [Configure types](#configure-types)
-- [AWS SES邮件连接器](#aws-ses邮件连接器)
+- [AWS SES 邮件连接器](#aws-ses-邮件连接器)
   - [开始上手](#开始上手)
-  - [在AWS服务控制台中配置一个邮件服务](#在aws服务控制台中配置一个邮件服务)
-    - [注册AWS帐号](#注册aws帐号)
+  - [在 AWS 服务控制台中配置一个邮件服务](#在-aws-服务控制台中配置一个邮件服务)
+    - [注册 AWS 帐号](#注册-aws-帐号)
     - [创建发信身份](#创建发信身份)
   - [编写连接器的 JSON](#编写连接器的-json)
-    - [测试`Amazon SES`邮件连接器](#测试amazon-ses邮件连接器)
+    - [测试 Amazon SES 邮件连接器](#测试-amazon-ses-邮件连接器)
     - [配置类型](#配置类型)
 
 ## Get started
@@ -98,7 +98,7 @@ Here is an example of the JSON of the `Amazon SES` connector:
 
 ```
 
-### Test the `Amazon SES` connector
+### Test the Amazon SES connector
 
 You can type in an email address and click on "Send" to see whether the settings work before "Save and Done".
 
@@ -125,7 +125,7 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 | usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Continue' \| 'Test' |
 
 
-# AWS SES邮件连接器
+# AWS SES 邮件连接器
 
 ## 开始上手
 
@@ -133,13 +133,13 @@ Amazon SES 是云电子邮件发送服务，它可以集成到任何应用程序
 
 本连接器是 Logto 官方提供的 Amazon SES 邮件连接器，帮助终端用户通过邮件验证码进行登录注册。
 
-## 在AWS服务控制台中配置一个邮件服务
+## 在 AWS 服务控制台中配置一个邮件服务
 
 > 💡 **Tip**
 > 
 > 你可以跳过已经完成的部分。
 
-### 注册AWS帐号
+### 注册 AWS 帐号
 
 前往 [AWS](https://aws.amazon.com/) 并完成帐号的注册。
 
@@ -202,7 +202,7 @@ Amazon SES 是云电子邮件发送服务，它可以集成到任何应用程序
 
 ```
 
-### 测试`Amazon SES`邮件连接器
+### 测试 Amazon SES 邮件连接器
 
 你可以在「保存并完成」之前输入一个邮件地址并点按「发送」来测试配置是否可以正常工作。
 
