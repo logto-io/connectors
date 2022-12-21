@@ -21,7 +21,12 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node and pnpm
-        uses: silverhand-io/actions-node-pnpm-run-steps@v1.2.3
+        uses: silverhand-io/actions-node-pnpm-run-steps@v2
+        with:
+          run-install: false
+
+      - name: Sync package.json and install deps
+        run: pnpm package:sync --silent && pnpm i
 
       - name: Commitlint
         run: npx commitlint --from HEAD~${{ github.event.pull_request.commits }} --to HEAD

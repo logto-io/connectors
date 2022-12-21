@@ -13,6 +13,11 @@ node_modules
 /packages/*/lib
 /packages/*/build
 
+# generated files
+/packages/*/package.json
+/packages/*/tsconfig.*
+/packages/*/jest.config.*
+
 # logs
 logs
 *.log
