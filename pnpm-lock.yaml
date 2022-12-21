@@ -283,42 +283,54 @@ importers:
     specifiers:
       '@aws-sdk/client-sesv2': ^3.224.0
       '@aws-sdk/types': ^3.226.0
-      '@jest/types': ^28.1.3
+      '@jest/types': ^29.3.1
       '@logto/connector-kit': 1.0.0-beta.29
       '@silverhand/eslint-config': 1.3.0
-      '@silverhand/essentials': ^1.3.0
+      '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
       '@silverhand/ts-config': 1.2.1
-      '@types/jest': ^28.1.6
+      '@types/jest': ^29.2.4
       '@types/node': ^16.3.1
+      '@types/supertest': ^2.0.11
       '@vercel/ncc': ^0.36.0
       eslint: ^8.21.0
       got: ^11.8.2
-      jest: ^28.1.3
+      iconv-lite: 0.6.3
+      jest: ^29.3.1
+      jest-matcher-specific-error: ^1.0.0
       lint-staged: ^13.0.0
+      nock: ^13.2.2
       prettier: ^2.7.1
-      typescript: ^4.7.4
-      zod: ^3.14.3
+      snakecase-keys: ^5.1.0
+      supertest: ^6.2.2
+      typescript: ^4.9.4
+      zod: ^3.20.2
     dependencies:
       '@aws-sdk/client-sesv2': 3.226.0
       '@aws-sdk/types': 3.226.0
-      '@logto/connector-kit': 1.0.0-beta.29_zod@3.18.0
+      '@logto/connector-kit': 1.0.0-beta.29_zod@3.20.2
       '@silverhand/essentials': 1.3.0
-      '@silverhand/jest-config': 1.2.2_556mfp7b5dutuj2jcrj5i7zc5q
       got: 11.8.5
-      zod: 3.18.0
+      snakecase-keys: 5.4.4
+      zod: 3.20.2
     devDependencies:
-      '@jest/types': 28.1.3
-      '@silverhand/eslint-config': 1.3.0_er5sflmxjcrgfvrsp3qwdvxste
-      '@silverhand/ts-config': 1.2.1_typescript@4.8.2
-      '@types/jest': 28.1.8
+      '@jest/types': 29.3.1
+      '@silverhand/eslint-config': 1.3.0_osxwdbbcucdkewmxwr46c5plia
+      '@silverhand/jest-config': 1.2.2_p6ekqnroyms5nhqbfxosryz7rm
+      '@silverhand/ts-config': 1.2.1_typescript@4.9.4
+      '@types/jest': 29.2.4
       '@types/node': 16.11.56
+      '@types/supertest': 2.0.12
       '@vercel/ncc': 0.36.0
       eslint: 8.23.0
-      jest: 28.1.3_@types+node@16.11.56
+      iconv-lite: 0.6.3
+      jest: 29.3.1_@types+node@16.11.56
+      jest-matcher-specific-error: 1.0.0
       lint-staged: 13.0.3
+      nock: 13.2.9
       prettier: 2.7.1
-      typescript: 4.8.2
+      supertest: 6.2.4
+      typescript: 4.9.4
 
   packages/connector-azuread:
     specifiers:
@@ -669,30 +681,52 @@ importers:
 
   packages/connector-mock-email-alternative:
     specifiers:
-      '@logto/connector-kit': ^1.0.0-beta.26
+      '@jest/types': ^29.3.1
+      '@logto/connector-kit': 1.0.0-beta.29
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
+      '@silverhand/jest-config': 1.2.2
       '@silverhand/ts-config': 1.2.1
+      '@types/jest': ^29.2.4
       '@types/node': ^16.3.1
+      '@types/supertest': ^2.0.11
       '@vercel/ncc': ^0.36.0
       eslint: ^8.21.0
+      got: ^11.8.2
+      iconv-lite: 0.6.3
+      jest: ^29.3.1
+      jest-matcher-specific-error: ^1.0.0
       lint-staged: ^13.0.0
+      nock: ^13.2.2
       prettier: ^2.7.1
-      typescript: ^4.7.4
-      zod: ^3.14.3
+      snakecase-keys: ^5.1.0
+      supertest: ^6.2.2
+      typescript: ^4.9.4
+      zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.26_zod@3.18.0
+      '@logto/connector-kit': 1.0.0-beta.29_zod@3.20.2
       '@silverhand/essentials': 1.2.1
-      zod: 3.18.0
+      got: 11.8.5
+      snakecase-keys: 5.4.4
+      zod: 3.20.2
     devDependencies:
-      '@silverhand/eslint-config': 1.3.0_er5sflmxjcrgfvrsp3qwdvxste
-      '@silverhand/ts-config': 1.2.1_typescript@4.8.2
+      '@jest/types': 29.3.1
+      '@silverhand/eslint-config': 1.3.0_osxwdbbcucdkewmxwr46c5plia
+      '@silverhand/jest-config': 1.2.2_p6ekqnroyms5nhqbfxosryz7rm
+      '@silverhand/ts-config': 1.2.1_typescript@4.9.4
+      '@types/jest': 29.2.4
       '@types/node': 16.11.56
+      '@types/supertest': 2.0.12
       '@vercel/ncc': 0.36.0
       eslint: 8.23.0
+      iconv-lite: 0.6.3
+      jest: 29.3.1_@types+node@16.11.56
+      jest-matcher-specific-error: 1.0.0
       lint-staged: 13.0.3
+      nock: 13.2.9
       prettier: 2.7.1
-      typescript: 4.8.2
+      supertest: 6.2.4
+      typescript: 4.9.4
 
   packages/connector-mock-sms:
     specifiers:
@@ -770,55 +804,6 @@ importers:
     dependencies:
       '@logto/connector-kit': 1.0.0-beta.29_zod@3.20.2
       '@silverhand/essentials': 1.2.0
-      got: 11.8.5
-      snakecase-keys: 5.4.4
-      zod: 3.20.2
-    devDependencies:
-      '@jest/types': 29.3.1
-      '@silverhand/eslint-config': 1.3.0_osxwdbbcucdkewmxwr46c5plia
-      '@silverhand/jest-config': 1.2.2_p6ekqnroyms5nhqbfxosryz7rm
-      '@silverhand/ts-config': 1.2.1_typescript@4.9.4
-      '@types/jest': 29.2.4
-      '@types/node': 16.11.56
-      '@types/supertest': 2.0.12
-      '@vercel/ncc': 0.36.0
-      eslint: 8.23.0
-      iconv-lite: 0.6.3
-      jest: 29.3.1_@types+node@16.11.56
-      jest-matcher-specific-error: 1.0.0
-      lint-staged: 13.0.3
-      nock: 13.2.9
-      prettier: 2.7.1
-      supertest: 6.2.4
-      typescript: 4.9.4
-
-  packages/connector-mock-standard-email:
-    specifiers:
-      '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.29
-      '@silverhand/eslint-config': 1.3.0
-      '@silverhand/essentials': ^1.2.0
-      '@silverhand/jest-config': 1.2.2
-      '@silverhand/ts-config': 1.2.1
-      '@types/jest': ^29.2.4
-      '@types/node': ^16.3.1
-      '@types/supertest': ^2.0.11
-      '@vercel/ncc': ^0.36.0
-      eslint: ^8.21.0
-      got: ^11.8.2
-      iconv-lite: 0.6.3
-      jest: ^29.3.1
-      jest-matcher-specific-error: ^1.0.0
-      lint-staged: ^13.0.0
-      nock: ^13.2.2
-      prettier: ^2.7.1
-      snakecase-keys: ^5.1.0
-      supertest: ^6.2.2
-      typescript: ^4.9.4
-      zod: ^3.20.2
-    dependencies:
-      '@logto/connector-kit': 1.0.0-beta.29_zod@3.20.2
-      '@silverhand/essentials': 1.2.1
       got: 11.8.5
       snakecase-keys: 5.4.4
       zod: 3.20.2
@@ -3474,18 +3459,6 @@ packages:
       zod: 3.20.2
     dev: false
 
-  /@logto/connector-kit/1.0.0-beta.29_zod@3.18.0:
-    resolution: {integrity: sha512-YwIRHrPrCQmz0SkIpPikGoZiE+ATj5aAfgqfZvdkgcb4K0pdj5DS8isW76couL7ZcJDJBWpvxPF8JATg1QeC1A==}
-    engines: {node: ^16.13.0 || ^18.12.0}
-    peerDependencies:
-      zod: ^3.19.1
-    dependencies:
-      '@logto/core-kit': 1.0.0-beta.29_zod@3.18.0
-      '@logto/language-kit': 1.0.0-beta.29_zod@3.18.0
-      '@silverhand/essentials': 1.3.0
-      zod: 3.18.0
-    dev: false
-
   /@logto/core-kit/1.0.0-beta.29_zod@3.20.2:
     resolution: {integrity: sha512-I1Tb4gOP3/Wga3cVmmCnyZixy5XbJlpucKuscYdhqZzIF9iHKZRBaRVCPKsvL+1nuoSyl5bWCyIi4s5msqQLCg==}
     engines: {node: ^16.13.0 || ^18.12.0}
@@ -3496,18 +3469,6 @@ packages:
       color: 4.2.3
       nanoid: 3.3.4
       zod: 3.20.2
-    dev: false
-
-  /@logto/core-kit/1.0.0-beta.29_zod@3.18.0:
-    resolution: {integrity: sha512-I1Tb4gOP3/Wga3cVmmCnyZixy5XbJlpucKuscYdhqZzIF9iHKZRBaRVCPKsvL+1nuoSyl5bWCyIi4s5msqQLCg==}
-    engines: {node: ^16.13.0 || ^18.12.0}
-    peerDependencies:
-      zod: ^3.19.1
-    dependencies:
-      '@logto/language-kit': 1.0.0-beta.29_zod@3.18.0
-      color: 4.2.3
-      nanoid: 3.3.4
-      zod: 3.18.0
     dev: false
 
   /@logto/language-kit/1.0.0-beta.29_zod@3.20.2:
@@ -3939,7 +3900,7 @@ packages:
     resolution: {integrity: sha512-sCOIHN3kIG9nyySkDao8nz6HK8VhGoUV4WG1CCriDDeGTqbHs4IprzTp1p+ChFdC8JGBCElQC0cIFrWYTFnTAQ==}
     engines: {node: ^16.0.0 || ^18.0.0}
     peerDependencies:
-      jest: ^29.0.0
+      jest: ^29.0.0 || ^29.1.2
     dependencies:
       '@jest/types': 29.3.1
       deepmerge: 4.2.2
@@ -4196,7 +4157,7 @@ packages:
       functional-red-black-tree: 1.0.1
       ignore: 5.2.0
       regexpp: 3.2.0
-      semver: 7.3.7
+      semver: 7.3.8
       tsutils: 3.21.0_typescript@4.9.4
       typescript: 4.9.4
     transitivePeerDependencies:
@@ -4270,7 +4231,7 @@ packages:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.3.7
+      semver: 7.3.8
       tsutils: 3.21.0_typescript@4.9.4
       typescript: 4.9.4
     transitivePeerDependencies:
@@ -4888,10 +4849,6 @@ packages:
 
   /ci-info/2.0.0:
     resolution: {integrity: sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==}
-    dev: true
-
-  /ci-info/3.3.2:
-    resolution: {integrity: sha512-xmDt/QIAdeZ9+nfdPsaBCpMvHNLFiLdjj59qjqn+6iPe6YmHGQ35sBnQ8uslRBXFmXkiZQOJRjvQeoGppoTjjg==}
     dev: true
 
   /ci-info/3.7.0:
@@ -5920,8 +5877,8 @@ packages:
     peerDependencies:
       eslint: '>=8.18.0'
     dependencies:
-      '@babel/helper-validator-identifier': 7.18.6
-      ci-info: 3.3.2
+      '@babel/helper-validator-identifier': 7.19.1
+      ci-info: 3.7.0
       clean-regexp: 1.0.0
       eslint: 8.23.0
       eslint-utils: 3.0.0_eslint@8.23.0
@@ -5933,7 +5890,7 @@ packages:
       read-pkg-up: 7.0.1
       regexp-tree: 0.1.24
       safe-regex: 2.1.1
-      semver: 7.3.7
+      semver: 7.3.8
       strip-indent: 3.0.0
     dev: true
 
@@ -7630,18 +7587,6 @@ packages:
     resolution: {integrity: sha512-lspHaCRx/mBbnm3h4uMMS3R5aZzMwyNpNIJLXj4cEsV0mIUtS4IjYJLSoyjRCtnxb6RIGJ4NL2quZzfIeNhbkg==}
     dev: true
 
-  /jest-util/29.2.1:
-    resolution: {integrity: sha512-P5VWDj25r7kj7kl4pN2rG/RN2c1TLfYYYZYULnS/35nFDjBai+hBeo3MDrYZS7p6IoY3YHZnt2vq4L6mKnLk0g==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    dependencies:
-      '@jest/types': 29.3.1
-      '@types/node': 18.7.13
-      chalk: 4.1.2
-      ci-info: 3.3.2
-      graceful-fs: 4.2.10
-      picomatch: 2.3.1
-    dev: true
-
   /jest-util/29.3.1:
     resolution: {integrity: sha512-7YOVZaiX7RJLv76ZfHt4nbNEzzTRiMW/IiOG7ZOKmTXmoGBxUDefgMAxQubu6WPVqP5zSzAdZG0FfLcC7HOIFQ==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -7781,12 +7726,6 @@ packages:
     hasBin: true
     dependencies:
       minimist: 1.2.6
-    dev: true
-
-  /json5/2.2.1:
-    resolution: {integrity: sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==}
-    engines: {node: '>=6'}
-    hasBin: true
     dev: true
 
   /json5/2.2.2:
@@ -9134,7 +9073,7 @@ packages:
     hasBin: true
     dependencies:
       shell-quote: 1.7.3
-      yargs: 17.5.1
+      yargs: 17.6.2
     dev: true
 
   /picocolors/1.0.0:
@@ -10200,11 +10139,11 @@ packages:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       jest: 29.3.1_@types+node@16.11.56
-      jest-util: 29.2.1
-      json5: 2.2.1
+      jest-util: 29.3.1
+      json5: 2.2.2
       lodash.memoize: 4.1.2
       make-error: 1.3.6
-      semver: 7.3.7
+      semver: 7.3.8
       typescript: 4.9.4
       yargs-parser: 21.1.1
     dev: true
