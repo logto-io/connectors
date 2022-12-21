@@ -147,7 +147,7 @@ export function getUserInfo(getConfig: GetConnectorConfig): GetUserInfo {
         avatar,
         email: conditional(email),
         userId: conditional(user_id),
-        mobile: conditional(mobile),
+        phone: conditional(mobile),
       };
     } catch (error: unknown) {
       if (error instanceof ConnectorError) {

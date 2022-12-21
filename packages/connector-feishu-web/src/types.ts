@@ -14,15 +14,15 @@ export const feishuAuthCodeGuard = z.object({
 
 export const feishuErrorResponse = z.object({
   error: z.string(),
-  error_description: z.string(),
+  error_description: z.string().optional(),
 });
 
 export const feishuAccessTokenResponse = z.object({
   access_token: z.string(),
   token_type: z.string(),
   expires_in: z.number(),
-  refresh_token: z.string(),
-  refresh_expires_in: z.number(),
+  refresh_token: z.string().optional(),
+  refresh_expires_in: z.number().optional(),
 });
 
 export const feishuUserInfoResponse = z.object({
@@ -37,8 +37,8 @@ export const feishuUserInfoResponse = z.object({
   avatar_thumb: z.string(),
   avatar_middle: z.string(),
   avatar_big: z.string(),
-  email: z.string().optional().nullable(),
-  user_id: z.string().optional().nullable(),
-  employee_no: z.string().optional().nullable(),
-  mobile: z.string().optional().nullable(),
+  email: z.string().nullish(),
+  user_id: z.string().nullish(),
+  employee_no: z.string().nullish(),
+  mobile: z.string().nullish(),
 });

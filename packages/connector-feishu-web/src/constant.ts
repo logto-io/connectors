@@ -18,8 +18,8 @@ export const defaultMetadata: ConnectorMetadata = {
   logo: './logo.svg',
   logoDark: null,
   description: {
-    'zh-CN': '飞书',
-    en: 'Feishu',
+    'zh-CN': '飞书是一个由字节跳动开发的企业协作与管理平台',
+    en: 'Feishu is an enterprise collaboration platform developed by ByteDance',
   },
   readme: './README.md',
   configTemplate: './docs/config-template.json',
