@@ -1,8 +1,8 @@
 import type { ConnectorMetadata } from '@logto/connector-kit';
 
 export const defaultMetadata: ConnectorMetadata = {
-  id: 'mock-standard-email-service',
-  target: 'mock-standard-mail',
+  id: 'mock-email-service-alternative',
+  target: 'mock-mail-alternative',
   platform: null,
   name: {
     en: 'Mock Mail Service',
@@ -20,5 +20,4 @@ export const defaultMetadata: ConnectorMetadata = {
   },
   readme: './README.md',
   configTemplate: './docs/config-template.json',
-  isStandard: true,
 };
