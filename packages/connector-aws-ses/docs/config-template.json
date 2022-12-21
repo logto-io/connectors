@@ -1,0 +1,37 @@
+{
+  "accessKeyId": "<access-key-id>",
+  "accessKeySecret": "<access-key-secret>",
+  "region": "<region>",
+  "emailAddress": "<OPTIONAL-verified-email>",
+  "emailAddressIdentityArn": "<OPTIONAL-email-arn>",
+  "feedbackForwardingEmailAddress": "<OPTIONAL-feedback-email>",
+  "feedbackForwardingEmailAddressIdentityArn": "<OPTIONAL-feedback-email-arn>",
+  "configurationSetName": "<OPTIONAL-configuration-set>",
+  "templates": [
+    {
+      "usageType": "SignIn",
+      "subject": "<sign-in-template-subject>",
+      "content": "<sign-in-template-content>"
+    },
+    {
+      "usageType": "Register",
+      "subject": "<register-template-subject>",
+      "content": "<register-template-content>"
+    },
+    {
+      "usageType": "ForgotPassword",
+      "subject": "<forgot-password-template-subject>",
+      "content": "<forgot-password-template-content>"
+    },
+    {
+      "usageType": "Continue",
+      "subject": "<continue-template-subject>",
+      "content": "<continue-template-content>"
+    },
+    {
+      "usageType": "Test",
+      "subject": "<test-template-subject>",
+      "content": "<test-template-content>"
+    }
+  ]
+}
