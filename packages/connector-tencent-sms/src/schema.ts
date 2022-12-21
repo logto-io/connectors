@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword', 'Continue']; // 'Continue' will be truncated after main flow API refactor.
+
 export const SingleSmsConfig = z.object({
   usageType: z.string(),
   templateCode: z.string(),
@@ -11,7 +13,19 @@ export const SmsConfigGuard = z.object({
   signName: z.string(),
   sdkAppId: z.string(),
   region: z.string(),
-  templates: z.array(SingleSmsConfig),
+  templates: z.array(SingleSmsConfig).refine(
+    (templates) =>
+      requiredTemplateUsageTypes.every((requiredType) =>
+        templates.map((template) => template.usageType).includes(requiredType)
+      ),
+    (templates) => ({
+      message: `Template with UsageType (${requiredTemplateUsageTypes
+        .filter(
+          (requiredType) => !templates.map((template) => template.usageType).includes(requiredType)
+        )
+        .join(', ')}) should be provided!`,
+    })
+  ),
 });
 
 export type TencentSmsConfig = z.infer<typeof SmsConfigGuard>;

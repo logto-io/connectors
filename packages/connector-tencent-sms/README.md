@@ -6,14 +6,15 @@ The official Logto connector for Tencent short message service.
 
 **Table of contents**
 
+- [Tencent short message service connector](#tencent-short-message-service-connector)
 - [腾讯云短信连接器](#腾讯云短信连接器)
-    - [在腾讯云短信服务控制台中配置一个短信服务](#在腾讯云短信服务控制台中配置一个短信服务)
-        - [创建腾讯云账号](#创建腾讯云账号)
-        - [启用并配置腾讯云短信服务](#启用并配置腾讯云短信服务)
-    - [编写连接器的 JSON](#编写连接器的-json)
-        - [测试腾讯云短信连接器](#测试腾讯云短信连接器)
-        - [配置类型](#配置类型)
-    - [参考](#参考)
+  - [在腾讯云短信服务控制台中配置一个短信服务](#在腾讯云短信服务控制台中配置一个短信服务)
+    - [创建腾讯云账号](#创建腾讯云账号)
+    - [启用并配置腾讯云短信服务](#启用并配置腾讯云短信服务)
+  - [编写连接器的 JSON](#编写连接器的-json)
+    - [测试腾讯云短信连接器](#测试腾讯云短信连接器)
+    - [配置类型](#配置类型)
+  - [参考](#参考)
 
 # 腾讯云短信连接器
 
@@ -62,7 +63,7 @@ The official Logto connector for Tencent short message service.
     - 你可以添加多个短信服务模板以应对不同的用户场景。这里展示填写单个模板的例子：
         - `templateCode` 栏是你可以用来控制所发送短信内容的属性。它们的值从步骤 2 中的「模板 CODE」获取。
         - `usageType` 栏填写 `Register`，`SignIn`，`ForgotPassword`，`Continue` 或者 `Test` 其中之一以分别对应 _注册_，
-          _登录_，_忘记密码_，_用户档案补全_ 和 _测试_ 的不同场景。（`usageType` 是 Logto 的属性，用来确定使用场景。）
+          _登录_，_忘记密码_，_用户档案补全_ 和 _测试_ 的不同场景。（`usageType` 是 Logto 的属性，用来确定使用场景。）为了能够使用完成的流程，需要配置 `usageType` 为 `Register`，`SignIn`，`ForgotPassword` 以及 `Continue` 的模板。
     - 在 [应用管理](https://console.cloud.tencent.com/smsv2/app-manage) 获取应用 ID 填写入 `sdkAppId` 栏。
     - 在 [发送文档](https://cloud.tencent.com/document/api/382/52071#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)
       可以获取短信产品支持的地域，填写入 `region` 栏。

@@ -1,10 +1,10 @@
 import { MessageTypes } from '@logto/connector-kit';
 
 import createConnector from '.';
-import { mockedConfig } from './mock';
+import { mockedConfigWithAllRequiredTemplates } from './mock';
 import { singleSendMail } from './single-send-mail';
 
-const getConfig = jest.fn().mockResolvedValue(mockedConfig);
+const getConfig = jest.fn().mockResolvedValue(mockedConfigWithAllRequiredTemplates);
 
 jest.mock('./single-send-mail', () => {
   return {
@@ -42,7 +42,7 @@ describe('sendMessage()', () => {
     await expect(
       connector.sendMessage({
         to: 'to@email.com',
-        type: MessageTypes.Register,
+        type: MessageTypes.Test,
         payload: { code: '1234' },
       })
     ).rejects.toThrow();

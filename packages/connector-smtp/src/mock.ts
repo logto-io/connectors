@@ -10,6 +10,30 @@ export const mockedConfig = {
       subject: 'Logto Test with SMTP',
       usageType: 'Test',
     },
+    {
+      contentType: 'text/plain',
+      content: 'This is for sign-in purposes only. Your verification code is {{code}}.',
+      subject: 'Logto Sign-In with SMTP',
+      usageType: 'SignIn',
+    },
+    {
+      contentType: 'text/plain',
+      content: 'This is for register purposes only. Your verification code is {{code}}.',
+      subject: 'Logto Register with SMTP',
+      usageType: 'Register',
+    },
+    {
+      contentType: 'text/plain',
+      content: 'This is for profile fulfilling purposes only. Your verification code is {{code}}.',
+      subject: 'Logto Continue with SMTP',
+      usageType: 'Continue',
+    },
+    {
+      contentType: 'text/plain',
+      content: 'This is for resetting password purposes only. Your verification code is {{code}}.',
+      subject: 'Logto Forgot Password with SMTP',
+      usageType: 'ForgotPassword',
+    },
   ],
 };
 

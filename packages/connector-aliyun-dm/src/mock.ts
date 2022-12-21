@@ -27,3 +27,31 @@ export const mockedConfig = {
     },
   ],
 };
+
+export const mockedConfigWithAllRequiredTemplates = {
+  accessKeyId: 'accessKeyId',
+  accessKeySecret: 'accessKeySecret',
+  accountName: 'accountName',
+  templates: [
+    {
+      usageType: 'SignIn',
+      content: 'Your code is {{code}}, {{code}} is your code',
+      subject: 'subject',
+    },
+    {
+      usageType: 'Register',
+      content: 'Your code is {{code}}, {{code}} is your code',
+      subject: 'subject',
+    },
+    {
+      usageType: 'ForgotPassword',
+      content: 'Your code is {{code}}, {{code}} is your code',
+      subject: 'subject',
+    },
+    {
+      usageType: 'Continue',
+      content: 'Your code is {{code}}, {{code}} is your code',
+      subject: 'subject',
+    },
+  ],
+};

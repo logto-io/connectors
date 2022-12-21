@@ -65,7 +65,7 @@ describe('sendMessage()', () => {
     await expect(
       connector.sendMessage({
         to: phoneTest,
-        type: MessageTypes.Register,
+        type: MessageTypes.Test,
         payload: { code: codeTest },
       })
     ).rejects.toThrow();
