@@ -1,7 +1,7 @@
 {
   "accessKeyId": "<access-key-id>",
   "accessKeySecret": "<access-key-secret>",
-  "region": "ap-hongkong",
+  "region": "<ap-hongkong|ap-singapore>",
   "fromAddress": "<from-address>",
   "fromName": "<from-alias>",
   "replyAddress": "<reply-address>",
