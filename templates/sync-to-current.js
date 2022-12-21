@@ -41,16 +41,8 @@ const sync = async () => {
 
   await Promise.all(
     packages.map(async (packageName) => {
-      // Copy tsconfig.*.json
-      await Promise.all(
-        ['', 'base', 'build', 'test'].map(async (suffix) => {
-          const filename = ['tsconfig', suffix, 'json'].filter(Boolean).join('.');
-          return fs.copyFile(
-            path.join('templates', filename),
-            path.join(packagesDir, packageName, filename)
-          );
-        })
-      );
+      // Copy preset
+      await fs.cp('templates/preset', path.join(packagesDir, packageName), { recursive: true });
 
       // Sync package.json
       const extended = JSON.parse(
