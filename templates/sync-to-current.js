@@ -23,15 +23,14 @@ const dependencyChanged = (json1, json2) => {
       return json1[field] === json2[field];
     }
 
-    const entries1 = Object.entries(json1[field]).sort(([a], [b]) => a.localeCompare(b));
-    const entries2 = Object.entries(json2[field]).sort(([a], [b]) => a.localeCompare(b));
+    const composed1 = Object.entries(json1[field])
+      .sort(([a], [b]) => a.localeCompare(b))
+      .join(',');
+    const composed2 = Object.entries(json2[field])
+      .sort(([a], [b]) => a.localeCompare(b))
+      .join(',');
 
-    return (
-      entries1.length === entries2.length &&
-      entries1.every(
-        ([key, value], index) => key === entries2[index][0] && value === entries2[index][1]
-      )
-    );
+    return composed1 === composed2;
   });
 };
 
