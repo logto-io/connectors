@@ -37,12 +37,14 @@ export type PublicParameters = {
 
 /**
  * UsageType here is used to specify the use case of the template, can be either
- * 'Register', 'SignIn', 'ForgotPassword' or 'Test'.
+ * 'Register', 'SignIn', 'ForgotPassword', 'Continue' or 'Test'.
  *
  * Type here in the template is used to specify the purpose of sending the sms,
  * can be either item in SmsTemplateType.
  * As the SMS is applied for sending passcode, the value should always be 2 in our case.
  */
+const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword', 'Continue']; // 'Continue' will be truncated after main flow API refactor.
+
 const templateGuard = z.object({
   type: z.nativeEnum(SmsTemplateType).default(2),
   usageType: z.string(),
@@ -53,7 +55,19 @@ export const aliyunSmsConfigGuard = z.object({
   accessKeyId: z.string(),
   accessKeySecret: z.string(),
   signName: z.string(),
-  templates: z.array(templateGuard),
+  templates: z.array(templateGuard).refine(
+    (templates) =>
+      requiredTemplateUsageTypes.every((requiredType) =>
+        templates.map((template) => template.usageType).includes(requiredType)
+      ),
+    (templates) => ({
+      message: `Template with UsageType (${requiredTemplateUsageTypes
+        .filter(
+          (requiredType) => !templates.map((template) => template.usageType).includes(requiredType)
+        )
+        .join(', ')}) should be provided!`,
+    })
+  ),
 });
 
 export type AliyunSmsConfig = z.infer<typeof aliyunSmsConfigGuard>;

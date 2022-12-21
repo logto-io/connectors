@@ -7,8 +7,10 @@ import { z } from 'zod';
 
 /**
  * UsageType here is used to specify the use case of the template, can be either
- * 'Register', 'SignIn', 'ForgotPassword' or 'Test'.
+ * 'Register', 'SignIn', 'ForgotPassword', 'Continue' or 'Test'.
  */
+const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword', 'Continue']; // 'Continue' will be truncated after main flow API refactor.
+
 export enum ContextType {
   Text = 'text/plain',
   Html = 'text/html',
@@ -101,7 +103,20 @@ export const smtpBaseConfigGuard = z
     auth: authGuard,
     fromEmail: z.string().regex(emailRegEx),
     replyTo: z.string().regex(emailRegEx).optional(),
-    templates: z.array(templateGuard),
+    templates: z.array(templateGuard).refine(
+      (templates) =>
+        requiredTemplateUsageTypes.every((requiredType) =>
+          templates.map((template) => template.usageType).includes(requiredType)
+        ),
+      (templates) => ({
+        message: `Template with UsageType (${requiredTemplateUsageTypes
+          .filter(
+            (requiredType) =>
+              !templates.map((template) => template.usageType).includes(requiredType)
+          )
+          .join(', ')}) should be provided!`,
+      })
+    ),
   })
   .merge(debuggingGuard)
   .merge(securityGuard);

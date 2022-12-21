@@ -90,8 +90,10 @@ export type PublicParameters = {
 
 /**
  * UsageType here is used to specify the use case of the template, can be either
- * 'Register', 'SignIn', 'ForgotPassword' or 'Test'.
+ * 'Register', 'SignIn', 'ForgotPassword', 'Continue' or 'Test'.
  */
+const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword', 'Continue']; // 'Continue' will be truncated after main flow API refactor.
+
 const templateGuard = z.object({
   usageType: z.string(),
   type: z.nativeEnum(ContextType),
@@ -103,7 +105,19 @@ export const sendGridMailConfigGuard = z.object({
   apiKey: z.string(),
   fromEmail: z.string(),
   fromName: z.string().optional(),
-  templates: z.array(templateGuard),
+  templates: z.array(templateGuard).refine(
+    (templates) =>
+      requiredTemplateUsageTypes.every((requiredType) =>
+        templates.map((template) => template.usageType).includes(requiredType)
+      ),
+    (templates) => ({
+      message: `Template with UsageType (${requiredTemplateUsageTypes
+        .filter(
+          (requiredType) => !templates.map((template) => template.usageType).includes(requiredType)
+        )
+        .join(', ')}) should be provided!`,
+    })
+  ),
 });
 
 export type SendGridMailConfig = z.infer<typeof sendGridMailConfigGuard>;

@@ -61,7 +61,7 @@ Go to the [Aliyun website](https://cn.aliyun.com/) and register your Aliyun acco
     - Fill out the `signName` field with "Signature" (签名名称) which is mentioned in step 2. All templates will share this signature name.
     - You can add multiple SMS connector templates for different cases. Here is an example of adding a single template:
         - Fill the `templateCode` field, which is how you can control SMS context, with "Template Code" (模板 CODE) from step 2.
-        - Fill out `usageType` field with either `Register`, `SignIn`, `ForgotPassword`, `Continue` or `Test` for different use cases. (`usageType` is a Logto property to identify the proper use case.)
+        - Fill out `usageType` field with either `Register`, `SignIn`, `ForgotPassword`, `Continue` or `Test` for different use cases. (`usageType` is a Logto property to identify the proper use case.) In order to enable full user flows, templates with usageType `Register`, `SignIn`, `ForgotPassword` and `Continue` are required.
 
 Here is an example of Aliyun SMS connector config JSON.
 
@@ -159,7 +159,7 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
     - 用你在步骤 2 中拿到的「签名名称」填入 `signName` 栏。所有的模板都会共用这个签名。
     - 你可以添加多个短信服务模板以应对不同的用户场景。这里展示填写单个模板的例子：
       - `templateCode` 栏是你可以用来控制所发送短信内容的属性。它们的值从步骤 2 中的「模板 CODE」获取。
-      - `usageType` 栏填写 `Register`，`SignIn`，`ForgotPassword`，`Continue` 或者 `Test` 其中之一以分别对应 _注册_，_登录_，_忘记密码_，_用户档案补全_ 和 _测试_ 的不同场景。（`usageType` 是 Logto 的属性，用来确定使用场景。）
+      - `usageType` 栏填写 `Register`，`SignIn`，`ForgotPassword`，`Continue` 或者 `Test` 其中之一以分别对应 _注册_，_登录_，_忘记密码_，_用户档案补全_ 和 _测试_ 的不同场景。（`usageType` 是 Logto 的属性，用来确定使用场景。）为了能够使用完成的流程，需要配置 `usageType` 为 `Register`，`SignIn`，`ForgotPassword` 以及 `Continue` 的模板。
 
 这是一个阿里云短信服务连接器 JSON 配置的样例。
 
