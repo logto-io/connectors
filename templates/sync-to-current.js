@@ -40,40 +40,42 @@ const sync = async () => {
   let shouldError = false;
 
   await Promise.all(
-    packages.map(async (packageName) => {
-      // Copy preset
-      await fs.cp('templates/preset', path.join(packagesDir, packageName), { recursive: true });
+    packages
+      .filter((package) => package !== '.DS_Store')
+      .map(async (packageName) => {
+        // Copy preset
+        await fs.cp('templates/preset', path.join(packagesDir, packageName), { recursive: true });
 
-      // Sync package.json
-      const extended = JSON.parse(
-        await fs.readFile(path.join(packagesDir, packageName, 'package.extend.json'), 'utf8')
-      );
-      const result = { ...templateJson };
+        // Sync package.json
+        const extended = JSON.parse(
+          await fs.readFile(path.join(packagesDir, packageName, 'package.extend.json'), 'utf8')
+        );
+        const result = { ...templateJson };
 
-      for (const [key, value] of Object.entries(extended)) {
-        if (key === '$schema') {
-          continue;
+        for (const [key, value] of Object.entries(extended)) {
+          if (key === '$schema') {
+            continue;
+          }
+
+          if (typeof value === 'object' && value !== null) {
+            result[key] = { ...result[key], ...value };
+          } else {
+            result[key] = value;
+          }
         }
 
-        if (typeof value === 'object' && value !== null) {
-          result[key] = { ...result[key], ...value };
-        } else {
-          result[key] = value;
+        const target = path.join(packagesDir, packageName, 'package.json');
+
+        if (!existsSync(target)) {
+          console.warn(`Creating ${target}`);
+          shouldError = true;
+        } else if (dependencyChanged(JSON.parse(await fs.readFile(target, 'utf8')), result)) {
+          console.warn(`Updating dependencies of ${target}`);
+          shouldError = true;
         }
-      }
 
-      const target = path.join(packagesDir, packageName, 'package.json');
-
-      if (!existsSync(target)) {
-        console.warn(`Creating ${target}`);
-        shouldError = true;
-      } else if (dependencyChanged(JSON.parse(await fs.readFile(target, 'utf8')), result)) {
-        console.warn(`Updating dependencies of ${target}`);
-        shouldError = true;
-      }
-
-      await fs.writeFile(target, JSON.stringify(result, undefined, 2) + '\n');
-    })
+        await fs.writeFile(target, JSON.stringify(result, undefined, 2) + '\n');
+      })
   );
 
   if (!process.argv.includes('--silent') && shouldError) {
