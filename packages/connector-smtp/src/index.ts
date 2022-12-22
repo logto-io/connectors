@@ -40,7 +40,7 @@ const sendMessage =
 
     const contentsObject = parseContents(
       typeof payload.code === 'string'
-        ? template.content.replace(/{{code}}/g, payload.code)
+        ? template.content.replace(/{{\s*code\s*}}/g, payload.code)
         : template.content,
       template.contentType
     );
@@ -49,7 +49,7 @@ const sendMessage =
       to,
       from: config.fromEmail,
       replyTo: config.replyTo,
-      subject: template.subject,
+      subject: template.subject.replace(/{{\s*code\s*}}/g, payload.code),
       ...contentsObject,
     };
 
