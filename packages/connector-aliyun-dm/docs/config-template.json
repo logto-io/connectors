@@ -16,13 +16,13 @@
     },
     {
       "usageType": "ForgotPassword",
-      "subject": "<register-template-subject>",
-      "content": "<register-template-content>"
+      "subject": "<forgot-password-template-subject>",
+      "content": "<forgot-password-template-content>"
     },
     {
       "usageType": "Continue",
-      "subject": "<register-template-subject>",
-      "content": "<register-template-content>"
+      "subject": "<continue-template-subject>",
+      "content": "<continue-template-content>"
     },
     {
       "usageType": "Test",
