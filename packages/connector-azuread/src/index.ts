@@ -17,16 +17,16 @@ import {
   parseJson,
 } from '@logto/connector-kit';
 import { assert, conditional } from '@silverhand/essentials';
-import got, { HTTPError } from 'got';
+import { got, HTTPError } from 'got';
 
-import { scopes, defaultMetadata, defaultTimeout, graphAPIEndpoint } from './constant';
-import type { AzureADConfig } from './types';
+import { scopes, defaultMetadata, defaultTimeout, graphAPIEndpoint } from './constant.js';
+import type { AzureADConfig } from './types.js';
 import {
   azureADConfigGuard,
   accessTokenResponseGuard,
   userInfoResponseGuard,
   authResponseGuard,
-} from './types';
+} from './types.js';
 
 // eslint-disable-next-line @silverhand/fp/no-let
 let authCodeRequest: AuthorizationCodeRequest;
@@ -115,7 +115,7 @@ const getUserInfo =
         headers: {
           authorization: `Bearer ${accessToken}`,
         },
-        timeout: defaultTimeout,
+        timeout: { request: defaultTimeout },
       });
 
       const result = userInfoResponseGuard.safeParse(parseJson(httpResponse.body));

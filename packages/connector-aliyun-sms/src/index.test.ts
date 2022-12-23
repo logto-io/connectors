@@ -1,21 +1,21 @@
 import { VerificationCodeType } from '@logto/connector-kit';
 
-import createConnector from '.';
-import { mockedConnectorConfig, phoneTest, codeTest } from './mock';
-import { sendSms } from './single-send-text';
+import { mockedConnectorConfig, phoneTest, codeTest } from './mock.js';
+
+const { jest } = import.meta;
 
 const getConfig = jest.fn().mockResolvedValue(mockedConnectorConfig);
 
-jest.mock('./single-send-text', () => {
-  return {
-    sendSms: jest.fn(() => {
-      return {
-        body: JSON.stringify({ Code: 'OK', RequestId: 'request-id', Message: 'OK' }),
-        statusCode: 200,
-      };
-    }),
-  };
+const sendSms = jest.fn().mockResolvedValue({
+  body: JSON.stringify({ Code: 'OK', RequestId: 'request-id', Message: 'OK' }),
+  statusCode: 200,
 });
+
+jest.unstable_mockModule('./single-send-text.js', () => ({
+  sendSms,
+}));
+
+const { default: createConnector } = await import('./index.js');
 
 describe('sendMessage()', () => {
   afterEach(() => {

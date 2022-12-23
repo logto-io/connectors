@@ -1,4 +1,4 @@
-import type { AlipayNativeConfig } from './types';
+import type { AlipayNativeConfig } from './types.js';
 
 export const mockedTimestamp = '2022-02-22 22:22:22';
 

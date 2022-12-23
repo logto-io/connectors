@@ -9,8 +9,8 @@ import type {
 import { ConnectorError, ConnectorErrorCodes, ConnectorType } from '@logto/connector-kit';
 import { z } from 'zod';
 
-import { defaultMetadata } from './constant';
-import { mockSocialConfigGuard } from './types';
+import { defaultMetadata } from './constant.js';
+import { mockSocialConfigGuard } from './types.js';
 
 const getAuthorizationUri: GetAuthorizationUri = async ({ state, redirectUri }) => {
   return `http://mock.social.com/?state=${state}&redirect_uri=${redirectUri}`;

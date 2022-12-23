@@ -11,11 +11,11 @@ import {
   ConnectorType,
 } from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
-import got, { HTTPError } from 'got';
+import { got, HTTPError } from 'got';
 
-import { defaultMetadata, endpoint } from './constant';
-import type { TwilioSmsConfig, PublicParameters } from './types';
-import { twilioSmsConfigGuard } from './types';
+import { defaultMetadata, endpoint } from './constant.js';
+import type { TwilioSmsConfig, PublicParameters } from './types.js';
+import { twilioSmsConfigGuard } from './types.js';
 
 const sendMessage =
   (getConfig: GetConnectorConfig): SendMessageFunction =>

@@ -1,10 +1,10 @@
 // Merge all `package.extend.json` to the template and write to `package.json`.
 
-const { existsSync } = require('fs');
-const fs = require('fs/promises');
-const path = require('path');
+import { existsSync } from 'fs';
+import fs from 'fs/promises';
+import path from 'path';
 
-const templateJson = require('./package.json');
+import templateJson from './package.json' assert { type: "json" };
 
 const dependencyFields = [
   'dependencies',
@@ -41,7 +41,7 @@ const sync = async () => {
 
   await Promise.all(
     packages
-      .filter((package) => package !== '.DS_Store')
+      .filter((packageName) => packageName !== '.DS_Store')
       .map(async (packageName) => {
         // Copy preset
         await fs.cp('templates/preset', path.join(packagesDir, packageName), { recursive: true });

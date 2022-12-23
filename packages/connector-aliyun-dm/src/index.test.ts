@@ -1,21 +1,21 @@
 import { VerificationCodeType } from '@logto/connector-kit';
 
-import createConnector from '.';
-import { mockedConfigWithAllRequiredTemplates } from './mock';
-import { singleSendMail } from './single-send-mail';
+import { mockedConfigWithAllRequiredTemplates } from './mock.js';
+
+const { jest } = import.meta;
 
 const getConfig = jest.fn().mockResolvedValue(mockedConfigWithAllRequiredTemplates);
 
-jest.mock('./single-send-mail', () => {
-  return {
-    singleSendMail: jest.fn(() => {
-      return {
-        body: JSON.stringify({ EnvId: 'env-id', RequestId: 'request-id' }),
-        statusCode: 200,
-      };
-    }),
-  };
-});
+const singleSendMail = jest.fn(() => ({
+  body: JSON.stringify({ EnvId: 'env-id', RequestId: 'request-id' }),
+  statusCode: 200,
+}));
+
+jest.unstable_mockModule('./single-send-mail.js', () => ({
+  singleSendMail,
+}));
+
+const { default: createConnector } = await import('./index.js');
 
 describe('sendMessage()', () => {
   afterEach(() => {

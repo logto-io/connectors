@@ -1,5 +1,7 @@
-import createConnector from '.';
-import { mockedConfig } from './mock';
+import createConnector from './index.js';
+import { mockedConfig } from './mock.js';
+
+const { jest } = import.meta;
 
 const getConfig = jest.fn().mockResolvedValue(mockedConfig);
 

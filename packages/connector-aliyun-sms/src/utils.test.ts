@@ -1,9 +1,14 @@
-import got from 'got';
+import { mockedParameters } from './mock.js';
 
-import { mockedParameters } from './mock';
-import { getSignature, request } from './utils';
+const { jest } = import.meta;
 
-jest.mock('got');
+const post = jest.fn();
+
+jest.unstable_mockModule('got', () => ({
+  got: { post },
+}));
+
+const { getSignature, request } = await import('./utils.js');
 
 describe('getSignature', () => {
   it('should get valid signature', () => {
@@ -21,7 +26,8 @@ describe('request', () => {
   it('should call got.post with extended params', async () => {
     const parameters = mockedParameters;
     await request('http://test.endpoint.com', parameters, 'testsecret');
-    const calledData = (got.post as jest.MockedFunction<typeof got.post>).mock.calls[0];
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const calledData = post.mock.calls[0];
     expect(calledData).not.toBeUndefined();
     const payload = calledData?.[0].form as URLSearchParams;
     expect(payload.get('AccessKeyId')).toEqual('testid');

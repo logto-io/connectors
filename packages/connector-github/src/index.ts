@@ -13,8 +13,8 @@ import {
   parseJson,
 } from '@logto/connector-kit';
 import { assert, conditional } from '@silverhand/essentials';
-import got, { HTTPError } from 'got';
-import * as qs from 'query-string';
+import { got, HTTPError } from 'got';
+import qs from 'query-string';
 
 import {
   authorizationEndpoint,
@@ -23,15 +23,15 @@ import {
   userInfoEndpoint,
   defaultMetadata,
   defaultTimeout,
-} from './constant';
-import type { GithubConfig } from './types';
+} from './constant.js';
+import type { GithubConfig } from './types.js';
 import {
   authorizationCallbackErrorGuard,
   githubConfigGuard,
   accessTokenResponseGuard,
   userInfoResponseGuard,
   authResponseGuard,
-} from './types';
+} from './types.js';
 
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
@@ -85,7 +85,7 @@ export const getAccessToken = async (config: GithubConfig, codeObject: { code: s
       client_secret,
       code,
     },
-    timeout: defaultTimeout,
+    timeout: { request: defaultTimeout },
   });
 
   const result = accessTokenResponseGuard.safeParse(qs.parse(httpResponse.body));
@@ -114,7 +114,7 @@ const getUserInfo =
         headers: {
           authorization: `token ${accessToken}`,
         },
-        timeout: defaultTimeout,
+        timeout: { request: defaultTimeout },
       });
 
       const result = userInfoResponseGuard.safeParse(parseJson(httpResponse.body));

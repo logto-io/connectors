@@ -1,7 +1,7 @@
 import { fallback } from '@logto/core-kit';
 import { z } from 'zod';
 
-import { alipaySigningAlgorithms, charsetEnum, fallbackCharset } from './constant';
+import { alipaySigningAlgorithms, charsetEnum, fallbackCharset } from './constant.js';
 
 const charsetGuard = z.enum(charsetEnum);
 

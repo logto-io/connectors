@@ -2,7 +2,7 @@ import type { EmailContent } from '@aws-sdk/client-sesv2';
 import { SendEmailCommand, SESv2Client } from '@aws-sdk/client-sesv2';
 import type { AwsCredentialIdentity } from '@aws-sdk/types';
 
-import type { AwsSesConfig, Template, Payload } from '@/types';
+import type { AwsSesConfig, Template, Payload } from './types.js';
 
 export const makeClient = (
   accessKeyId: string,

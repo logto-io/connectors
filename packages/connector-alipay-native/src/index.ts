@@ -23,7 +23,7 @@ import {
 } from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
 import dayjs from 'dayjs';
-import got from 'got';
+import { got } from 'got';
 import { z } from 'zod';
 
 import {
@@ -36,12 +36,16 @@ import {
   timestampFormat,
   invalidAccessTokenCode,
   invalidAccessTokenSubCode,
-} from './constant';
-import type { AlipayNativeConfig, ErrorHandler } from './types';
-import { alipayNativeConfigGuard, accessTokenResponseGuard, userInfoResponseGuard } from './types';
-import { signingParameters } from './utils';
+} from './constant.js';
+import type { AlipayNativeConfig, ErrorHandler } from './types.js';
+import {
+  alipayNativeConfigGuard,
+  accessTokenResponseGuard,
+  userInfoResponseGuard,
+} from './types.js';
+import { signingParameters } from './utils.js';
 
-export type { AlipayNativeConfig } from './types';
+export type { AlipayNativeConfig } from './types.js';
 
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
@@ -71,7 +75,7 @@ export const getAccessToken = async (code: string, config: AlipayNativeConfig) =
 
   const httpResponse = await got.post(alipayEndpoint, {
     searchParams: signedSearchParameters,
-    timeout: defaultTimeout,
+    timeout: { request: defaultTimeout },
   });
 
   const result = accessTokenResponseGuard.safeParse(parseJson(httpResponse.body));
@@ -124,7 +128,7 @@ const getUserInfo =
 
     const httpResponse = await got.post(alipayEndpoint, {
       searchParams: signedSearchParameters,
-      timeout: defaultTimeout,
+      timeout: { request: defaultTimeout },
     });
 
     const result = userInfoResponseGuard.safeParse(parseJson(httpResponse.body));

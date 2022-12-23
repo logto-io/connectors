@@ -16,14 +16,14 @@ import { assert, pick } from '@silverhand/essentials';
 import got, { HTTPError } from 'got';
 import snakecaseKeys from 'snakecase-keys';
 
-import { defaultMetadata, defaultTimeout } from './constant';
-import type { OauthConfig } from './types';
-import { oauthConfigGuard, OauthGrantType } from './types';
+import { defaultMetadata, defaultTimeout } from './constant.js';
+import type { OauthConfig } from './types.js';
+import { oauthConfigGuard, OauthGrantType } from './types.js';
 import {
   userProfileMapping,
   getAuthorizationCodeFlowAccessToken,
   getImplicitFlowAccessToken,
-} from './utils';
+} from './utils.js';
 
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
@@ -94,7 +94,7 @@ const getUserInfo =
         headers: {
           authorization: `${token_type} ${access_token}`,
         },
-        timeout: defaultTimeout,
+        timeout: { request: defaultTimeout },
       });
 
       return userProfileMapping(parseJson(httpResponse.body), parsedConfig.profileMap);

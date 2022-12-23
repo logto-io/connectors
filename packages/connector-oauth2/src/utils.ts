@@ -5,19 +5,19 @@ import got, { HTTPError } from 'got';
 import * as qs from 'query-string';
 import snakecaseKeys from 'snakecase-keys';
 
-import { defaultTimeout } from './constant';
+import { defaultTimeout } from './constant.js';
 import type {
   AuthorizationCodeConfig,
   TokenEndpointResponseType,
   AccessTokenResponse,
   ProfileMap,
-} from './types';
+} from './types.js';
 import {
   authResponseGuard,
   accessTokenResponseGuard,
   userProfileGuard,
   implicitAuthResponseGuard,
-} from './types';
+} from './types.js';
 
 export const accessTokenRequester = async (
   tokenEndpoint: string,
@@ -25,12 +25,11 @@ export const accessTokenRequester = async (
   tokenEndpointResponseType: TokenEndpointResponseType,
   timeout: number = defaultTimeout
 ): Promise<AccessTokenResponse> => {
-  try {
-    const httpResponse = await got.post({
-      url: tokenEndpoint,
-      form: queryParameters,
-      timeout,
-    });
+  const httpResponse = await got.post({
+    url: tokenEndpoint,
+    form: queryParameters,
+    timeout: { request: timeout },
+  });
 
     return await accessTokenResponseHandler(httpResponse, tokenEndpointResponseType);
   } catch (error: unknown) {

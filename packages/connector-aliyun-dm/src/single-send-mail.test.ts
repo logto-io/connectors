@@ -1,7 +1,12 @@
-import { singleSendMail } from './single-send-mail';
-import { request } from './utils';
+const { jest } = import.meta;
 
-jest.mock('./utils');
+const request = jest.fn();
+
+jest.unstable_mockModule('./utils.js', () => ({
+  request,
+}));
+
+const { singleSendMail } = await import('./single-send-mail.js');
 
 describe('singleSendMail', () => {
   it('should call request with action SingleSendMail', async () => {
@@ -18,8 +23,10 @@ describe('singleSendMail', () => {
       },
       '<access-key-secret>'
     );
-    const calledData = (request as jest.MockedFunction<typeof request>).mock.calls[0];
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const calledData = request.mock.calls[0];
     expect(calledData).not.toBeUndefined();
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const payload = calledData?.[1];
     expect(payload).toHaveProperty('Action', 'SingleSendMail');
   });

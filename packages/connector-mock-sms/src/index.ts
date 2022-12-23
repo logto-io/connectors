@@ -15,9 +15,9 @@ import {
 } from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
 
-import { defaultMetadata } from './constant';
-import type { MockSmsConfig } from './types';
-import { mockSmsConfigGuard } from './types';
+import { defaultMetadata } from './constant.js';
+import type { MockSmsConfig } from './types.js';
+import { mockSmsConfigGuard } from './types.js';
 
 const sendMessage =
   (getConfig: GetConnectorConfig): SendMessageFunction =>

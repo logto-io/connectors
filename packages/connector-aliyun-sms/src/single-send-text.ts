@@ -1,6 +1,6 @@
-import { endpoint, staticConfigs } from './constant';
-import type { PublicParameters, SendSms } from './types';
-import { request } from './utils';
+import { endpoint, staticConfigs } from './constant.js';
+import type { PublicParameters, SendSms } from './types.js';
+import { request } from './utils.js';
 
 /**
  * @doc https://help.aliyun.com/document_detail/101414.html

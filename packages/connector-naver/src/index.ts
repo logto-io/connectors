@@ -17,7 +17,7 @@ import {
   parseJson,
 } from '@logto/connector-kit';
 import { assert, conditional } from '@silverhand/essentials';
-import got, { HTTPError } from 'got';
+import { got, HTTPError } from 'got';
 
 import {
   accessTokenEndpoint,
@@ -25,14 +25,14 @@ import {
   defaultMetadata,
   defaultTimeout,
   userInfoEndpoint,
-} from './constant';
-import type { NaverConfig } from './types';
+} from './constant.js';
+import type { NaverConfig } from './types.js';
 import {
   accessTokenResponseGuard,
   authResponseGuard,
   naverConfigGuard,
   userInfoResponseGuard,
-} from './types';
+} from './types.js';
 
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
@@ -67,7 +67,7 @@ export const getAccessToken = async (
       redirect_uri: redirectUri,
       grant_type: 'authorization_code',
     },
-    timeout: defaultTimeout,
+    timeout: { request: defaultTimeout },
   });
 
   const result = accessTokenResponseGuard.safeParse(parseJson(httpResponse.body));
@@ -96,7 +96,7 @@ const getUserInfo =
         headers: {
           authorization: `Bearer ${accessToken}`,
         },
-        timeout: defaultTimeout,
+        timeout: { request: defaultTimeout },
       });
 
       const result = userInfoResponseGuard.safeParse(parseJson(httpResponse.body));

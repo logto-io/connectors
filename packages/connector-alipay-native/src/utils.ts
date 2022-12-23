@@ -1,11 +1,11 @@
-import * as crypto from 'crypto';
+import crypto from 'crypto';
 
 import { parseJson } from '@logto/connector-kit';
-import * as iconv from 'iconv-lite';
+import iconv from 'iconv-lite';
 import snakeCaseKeys from 'snakecase-keys';
 
-import { alipaySigningAlgorithmMapping } from './constant';
-import type { AlipayNativeConfig } from './types';
+import { alipaySigningAlgorithmMapping } from './constant.js';
+import type { AlipayNativeConfig } from './types.js';
 
 export type SigningParameters = (
   parameters: AlipayNativeConfig & Record<string, string | undefined>

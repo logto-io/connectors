@@ -15,9 +15,9 @@ import { generateStandardId } from '@logto/core-kit';
 import { assert } from '@silverhand/essentials';
 import { createRemoteJWKSet, jwtVerify } from 'jose';
 
-import { scope, defaultMetadata, jwksUri, issuer, authorizationEndpoint } from './constant';
-import type { AppleConfig } from './types';
-import { appleConfigGuard, dataGuard } from './types';
+import { scope, defaultMetadata, jwksUri, issuer, authorizationEndpoint } from './constant.js';
+import type { AppleConfig } from './types.js';
+import { appleConfigGuard, dataGuard } from './types.js';
 
 const generateNonce = () => generateStandardId();
 

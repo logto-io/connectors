@@ -1,38 +1,42 @@
 import { VerificationCodeType } from '@logto/connector-kit';
 
-import createConnector from '.';
-import { sendSmsRequest } from './http';
-import { codeTest, mockedConnectorConfig, mockedTemplateCode, phoneTest } from './mock';
+import { codeTest, mockedConnectorConfig, mockedTemplateCode, phoneTest } from './mock.js';
+
+const { jest } = import.meta;
 
 const getConfig = jest.fn().mockResolvedValue(mockedConnectorConfig);
 
-jest.mock('./http', () => {
+const sendSmsRequest = jest.fn(() => {
   return {
-    sendSmsRequest: jest.fn(() => {
-      return {
-        body: {
-          Response: {
-            RequestId: 'request-id',
-            SendStatusSet: [
-              {
-                Fee: 1,
-                SerialNo: 'serial-no',
-                SessionContext: 'session-context',
-                Code: 'Ok',
-                Message: 'OK',
-                IsoCode: 'CN',
-              },
-            ],
+    body: {
+      Response: {
+        RequestId: 'request-id',
+        SendStatusSet: [
+          {
+            Fee: 1,
+            SerialNo: 'serial-no',
+            SessionContext: 'session-context',
+            Code: 'Ok',
+            Message: 'OK',
+            IsoCode: 'CN',
           },
-        },
-        statusCode: 200,
-      };
-    }),
+        ],
+      },
+    },
+    statusCode: 200,
+  };
+});
+
+jest.unstable_mockModule('./http.js', () => {
+  return {
+    sendSmsRequest,
     isSmsErrorResponse: jest.fn((response) => {
       return response.Response.Error !== undefined;
     }),
   };
 });
+
+const { default: createConnector } = await import('./index.js');
 
 describe('sendMessage()', () => {
   afterEach(() => {

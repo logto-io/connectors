@@ -1,16 +1,20 @@
 import { ConnectorError, ConnectorErrorCodes } from '@logto/connector-kit';
-import { jwtVerify } from 'jose';
 
-import createConnector from '.';
-import { authorizationEndpoint } from './constant';
-import { mockedConfig } from './mock';
+import { mockedConfig } from './mock.js';
+
+const { jest } = import.meta;
 
 const getConfig = jest.fn().mockResolvedValue(mockedConfig);
 
-jest.mock('jose', () => ({
-  jwtVerify: jest.fn(),
+const jwtVerify = jest.fn();
+
+jest.unstable_mockModule('jose', () => ({
+  jwtVerify,
   createRemoteJWKSet: jest.fn(),
 }));
+
+const { authorizationEndpoint } = await import('./constant.js');
+const { default: createConnector } = await import('./index.js');
 
 describe('getAuthorizationUri', () => {
   afterEach(() => {
@@ -47,7 +51,7 @@ describe('getUserInfo', () => {
 
   it('should get user info from id token payload', async () => {
     const userId = 'userId';
-    const mockJwtVerify = jwtVerify as jest.Mock;
+    const mockJwtVerify = jwtVerify;
     mockJwtVerify.mockImplementationOnce(() => ({ payload: { sub: userId } }));
     const connector = await createConnector({ getConfig });
     const userInfo = await connector.getUserInfo({ id_token: 'idToken' });
@@ -62,7 +66,7 @@ describe('getUserInfo', () => {
   });
 
   it('should throw if verify id token failed', async () => {
-    const mockJwtVerify = jwtVerify as jest.Mock;
+    const mockJwtVerify = jwtVerify;
     mockJwtVerify.mockImplementationOnce(() => {
       throw new Error('jwtVerify failed');
     });
@@ -73,7 +77,7 @@ describe('getUserInfo', () => {
   });
 
   it('should throw if the id token payload does not contains sub', async () => {
-    const mockJwtVerify = jwtVerify as jest.Mock;
+    const mockJwtVerify = jwtVerify;
     mockJwtVerify.mockImplementationOnce(() => ({
       payload: { iat: 123_456 },
     }));

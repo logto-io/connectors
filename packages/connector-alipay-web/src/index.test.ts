@@ -1,9 +1,11 @@
 import { ConnectorError, ConnectorErrorCodes } from '@logto/connector-kit';
 import nock from 'nock';
 
-import createConnector, { getAccessToken } from '.';
-import { alipayEndpoint, authorizationEndpoint } from './constant';
-import { mockedAlipayConfigWithValidPrivateKey } from './mock';
+import { alipayEndpoint, authorizationEndpoint } from './constant.js';
+import createConnector, { getAccessToken } from './index.js';
+import { mockedAlipayConfigWithValidPrivateKey } from './mock.js';
+
+const { jest } = import.meta;
 
 const getConfig = jest.fn().mockResolvedValue(mockedAlipayConfigWithValidPrivateKey);
 
