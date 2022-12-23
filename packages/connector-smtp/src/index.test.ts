@@ -1,3 +1,7 @@
+import { MessageTypes } from '@logto/connector-kit';
+import type { Transporter } from 'nodemailer';
+import nodemailer from 'nodemailer';
+
 import createConnector from '.';
 import {
   mockedConfig,
@@ -14,9 +18,50 @@ import { smtpConfigGuard } from './types';
 
 const getConfig = jest.fn().mockResolvedValue(mockedConfig);
 
+const sendMail = jest.fn();
+
+// @ts-expect-error for testing
+jest.spyOn(nodemailer, 'createTransport').mockReturnValue({ sendMail } as Transporter);
+
 describe('SMTP connector', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('init without throwing errors', async () => {
     await expect(createConnector({ getConfig })).resolves.not.toThrow();
+  });
+
+  it('should send mail with proper options', async () => {
+    const connector = await createConnector({ getConfig });
+    await connector.sendMessage({
+      to: 'foo',
+      type: MessageTypes.Register,
+      payload: { code: '123456' },
+    });
+
+    expect(sendMail).toHaveBeenCalledWith({
+      from: '<notice@test.smtp>',
+      subject: 'Logto Register with SMTP',
+      text: 'This is for register purposes only. Your verification code is 123456.',
+      to: 'foo',
+    });
+  });
+
+  it('should send mail with proper subject', async () => {
+    const connector = await createConnector({ getConfig });
+    await connector.sendMessage({
+      to: 'bar',
+      type: MessageTypes.SignIn,
+      payload: { code: '234567' },
+    });
+
+    expect(sendMail).toHaveBeenCalledWith({
+      from: '<notice@test.smtp>',
+      subject: 'Logto Sign-In with SMTP 234567',
+      text: 'This is for sign-in purposes only. Your verification code is 234567.',
+      to: 'bar',
+    });
   });
 });
 
