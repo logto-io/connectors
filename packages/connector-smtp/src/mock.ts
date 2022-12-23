@@ -6,14 +6,14 @@ export const mockedConfig = {
   templates: [
     {
       contentType: 'text/plain',
-      content: 'This is for testing purposes only. Your verification code is {{code}}.',
+      content: 'This is for testing purposes only. Your verification code is {{    code }}.',
       subject: 'Logto Test with SMTP',
       usageType: 'Test',
     },
     {
       contentType: 'text/plain',
-      content: 'This is for sign-in purposes only. Your verification code is {{code}}.',
-      subject: 'Logto Sign-In with SMTP',
+      content: 'This is for sign-in purposes only. Your verification code is {{ code  }}.',
+      subject: 'Logto Sign-In with SMTP {{   code   }}',
       usageType: 'SignIn',
     },
     {
