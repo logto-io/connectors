@@ -37,11 +37,17 @@ export const userProfileGuard = z.object({
 
 export type UserProfile = z.infer<typeof userProfileGuard>;
 
+const tokenEndpointResponseTypeGuard = z
+  .enum(['query-string', 'json'])
+  .optional()
+  .default('query-string');
+
 export const authorizationCodeConfigGuard = z
   .object({
     oauthGrantType: z.literal(OauthGrantType.AuthorizationCode),
     responseType: z.literal('code').optional().default('code'),
     grantType: z.literal('authorization_code').optional().default('authorization_code'),
+    tokenEndpointResponseType: tokenEndpointResponseTypeGuard,
     authorizationEndpoint: z.string(),
     tokenEndpoint: z.string(),
     userInfoEndpoint: z.string(),
@@ -51,6 +57,8 @@ export const authorizationCodeConfigGuard = z
     profileMap: profileMapGuard,
   })
   .catchall(z.string());
+
+export type TokenEndpointResponseType = z.input<typeof tokenEndpointResponseTypeGuard>;
 
 export type AuthorizationCodeConfig = z.infer<typeof authorizationCodeConfigGuard>;
 
