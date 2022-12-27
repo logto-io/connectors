@@ -59,7 +59,7 @@ const getAccessToken = async (config: OauthConfig, data: unknown, redirectUri: s
     return getAuthorizationCodeFlowAccessToken(config, data, redirectUri);
   }
 
-  return getImplicitFlowAccessToken(config, data);
+  return getImplicitFlowAccessToken(data);
 };
 
 const getUserInfo =

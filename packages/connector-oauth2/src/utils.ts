@@ -1,4 +1,4 @@
-import { ConnectorError, ConnectorErrorCodes } from '@logto/connector-kit';
+import { ConnectorError, ConnectorErrorCodes, parseJson } from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
 import type { Response } from 'got';
 import got from 'got';
@@ -9,9 +9,9 @@ import snakecaseKeys from 'snakecase-keys';
 import { defaultTimeout, oauthConfigGlobalKeys } from './constant';
 import type {
   AuthorizationCodeConfig,
+  TokenEndpointResponseType,
   AccessTokenResponse,
   ProfileMap,
-  ImplicitConfig,
 } from './types';
 import {
   authResponseGuard,
@@ -23,6 +23,7 @@ import {
 export const accessTokenRequester = async (
   tokenEndpoint: string,
   queryParameters: Record<string, string>,
+  tokenEndpointResponseType: TokenEndpointResponseType,
   timeout: number = defaultTimeout
 ): Promise<AccessTokenResponse> => {
   const httpResponse = await got.post({
@@ -31,13 +32,16 @@ export const accessTokenRequester = async (
     timeout,
   });
 
-  return accessTokenResponseHandler(httpResponse);
+  return accessTokenResponseHandler(httpResponse, tokenEndpointResponseType);
 };
 
 const accessTokenResponseHandler = async (
-  response: Response<string>
+  response: Response<string>,
+  tokenEndpointResponseType: TokenEndpointResponseType
 ): Promise<AccessTokenResponse> => {
-  const result = accessTokenResponseGuard.safeParse(qs.parse(response.body)); // Why it works with qs.parse()
+  const result = accessTokenResponseGuard.safeParse(
+    tokenEndpointResponseType === 'json' ? parseJson(response.body) : qs.parse(response.body)
+  ); // Why it works with qs.parse()
 
   if (!result.success) {
     throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error);
@@ -91,10 +95,14 @@ export const getAuthorizationCodeFlowAccessToken = async (
     ...(redirectUri ? { redirectUri } : {}),
   });
 
-  return accessTokenRequester(config.tokenEndpoint, parameterObject);
+  return accessTokenRequester(
+    config.tokenEndpoint,
+    parameterObject,
+    config.tokenEndpointResponseType
+  );
 };
 
-export const getImplicitFlowAccessToken = async (config: ImplicitConfig, data: unknown) => {
+export const getImplicitFlowAccessToken = async (data: unknown) => {
   const result = implicitAuthResponseGuard.safeParse(data);
 
   if (!result.success) {
