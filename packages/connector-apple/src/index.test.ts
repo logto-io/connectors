@@ -19,13 +19,24 @@ describe('getAuthorizationUri', () => {
 
   it('should get a valid uri by redirectUri and state', async () => {
     const connector = await createConnector({ getConfig });
-    const authorizationUri = await connector.getAuthorizationUri({
-      state: 'some_state',
-      redirectUri: 'http://localhost:3000/callback',
-    });
-    expect(authorizationUri).toEqual(
-      `${authorizationEndpoint}?client_id=%3Cclient-id%3E&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&scope=&state=some_state&response_type=code+id_token&response_mode=fragment`
+    const setSession = jest.fn();
+    const authorizationUri = await connector.getAuthorizationUri(
+      {
+        state: 'some_state',
+        redirectUri: 'http://localhost:3000/callback',
+      },
+      setSession
     );
+
+    const { origin, pathname, searchParams } = new URL(authorizationUri);
+    expect(origin + pathname).toEqual(authorizationEndpoint);
+    expect(searchParams.get('client_id')).toEqual('<client-id>');
+    expect(searchParams.get('redirect_uri')).toEqual('http://localhost:3000/callback');
+    expect(searchParams.get('state')).toEqual('some_state');
+    expect(searchParams.get('response_type')).toEqual('code id_token');
+    expect(searchParams.get('response_mode')).toEqual('fragment');
+    expect(searchParams.has('scope')).toBeTruthy();
+    expect(searchParams.has('nonce')).toBeTruthy();
   });
 });
 

@@ -18,7 +18,7 @@ import {
 } from './types';
 
 const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-// Temporary use this workaround, this change has been made in @logto/core-kit but has not been published yet.
+// FIXME @darcy: Temporary use this workaround, this change has been made in @logto/core-kit but has not been published yet.
 export const buildIdGenerator = (size: number) => customAlphabet(alphabet, size);
 
 export const accessTokenRequester = async (
