@@ -45,6 +45,8 @@ Here are some examples of OAuth connector config JSON connected to Google server
 
 `tokenEndpoint` is required since a token request is obligatory.
 
+`tokenEndpointResponseType` is an optional field, and should be either 'query-string' or 'json' if provided. The default value is 'query-string'. This field only work when the grant type is 'Authorization Code'. It will determine how OAuth connector parse the token response and an error could break the social sign-in flow if wrong value is set.
+
 ```json
 {
   "oauthGrantType": "AuthorizationCode",
@@ -53,6 +55,7 @@ Here are some examples of OAuth connector config JSON connected to Google server
   "scope": "<OPTIONAL-'profile email'>",
   "authorizationEndpoint": "<vendor-authorization-endpoint>",
   "tokenEndpoint": "<vendor-token-endpoint>",
+  "tokenEndpointResponseType": "<OPTIONAL-'json'-or-'query-string'>",
   "userInfoEndpoint": "<vendor-user-info-endpoint>",
   "profileMap": {
     "id": "<OPTIONAL-'id'>",
@@ -88,18 +91,19 @@ Here are some examples of OAuth connector config JSON connected to Google server
 
 ## Config types
 
-| Name                  | Type       | Required |
-|-----------------------|------------|----------|
-| oauthGrantType        | enum       | true     |
-| authorizationEndpoint | string     | true     |
-| userInfoEndpoint      | string     | true     |
-| clientId              | string     | true     |
-| clientSecret          | string     | true     |
-| responseType          | string     | false    |
-| grantType             | string     | false    |
-| tokenEndpoint         | string     | false    |
-| scope                 | string     | false    |
-| profileMap            | ProfileMap | false    |
+| Name                      | Type       | Required |
+|---------------------------|------------|----------|
+| oauthGrantType            | enum       | true     |
+| authorizationEndpoint     | string     | true     |
+| userInfoEndpoint          | string     | true     |
+| clientId                  | string     | true     |
+| clientSecret              | string     | true     |
+| tokenEndpointResponseType | enum       | false    |
+| responseType              | string     | false    |
+| grantType                 | string     | false    |
+| tokenEndpoint             | string     | false    |
+| scope                     | string     | false    |
+| profileMap                | ProfileMap | false    |
 
 | ProfileMap fields | Type   | Required | Default value |
 |-------------------|--------|----------|---------------|
