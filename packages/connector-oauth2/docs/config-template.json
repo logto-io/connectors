@@ -3,9 +3,9 @@
   "authorizationEndpoint": "<authorization-endpoint>",
   "tokenEndpoint": "<token-endpoint>",
   "userInfoEndpoint": "<user-info-endpoint>",
-  "redirectUri": "<redirect-uri>",
   "clientId": "<client-id>",
   "clientSecret": "<client-secret>",
+  "tokenEndpointResponseType": "query-string",
   "scope": "<scope>",
   "profileMap": {
     "id": "user_id",
