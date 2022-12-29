@@ -1,0 +1,17 @@
+{
+  "oauthGrantType": "AuthorizationCode",
+  "authorizationEndpoint": "<authorization-endpoint>",
+  "tokenEndpoint": "<token-endpoint>",
+  "userInfoEndpoint": "<user-info-endpoint>",
+  "clientId": "<client-id>",
+  "clientSecret": "<client-secret>",
+  "tokenEndpointResponseType": "query-string",
+  "scope": "<scope>",
+  "profileMap": {
+    "id": "user_id",
+    "email": "email_verified",
+    "phone": "phone_verified",
+    "name": "full_name",
+    "avatar": "avatar_url"
+  }
+}

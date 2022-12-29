@@ -1,13 +1,14 @@
 {
   "$schema": "https://json.schemastore.org/package",
-  "name": "@logto/connector-alipay-native",
+  "name": "@logto/connector-oauth",
   "version": "1.0.0-beta.15",
-  "description": "Alipay Native implementation.",
+  "description": "OAuth standard connector implementation.",
   "author": "Silverhand Inc. <contact@silverhand.io>",
   "dependencies": {
-    "dayjs": "^1.10.5"
+    "lodash.omit": "^4.5.0",
+    "query-string": "^7.0.1"
   },
   "devDependencies": {
-    "@shopify/jest-koa-mocks": "^5.0.0"
+    "@types/lodash.omit": "4.5.0"
   }
 }
