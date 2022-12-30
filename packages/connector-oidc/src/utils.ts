@@ -55,7 +55,8 @@ export const isIdTokenInResponseType = (responseType: string) => {
 
 export const getAuthorizationCodeFlowIdToken = async (
   config: AuthorizationCodeConfig,
-  data: unknown
+  data: unknown,
+  redirectUri?: string
 ) => {
   const result = authResponseGuard.safeParse(data);
 
@@ -64,6 +65,13 @@ export const getAuthorizationCodeFlowIdToken = async (
   }
 
   const { code } = result.data;
+
+  assert(
+    redirectUri,
+    new ConnectorError(ConnectorErrorCodes.General, {
+      message: "CAN NOT find 'redirectUri' from connector session.",
+    })
+  );
 
   const parameterObject = snakecaseKeys({
     ...omit(
@@ -74,6 +82,7 @@ export const getAuthorizationCodeFlowIdToken = async (
       'scope'
     ),
     code,
+    redirectUri,
   });
 
   return accessTokenRequester(config.tokenEndpoint, parameterObject);
