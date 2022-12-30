@@ -11,15 +11,15 @@ import {
   validateConfig,
   ConnectorType,
 } from '@logto/connector-kit';
+import { generateStandardId } from '@logto/core-kit';
 import { assert } from '@silverhand/essentials';
 import { createRemoteJWKSet, jwtVerify } from 'jose';
 
 import { scope, defaultMetadata, jwksUri, issuer, authorizationEndpoint } from './constant';
 import type { AppleConfig } from './types';
 import { appleConfigGuard, dataGuard } from './types';
-import { buildIdGenerator } from './utils';
 
-const generateNonce = () => buildIdGenerator(12)();
+const generateNonce = () => generateStandardId();
 
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
