@@ -26,7 +26,7 @@ function getHash(message: string, encoding: BinaryToTextEncoding = 'hex') {
 function getDate(timestamp: number) {
   const date = new Date(timestamp * 1000);
   const year = date.getUTCFullYear();
-  const month = date.getUTCMonth().toString().padStart(2, '0');
+  const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
   const day = date.getUTCDate().toString().padStart(2, '0');
 
   return `${year}-${month}-${day}`;

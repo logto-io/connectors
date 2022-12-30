@@ -2,6 +2,6 @@
   "$schema": "https://json.schemastore.org/package",
   "name": "@logto/connector-tencent-email",
   "version": "1.0.0-beta.15",
-  "description": "Tencent Email connector implementation.",
+  "description": "Tencent email connector implementation.",
   "author": "StringKe"
 }

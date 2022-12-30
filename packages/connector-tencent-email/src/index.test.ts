@@ -1,6 +1,7 @@
-import { endpoint } from '@/constant';
 import { ConnectorError, ConnectorErrorCodes, VerificationCodeType } from '@logto/connector-kit';
 import nock from 'nock';
+
+import { endpoint } from '@/constant';
 
 import createConnector from '.';
 import { errorConfig, mockedConfig, mockedOptionConfig } from './mock';

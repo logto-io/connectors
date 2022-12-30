@@ -134,7 +134,7 @@ const sendMessage =
     }
   };
 
-const createSendGridMailConnector: CreateConnector<EmailConnector> = async ({ getConfig }) => {
+const createTencentMailConnector: CreateConnector<EmailConnector> = async ({ getConfig }) => {
   return {
     metadata: defaultMetadata,
     type: ConnectorType.Email,
@@ -143,4 +143,4 @@ const createSendGridMailConnector: CreateConnector<EmailConnector> = async ({ ge
   };
 };
 
-export default createSendGridMailConnector;
+export default createTencentMailConnector;
