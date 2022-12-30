@@ -94,7 +94,9 @@ const getUserInfo =
     const { id_token: idToken } = await getIdToken(parsedConfig, data, redirectUri);
 
     if (!idToken) {
-      throw new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid);
+      throw new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid, {
+        message: 'Can not find idToken!',
+      });
     }
 
     try {
@@ -110,7 +112,7 @@ const getUserInfo =
       const result = idTokenProfileStandardClaimsGuard.safeParse(payload);
 
       if (!result.success) {
-        throw new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid);
+        throw new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid, result.error);
       }
 
       const {

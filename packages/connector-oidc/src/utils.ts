@@ -1,7 +1,7 @@
 import { ConnectorError, ConnectorErrorCodes, parseJson } from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
 import type { Response } from 'got';
-import got from 'got';
+import got, { HTTPError } from 'got';
 import omit from 'lodash.omit';
 import { customAlphabet } from 'nanoid';
 import snakecaseKeys from 'snakecase-keys';
@@ -26,13 +26,20 @@ export const accessTokenRequester = async (
   queryParameters: Record<string, string>,
   timeout: number = defaultTimeout
 ): Promise<AccessTokenResponse> => {
-  const httpResponse = await got.post({
-    url: tokenEndpoint,
-    form: queryParameters,
-    timeout,
-  });
+  try {
+    const httpResponse = await got.post({
+      url: tokenEndpoint,
+      form: queryParameters,
+      timeout,
+    });
 
-  return accessTokenResponseHandler(httpResponse);
+    return await accessTokenResponseHandler(httpResponse);
+  } catch (error: unknown) {
+    if (error instanceof HTTPError) {
+      throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify(error.response.body));
+    }
+    throw error;
+  }
 };
 
 const accessTokenResponseHandler = async (
@@ -44,7 +51,12 @@ const accessTokenResponseHandler = async (
     throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error);
   }
 
-  assert(result.data.access_token, new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid));
+  assert(
+    result.data.access_token,
+    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, {
+      message: 'Missing `access_token` in token response!',
+    })
+  );
 
   return result.data;
 };
