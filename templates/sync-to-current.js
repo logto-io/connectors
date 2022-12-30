@@ -57,7 +57,9 @@ const sync = async () => {
             continue;
           }
 
-          if (typeof value === 'object' && value !== null) {
+          if (Array.isArray(result[key])) {
+            result[key] = [...result[key], ...value];
+          } else if (typeof value === 'object' && value !== null) {
             result[key] = { ...result[key], ...value };
           } else {
             result[key] = value;
