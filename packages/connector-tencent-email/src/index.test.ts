@@ -1,7 +1,6 @@
-import { ConnectorError, ConnectorErrorCodes, MessageTypes } from '@logto/connector-kit';
-import nock from 'nock';
-
 import { endpoint } from '@/constant';
+import { ConnectorError, ConnectorErrorCodes, VerificationCodeType } from '@logto/connector-kit';
+import nock from 'nock';
 
 import createConnector from '.';
 import { errorConfig, mockedConfig, mockedOptionConfig } from './mock';
@@ -24,7 +23,7 @@ describe('Tencent mail connector', () => {
     await expect(
       connector.sendMessage({
         to: '',
-        type: MessageTypes.Register,
+        type: VerificationCodeType.Register,
         payload: { code: '' },
       })
     ).rejects.toThrow();
@@ -55,7 +54,7 @@ describe('Tencent mail connector params error', () => {
     await expect(
       connector.sendMessage({
         to: '',
-        type: MessageTypes.Test,
+        type: VerificationCodeType.Test,
         payload: { code: '' },
       })
     ).rejects.toThrowError(
@@ -81,7 +80,7 @@ describe('Tencent mail connector params error', () => {
     await expect(
       connector.sendMessage({
         to: '',
-        type: MessageTypes.Test,
+        type: VerificationCodeType.Test,
         payload: { code: '' },
       })
     ).resolves.not.toThrow();
