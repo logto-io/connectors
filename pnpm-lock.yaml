@@ -232,6 +232,7 @@ importers:
     specifiers:
       '@jest/types': ^29.3.1
       '@logto/connector-kit': 1.0.0-beta.30
+      '@logto/core-kit': 1.0.0-beta.30
       '@silverhand/eslint-config': 1.3.0
       '@silverhand/essentials': ^1.2.0
       '@silverhand/jest-config': 1.2.2
@@ -255,6 +256,7 @@ importers:
       zod: ^3.20.2
     dependencies:
       '@logto/connector-kit': 1.0.0-beta.30
+      '@logto/core-kit': 1.0.0-beta.30
       '@silverhand/essentials': 1.2.0
       got: 11.8.5
       jose: 4.9.2
@@ -3631,12 +3633,30 @@ packages:
       zod: 3.20.2
     dev: false
 
+  /@logto/core-kit/1.0.0-beta.30:
+    resolution: {integrity: sha512-xhJvRrwnx4YhLDZyqtp37prBJV2aBy7P5IQiNHRxi+5Ceov7Yhbylb2ItG2uxm4adVWemlbwgrN1CwcK9IKbag==}
+    engines: {node: ^16.13.0 || ^18.12.0}
+    dependencies:
+      '@logto/language-kit': 1.0.0-beta.30
+      color: 4.2.3
+      nanoid: 4.0.0
+    optionalDependencies:
+      zod: 3.20.2
+    dev: false
+
   /@logto/language-kit/1.0.0-beta.29_zod@3.20.2:
     resolution: {integrity: sha512-+YeAkawjEq0vwwnqq8RDrDKePWE6x1q2WdpLXtj0H6SQ3GB9pXcYLecjnANHOHB4Zp9Jnxd4eBGogNRWvspikg==}
     engines: {node: ^16.13.0 || ^18.12.0}
     peerDependencies:
       zod: ^3.19.1
     dependencies:
+      zod: 3.20.2
+    dev: false
+
+  /@logto/language-kit/1.0.0-beta.30:
+    resolution: {integrity: sha512-0PEArBYLW0M6uuXizxPhUSh+Q55wDrHkr7xUcCHLKvvlSW2WLO062mU7xzKva8st00pIXMMetnPUVyMW1SRfzw==}
+    engines: {node: ^16.13.0 || ^18.12.0}
+    optionalDependencies:
       zod: 3.20.2
     dev: false
 

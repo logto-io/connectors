@@ -59,7 +59,7 @@ Click the identifier you just created. Check "Sign in with Apple" on the details
 
 In the opening modal, select the App ID you just enabled Sign in with Apple.
 
-Enter the domain of your Logto instance without protocol and port, e.g., `your.logto.domain`; then enter the "Return URL" (i.e., Redirect URI), which is the Logto URL with `/callback/apple-universal`, e.g., `https://your.logto.domain/callback/apple-universal`.
+Enter the domain of your Logto instance without protocol and port, e.g., `your.logto.domain`; then enter the "Return URL" (i.e., Redirect URI), which is the Logto URL with `/callback/${connector_id}`, e.g., `https://your.logto.domain/callback/apple-universal`. You can get the randomly generated `connector_id` after creating Apple connector in Admin Console.
 
 ![domain-and-url](/packages/connector-apple/docs/domain-and-url.png)
 
@@ -131,7 +131,7 @@ That's it. The Apple connector should be available in both web and native apps. 
 
 在打开的对话框中，选择刚刚启用了「通过 Apple 登录」的 App ID。
 
-输入你的 Logto 实例域名（不含协议和端口），例如 `your.logto.domain`；并输入「Return URL」（即 Redirect URI）。Return URL 的值是 Logto URL 加上 `/callback/apple-universal`，例如 `https://your.logto.domain/callback/apple-universal`。
+输入你的 Logto 实例域名（不含协议和端口），例如 `your.logto.domain`；并输入「Return URL」（即 Redirect URI）。Return URL 的值是 Logto URL 加上 `/callback/${connector_id}`，例如 `https://your.logto.domain/callback/apple-universal`。在管理控制台创建了 Apple 连接器之后，在详情页可以找到生成的随机 `connector_id`。
 
 ![domain-and-url](/packages/connector-apple/docs/domain-and-url.png)
 
