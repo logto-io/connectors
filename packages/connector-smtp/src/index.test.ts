@@ -1,4 +1,4 @@
-import { MessageTypes } from '@logto/connector-kit';
+import { VerificationCodeType } from '@logto/connector-kit';
 import type { Transporter } from 'nodemailer';
 import nodemailer from 'nodemailer';
 
@@ -36,7 +36,7 @@ describe('SMTP connector', () => {
     const connector = await createConnector({ getConfig });
     await connector.sendMessage({
       to: 'foo',
-      type: MessageTypes.Register,
+      type: VerificationCodeType.Register,
       payload: { code: '123456' },
     });
 
@@ -52,7 +52,7 @@ describe('SMTP connector', () => {
     const connector = await createConnector({ getConfig });
     await connector.sendMessage({
       to: 'bar',
-      type: MessageTypes.SignIn,
+      type: VerificationCodeType.SignIn,
       payload: { code: '234567' },
     });
 
