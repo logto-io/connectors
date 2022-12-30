@@ -1,5 +1,5 @@
 import { SESv2Client } from '@aws-sdk/client-sesv2';
-import { MessageTypes } from '@logto/connector-kit';
+import { VerificationCodeType } from '@logto/connector-kit';
 
 import createConnector from '.';
 import { mockedConfig } from './mock';
@@ -24,7 +24,7 @@ describe('sendMessage()', () => {
     const { emailAddress } = mockedConfig;
     await connector.sendMessage({
       to: toMail,
-      type: MessageTypes.SignIn,
+      type: VerificationCodeType.SignIn,
       payload: { code: '1234' },
     });
     const toExpected = [toMail];
@@ -57,7 +57,7 @@ describe('sendMessage()', () => {
     await expect(
       connector.sendMessage({
         to: 'to@email.com',
-        type: MessageTypes.Register,
+        type: VerificationCodeType.Register,
         payload: { code: '1234' },
       })
     ).rejects.toThrow();

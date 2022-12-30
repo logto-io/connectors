@@ -1,4 +1,4 @@
-import { MessageTypes } from '@logto/connector-kit';
+import { VerificationCodeType } from '@logto/connector-kit';
 
 import createConnector from '.';
 import { sendSmsRequest } from './http';
@@ -43,7 +43,7 @@ describe('sendMessage()', () => {
     const connector = await createConnector({ getConfig });
     await connector.sendMessage({
       to: phoneTest,
-      type: MessageTypes.SignIn,
+      type: VerificationCodeType.SignIn,
       payload: { code: codeTest },
     });
     expect(sendSmsRequest).toHaveBeenCalledWith(
@@ -65,7 +65,7 @@ describe('sendMessage()', () => {
     await expect(
       connector.sendMessage({
         to: phoneTest,
-        type: MessageTypes.Test,
+        type: VerificationCodeType.Test,
         payload: { code: codeTest },
       })
     ).rejects.toThrow();

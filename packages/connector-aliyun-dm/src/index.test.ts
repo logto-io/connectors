@@ -1,4 +1,4 @@
-import { MessageTypes } from '@logto/connector-kit';
+import { VerificationCodeType } from '@logto/connector-kit';
 
 import createConnector from '.';
 import { mockedConfigWithAllRequiredTemplates } from './mock';
@@ -26,7 +26,7 @@ describe('sendMessage()', () => {
     const connector = await createConnector({ getConfig });
     await connector.sendMessage({
       to: 'to@email.com',
-      type: MessageTypes.SignIn,
+      type: VerificationCodeType.SignIn,
       payload: { code: '1234' },
     });
     expect(singleSendMail).toHaveBeenCalledWith(
@@ -42,7 +42,7 @@ describe('sendMessage()', () => {
     await expect(
       connector.sendMessage({
         to: 'to@email.com',
-        type: MessageTypes.Test,
+        type: VerificationCodeType.Test,
         payload: { code: '1234' },
       })
     ).rejects.toThrow();

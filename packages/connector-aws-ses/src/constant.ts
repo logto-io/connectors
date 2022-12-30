@@ -11,7 +11,7 @@ export const defaultMetadata: ConnectorMetadata = {
     ko: 'AWS 다이렉트 메일',
   },
   logo: './logo.svg',
-  logoDark: null,
+  logoDark: './logo-dark.svg',
   description: {
     en: 'Amazon SES is a cloud email service provider that can integrate into any application for bulk email sending.',
     'zh-CN':
