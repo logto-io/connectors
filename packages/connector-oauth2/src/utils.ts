@@ -1,7 +1,7 @@
 import { ConnectorError, ConnectorErrorCodes, parseJson } from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
 import type { Response } from 'got';
-import got from 'got';
+import got, { HTTPError } from 'got';
 import omit from 'lodash.omit';
 import * as qs from 'query-string';
 import snakecaseKeys from 'snakecase-keys';
@@ -26,13 +26,20 @@ export const accessTokenRequester = async (
   tokenEndpointResponseType: TokenEndpointResponseType,
   timeout: number = defaultTimeout
 ): Promise<AccessTokenResponse> => {
-  const httpResponse = await got.post({
-    url: tokenEndpoint,
-    form: queryParameters,
-    timeout,
-  });
+  try {
+    const httpResponse = await got.post({
+      url: tokenEndpoint,
+      form: queryParameters,
+      timeout,
+    });
 
-  return accessTokenResponseHandler(httpResponse, tokenEndpointResponseType);
+    return await accessTokenResponseHandler(httpResponse, tokenEndpointResponseType);
+  } catch (error: unknown) {
+    if (error instanceof HTTPError) {
+      throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify(error.response.body));
+    }
+    throw error;
+  }
 };
 
 const accessTokenResponseHandler = async (
@@ -47,7 +54,12 @@ const accessTokenResponseHandler = async (
     throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, result.error);
   }
 
-  assert(result.data.access_token, new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid));
+  assert(
+    result.data.access_token,
+    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, {
+      message: 'Can not find `access_token` in token response!',
+    })
+  );
 
   return result.data;
 };
