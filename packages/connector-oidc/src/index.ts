@@ -64,7 +64,7 @@ const getAuthorizationUri =
 
 const getIdToken = async (config: OidcConfig, data: unknown, redirectUri?: string) => {
   if (config.oidcFlowType === OidcFlowType.AuthorizationCode) {
-    return getAuthorizationCodeFlowIdToken(config, data);
+    return getAuthorizationCodeFlowIdToken(config, data, redirectUri);
   }
 
   if (config.oidcFlowType === OidcFlowType.Implicit) {
