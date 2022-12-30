@@ -40,9 +40,9 @@ The Facebook connector provides a concise way for your application to use Facebo
    - The selected [app type](https://developers.facebook.com/docs/development/create-an-app/app-dashboard/app-types) is up to you, but it should have the product _Facebook Login_.
 3. On the app dashboard page, scroll to the "Add a product" section and click the "Set up" button on the "Facebook Login" card.
 4. Skip the Facebook Login Quickstart page, and click the sidebar -> "Products" -> "Facebook Login" -> "Settings".
-5. In the Facebook Login Settings page, fill `${your_logto_origin}/callback/facebook-universal` in the "Valid OAuth Redirect URIs" field. E.g.:
-    - `https://logto.dev/callback/facebook-universal` for production
-    - `https://localhost:3001/callback/facebook-universal` for testing in the local environment
+5. In the Facebook Login Settings page, fill `${your_logto_origin}/callback/${connector_id}` in the "Valid OAuth Redirect URIs" field. The `connector_id` can be found on the top bar of the Logto Admin Console connector details page. E.g.:
+    - `https://logto.dev/callback/${connector_id}` for production
+    - `https://localhost:3001/callback/${connector_id}` for testing in the local environment
 6. Click the "Save changes" button at the bottom right corner.
 
 ## Compose the connector JSON
@@ -106,9 +106,9 @@ Facebook 连接器为你提供了通过 Facebook 的 OAuth 2.0 授权系统注�
    - 由你来选择合适的 [应用类型](https://developers.facebook.com/docs/development/create-an-app/app-dashboard/app-types)，但需要包含 _Facebook 登录_ 产品。
 3. 在应用「控制面板」，在侧边栏找到「添加产品」部分，然后点按「Facebook 登录」卡片上的「设置」按钮。
 4. 跳过 Facebook 登录快速启动页，然后点击侧边栏 -> 「产品」->「Facebook 登录」->「设置」。
-5. 在 Facebook 登录设置页，在「跳转 URI 来检查」栏中填入 `${your_logto_origin}/callback/facebook-universal`，例如：
-   - 在产品环境中可以填：`https://logto.dev/callback/facebook-universal`
-   - 在本地测试环境中可以填：`https://localhost:3001/callback/facebook-universal`
+5. 在 Facebook 登录设置页，在「跳转 URI 来检查」栏中填入 `${your_logto_origin}/callback/${connector_id}`（`connector_id` 在管理控制台相应连接器的详情页的顶栏中可以找到），例如：
+   - 在产品环境中可以填：`https://logto.dev/callback/${connector_id}`
+   - 在本地测试环境中可以填：`https://localhost:3001/callback/${connector_id}`
 6. 点按页面右下角的「保存更改」按钮。
 
 ## 编写连接器的 JSON

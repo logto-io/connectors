@@ -14,7 +14,7 @@
 
 1. [开发者首页](https://open.feishu.cn/app?lang=zh-CN) 下方有 「创建企业自建应用」
 2. 填写应用名称，选择「企业自建应用」，点击「创建应用」
-3. 在左侧「安全设置中」添加相应的「重定向 URL」 `${your_logto_origin}/callback/${feishu_web_connector_id}`。其中 `feishu_web_connector_id` 在管理控制台添加了相应的连接器之后，可以在连接器的详情页中找到
+3. 在左侧「安全设置中」添加相应的「重定向 URL」 `${your_logto_origin}/callback/${connector_id}`。其中 `connector_id` 在管理控制台添加了相应的连接器之后，可以在连接器的详情页中找到
 4. 左侧「凭证与基本信息」中可以获取「AppID」、「AppSecret」
 5. 左侧「应用发布」中需要发布第一个版本「AppID」、「AppSecret」才会生效
 
