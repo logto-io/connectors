@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  pull_request:
 
 jobs:
   changeset:
@@ -44,6 +45,7 @@ jobs:
           createGithubReleases: false
           commit: 'release: version packages'
           title: 'release: version packages'
+          version: .scripts/version.sh
           publish: exit 0 # will update soon
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
