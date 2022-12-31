@@ -935,7 +935,6 @@ importers:
       '@silverhand/jest-config': 1.2.2
       '@silverhand/ts-config': 1.2.1
       '@types/jest': ^29.2.4
-      '@types/lodash.omit': 4.5.0
       '@types/node': ^16.3.1
       '@types/supertest': ^2.0.11
       '@vercel/ncc': ^0.36.0
@@ -945,7 +944,6 @@ importers:
       jest: ^29.3.1
       jest-matcher-specific-error: ^1.0.0
       lint-staged: ^13.0.0
-      lodash.omit: ^4.5.0
       nock: ^13.2.2
       prettier: ^2.7.1
       query-string: ^7.0.1
@@ -957,7 +955,6 @@ importers:
       '@logto/connector-kit': 1.0.0-beta.31
       '@silverhand/essentials': 1.2.1
       got: 11.8.5
-      lodash.omit: 4.5.0
       query-string: 7.1.1
       snakecase-keys: 5.4.4
       zod: 3.20.2
@@ -967,7 +964,6 @@ importers:
       '@silverhand/jest-config': 1.2.2_p6ekqnroyms5nhqbfxosryz7rm
       '@silverhand/ts-config': 1.2.1_typescript@4.9.4
       '@types/jest': 29.2.4
-      '@types/lodash.omit': 4.5.0
       '@types/node': 16.11.56
       '@types/supertest': 2.0.12
       '@vercel/ncc': 0.36.0

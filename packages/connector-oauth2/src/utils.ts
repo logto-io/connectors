@@ -1,12 +1,11 @@
 import { ConnectorError, ConnectorErrorCodes, parseJson } from '@logto/connector-kit';
-import { assert } from '@silverhand/essentials';
+import { assert, pick } from '@silverhand/essentials';
 import type { Response } from 'got';
 import got, { HTTPError } from 'got';
-import omit from 'lodash.omit';
 import * as qs from 'query-string';
 import snakecaseKeys from 'snakecase-keys';
 
-import { defaultTimeout, oauthConfigGlobalKeys } from './constant';
+import { defaultTimeout } from './constant';
 import type {
   AuthorizationCodeConfig,
   TokenEndpointResponseType,
@@ -101,8 +100,11 @@ export const getAuthorizationCodeFlowAccessToken = async (
 
   const { code } = result.data;
 
+  const { customConfig, ...rest } = config;
+
   const parameterObject = snakecaseKeys({
-    ...omit(config, ...oauthConfigGlobalKeys, 'scope', 'responseType'),
+    ...pick(rest, 'grantType', 'clientId', 'clientSecret'),
+    ...customConfig,
     code,
     ...(redirectUri ? { redirectUri } : {}),
   });

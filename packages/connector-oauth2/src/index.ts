@@ -12,12 +12,11 @@ import {
   ConnectorType,
   parseJson,
 } from '@logto/connector-kit';
-import { assert } from '@silverhand/essentials';
+import { assert, pick } from '@silverhand/essentials';
 import got, { HTTPError } from 'got';
-import omit from 'lodash.omit';
 import snakecaseKeys from 'snakecase-keys';
 
-import { defaultMetadata, defaultTimeout, oauthConfigGlobalKeys } from './constant';
+import { defaultMetadata, defaultTimeout } from './constant';
 import type { OauthConfig } from './types';
 import { oauthConfigGuard, OauthGrantType } from './types';
 import {
@@ -33,9 +32,12 @@ const getAuthorizationUri =
     validateConfig<OauthConfig>(config, oauthConfigGuard);
     const parsedConfig = oauthConfigGuard.parse(config);
 
-    const parameterObject = snakecaseKeys(
-      omit(parsedConfig, ...oauthConfigGlobalKeys, 'clientSecret', 'grantType')
-    );
+    const { customConfig, ...rest } = parsedConfig;
+
+    const parameterObject = snakecaseKeys({
+      ...pick(rest, 'responseType', 'clientId', 'scope'),
+      ...customConfig,
+    });
 
     assert(
       setSession,

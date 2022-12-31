@@ -39,9 +39,11 @@ You can find [Google user profile response](https://developers.google.com/identi
 
 Here are some examples of OAuth connector config JSON connected to Google server. Other vendor's config could vary.
 
-### Authorization Code grant type
+> ℹ️ **Note**
+> 
+> `responseType` and `grantType` can ONLY be FIXED values with both authorization code and implicit grant type, so we make them optional and default values will be automatically filled.
 
-`responseType` and `grantType` can only be fixed values with both authorization code and implicit grant type, so we make them optional and default values will be automatically filled.
+### Authorization Code grant type
 
 `tokenEndpoint` is required since a token request is obligatory.
 
@@ -63,6 +65,10 @@ Here are some examples of OAuth connector config JSON connected to Google server
     "avatar": "<OPTIONAL-'avatar'>",
     "email": "<OPTIONAL-'email'>",
     "phone": "<OPTIONAL-'phone'>"
+  },
+  "customConfig": {
+    "customParameter1": "<custom-parameter-1>",
+    "customParameter2": "<custom-parameter-2>"
   }
 }
 ```
@@ -85,25 +91,36 @@ Here are some examples of OAuth connector config JSON connected to Google server
     "avatar": "<OPTIONAL-'avatar'>",
     "email": "<OPTIONAL-'email'>",
     "phone": "<OPTIONAL-'phone'>"
+  },
+  "customConfig": {
+    "customParameter1": "<custom-parameter-1>",
+    "customParameter2": "<custom-parameter-2>"
   }
 }
 ```
 
+> ℹ️ **Note**
+> 
+> For both 'Authorization Code' and 'Implicit' grant types, we provided an OPTIONAL `customConfig` key to put your customize parameters.
+> Each social identity provider could have their own variant on OAuth standard protocol. If your desired social identity provider strictly stick to OAuth standard protocol, the you do not need to care about `customConfig`.
+
+
 ## Config types
 
-| Name                      | Type       | Required |
-|---------------------------|------------|----------|
-| oauthGrantType            | enum       | true     |
-| authorizationEndpoint     | string     | true     |
-| userInfoEndpoint          | string     | true     |
-| clientId                  | string     | true     |
-| clientSecret              | string     | true     |
-| tokenEndpointResponseType | enum       | false    |
-| responseType              | string     | false    |
-| grantType                 | string     | false    |
-| tokenEndpoint             | string     | false    |
-| scope                     | string     | false    |
-| profileMap                | ProfileMap | false    |
+| Name                      | Type                   | Required |
+|---------------------------|------------------------|----------|
+| oauthGrantType            | enum                   | true     |
+| authorizationEndpoint     | string                 | true     |
+| userInfoEndpoint          | string                 | true     |
+| clientId                  | string                 | true     |
+| clientSecret              | string                 | true     |
+| tokenEndpointResponseType | enum                   | false    |
+| responseType              | string                 | false    |
+| grantType                 | string                 | false    |
+| tokenEndpoint             | string                 | false    |
+| scope                     | string                 | false    |
+| customConfig              | Record<string, string> | false    |
+| profileMap                | ProfileMap             | false    |
 
 | ProfileMap fields | Type   | Required | Default value |
 |-------------------|--------|----------|---------------|
