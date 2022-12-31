@@ -67,7 +67,7 @@ Fill out the _accountSID_, _authToken_ and _fromMessagingServiceSID_ fields with
 You can add multiple SMS connector templates for different cases. Here is an example of adding a single template:
 
 - Fill out the `content` field with arbitrary string-typed contents. Do not forget to leave `{{code}}` placeholder for random passcode.
-- Fill out the `usageType` field with either `Register`, `SignIn`, `ForgotPassword`, `Continue` or `Test` for different use cases. In order to enable full user flows, templates with usageType `Register`, `SignIn`, `ForgotPassword` and `Continue` are required.
+- Fill out the `usageType` field with either `Register`, `SignIn`, `ForgotPassword` or `Test` for different use cases. In order to enable full user flows, templates with usageType `Register`, `SignIn` and `ForgotPassword` are required.
 
 Here is an example of Twilio SMS connector config JSON.
 
@@ -88,10 +88,6 @@ Here is an example of Twilio SMS connector config JSON.
         {
             "content": "<arbitrary-forgot-password-template-contents: your passcode is {{code}}>",
             "usageType": "ForgotPassword"
-        },
-        {
-            "content": "<arbitrary-continue-template-contents: your passcode is {{code}}>",
-            "usageType": "Continue"
         },
         {
             "content": "<arbitrary-test-template-contents: your passcode is {{code}}>",
@@ -116,10 +112,10 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 | fromMessagingServiceSID | string      |
 | templates               | Templates[] |
 
-| Template Properties | Type        | Enum values                                                        |
-|---------------------|-------------|--------------------------------------------------------------------|
-| content             | string      | N/A                                                                |
-| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Continue' \| 'Test' |
+| Template Properties | Type        | Enum values                                          |
+|---------------------|-------------|------------------------------------------------------|
+| content             | string      | N/A                                                  |
+| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Test' |
 
 ## Reference
 
@@ -170,7 +166,7 @@ Twilio 提供可编程的通信工具，用于拨打和接听电话、发送和�
 你可以添加多个短信连接器的内容模板以应对不同的使用场景。这里我们以添加单个内容模板举例：
 
 - 用任意字符型内容填写 `content` 栏。不要忘了用 `{{code}}` 占位符为随机生成的验证码预留位置。
-- 用 `Register`，`SignIn`，`ForgotPassword`，`Continue` 或者 `Test` 填入 `usageType` 栏以声明不同的使用场景。为了能够使用完成的流程，需要配置 `usageType` 为 `Register`，`SignIn`，`ForgotPassword` 以及 `Continue` 的模板。
+- 用 `Register`，`SignIn`，`ForgotPassword` 或者 `Test` 填入 `usageType` 栏以声明不同的使用场景。为了能够使用完成的流程，需要配置 `usageType` 为 `Register`，`SignIn` 以及 `ForgotPassword` 的模板。
 
 这是一个 Twilio 短信服务连接器 JSON 配置的样例。
 
@@ -191,10 +187,6 @@ Twilio 提供可编程的通信工具，用于拨打和接听电话、发送和�
         {
             "content": "<arbitrary-forgot-password-template-contents: your passcode is {{code}}>",
             "usageType": "ForgotPassword"
-        },
-        {
-            "content": "<arbitrary-continue-template-contents: your passcode is {{code}}>",
-            "usageType": "Continue"
         },
         {
             "content": "<arbitrary-test-template-contents: your passcode is {{code}}>",
@@ -219,10 +211,10 @@ Twilio 提供可编程的通信工具，用于拨打和接听电话、发送和�
 | fromMessagingServiceSID | string      |
 | templates               | Templates[] |
 
-| 模板属性   | 类型         | 枚举值                                                              |
-|-----------|-------------|--------------------------------------------------------------------|
-| content   | string      | N/A                                                                |
-| usageType | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Continue' \| 'Test' |
+| 模板属性   | 类型         | 枚举值                                                |
+|-----------|-------------|------------------------------------------------------|
+| content   | string      | N/A                                                  |
+| usageType | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Test' |
 
 ## 参考
 

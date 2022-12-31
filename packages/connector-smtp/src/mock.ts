@@ -24,12 +24,6 @@ export const mockedConfig = {
     },
     {
       contentType: 'text/plain',
-      content: 'This is for profile fulfilling purposes only. Your verification code is {{code}}.',
-      subject: 'Logto Continue with SMTP',
-      usageType: 'Continue',
-    },
-    {
-      contentType: 'text/plain',
       content: 'This is for resetting password purposes only. Your verification code is {{code}}.',
       subject: 'Logto Forgot Password with SMTP',
       usageType: 'ForgotPassword',

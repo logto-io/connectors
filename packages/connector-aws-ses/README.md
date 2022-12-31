@@ -84,11 +84,6 @@ Here is an example of the JSON of the `Amazon SES` connector:
       "content": "<forgot-password-template-content>"
     },
     {
-      "usageType": "Continue",
-      "subject": "<continue-template-subject>",
-      "content": "<continue-template-content>"
-    },
-    {
       "usageType": "Test",
       "subject": "<test-template-subject>",
       "content": "<test-template-content>"
@@ -118,11 +113,11 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 | configurationSetName                      | string (OPTIONAL) |
 | templates                                 | Template[]        |
 
-| Template Properties | Type        | Enum values                                                        |
-| ------------------- | ----------- | ------------------------------------------------------------------ |
-| subject             | string      | N/A                                                                |
-| content             | string      | N/A                                                                |
-| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Continue' \| 'Test' |
+| Template Properties | Type        | Enum values                                          |
+| ------------------- | ----------- | -----------------------------------------------------|
+| subject             | string      | N/A                                                  |
+| content             | string      | N/A                                                  |
+| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Test' |
 
 
 # AWS SES 邮件连接器
@@ -188,11 +183,6 @@ Amazon SES 是云电子邮件发送服务，它可以集成到任何应用程序
       "content": "<forgot-password-template-content>"
     },
     {
-      "usageType": "Continue",
-      "subject": "<continue-template-subject>",
-      "content": "<continue-template-content>"
-    },
-    {
       "usageType": "Test",
       "subject": "<test-template-subject>",
       "content": "<test-template-content>"
@@ -222,8 +212,8 @@ Amazon SES 是云电子邮件发送服务，它可以集成到任何应用程序
 | configurationSetName                      | string (OPTIONAL) |
 | templates                                 | Template[]        |
 
-| 模板属性  | 类型        | 枚举值                                                             |
-| --------- | ----------- | ------------------------------------------------------------------ |
-| subject   | string      | N/A                                                                |
-| content   | string      | N/A                                                                |
-| usageType | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Continue' \| 'Test' |
+| 模板属性  | 类型        | 枚举值                                                  |
+| --------- | ----------- | -----------------------------------------------------|
+| subject   | string      | N/A                                                  |
+| content   | string      | N/A                                                  |
+| usageType | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Test' |

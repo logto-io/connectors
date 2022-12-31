@@ -62,8 +62,8 @@ The official Logto connector for Tencent short message service.
     - 用你在步骤 2 中拿到的「签名名称」填入 `signName` 栏。所有的模板都会共用这个签名。
     - 你可以添加多个短信服务模板以应对不同的用户场景。这里展示填写单个模板的例子：
         - `templateCode` 栏是你可以用来控制所发送短信内容的属性。它们的值从步骤 2 中的「模板 CODE」获取。
-        - `usageType` 栏填写 `Register`，`SignIn`，`ForgotPassword`，`Continue` 或者 `Test` 其中之一以分别对应 _注册_，
-          _登录_，_忘记密码_，_用户档案补全_ 和 _测试_ 的不同场景。（`usageType` 是 Logto 的属性，用来确定使用场景。）为了能够使用完成的流程，需要配置 `usageType` 为 `Register`，`SignIn`，`ForgotPassword` 以及 `Continue` 的模板。
+        - `usageType` 栏填写 `Register`，`SignIn`，`ForgotPassword` 或者 `Test` 其中之一以分别对应 _注册_，
+          _登录_，_忘记密码_，_用户档案补全_ 和 _测试_ 的不同场景。（`usageType` 是 Logto 的属性，用来确定使用场景。）为了能够使用完成的流程，需要配置 `usageType` 为 `Register`，`SignIn` 以及 `ForgotPassword` 的模板。
     - 在 [应用管理](https://console.cloud.tencent.com/smsv2/app-manage) 获取应用 ID 填写入 `sdkAppId` 栏。
     - 在 [发送文档](https://cloud.tencent.com/document/api/382/52071#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)
       可以获取短信产品支持的地域，填写入 `region` 栏。
@@ -91,10 +91,6 @@ The official Logto connector for Tencent short message service.
       "templateCode": "<template-code>"
     },
     {
-      "usageType": "Continue",
-      "templateCode": "<template-code>"
-    },
-    {
       "usageType": "Test",
       "templateCode": "<template-code>"
     }
@@ -111,7 +107,7 @@ The official Logto connector for Tencent short message service.
 
 ### 配置类型
 
-| 名称              | 类型         |
+| 名称             | 类型       |
 |-----------------|------------|
 | accessKeyId     | string     |
 | accessKeySecret | string     |
@@ -120,10 +116,10 @@ The official Logto connector for Tencent short message service.
 | sdkAppId        | string     |
 | templates       | Template[] |
 
-| 模板属性         | 类型          | 枚举值          |
-|--------------|-------------|--------------|
-| templateCode | string      | N/A          |
-| usageType    | enum string | 'Register' \ | 'SignIn' \| 'ForgotPassword' \| 'Continue' \| 'Test' |
+| 模板属性      | 类型         | 枚举值                                                 |
+|--------------|-------------|-------------------------------------------------------|
+| templateCode | string      | N/A                                                   |
+| usageType    | enum string | 'Register' \ | 'SignIn' \| 'ForgotPassword' \| 'Test' |
 
 ## 参考
 

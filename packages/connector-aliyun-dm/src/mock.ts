@@ -48,10 +48,5 @@ export const mockedConfigWithAllRequiredTemplates = {
       content: 'Your code is {{code}}, {{code}} is your code',
       subject: 'subject',
     },
-    {
-      usageType: 'Continue',
-      content: 'Your code is {{code}}, {{code}} is your code',
-      subject: 'subject',
-    },
   ],
 };

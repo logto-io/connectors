@@ -18,10 +18,6 @@
       "templateCode": "<template-code>"
     },
     {
-      "usageType": "Continue",
-      "templateCode": "<template-code>"
-    },
-    {
       "usageType": "Test",
       "templateCode": "<template-code>"
     }
