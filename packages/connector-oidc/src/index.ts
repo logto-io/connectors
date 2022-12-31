@@ -42,7 +42,7 @@ const getAuthorizationUri =
     assert(
       setSession,
       new ConnectorError(ConnectorErrorCodes.NotImplemented, {
-        message: "'setSession' is not implemented.",
+        message: 'Function `setSession()` is not implemented',
       })
     );
     await setSession({ nonce, redirectUri });
@@ -88,7 +88,7 @@ const getUserInfo =
     assert(
       getSession,
       new ConnectorError(ConnectorErrorCodes.NotImplemented, {
-        message: "'getSession' is not implemented.",
+        message: 'Function `getSession()` is not implemented.',
       })
     );
     const { nonce: validationNonce, redirectUri } = await getSession();
@@ -97,7 +97,7 @@ const getUserInfo =
 
     if (!idToken) {
       throw new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid, {
-        message: 'Can not find idToken!',
+        message: 'Cannot find ID Token.',
       });
     }
 
@@ -133,14 +133,14 @@ const getUserInfo =
         assert(
           validationNonce,
           new ConnectorError(ConnectorErrorCodes.General, {
-            message: "'nonce' not presented in session storage.",
+            message: 'Cannot find `nonce` in session storage.',
           })
         );
 
         assert(
           validationNonce === nonce,
           new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid, {
-            message: "IdToken validation failed due to 'nonce' mismatch.",
+            message: 'ID Token validation failed due to `nonce` mismatch.',
           })
         );
       }

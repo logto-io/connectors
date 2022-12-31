@@ -44,7 +44,7 @@ const getAuthorizationUri =
     assert(
       setSession,
       new ConnectorError(ConnectorErrorCodes.NotImplemented, {
-        message: "'setSession' is not implemented.",
+        message: 'Function `setSession()` is not implemented.',
       })
     );
     await setSession({ redirectUri });
@@ -76,14 +76,14 @@ const getUserInfo =
     assert(
       getSession,
       new ConnectorError(ConnectorErrorCodes.NotImplemented, {
-        message: "'getSession' is not implemented.",
+        message: 'Function `getSession()` is not implemented.',
       })
     );
     const { redirectUri } = await getSession();
     assert(
       redirectUri,
       new ConnectorError(ConnectorErrorCodes.General, {
-        message: "CAN NOT find 'redirectUri' from connector session.",
+        message: 'Cannot find `redirectUri` from connector session.',
       })
     );
 
