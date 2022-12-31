@@ -1,0 +1,33 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "@logto/connector-alipay-native": "1.0.0-beta.15",
+    "@logto/connector-alipay-web": "1.0.0-beta.15",
+    "@logto/connector-aliyun-dm": "1.0.0-beta.15",
+    "@logto/connector-aliyun-sms": "1.0.0-beta.15",
+    "@logto/connector-apple": "1.0.0-beta.15",
+    "@logto/connector-aws-ses": "1.0.0-beta.15",
+    "@logto/connector-azuread": "1.0.0-beta.15",
+    "@logto/connector-discord": "1.0.0-beta.15",
+    "@logto/connector-facebook": "1.0.0-beta.15",
+    "@logto/connector-feishu-web": "1.0.0-beta.13",
+    "@logto/connector-github": "1.0.0-beta.15",
+    "@logto/connector-google": "1.0.0-beta.15",
+    "@logto/connector-kakao": "1.0.0-beta.15",
+    "@logto/connector-mock-email": "1.0.0-beta.15",
+    "@logto/connector-mock-standard-email": "1.0.0-beta.15",
+    "@logto/connector-mock-sms": "1.0.0-beta.15",
+    "@logto/connector-mock-social": "1.0.0-beta.15",
+    "@logto/connector-naver": "1.0.0-beta.15",
+    "@logto/connector-oauth": "1.0.0-beta.15",
+    "@logto/connector-oidc": "1.0.0-beta.15",
+    "@logto/connector-sendgrid-email": "1.0.0-beta.15",
+    "@logto/connector-smtp": "1.0.0-beta.15",
+    "@logto/connector-tencent-sms": "1.0.0-beta.15",
+    "@logto/connector-twilio-sms": "1.0.0-beta.15",
+    "@logto/connector-wechat-native": "1.0.0-beta.15",
+    "@logto/connector-wechat-web": "1.0.0-beta.15"
+  },
+  "changesets": []
+}
