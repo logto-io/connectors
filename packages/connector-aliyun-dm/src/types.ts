@@ -9,9 +9,9 @@ export type SendEmailResponse = z.infer<typeof sendEmailResponseGuard>;
 
 /**
  * UsageType here is used to specify the use case of the template, can be either
- * 'Register', 'SignIn', 'ForgotPassword', 'Continue' or 'Test'.
+ * 'Register', 'SignIn', 'ForgotPassword' or 'Test'.
  */
-const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword', 'Continue']; // 'Continue' will be truncated after main flow API refactor.
+const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword'];
 
 const templateGuard = z.object({
   usageType: z.string(),

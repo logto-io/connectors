@@ -63,10 +63,10 @@ You can add multiple SendGrid mail connector templates for different cases. Here
 
 - Fill out the `subject` field, which works as the title of emails.
 - Fill out the `content` field with arbitrary string-typed contents. Do not forget to leave the `{{code}}` placeholder for the random passcode.
-- Fill out `usageType` field with either `Register`, `SignIn`, `ForgotPassword`, `Continue` or `Test` for different use cases.
+- Fill out `usageType` field with either `Register`, `SignIn`, `ForgotPassword` or `Test` for different use cases.
 - Fill out `type` field with either `text/plain` or `text/html` for different types of content.
 
-In order to enable full user flows, templates with usageType `Register`, `SignIn`, `ForgotPassword` and `Continue` are required.
+In order to enable full user flows, templates with usageType `Register`, `SignIn` and `ForgotPassword` are required.
 
 Here is an example of SendGrid connector config JSON.
 
@@ -95,12 +95,6 @@ Here is an example of SendGrid connector config JSON.
             "type": "text/plain"
         },
         {
-            "subject": "<continue-template-subject>",
-            "content": "<Logto: Your passcode is {{code}}. (continue template)>",
-            "usageType": "Continue",
-            "type": "text/plain"
-        },
-        {
             "subject": "<test-template-subject>",
             "content": "<Logto: Your passcode is {{code}}. (test template)>",
             "usageType": "Test",
@@ -125,12 +119,12 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 | fromName  | string (OPTIONAL) |
 | templates | Template[]        |
 
-| Template Properties | Type        | Enum values                                                        |
-|---------------------|-------------|--------------------------------------------------------------------|
-| subject             | string      | N/A                                                                |
-| content             | string      | N/A                                                                |
-| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Continue' \| 'Test' |
-| type                | enum string | 'text/plain' \| 'text/html'                                        |
+| Template Properties | Type        | Enum values                                          |
+|---------------------|-------------|------------------------------------------------------|
+| subject             | string      | N/A                                                  |
+| content             | string      | N/A                                                  |
+| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Test' |
+| type                | enum string | 'text/plain' \| 'text/html'                          |
 
 # SendGrid 邮件连接器
 
@@ -174,10 +168,10 @@ _Domain Authentication_ 是推荐，但是不强制的。你可以点按 "Authen
 
 - 填写 `subject` 栏，它是发送邮件的标题
 - 用字符型的值填入 `content` 栏，不要忘了用占位符 `{{code}}` 预留你想放置随机生成的验证码的位置
-- 从 `Register`，`SignIn`，`ForgotPassword`，`Continue` 或者 `Test` 中选一个填入 `usageType` 栏，以决定当前模板所使用的场景
+- 从 `Register`，`SignIn`，`ForgotPassword` 或者 `Test` 中选一个填入 `usageType` 栏，以决定当前模板所使用的场景
 - 用 `text/plain` 或 `text/html` 填入 `type` 栏，以表明内容的形式
 
-为了能够使用完成的流程，需要配置 `usageType` 为 `Register`，`SignIn`，`ForgotPassword` 以及 `Continue` 的模板。
+为了能够使用完成的流程，需要配置 `usageType` 为 `Register`，`SignIn` 以及 `ForgotPassword` 的模板。
 
 这是一个 SendGrid 邮件服务连接器 JSON 配置的样例。
 
@@ -206,12 +200,6 @@ _Domain Authentication_ 是推荐，但是不强制的。你可以点按 "Authen
             "type": "text/plain"
         },
         {
-            "subject": "<continue-template-subject>",
-            "content": "<Logto: Your passcode is {{code}}. (continue template)>",
-            "usageType": "Continue",
-            "type": "text/plain"
-        },
-        {
             "subject": "<test-template-subject>",
             "content": "<Logto: Your passcode is {{code}}. (test template)>",
             "usageType": "Test",
@@ -236,9 +224,9 @@ _Domain Authentication_ 是推荐，但是不强制的。你可以点按 "Authen
 | fromName  | string (OPTIONAL) |
 | templates | Template[]        |
 
-| 模板属性   | 类型         | 枚举值                                                              |
-|-----------|-------------|--------------------------------------------------------------------|
-| subject   | string      | N/A                                                                |
-| content   | string      | N/A                                                                |
-| usageType | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Continue' \| 'Test' |
-| type      | enum string | 'text/plain' \| 'text/html'                                        |
+| 模板属性   | 类型         | 枚举值                                                |
+|-----------|-------------|------------------------------------------------------|
+| subject   | string      | N/A                                                  |
+| content   | string      | N/A                                                  |
+| usageType | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Test' |
+| type      | enum string | 'text/plain' \| 'text/html'                          |

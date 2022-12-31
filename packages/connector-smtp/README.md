@@ -150,12 +150,12 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 | fromEmail | string     |
 | templates | Template[] |
 
-| Template Properties | Type        | Enum values                                                        |
-|---------------------|-------------|--------------------------------------------------------------------|
-| subject             | string      | N/A                                                                |
-| content             | string      | N/A                                                                |
-| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Continue' \| 'Test' |
-| contentType         | enum string | 'text/plain' \| 'text/html'                                        |
+| Template Properties | Type        | Enum values                                          |
+|---------------------|-------------|------------------------------------------------------|
+| subject             | string      | N/A                                                  |
+| content             | string      | N/A                                                  |
+| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Test' |
+| contentType         | enum string | 'text/plain' \| 'text/html'                          |
 
 **Username and password Auth Options**
 
@@ -305,12 +305,12 @@ SMTP 是一个所有邮件服务提供商通用的传输协议。
 | fromEmail | string     |
 | templates | Template[] |
 
-| 模板属性     | 类型         | 枚举值                                                              |
-|-------------|-------------|--------------------------------------------------------------------|
-| subject     | string      | N/A                                                                |
-| content     | string      | N/A                                                                |
-| usageType   | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Continue' \| 'Test' |
-| contentType | enum string | 'text/plain' \| 'text/html'                                        |
+| 模板属性     | 类型         | 枚举值                                                |
+|-------------|-------------|------------------------------------------------------|
+| subject     | string      | N/A                                                  |
+| content     | string      | N/A                                                  |
+| usageType   | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Test' |
+| contentType | enum string | 'text/plain' \| 'text/html'                          |
 
 **用户名密码的授权配置**
 

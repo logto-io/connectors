@@ -22,12 +22,6 @@
       "content": "This is for resetting password purposes only. Your passcode is {{code}}."
     },
     {
-      "usageType": "Continue",
-      "type": "text/plain",
-      "subject": "Logto Continue Template",
-      "content": "This is for fulfilling profile purposes only. Your passcode is {{code}}."
-    },
-    {
       "usageType": "Test",
       "type": "text/plain",
       "subject": "Logto Test Template",

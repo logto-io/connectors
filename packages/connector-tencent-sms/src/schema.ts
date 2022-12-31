@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword', 'Continue']; // 'Continue' will be truncated after main flow API refactor.
+const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword'];
 
 export const SingleSmsConfig = z.object({
   usageType: z.string(),

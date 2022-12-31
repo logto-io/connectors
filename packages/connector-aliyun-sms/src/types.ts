@@ -37,13 +37,13 @@ export type PublicParameters = {
 
 /**
  * UsageType here is used to specify the use case of the template, can be either
- * 'Register', 'SignIn', 'ForgotPassword', 'Continue' or 'Test'.
+ * 'Register', 'SignIn', 'ForgotPassword' or 'Test'.
  *
  * Type here in the template is used to specify the purpose of sending the sms,
  * can be either item in SmsTemplateType.
  * As the SMS is applied for sending passcode, the value should always be 2 in our case.
  */
-const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword', 'Continue']; // 'Continue' will be truncated after main flow API refactor.
+const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword'];
 
 const templateGuard = z.object({
   type: z.nativeEnum(SmsTemplateType).default(2),
