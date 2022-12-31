@@ -3434,21 +3434,6 @@ packages:
       '@types/node': 18.7.13
     dev: false
 
-<<<<<<< HEAD
-  /@types/lodash.omit/4.5.0:
-    resolution: {integrity: sha512-0udKVkdjNWzyCSGqGpCfaIkIlkjrNfaI6PAEIrJWFrT0O5opMcaW7SuG6kBpDIlUmmX+dXoyaG/EPYt/iObhvw==}
-    dependencies:
-      '@types/lodash': 4.14.184
-    dev: true
-
-  /@types/lodash/4.14.184:
-    resolution: {integrity: sha512-RoZphVtHbxPZizt4IcILciSWiC6dcn+eZ8oX9IWEYfDMcocdd42f7NPI6fQj+6zI8y4E0L7gu2pcZKLGTRaV9Q==}
-=======
-  /@types/minimatch/3.0.5:
-    resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
->>>>>>> 28cef40 (chore: use pick instead of omit for oidc connector)
-    dev: true
-
   /@types/minimist/1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
