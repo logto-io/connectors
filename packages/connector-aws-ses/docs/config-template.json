@@ -24,11 +24,6 @@
       "content": "<forgot-password-template-content>"
     },
     {
-      "usageType": "Continue",
-      "subject": "<continue-template-subject>",
-      "content": "<continue-template-content>"
-    },
-    {
       "usageType": "Test",
       "subject": "<test-template-subject>",
       "content": "<test-template-content>"
