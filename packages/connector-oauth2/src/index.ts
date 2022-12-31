@@ -34,7 +34,9 @@ const getAuthorizationUri =
 
     const { customConfig, ...rest } = parsedConfig;
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const parameterObject = snakecaseKeys({
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       ...pick(rest, 'responseType', 'clientId', 'scope'),
       ...customConfig,
     });

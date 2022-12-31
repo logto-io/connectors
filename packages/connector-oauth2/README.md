@@ -67,8 +67,8 @@ Here are some examples of OAuth connector config JSON connected to Google server
     "phone": "<OPTIONAL-'phone'>"
   },
   "customConfig": {
-    "customParameter1": "<custom-parameter-1>",
-    "customParameter2": "<custom-parameter-2>"
+    "customParameter1": "<OPTIONAL-custom-parameter-1>",
+    "customParameter2": "<OPTIONAL-custom-parameter-2>"
   }
 }
 ```
@@ -93,8 +93,8 @@ Here are some examples of OAuth connector config JSON connected to Google server
     "phone": "<OPTIONAL-'phone'>"
   },
   "customConfig": {
-    "customParameter1": "<custom-parameter-1>",
-    "customParameter2": "<custom-parameter-2>"
+    "customParameter1": "<OPTIONAL-custom-parameter-1>",
+    "customParameter2": "<OPTIONAL-custom-parameter-2>"
   }
 }
 ```

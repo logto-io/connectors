@@ -102,7 +102,9 @@ export const getAuthorizationCodeFlowAccessToken = async (
 
   const { customConfig, ...rest } = config;
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const parameterObject = snakecaseKeys({
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     ...pick(rest, 'grantType', 'clientId', 'clientSecret'),
     ...customConfig,
     code,

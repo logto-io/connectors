@@ -39,17 +39,6 @@ const getAuthorizationUri =
     const nonce = generateNonce();
     const needNonce = isIdTokenInResponseType(parsedConfig.responseType);
 
-    const { customConfig, authenticationRequestOptionalConfig, ...rest } = parsedConfig;
-
-    const parameterObject = {
-      ...snakecaseKeys({
-        ...pick(rest, 'responseType', 'scope', 'clientId'),
-        ...authenticationRequestOptionalConfig,
-        ...customConfig,
-      }),
-      ...(needNonce ? { nonce } : {}),
-    };
-
     assert(
       setSession,
       new ConnectorError(ConnectorErrorCodes.NotImplemented, {
@@ -58,9 +47,17 @@ const getAuthorizationUri =
     );
     await setSession({ nonce, redirectUri });
 
+    const { customConfig, authenticationRequestOptionalConfig, ...rest } = parsedConfig;
+
     const queryParameters = new URLSearchParams({
       state,
-      ...parameterObject,
+      ...snakecaseKeys({
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        ...pick(rest, 'responseType', 'scope', 'clientId'),
+        ...authenticationRequestOptionalConfig,
+        ...customConfig,
+      }),
+      ...(needNonce ? { nonce } : {}),
       redirect_uri: redirectUri,
     });
 

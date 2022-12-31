@@ -15,7 +15,7 @@
     "avatar": "avatar_url"
   },
   "customConfig": {
-    "customParameter1": "<custom-parameter-1>",
-    "customParameter2": "<custom-parameter-2>"
+    "customParameter1": "<OPTIONAL-custom-parameter-1>",
+    "customParameter2": "<OPTIONAL-custom-parameter-2>"
   }
 }
