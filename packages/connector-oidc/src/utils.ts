@@ -1,12 +1,11 @@
 import { ConnectorError, ConnectorErrorCodes, parseJson } from '@logto/connector-kit';
-import { assert } from '@silverhand/essentials';
+import { assert, pick } from '@silverhand/essentials';
 import type { Response } from 'got';
 import got, { HTTPError } from 'got';
-import omit from 'lodash.omit';
 import { customAlphabet } from 'nanoid';
 import snakecaseKeys from 'snakecase-keys';
 
-import { defaultTimeout, oauthConfigGlobalKeys } from './constant';
+import { defaultTimeout } from './constant';
 import type { AccessTokenResponse, AuthorizationCodeConfig, HybridConfig } from './types';
 import {
   accessTokenResponseGuard,
@@ -14,7 +13,6 @@ import {
   authResponseGuard,
   implicitAuthResponseGuard,
   hybridAuthResponseGuard,
-  authorizationCodeFlowOptionalConfigGuard,
 } from './types';
 
 const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -85,14 +83,11 @@ export const getAuthorizationCodeFlowIdToken = async (
     })
   );
 
+  const { customConfig, ...rest } = config;
+
   const parameterObject = snakecaseKeys({
-    ...omit(
-      config,
-      ...oauthConfigGlobalKeys,
-      ...authorizationCodeFlowOptionalConfigGuard.keyof().options,
-      'responseType',
-      'scope'
-    ),
+    ...pick(rest, 'grantType', 'clientId', 'clientSecret'),
+    ...customConfig,
     code,
     redirectUri,
   });
@@ -140,14 +135,11 @@ export const getHybridFlowIdToken = async (
 
   const { code } = result.data;
 
+  const { customConfig, ...rest } = config;
+
   const parameterObject = snakecaseKeys({
-    ...omit(
-      config,
-      ...oauthConfigGlobalKeys,
-      ...authorizationCodeFlowOptionalConfigGuard.keyof().options,
-      'responseType',
-      'scope'
-    ),
+    ...pick(rest, 'grantType', 'clientId', 'clientSecret'),
+    ...customConfig,
     code,
     redirectUri,
   });

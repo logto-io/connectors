@@ -1,8 +1,6 @@
 import type { ConnectorMetadata } from '@logto/connector-kit';
 import { ConnectorPlatform } from '@logto/connector-kit';
 
-import { endpointConfigGuard } from './types';
-
 export const defaultMetadata: ConnectorMetadata = {
   id: 'oidc',
   target: 'oidc',
@@ -23,9 +21,3 @@ export const defaultMetadata: ConnectorMetadata = {
 };
 
 export const defaultTimeout = 5000;
-
-export const oauthConfigGlobalKeys = Object.freeze([
-  'oidcFlowType',
-  'idTokenVerificationConfig',
-  ...endpointConfigGuard.keyof().options,
-] as const);

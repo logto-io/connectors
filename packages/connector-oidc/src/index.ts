@@ -11,13 +11,12 @@ import {
   validateConfig,
   ConnectorType,
 } from '@logto/connector-kit';
-import { assert, conditional } from '@silverhand/essentials';
+import { assert, conditional, pick } from '@silverhand/essentials';
 import { HTTPError } from 'got';
 import { createRemoteJWKSet, jwtVerify } from 'jose';
-import omit from 'lodash.omit';
 import snakecaseKeys from 'snakecase-keys';
 
-import { defaultMetadata, oauthConfigGlobalKeys } from './constant';
+import { defaultMetadata } from './constant';
 import type { OidcConfig } from './types';
 import { idTokenProfileStandardClaimsGuard, oidcConfigGuard, OidcFlowType } from './types';
 import {
@@ -40,8 +39,14 @@ const getAuthorizationUri =
     const nonce = generateNonce();
     const needNonce = isIdTokenInResponseType(parsedConfig.responseType);
 
+    const { customConfig, authenticationRequestOptionalConfig, ...rest } = parsedConfig;
+
     const parameterObject = {
-      ...snakecaseKeys(omit(parsedConfig, ...oauthConfigGlobalKeys, 'clientSecret', 'grantType')),
+      ...snakecaseKeys({
+        ...pick(rest, 'responseType', 'scope', 'clientId'),
+        ...authenticationRequestOptionalConfig,
+        ...customConfig,
+      }),
       ...(needNonce ? { nonce } : {}),
     };
 

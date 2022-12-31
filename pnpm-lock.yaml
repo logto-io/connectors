@@ -986,7 +986,6 @@ importers:
       '@silverhand/jest-config': 1.2.2
       '@silverhand/ts-config': 1.2.1
       '@types/jest': ^29.2.4
-      '@types/lodash.omit': 4.5.0
       '@types/node': ^16.3.1
       '@types/supertest': ^2.0.11
       '@vercel/ncc': ^0.36.0
@@ -997,7 +996,6 @@ importers:
       jest-matcher-specific-error: ^1.0.0
       jose: ^4.3.8
       lint-staged: ^13.0.0
-      lodash.omit: ^4.5.0
       nanoid: ^4.0.0
       nock: ^13.2.2
       prettier: ^2.7.1
@@ -1010,7 +1008,6 @@ importers:
       '@silverhand/essentials': 1.2.1
       got: 11.8.5
       jose: 4.9.2
-      lodash.omit: 4.5.0
       nanoid: 4.0.0
       snakecase-keys: 5.4.4
       zod: 3.20.2
@@ -1020,7 +1017,6 @@ importers:
       '@silverhand/jest-config': 1.2.2_p6ekqnroyms5nhqbfxosryz7rm
       '@silverhand/ts-config': 1.2.1_typescript@4.9.4
       '@types/jest': 29.2.4
-      '@types/lodash.omit': 4.5.0
       '@types/node': 16.11.56
       '@types/supertest': 2.0.12
       '@vercel/ncc': 0.36.0
@@ -3438,6 +3434,7 @@ packages:
       '@types/node': 18.7.13
     dev: false
 
+<<<<<<< HEAD
   /@types/lodash.omit/4.5.0:
     resolution: {integrity: sha512-0udKVkdjNWzyCSGqGpCfaIkIlkjrNfaI6PAEIrJWFrT0O5opMcaW7SuG6kBpDIlUmmX+dXoyaG/EPYt/iObhvw==}
     dependencies:
@@ -3446,6 +3443,10 @@ packages:
 
   /@types/lodash/4.14.184:
     resolution: {integrity: sha512-RoZphVtHbxPZizt4IcILciSWiC6dcn+eZ8oX9IWEYfDMcocdd42f7NPI6fQj+6zI8y4E0L7gu2pcZKLGTRaV9Q==}
+=======
+  /@types/minimatch/3.0.5:
+    resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
+>>>>>>> 28cef40 (chore: use pick instead of omit for oidc connector)
     dev: true
 
   /@types/minimist/1.2.2:
@@ -6761,10 +6762,6 @@ packages:
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
-
-  /lodash.omit/4.5.0:
-    resolution: {integrity: sha512-XeqSp49hNGmlkj2EJlfrQFIzQ6lXdNro9sddtQzcJY8QaoC2GO0DT7xaIokHeyM+mIT0mPMlPvkYzg2xCuHdZg==}
-    dev: false
 
   /lodash.once/4.1.1:
     resolution: {integrity: sha512-Sb487aTOCr9drQVL8pIxOzVhafOjZN9UU54hiN8PU3uAiSV7lx1yYNpbNmex2PK6dSJoNTSJUUswT651yww3Mg==}

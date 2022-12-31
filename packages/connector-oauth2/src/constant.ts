@@ -21,10 +21,3 @@ export const defaultMetadata: ConnectorMetadata = {
 };
 
 export const defaultTimeout = 5000;
-
-export const oauthConfigGlobalKeys = Object.freeze([
-  'oauthGrantType',
-  'authorizationEndpoint',
-  'tokenEndpoint',
-  'userInfoEndpoint',
-] as const);
