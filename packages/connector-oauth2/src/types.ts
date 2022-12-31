@@ -54,7 +54,7 @@ export const authorizationCodeConfigGuard = z.object({
   clientSecret: z.string(),
   scope: z.string().optional(),
   profileMap: profileMapGuard,
-  customConfig: z.object({}).catchall(z.string()).optional(),
+  customConfig: z.record(z.string()).optional(),
 });
 
 export type TokenEndpointResponseType = z.input<typeof tokenEndpointResponseTypeGuard>;
@@ -70,7 +70,7 @@ export const implicitConfigGuard = z.object({
   clientSecret: z.string().optional(),
   scope: z.string().optional(),
   profileMap: profileMapGuard,
-  customConfig: z.object({}).catchall(z.string()).optional(),
+  customConfig: z.record(z.string()).optional(),
 });
 
 export type ImplicitConfig = z.infer<typeof implicitConfigGuard>;

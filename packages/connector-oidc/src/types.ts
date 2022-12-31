@@ -185,7 +185,7 @@ export const authorizationCodeConfigGuard = z
     scope: z.string().transform(scopePostProcessor),
     idTokenVerificationConfig: idTokenVerificationConfigGuard,
     authenticationRequestOptionalConfig: authenticationRequestOptionalConfigGuard.optional(),
-    customConfig: z.object({}).catchall(z.string()).optional(),
+    customConfig: z.record(z.string()).optional(),
   })
   .merge(endpointConfigGuard)
   .merge(clientConfigGuard);
@@ -203,7 +203,7 @@ export const implicitConfigGuard = z
     scope: z.string().transform(scopePostProcessor),
     idTokenVerificationConfig: idTokenVerificationConfigGuard,
     authenticationRequestOptionalConfig: authenticationRequestOptionalConfigGuard.optional(),
-    customConfig: z.object({}).catchall(z.string()).optional(),
+    customConfig: z.record(z.string()).optional(),
   })
   .merge(endpointConfigGuard.pick({ authorizationEndpoint: true }))
   .merge(clientConfigGuard);
@@ -220,7 +220,7 @@ export const hybridConfigGuard = z
     scope: z.string().transform(scopePostProcessor),
     idTokenVerificationConfig: idTokenVerificationConfigGuard,
     authenticationRequestOptionalConfig: authenticationRequestOptionalConfigGuard.optional(),
-    customConfig: z.object({}).catchall(z.string()).optional(),
+    customConfig: z.record(z.string()).optional(),
   })
   .merge(endpointConfigGuard.pick({ authorizationEndpoint: true }))
   .merge(endpointConfigGuard.pick({ tokenEndpoint: true }).partial())
