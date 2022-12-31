@@ -27,10 +27,10 @@ jobs:
         run: pnpm package:sync --silent && pnpm i
 
       - name: Build
-        run: pnpm -- lerna run --stream build
+        run: pnpm build
 
       - name: Lint
-        run: pnpm -- lerna run --parallel lint
+        run: pnpm lint
 
       - name: Test
-        run: pnpm -- lerna run --parallel test:coverage
+        run: pnpm -r --parallel test:coverage
