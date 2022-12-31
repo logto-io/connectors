@@ -142,10 +142,10 @@ const clientConfigGuard = z.object({
 });
 
 /**
- * We remove `nonce` in `authenticationRequestOptionalConfigGuard` because it should be a randomly generated string,
+ * We remove `nonce` in `authRequestOptionalConfigGuard` because it should be a randomly generated string,
  * should not be fixed in config and will be generated in Logto core according to `response_type` of authorization request.
  */
-export const authenticationRequestOptionalConfigGuard = z
+export const authRequestOptionalConfigGuard = z
   .object({
     responseMode: z.string(),
     display: z.string(),
@@ -184,7 +184,7 @@ export const authorizationCodeConfigGuard = z
     grantType: z.literal('authorization_code').optional().default('authorization_code'),
     scope: z.string().transform(scopePostProcessor),
     idTokenVerificationConfig: idTokenVerificationConfigGuard,
-    authenticationRequestOptionalConfig: authenticationRequestOptionalConfigGuard.optional(),
+    authRequestOptionalConfig: authRequestOptionalConfigGuard.optional(),
     customConfig: z.record(z.string()).optional(),
   })
   .merge(endpointConfigGuard)
@@ -202,7 +202,7 @@ export const implicitConfigGuard = z
       .transform(implicitFlowResponsePostProcessor),
     scope: z.string().transform(scopePostProcessor),
     idTokenVerificationConfig: idTokenVerificationConfigGuard,
-    authenticationRequestOptionalConfig: authenticationRequestOptionalConfigGuard.optional(),
+    authRequestOptionalConfig: authRequestOptionalConfigGuard.optional(),
     customConfig: z.record(z.string()).optional(),
   })
   .merge(endpointConfigGuard.pick({ authorizationEndpoint: true }))
@@ -219,7 +219,7 @@ export const hybridConfigGuard = z
     grantType: z.literal('authorization_code').optional().default('authorization_code'),
     scope: z.string().transform(scopePostProcessor),
     idTokenVerificationConfig: idTokenVerificationConfigGuard,
-    authenticationRequestOptionalConfig: authenticationRequestOptionalConfigGuard.optional(),
+    authRequestOptionalConfig: authRequestOptionalConfigGuard.optional(),
     customConfig: z.record(z.string()).optional(),
   })
   .merge(endpointConfigGuard.pick({ authorizationEndpoint: true }))

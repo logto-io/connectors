@@ -28,7 +28,7 @@ Some more advanced parameters is also supported, [check more details](https://op
 
 You are expected to find `authorizationEndpoint`, `tokenEndpoint`, `jwksUri` and `issuer` as OpenID Provider's configuration information. They should be available in social vendor's documentation.
 
-Since an authentication request is required for all different flow types, an `authenticationRequestOptionalConfig` is provided to wrap all optional configs, you can find details on [OIDC Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest). You may also find that `nonce` is missing in this config. Since `nonce` should identical for each request, we put the generation of `nonce` in code implementation. So do not worry about it!
+Since an authentication request is required for all different flow types, an `authRequestOptionalConfig` is provided to wrap all optional configs, you can find details on [OIDC Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest). You may also find that `nonce` is missing in this config. Since `nonce` should identical for each request, we put the generation of `nonce` in code implementation. So do not worry about it!
 
 Here are some examples of OIDC connector config JSON connected to Google. Other vendor's config could vary.
 
@@ -51,7 +51,7 @@ Here are some examples of OIDC connector config JSON connected to Google. Other 
     "jwksUri": "<vendor's-jwks-uri>",
     "issuer": "<vendor's-token-issuer>",
   },
-  "authenticationRequestOptionalConfig": {
+  "authRequestOptionalConfig": {
     "responseMode": "<OPTIONAL-response-mode>",
     "display": "<OPTIONAL-display>",
     "prompt": "<OPTIONAL-prompt>",
@@ -86,7 +86,7 @@ Here are some examples of OIDC connector config JSON connected to Google. Other 
     "jwksUri": "<vendor's-jwks-uri>",
     "issuer": "<vendor's-token-issuer>",
   },
-  "authenticationRequestOptionalConfig": {
+  "authRequestOptionalConfig": {
     "responseMode": "<OPTIONAL-response-mode>",
     "display": "<OPTIONAL-display>",
     "prompt": "<OPTIONAL-prompt>",
@@ -122,7 +122,7 @@ If 'id_token' is not presented in `responseType`, then `tokenEndpoint` is requir
     "jwksUri": "<vendor's-jwks-uri>",
     "issuer": "<vendor's-token-issuer>",
   },
-  "authenticationRequestOptionalConfig": {
+  "authRequestOptionalConfig": {
     "responseMode": "<OPTIONAL-response-mode>",
     "display": "<OPTIONAL-display>",
     "prompt": "<OPTIONAL-prompt>",
@@ -154,11 +154,11 @@ If 'id_token' is not presented in `responseType`, then `tokenEndpoint` is requir
 | clientSecret                        | string                              | True      |
 | authorizationEndpoint               | string                              | True      |
 | idTokenVerificationConfig           | IdTokenVerificationConfig           | True      |
-| authenticationRequestOptionalConfig | AuthenticationRequestOptionalConfig | False     |
+| authRequestOptionalConfig | AuthRequestOptionalConfig | False     |
 | customConfig                        | Record<string, string>              | False     |
 
 
-| AuthenticationRequestOptionalConfig properties | Type   | Required |
+| AuthRequestOptionalConfig properties | Type   | Required |
 |------------------------------------------------|--------|----------|
 | responseType                                   | string | False    |
 | tokenEndpoint                                  | string | False    |

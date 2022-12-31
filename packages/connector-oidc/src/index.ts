@@ -47,14 +47,14 @@ const getAuthorizationUri =
     );
     await setSession({ nonce, redirectUri });
 
-    const { customConfig, authenticationRequestOptionalConfig, ...rest } = parsedConfig;
+    const { customConfig, authRequestOptionalConfig, ...rest } = parsedConfig;
 
     const queryParameters = new URLSearchParams({
       state,
       ...snakecaseKeys({
         // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         ...pick(rest, 'responseType', 'scope', 'clientId'),
-        ...authenticationRequestOptionalConfig,
+        ...authRequestOptionalConfig,
         ...customConfig,
       }),
       ...(needNonce ? { nonce } : {}),
