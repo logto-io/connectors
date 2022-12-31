@@ -42,38 +42,36 @@ const tokenEndpointResponseTypeGuard = z
   .optional()
   .default('query-string');
 
-export const authorizationCodeConfigGuard = z
-  .object({
-    oauthGrantType: z.literal(OauthGrantType.AuthorizationCode),
-    responseType: z.literal('code').optional().default('code'),
-    grantType: z.literal('authorization_code').optional().default('authorization_code'),
-    tokenEndpointResponseType: tokenEndpointResponseTypeGuard,
-    authorizationEndpoint: z.string(),
-    tokenEndpoint: z.string(),
-    userInfoEndpoint: z.string(),
-    clientId: z.string(),
-    clientSecret: z.string(),
-    scope: z.string().optional(),
-    profileMap: profileMapGuard,
-  })
-  .catchall(z.string());
+export const authorizationCodeConfigGuard = z.object({
+  oauthGrantType: z.literal(OauthGrantType.AuthorizationCode),
+  responseType: z.literal('code').optional().default('code'),
+  grantType: z.literal('authorization_code').optional().default('authorization_code'),
+  tokenEndpointResponseType: tokenEndpointResponseTypeGuard,
+  authorizationEndpoint: z.string(),
+  tokenEndpoint: z.string(),
+  userInfoEndpoint: z.string(),
+  clientId: z.string(),
+  clientSecret: z.string(),
+  scope: z.string().optional(),
+  profileMap: profileMapGuard,
+  customConfig: z.record(z.string()).optional(),
+});
 
 export type TokenEndpointResponseType = z.input<typeof tokenEndpointResponseTypeGuard>;
 
 export type AuthorizationCodeConfig = z.infer<typeof authorizationCodeConfigGuard>;
 
-export const implicitConfigGuard = z
-  .object({
-    oauthGrantType: z.literal(OauthGrantType.Implicit),
-    responseType: z.literal('token').optional().default('token'),
-    authorizationEndpoint: z.string(),
-    userInfoEndpoint: z.string(),
-    clientId: z.string().optional(),
-    clientSecret: z.string().optional(),
-    scope: z.string().optional(),
-    profileMap: profileMapGuard,
-  })
-  .catchall(z.string());
+export const implicitConfigGuard = z.object({
+  oauthGrantType: z.literal(OauthGrantType.Implicit),
+  responseType: z.literal('token').optional().default('token'),
+  authorizationEndpoint: z.string(),
+  userInfoEndpoint: z.string(),
+  clientId: z.string().optional(),
+  clientSecret: z.string().optional(),
+  scope: z.string().optional(),
+  profileMap: profileMapGuard,
+  customConfig: z.record(z.string()).optional(),
+});
 
 export type ImplicitConfig = z.infer<typeof implicitConfigGuard>;
 

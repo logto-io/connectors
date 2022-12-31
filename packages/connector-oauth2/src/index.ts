@@ -12,12 +12,11 @@ import {
   ConnectorType,
   parseJson,
 } from '@logto/connector-kit';
-import { assert } from '@silverhand/essentials';
+import { assert, pick } from '@silverhand/essentials';
 import got, { HTTPError } from 'got';
-import omit from 'lodash.omit';
 import snakecaseKeys from 'snakecase-keys';
 
-import { defaultMetadata, defaultTimeout, oauthConfigGlobalKeys } from './constant';
+import { defaultMetadata, defaultTimeout } from './constant';
 import type { OauthConfig } from './types';
 import { oauthConfigGuard, OauthGrantType } from './types';
 import {
@@ -33,14 +32,19 @@ const getAuthorizationUri =
     validateConfig<OauthConfig>(config, oauthConfigGuard);
     const parsedConfig = oauthConfigGuard.parse(config);
 
-    const parameterObject = snakecaseKeys(
-      omit(parsedConfig, ...oauthConfigGlobalKeys, 'clientSecret', 'grantType')
-    );
+    const { customConfig, ...rest } = parsedConfig;
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const parameterObject = snakecaseKeys({
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      ...pick(rest, 'responseType', 'clientId', 'scope'),
+      ...customConfig,
+    });
 
     assert(
       setSession,
       new ConnectorError(ConnectorErrorCodes.NotImplemented, {
-        message: "'setSession' is not implemented.",
+        message: 'Function `setSession()` is not implemented.',
       })
     );
     await setSession({ redirectUri });
@@ -72,14 +76,14 @@ const getUserInfo =
     assert(
       getSession,
       new ConnectorError(ConnectorErrorCodes.NotImplemented, {
-        message: "'getSession' is not implemented.",
+        message: 'Function `getSession()` is not implemented.',
       })
     );
     const { redirectUri } = await getSession();
     assert(
       redirectUri,
       new ConnectorError(ConnectorErrorCodes.General, {
-        message: "CAN NOT find 'redirectUri' from connector session.",
+        message: 'Cannot find `redirectUri` from connector session.',
       })
     );
 

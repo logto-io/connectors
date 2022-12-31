@@ -5,10 +5,6 @@
   "description": "OIDC standard connector implementation.",
   "dependencies": {
     "jose": "^4.3.8",
-    "lodash.omit": "^4.5.0",
     "nanoid": "^4.0.0"
-  },
-  "devDependencies": {
-    "@types/lodash.omit": "4.5.0"
   }
 }

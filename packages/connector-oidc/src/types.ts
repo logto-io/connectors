@@ -141,17 +141,22 @@ const clientConfigGuard = z.object({
   clientSecret: z.string(),
 });
 
-export const authorizationCodeFlowOptionalConfigGuard = z.object({
-  responseMode: z.string().optional(),
-  nonce: z.string().optional(),
-  display: z.string().optional(),
-  prompt: z.string().optional(),
-  maxAge: z.string().optional(),
-  uiLocales: z.string().optional(),
-  idTokenHint: z.string().optional(),
-  loginHint: z.string().optional(),
-  acrValues: z.string().optional(),
-});
+/**
+ * We remove `nonce` in `authRequestOptionalConfigGuard` because it should be a randomly generated string,
+ * should not be fixed in config and will be generated in Logto core according to `response_type` of authorization request.
+ */
+export const authRequestOptionalConfigGuard = z
+  .object({
+    responseMode: z.string(),
+    display: z.string(),
+    prompt: z.string(),
+    maxAge: z.string(),
+    uiLocales: z.string(),
+    idTokenHint: z.string(),
+    loginHint: z.string(),
+    acrValues: z.string(),
+  })
+  .partial();
 
 // See https://github.com/panva/jose/blob/main/docs/interfaces/jwt_verify.JWTVerifyOptions.md for details.
 export const idTokenVerificationConfigGuard = z.object({ jwksUri: z.string() }).merge(
@@ -179,11 +184,11 @@ export const authorizationCodeConfigGuard = z
     grantType: z.literal('authorization_code').optional().default('authorization_code'),
     scope: z.string().transform(scopePostProcessor),
     idTokenVerificationConfig: idTokenVerificationConfigGuard,
+    authRequestOptionalConfig: authRequestOptionalConfigGuard.optional(),
+    customConfig: z.record(z.string()).optional(),
   })
   .merge(endpointConfigGuard)
-  .merge(clientConfigGuard)
-  .merge(authorizationCodeFlowOptionalConfigGuard)
-  .catchall(z.string());
+  .merge(clientConfigGuard);
 
 export type AuthorizationCodeConfig = z.infer<typeof authorizationCodeConfigGuard>;
 
@@ -197,11 +202,11 @@ export const implicitConfigGuard = z
       .transform(implicitFlowResponsePostProcessor),
     scope: z.string().transform(scopePostProcessor),
     idTokenVerificationConfig: idTokenVerificationConfigGuard,
+    authRequestOptionalConfig: authRequestOptionalConfigGuard.optional(),
+    customConfig: z.record(z.string()).optional(),
   })
-  .merge(endpointConfigGuard.omit({ tokenEndpoint: true }))
-  .merge(clientConfigGuard)
-  .merge(authorizationCodeFlowOptionalConfigGuard)
-  .catchall(z.string());
+  .merge(endpointConfigGuard.pick({ authorizationEndpoint: true }))
+  .merge(clientConfigGuard);
 
 export const hybridConfigGuard = z
   .object({
@@ -214,12 +219,12 @@ export const hybridConfigGuard = z
     grantType: z.literal('authorization_code').optional().default('authorization_code'),
     scope: z.string().transform(scopePostProcessor),
     idTokenVerificationConfig: idTokenVerificationConfigGuard,
+    authRequestOptionalConfig: authRequestOptionalConfigGuard.optional(),
+    customConfig: z.record(z.string()).optional(),
   })
-  .merge(endpointConfigGuard.omit({ tokenEndpoint: true }))
+  .merge(endpointConfigGuard.pick({ authorizationEndpoint: true }))
   .merge(endpointConfigGuard.pick({ tokenEndpoint: true }).partial())
-  .merge(clientConfigGuard)
-  .merge(authorizationCodeFlowOptionalConfigGuard)
-  .catchall(z.string());
+  .merge(clientConfigGuard);
 
 export type HybridConfig = z.infer<typeof hybridConfigGuard>;
 

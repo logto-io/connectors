@@ -13,5 +13,9 @@
     "phone": "phone_verified",
     "name": "full_name",
     "avatar": "avatar_url"
+  },
+  "customConfig": {
+    "customParameter1": "<OPTIONAL-custom-parameter-1>",
+    "customParameter2": "<OPTIONAL-custom-parameter-2>"
   }
 }

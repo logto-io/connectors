@@ -11,13 +11,12 @@ import {
   validateConfig,
   ConnectorType,
 } from '@logto/connector-kit';
-import { assert, conditional } from '@silverhand/essentials';
+import { assert, conditional, pick } from '@silverhand/essentials';
 import { HTTPError } from 'got';
 import { createRemoteJWKSet, jwtVerify } from 'jose';
-import omit from 'lodash.omit';
 import snakecaseKeys from 'snakecase-keys';
 
-import { defaultMetadata, oauthConfigGlobalKeys } from './constant';
+import { defaultMetadata } from './constant';
 import type { OidcConfig } from './types';
 import { idTokenProfileStandardClaimsGuard, oidcConfigGuard, OidcFlowType } from './types';
 import {
@@ -40,22 +39,25 @@ const getAuthorizationUri =
     const nonce = generateNonce();
     const needNonce = isIdTokenInResponseType(parsedConfig.responseType);
 
-    const parameterObject = {
-      ...snakecaseKeys(omit(parsedConfig, ...oauthConfigGlobalKeys, 'clientSecret', 'grantType')),
-      ...(needNonce ? { nonce } : {}),
-    };
-
     assert(
       setSession,
       new ConnectorError(ConnectorErrorCodes.NotImplemented, {
-        message: "'setSession' is not implemented.",
+        message: 'Function `setSession()` is not implemented',
       })
     );
     await setSession({ nonce, redirectUri });
 
+    const { customConfig, authRequestOptionalConfig, ...rest } = parsedConfig;
+
     const queryParameters = new URLSearchParams({
       state,
-      ...parameterObject,
+      ...snakecaseKeys({
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        ...pick(rest, 'responseType', 'scope', 'clientId'),
+        ...authRequestOptionalConfig,
+        ...customConfig,
+      }),
+      ...(needNonce ? { nonce } : {}),
       redirect_uri: redirectUri,
     });
 
@@ -86,7 +88,7 @@ const getUserInfo =
     assert(
       getSession,
       new ConnectorError(ConnectorErrorCodes.NotImplemented, {
-        message: "'getSession' is not implemented.",
+        message: 'Function `getSession()` is not implemented.',
       })
     );
     const { nonce: validationNonce, redirectUri } = await getSession();
@@ -95,7 +97,7 @@ const getUserInfo =
 
     if (!idToken) {
       throw new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid, {
-        message: 'Can not find idToken!',
+        message: 'Cannot find ID Token.',
       });
     }
 
@@ -131,14 +133,14 @@ const getUserInfo =
         assert(
           validationNonce,
           new ConnectorError(ConnectorErrorCodes.General, {
-            message: "'nonce' not presented in session storage.",
+            message: 'Cannot find `nonce` in session storage.',
           })
         );
 
         assert(
           validationNonce === nonce,
           new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid, {
-            message: "IdToken validation failed due to 'nonce' mismatch.",
+            message: 'ID Token validation failed due to `nonce` mismatch.',
           })
         );
       }
