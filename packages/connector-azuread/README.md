@@ -14,7 +14,7 @@ The Azure AD connector provides a succinct way for your application to use Azure
 
 - Visit the [Azure Portal](https://portal.azure.com/#home) and sign in with your Azure account. You need to have an active subscription to access Azure AD.
 - Click the **Azure Active Directory** from the services they offer, and click the **App Registrations** from the left menu.
-- Click **New Registration** at the top and enter a description, select your **access type** and add your **Redirect URI**, which redirect the user to the application after logging in. In our case, this will be `${your_logto_origin}/callback/azuread-universal`. e.g. `https://logto.dev/callback/azuread-universal`. You need to select Web as Platform.
+- Click **New Registration** at the top and enter a description, select your **access type** and add your **Redirect URI**, which redirect the user to the application after logging in. In our case, this will be `${your_logto_origin}/callback/${connector_id}`. e.g. `https://logto.dev/callback/${connector_id}`. You need to select Web as Platform. The `connector_id` can be found on the top bar of the Logto Admin Console connector details page.
 - If you select **Single Tenant** for access type then you need to enter **TenantID**, else you need to enter `common` as Tenant ID.
 
 ## Configure your client secret

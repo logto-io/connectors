@@ -3,15 +3,16 @@
 The Kakao connector provides a succinct way for your application to use Kakao’s OAuth 2.0 authentication system.
 
 **Table of contents**
-- [Set up a project in the Kakao Devlopers Console](#set-up-a-project-in-the-kakao-devlopers-console)
-- [Configure Kakao Login](#configure-kakao-login)
-  - [Activate Kakao Login](#activate-kakao-login)
-  - [Privacy Setting](#privacy-setting)
-  - [Security Setting (Optional)](#security-setting-optional)
-- [Configure Logto](#configure-logto)
-  - [Config types](#config-types)
-    - [clientId](#clientid)
-    - [clientSecret](#clientseceret)
+- [Kakao Connector](#kakao-connector)
+  - [Set up a project in the Kakao Devlopers Console](#set-up-a-project-in-the-kakao-devlopers-console)
+  - [Configure Kakao Login](#configure-kakao-login)
+    - [Activate Kakao Login](#activate-kakao-login)
+    - [Privacy Setting](#privacy-setting)
+    - [Security Setting (Optional)](#security-setting-optional)
+  - [Configure Logto](#configure-logto)
+    - [Config types](#config-types)
+      - [clientId](#clientid)
+      - [clientSeceret](#clientseceret)
 
 ## Set up a project in the Kakao Devlopers Console
 - Visit the [Kakao Developers Console](https://developers.kakao.com/console/app) and sign in with your Kakao account.
@@ -23,7 +24,7 @@ The Kakao connector provides a succinct way for your application to use Kakao’
 - Click the **Product Settings -> Kakao Login** from the menu.
 - Turn on `Kakao Login Activation`
 - Add below URL into `Redirect URI`
-  - `http(s)://YOUR_URL/callback/kakao-universal`
+  - `http(s)://YOUR_URL/callback/${connector_id}` (The `connector_id` can be found on the top bar of the Logto Admin Console connector details page.)
   - (Please replace `YOUR_URL` with your `Logto` URL, and choose `http` or `https` on your situation.)
 
 ### Privacy Setting
