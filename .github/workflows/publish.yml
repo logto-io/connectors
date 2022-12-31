@@ -6,8 +6,10 @@ on:
       - master
 
 jobs:
-  changeset:
+  publish:
     runs-on: ubuntu-latest
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
 
     steps:
       - uses: actions/checkout@v3
@@ -37,23 +39,13 @@ jobs:
           git config --global user.name silverhand-bot
       
       - name: Create release PR or publish to npm
-        id: changesets
         uses: changesets/action@v1
         with:
           setupGitUser: false
           createGithubReleases: false
           commit: 'release: version packages'
           title: 'release: version packages'
-          publish: exit 0 # will update soon
+          version: .scripts/version.sh
+          publish: pnpm changeset tag && pnpm -r publish
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
-
-  publish:
-    runs-on: ubuntu-latest
-    environment: npm
-    env:
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
-
-    steps:
-      - name: Publish to npm
-        run: echo WIP # will update soon
