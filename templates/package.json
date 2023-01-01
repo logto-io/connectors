@@ -22,7 +22,7 @@
   "dependencies": {
     "@logto/connector-kit": "1.0.0-beta.32",
     "@silverhand/essentials": "^1.2.0",
-    "got": "^11.8.2",
+    "got": "^12.0.0",
     "snakecase-keys": "^5.1.0",
     "zod": "^3.20.2"
   },
