@@ -29,5 +29,8 @@
     "@logto/connector-wechat-native": "1.0.0-beta.15",
     "@logto/connector-wechat-web": "1.0.0-beta.15"
   },
-  "changesets": []
+  "changesets": [
+    "selfish-beers-kiss",
+    "short-mugs-return"
+  ]
 }
