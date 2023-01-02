@@ -1,19 +1,19 @@
 import { ConnectorError, ConnectorErrorCodes, parseJson } from '@logto/connector-kit';
 import { assert, pick } from '@silverhand/essentials';
 import type { Response } from 'got';
-import got, { HTTPError } from 'got';
+import { got, HTTPError } from 'got';
 import { customAlphabet } from 'nanoid';
 import snakecaseKeys from 'snakecase-keys';
 
-import { defaultTimeout } from './constant';
-import type { AccessTokenResponse, AuthorizationCodeConfig, HybridConfig } from './types';
+import { defaultTimeout } from './constant.js';
+import type { AccessTokenResponse, AuthorizationCodeConfig, HybridConfig } from './types.js';
 import {
   accessTokenResponseGuard,
   delimiter,
   authResponseGuard,
   implicitAuthResponseGuard,
   hybridAuthResponseGuard,
-} from './types';
+} from './types.js';
 
 const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 // FIXME @darcy: Temporary use this workaround, this change has been made in @logto/core-kit but has not been published yet.
@@ -28,7 +28,7 @@ export const accessTokenRequester = async (
     const httpResponse = await got.post({
       url: tokenEndpoint,
       form: queryParameters,
-      timeout,
+      timeout: { request: timeout },
     });
 
     return await accessTokenResponseHandler(httpResponse);
@@ -85,9 +85,7 @@ export const getAuthorizationCodeFlowIdToken = async (
 
   const { customConfig, ...rest } = config;
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const parameterObject = snakecaseKeys({
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     ...pick(rest, 'grantType', 'clientId', 'clientSecret'),
     ...customConfig,
     code,
@@ -139,9 +137,7 @@ export const getHybridFlowIdToken = async (
 
   const { customConfig, ...rest } = config;
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const parameterObject = snakecaseKeys({
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     ...pick(rest, 'grantType', 'clientId', 'clientSecret'),
     ...customConfig,
     code,

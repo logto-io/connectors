@@ -1,7 +1,7 @@
 /** @type {import('jest').Config} */
 const config = {
   setupFilesAfterEnv: ['jest-matcher-specific-error'],
-  rootDir: 'lib',
+  roots: ['lib'],
 };
 
 export default config;

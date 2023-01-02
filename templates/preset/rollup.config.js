@@ -11,7 +11,7 @@ const configs = [
   {
     input: ['src/index.ts'],
     output: [{ dir: 'lib' }],
-    external: ['zod', 'got', '@logto/connector-kit', '@silverhand/essentials'],
+    external: ['zod', 'got', '@logto/connector-kit'],
     plugins: [
       typescript({ tsconfig: 'tsconfig.build.json' }),
       nodeResolve(),

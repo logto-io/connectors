@@ -13,7 +13,7 @@ import {
   parseJson,
 } from '@logto/connector-kit';
 import { assert, pick } from '@silverhand/essentials';
-import got, { HTTPError } from 'got';
+import { got, HTTPError } from 'got';
 import snakecaseKeys from 'snakecase-keys';
 
 import { defaultMetadata, defaultTimeout } from './constant.js';
@@ -25,6 +25,9 @@ import {
   getImplicitFlowAccessToken,
 } from './utils.js';
 
+const removeUndefinedKeys = (object: Record<string, unknown>) =>
+  Object.fromEntries(Object.entries(object).filter(([, value]) => value !== undefined));
+
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
   async ({ state, redirectUri }, setSession) => {
@@ -34,9 +37,7 @@ const getAuthorizationUri =
 
     const { customConfig, ...rest } = parsedConfig;
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const parameterObject = snakecaseKeys({
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       ...pick(rest, 'responseType', 'clientId', 'scope'),
       ...customConfig,
     });
@@ -50,7 +51,7 @@ const getAuthorizationUri =
     await setSession({ redirectUri });
 
     const queryParameters = new URLSearchParams({
-      ...parameterObject,
+      ...removeUndefinedKeys(parameterObject),
       state,
       redirect_uri: redirectUri,
     });

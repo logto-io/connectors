@@ -1,4 +1,4 @@
-import type { FeishuConfig } from './types';
+import type { FeishuConfig } from './types.js';
 
 export const mockedTimestamp = '2022-02-22 22:22:22';
 

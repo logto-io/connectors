@@ -13,17 +13,22 @@ import {
   validateConfig,
 } from '@logto/connector-kit';
 import { assert, conditional } from '@silverhand/essentials';
-import got from 'got';
+import { got, HTTPError } from 'got';
 
-import { accessTokenEndpoint, codeEndpoint, defaultMetadata, userInfoEndpoint } from './constant';
-import type { FeishuConfig } from './types';
+import {
+  accessTokenEndpoint,
+  codeEndpoint,
+  defaultMetadata,
+  userInfoEndpoint,
+} from './constant.js';
+import type { FeishuConfig } from './types.js';
 import {
   feishuAccessTokenResponse,
   feishuAuthCodeGuard,
   feishuConfigGuard,
   feishuErrorResponse,
   feishuUserInfoResponse,
-} from './types';
+} from './types.js';
 
 export function buildAuthorizationUri(
   clientId: string,
@@ -98,7 +103,7 @@ export async function getAccessToken(
       throw error;
     }
 
-    if (error instanceof got.HTTPError) {
+    if (error instanceof HTTPError) {
       const result = feishuErrorResponse.safeParse(error.response.body);
       assert(
         result.success,
@@ -154,7 +159,7 @@ export function getUserInfo(getConfig: GetConnectorConfig): GetUserInfo {
         throw error;
       }
 
-      if (error instanceof got.HTTPError) {
+      if (error instanceof HTTPError) {
         const result = feishuErrorResponse.safeParse(error.response.body);
 
         assert(

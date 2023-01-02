@@ -2,7 +2,7 @@ import {
   scopePostProcessor,
   implicitFlowResponsePostProcessor,
   hybridFlowResponsePostProcessor,
-} from './types';
+} from './types.js';
 
 describe('scopePostProcessor', () => {
   it('`openid` will be added if not exists (with empty string)', () => {

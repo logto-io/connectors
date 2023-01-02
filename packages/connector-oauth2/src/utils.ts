@@ -1,7 +1,7 @@
 import { ConnectorError, ConnectorErrorCodes, parseJson } from '@logto/connector-kit';
 import { assert, pick } from '@silverhand/essentials';
 import type { Response } from 'got';
-import got, { HTTPError } from 'got';
+import { got, HTTPError } from 'got';
 import * as qs from 'query-string';
 import snakecaseKeys from 'snakecase-keys';
 
@@ -25,11 +25,12 @@ export const accessTokenRequester = async (
   tokenEndpointResponseType: TokenEndpointResponseType,
   timeout: number = defaultTimeout
 ): Promise<AccessTokenResponse> => {
-  const httpResponse = await got.post({
-    url: tokenEndpoint,
-    form: queryParameters,
-    timeout: { request: timeout },
-  });
+  try {
+    const httpResponse = await got.post({
+      url: tokenEndpoint,
+      form: queryParameters,
+      timeout: { request: timeout },
+    });
 
     return await accessTokenResponseHandler(httpResponse, tokenEndpointResponseType);
   } catch (error: unknown) {
@@ -101,9 +102,7 @@ export const getAuthorizationCodeFlowAccessToken = async (
 
   const { customConfig, ...rest } = config;
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const parameterObject = snakecaseKeys({
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     ...pick(rest, 'grantType', 'clientId', 'clientSecret'),
     ...customConfig,
     code,
