@@ -1,10 +1,12 @@
 import { ConnectorError, ConnectorErrorCodes } from '@logto/connector-kit';
 import nock from 'nock';
-import * as qs from 'query-string';
+import qs from 'query-string';
 
-import createConnector, { getAccessToken } from '.';
-import { accessTokenEndpoint, authorizationEndpoint, userInfoEndpoint } from './constant';
-import { mockedConfig } from './mock';
+import { accessTokenEndpoint, authorizationEndpoint, userInfoEndpoint } from './constant.js';
+import createConnector, { getAccessToken } from './index.js';
+import { mockedConfig } from './mock.js';
+
+const { jest } = import.meta;
 
 const getConfig = jest.fn().mockResolvedValue(mockedConfig);
 

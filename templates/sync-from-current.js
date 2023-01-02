@@ -1,7 +1,7 @@
 // Sync limited info of all `package.json` to `package.extend.json`.
 
-const fs = require('fs/promises');
-const path = require('path');
+import fs from 'fs/promises';
+import path from 'path';
 
 const sync = async () => {
   const packagesDir = 'packages';
@@ -9,7 +9,7 @@ const sync = async () => {
 
   await Promise.all(
     packages
-      .filter((package) => package !== '.DS_Store')
+      .filter((packageName) => packageName !== '.DS_Store')
       .map(async (packageJson) => {
         const current = JSON.parse(
           await fs.readFile(path.join(packagesDir, packageJson, 'package.json'), 'utf8')

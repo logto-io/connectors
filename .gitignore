@@ -15,8 +15,10 @@ node_modules
 
 # generated files
 /packages/*/package.json
+/packages/*/types
 /packages/*/tsconfig.*
 /packages/*/jest.config.*
+/packages/*/rollup.config.*
 
 # logs
 logs

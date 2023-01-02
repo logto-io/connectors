@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { alipaySigningAlgorithms } from './constant';
+import { alipaySigningAlgorithms } from './constant.js';
 
 export const alipayNativeConfigGuard = z.object({
   appId: z.string().max(16),

@@ -13,11 +13,10 @@ import {
 import { assert } from '@silverhand/essentials';
 import { HTTPError } from 'got';
 
-import { isSmsErrorResponse, sendSmsRequest } from '@/http';
-import type { TencentSmsConfig } from '@/schema';
-import { SmsConfigGuard, tencentErrorResponse } from '@/schema';
-
-import { defaultMetadata } from './constant';
+import { defaultMetadata } from './constant.js';
+import { isSmsErrorResponse, sendSmsRequest } from './http.js';
+import type { TencentSmsConfig } from './schema.js';
+import { SmsConfigGuard, tencentErrorResponse } from './schema.js';
 
 function safeGetArray<T>(value: Array<T | undefined>, index: number): T {
   const item = value[index];

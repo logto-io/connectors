@@ -17,7 +17,7 @@ import {
   parseJson,
 } from '@logto/connector-kit';
 import { conditional, assert } from '@silverhand/essentials';
-import got, { HTTPError } from 'got';
+import { got, HTTPError } from 'got';
 
 import {
   accessTokenEndpoint,
@@ -26,14 +26,14 @@ import {
   userInfoEndpoint,
   defaultMetadata,
   defaultTimeout,
-} from './constant';
-import type { GoogleConfig } from './types';
+} from './constant.js';
+import type { GoogleConfig } from './types.js';
 import {
   googleConfigGuard,
   accessTokenResponseGuard,
   userInfoResponseGuard,
   authResponseGuard,
-} from './types';
+} from './types.js';
 
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
@@ -69,7 +69,7 @@ export const getAccessToken = async (
       redirect_uri: redirectUri,
       grant_type: 'authorization_code',
     },
-    timeout: defaultTimeout,
+    timeout: { request: defaultTimeout },
   });
 
   const result = accessTokenResponseGuard.safeParse(parseJson(httpResponse.body));
@@ -98,7 +98,7 @@ const getUserInfo =
         headers: {
           authorization: `Bearer ${accessToken}`,
         },
-        timeout: defaultTimeout,
+        timeout: { request: defaultTimeout },
       });
 
       const result = userInfoResponseGuard.safeParse(parseJson(httpResponse.body));

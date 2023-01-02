@@ -1,10 +1,10 @@
 import type { BinaryToTextEncoding } from 'crypto';
 import crypto from 'crypto';
 
-import got from 'got';
+import { got } from 'got';
 
-import type { TencentErrorResponse, TencentSuccessResponse } from '@/schema';
-import { tencentErrorResponse } from '@/schema';
+import { tencentErrorResponse } from './schema.js';
+import type { TencentErrorResponse, TencentSuccessResponse } from './schema.js';
 
 const endpoint = 'sms.tencentcloudapi.com';
 

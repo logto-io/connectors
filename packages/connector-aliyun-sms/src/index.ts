@@ -14,10 +14,10 @@ import {
 import { assert } from '@silverhand/essentials';
 import { HTTPError } from 'got';
 
-import { defaultMetadata } from './constant';
-import { sendSms } from './single-send-text';
-import type { AliyunSmsConfig } from './types';
-import { aliyunSmsConfigGuard, sendSmsResponseGuard } from './types';
+import { defaultMetadata } from './constant.js';
+import { sendSms } from './single-send-text.js';
+import type { AliyunSmsConfig } from './types.js';
+import { aliyunSmsConfigGuard, sendSmsResponseGuard } from './types.js';
 
 const sendMessage =
   (getConfig: GetConnectorConfig): SendMessageFunction =>

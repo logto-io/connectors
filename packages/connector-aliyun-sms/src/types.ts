@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { SmsTemplateType } from './constant';
+import { SmsTemplateType } from './constant.js';
 
 export const sendSmsResponseGuard = z.object({
   BizId: z.string().optional(),

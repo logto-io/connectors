@@ -18,7 +18,7 @@ import {
   parseJson,
 } from '@logto/connector-kit';
 import { assert, conditional } from '@silverhand/essentials';
-import got, { HTTPError } from 'got';
+import { got, HTTPError } from 'got';
 
 import {
   defaultMetadata,
@@ -27,14 +27,14 @@ import {
   accessTokenEndpoint,
   defaultTimeout,
   userInfoEndpoint,
-} from './constant';
-import type { DiscordConfig } from './types';
+} from './constant.js';
+import type { DiscordConfig } from './types.js';
 import {
   discordConfigGuard,
   authResponseGuard,
   accessTokenResponseGuard,
   userInfoResponseGuard,
-} from './types';
+} from './types.js';
 
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
@@ -69,7 +69,7 @@ export const getAccessToken = async (
       code,
       redirect_uri: redirectUri,
     },
-    timeout: defaultTimeout,
+    timeout: { request: defaultTimeout },
   });
 
   const result = accessTokenResponseGuard.safeParse(parseJson(httpResponse.body));
@@ -98,7 +98,7 @@ const getUserInfo =
         headers: {
           authorization: `Bearer ${accessToken}`,
         },
-        timeout: defaultTimeout,
+        timeout: { request: defaultTimeout },
       });
 
       const result = userInfoResponseGuard.safeParse(parseJson(httpResponse.body));

@@ -1,5 +1,5 @@
-import { mockedConfig, mockedConfigWithAllRequiredTemplates } from './mock';
-import { aliyunDmConfigGuard } from './types';
+import { mockedConfig, mockedConfigWithAllRequiredTemplates } from './mock.js';
+import { aliyunDmConfigGuard } from './types.js';
 
 describe('aliyunDmConfigGuard', () => {
   it('throws when required templates not provided', () => {

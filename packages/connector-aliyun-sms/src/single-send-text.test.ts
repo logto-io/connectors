@@ -1,8 +1,12 @@
-import { mockedRandomCode } from './mock';
-import { sendSms } from './single-send-text';
-import { request } from './utils';
+import { mockedRandomCode } from './mock.js';
 
-jest.mock('./utils');
+const { jest } = import.meta;
+
+const request = jest.fn();
+
+jest.unstable_mockModule('./utils.js', () => ({ request }));
+
+const { sendSms } = await import('./single-send-text.js');
 
 describe('sendSms', () => {
   it('should call request with action sendSms', async () => {
@@ -18,8 +22,10 @@ describe('sendSms', () => {
       },
       '<access-key-secret>'
     );
-    const calledData = (request as jest.MockedFunction<typeof request>).mock.calls[0];
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const calledData = request.mock.calls[0];
     expect(calledData).not.toBeUndefined();
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const payload = calledData?.[1];
     expect(payload).toHaveProperty('Action', 'SendSms');
   });

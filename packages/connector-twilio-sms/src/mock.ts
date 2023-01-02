@@ -1,4 +1,4 @@
-import type { TwilioSmsConfig } from './types';
+import type { TwilioSmsConfig } from './types.js';
 
 const mockedAccountSID = 'account-sid';
 const mockedAuthToken = 'auth-token';

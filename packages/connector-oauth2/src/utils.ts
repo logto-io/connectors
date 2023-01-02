@@ -1,23 +1,23 @@
 import { ConnectorError, ConnectorErrorCodes, parseJson } from '@logto/connector-kit';
 import { assert, pick } from '@silverhand/essentials';
 import type { Response } from 'got';
-import got, { HTTPError } from 'got';
+import { got, HTTPError } from 'got';
 import * as qs from 'query-string';
 import snakecaseKeys from 'snakecase-keys';
 
-import { defaultTimeout } from './constant';
+import { defaultTimeout } from './constant.js';
 import type {
   AuthorizationCodeConfig,
   TokenEndpointResponseType,
   AccessTokenResponse,
   ProfileMap,
-} from './types';
+} from './types.js';
 import {
   authResponseGuard,
   accessTokenResponseGuard,
   userProfileGuard,
   implicitAuthResponseGuard,
-} from './types';
+} from './types.js';
 
 export const accessTokenRequester = async (
   tokenEndpoint: string,
@@ -29,7 +29,7 @@ export const accessTokenRequester = async (
     const httpResponse = await got.post({
       url: tokenEndpoint,
       form: queryParameters,
-      timeout,
+      timeout: { request: timeout },
     });
 
     return await accessTokenResponseHandler(httpResponse, tokenEndpointResponseType);
@@ -102,9 +102,7 @@ export const getAuthorizationCodeFlowAccessToken = async (
 
   const { customConfig, ...rest } = config;
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const parameterObject = snakecaseKeys({
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     ...pick(rest, 'grantType', 'clientId', 'clientSecret'),
     ...customConfig,
     code,

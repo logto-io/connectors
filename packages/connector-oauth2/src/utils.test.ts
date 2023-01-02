@@ -1,5 +1,5 @@
-import type { ProfileMap, UserProfile } from './types';
-import { userProfileMapping } from './utils';
+import type { ProfileMap, UserProfile } from './types.js';
+import { userProfileMapping } from './utils.js';
 
 describe('userProfileMapping', () => {
   it('should return valid profile (`id` is string and `avatar` not correctly mapped)', () => {

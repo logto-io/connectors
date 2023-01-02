@@ -14,9 +14,9 @@ import { assert } from '@silverhand/essentials';
 import nodemailer from 'nodemailer';
 import type SMTPTransport from 'nodemailer/lib/smtp-transport';
 
-import { defaultMetadata } from './constant';
-import type { SmtpConfig } from './types';
-import { ContextType, smtpConfigGuard } from './types';
+import { defaultMetadata } from './constant.js';
+import type { SmtpConfig } from './types.js';
+import { ContextType, smtpConfigGuard } from './types.js';
 
 const sendMessage =
   (getConfig: GetConnectorConfig): SendMessageFunction =>

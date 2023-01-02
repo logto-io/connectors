@@ -18,7 +18,7 @@ import {
   parseJson,
 } from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
-import got, { HTTPError } from 'got';
+import { got, HTTPError } from 'got';
 
 import {
   authorizationEndpoint,
@@ -28,18 +28,18 @@ import {
   defaultTimeout,
   invalidAccessTokenErrcode,
   invalidAuthCodeErrcode,
-} from './constant';
+} from './constant.js';
 import type {
   GetAccessTokenErrorHandler,
   UserInfoResponseMessageParser,
   WechatNativeConfig,
-} from './types';
+} from './types.js';
 import {
   wechatNativeConfigGuard,
   accessTokenResponseGuard,
   userInfoResponseGuard,
   authResponseGuard,
-} from './types';
+} from './types.js';
 
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
@@ -69,7 +69,7 @@ export const getAccessToken = async (
 
   const httpResponse = await got.get(accessTokenEndpoint, {
     searchParams: { appid, secret, code, grant_type: 'authorization_code' },
-    timeout: defaultTimeout,
+    timeout: { request: defaultTimeout },
   });
 
   const result = accessTokenResponseGuard.safeParse(parseJson(httpResponse.body));
@@ -97,7 +97,7 @@ const getUserInfo =
     try {
       const httpResponse = await got.get(userInfoEndpoint, {
         searchParams: { access_token: accessToken, openid },
-        timeout: defaultTimeout,
+        timeout: { request: defaultTimeout },
       });
 
       const result = userInfoResponseGuard.safeParse(parseJson(httpResponse.body));

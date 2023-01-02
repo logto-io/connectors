@@ -14,11 +14,10 @@ import {
 } from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
 
-import { makeClient, makeCommand, makeEmailContent } from '@/utils';
-
-import { defaultMetadata } from './constant';
-import type { AwsSesConfig } from './types';
-import { awsSesConfigGuard } from './types';
+import { defaultMetadata } from './constant.js';
+import type { AwsSesConfig } from './types.js';
+import { awsSesConfigGuard } from './types.js';
+import { makeClient, makeCommand, makeEmailContent } from './utils.js';
 
 const sendMessage =
   (getConfig: GetConnectorConfig): SendMessageFunction =>

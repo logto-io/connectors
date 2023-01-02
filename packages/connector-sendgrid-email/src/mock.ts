@@ -4,8 +4,8 @@ import type {
   Personalization,
   PublicParameters,
   SendGridMailConfig,
-} from './types';
-import { ContextType } from './types';
+} from './types.js';
+import { ContextType } from './types.js';
 
 const receivers: EmailData[] = [{ email: 'foo@logto.io' }];
 const sender: EmailData = { email: 'noreply@logto.test.io', name: 'Logto Test' };

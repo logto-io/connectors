@@ -16,16 +16,16 @@ import { HTTPError } from 'got';
 import { createRemoteJWKSet, jwtVerify } from 'jose';
 import snakecaseKeys from 'snakecase-keys';
 
-import { defaultMetadata } from './constant';
-import type { OidcConfig } from './types';
-import { idTokenProfileStandardClaimsGuard, oidcConfigGuard, OidcFlowType } from './types';
+import { defaultMetadata } from './constant.js';
+import type { OidcConfig } from './types.js';
+import { idTokenProfileStandardClaimsGuard, oidcConfigGuard, OidcFlowType } from './types.js';
 import {
   buildIdGenerator,
   isIdTokenInResponseType,
   getAuthorizationCodeFlowIdToken,
   getImplicitFlowIdToken,
   getHybridFlowIdToken,
-} from './utils';
+} from './utils.js';
 
 const generateNonce = () => buildIdGenerator(12)();
 
@@ -52,7 +52,6 @@ const getAuthorizationUri =
     const queryParameters = new URLSearchParams({
       state,
       ...snakecaseKeys({
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         ...pick(rest, 'responseType', 'scope', 'clientId'),
         ...authRequestOptionalConfig,
         ...customConfig,

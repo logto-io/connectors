@@ -11,17 +11,17 @@ import {
   ConnectorType,
 } from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
-import got, { HTTPError } from 'got';
+import { got, HTTPError } from 'got';
 
-import { defaultMetadata, endpoint } from './constant';
+import { defaultMetadata, endpoint } from './constant.js';
 import type {
   SendGridMailConfig,
   EmailData,
   Personalization,
   Content,
   PublicParameters,
-} from './types';
-import { sendGridMailConfigGuard } from './types';
+} from './types.js';
+import { sendGridMailConfigGuard } from './types.js';
 
 const sendMessage =
   (getConfig: GetConnectorConfig): SendMessageFunction =>

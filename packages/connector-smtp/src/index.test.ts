@@ -2,7 +2,7 @@ import { VerificationCodeType } from '@logto/connector-kit';
 import type { Transporter } from 'nodemailer';
 import nodemailer from 'nodemailer';
 
-import createConnector from '.';
+import createConnector from './index.js';
 import {
   mockedConfig,
   mockedOauth2AuthWithKey,
@@ -13,8 +13,10 @@ import {
   mockedConnectionOptionsInvalid,
   mockedDebuggingOptions,
   mockedSecurityOptions,
-} from './mock';
-import { smtpConfigGuard } from './types';
+} from './mock.js';
+import { smtpConfigGuard } from './types.js';
+
+const { jest } = import.meta;
 
 const getConfig = jest.fn().mockResolvedValue(mockedConfig);
 

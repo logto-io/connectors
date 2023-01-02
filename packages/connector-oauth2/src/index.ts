@@ -13,17 +13,20 @@ import {
   parseJson,
 } from '@logto/connector-kit';
 import { assert, pick } from '@silverhand/essentials';
-import got, { HTTPError } from 'got';
+import { got, HTTPError } from 'got';
 import snakecaseKeys from 'snakecase-keys';
 
-import { defaultMetadata, defaultTimeout } from './constant';
-import type { OauthConfig } from './types';
-import { oauthConfigGuard, OauthGrantType } from './types';
+import { defaultMetadata, defaultTimeout } from './constant.js';
+import type { OauthConfig } from './types.js';
+import { oauthConfigGuard, OauthGrantType } from './types.js';
 import {
   userProfileMapping,
   getAuthorizationCodeFlowAccessToken,
   getImplicitFlowAccessToken,
-} from './utils';
+} from './utils.js';
+
+const removeUndefinedKeys = (object: Record<string, unknown>) =>
+  Object.fromEntries(Object.entries(object).filter(([, value]) => value !== undefined));
 
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
@@ -34,9 +37,7 @@ const getAuthorizationUri =
 
     const { customConfig, ...rest } = parsedConfig;
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const parameterObject = snakecaseKeys({
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       ...pick(rest, 'responseType', 'clientId', 'scope'),
       ...customConfig,
     });
@@ -50,7 +51,7 @@ const getAuthorizationUri =
     await setSession({ redirectUri });
 
     const queryParameters = new URLSearchParams({
-      ...parameterObject,
+      ...removeUndefinedKeys(parameterObject),
       state,
       redirect_uri: redirectUri,
     });
@@ -94,7 +95,7 @@ const getUserInfo =
         headers: {
           authorization: `${token_type} ${access_token}`,
         },
-        timeout: defaultTimeout,
+        timeout: { request: defaultTimeout },
       });
 
       return userProfileMapping(parseJson(httpResponse.body), parsedConfig.profileMap);

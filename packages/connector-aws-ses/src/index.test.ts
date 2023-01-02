@@ -1,8 +1,10 @@
 import { SESv2Client } from '@aws-sdk/client-sesv2';
 import { VerificationCodeType } from '@logto/connector-kit';
 
-import createConnector from '.';
-import { mockedConfig } from './mock';
+import createConnector from './index.js';
+import { mockedConfig } from './mock.js';
+
+const { jest } = import.meta;
 
 const getConfig = jest.fn().mockResolvedValue(mockedConfig);
 

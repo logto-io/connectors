@@ -1,9 +1,11 @@
-import { methodForAccessToken } from './constant';
+import { methodForAccessToken } from './constant.js';
 import {
   mockedAlipayNativeConfigWithValidPrivateKey,
   mockedAlipayNativePublicParameters,
-} from './mock';
-import { signingParameters } from './utils';
+} from './mock.js';
+import { signingParameters } from './utils.js';
+
+const { jest } = import.meta;
 
 const listenJSONParse = jest.spyOn(JSON, 'parse');
 const listenJSONStringify = jest.spyOn(JSON, 'stringify');

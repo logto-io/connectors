@@ -1,8 +1,8 @@
 import { createHmac } from 'crypto';
 
-import got from 'got';
+import { got } from 'got';
 
-import type { PublicParameters } from './types';
+import type { PublicParameters } from './types.js';
 
 // Aliyun has special escape rules.
 // https://help.aliyun.com/document_detail/29442.html
