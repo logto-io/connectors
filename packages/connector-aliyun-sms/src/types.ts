@@ -37,11 +37,11 @@ export type PublicParameters = {
 
 /**
  * UsageType here is used to specify the use case of the template, can be either
- * 'Register', 'SignIn', 'ForgotPassword' or 'Test'.
+ * 'Register', 'SignIn', 'ForgotPassword', 'Generic' or 'Test'.
  *
- * Type here in the template is used to specify the purpose of sending the sms,
+ * Type here in the template is used to specify the purpose of sending the SMS,
  * can be either item in SmsTemplateType.
- * As the SMS is applied for sending passcode, the value should always be 2 in our case.
+ * As the SMS is applied for sending verification code, the value should always be 2 in our case.
  */
 const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword'];
 

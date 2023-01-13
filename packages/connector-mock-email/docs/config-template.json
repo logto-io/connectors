@@ -7,31 +7,31 @@
       "usageType": "SignIn",
       "type": "text/plain",
       "subject": "Logto SignIn Template",
-      "content": "This is for sign-in purposes only. Your passcode is {{code}}."
+      "content": "This is for sign-in purposes only. Your verification code is {{code}}."
     },
     {
       "usageType": "Register",
       "type": "text/plain",
       "subject": "Logto Register Template",
-      "content": "This is for registering purposes only. Your passcode is {{code}}."
+      "content": "This is for registering purposes only. Your verification code is {{code}}."
     },
     {
       "usageType": "ForgotPassword",
       "type": "text/plain",
       "subject": "Logto ForgotPassword Template",
-      "content": "This is for resetting password purposes only. Your passcode is {{code}}."
+      "content": "This is for resetting password purposes only. Your verification code is {{code}}."
+    },
+    {
+      "usageType": "Generic",
+      "type": "text/plain",
+      "subject": "Logto Generic Template",
+      "content": "This is for generic purpose through management API only. Your verification code is {{code}}."
     },
     {
       "usageType": "Test",
       "type": "text/plain",
       "subject": "Logto Test Template",
-      "content": "This is for testing purposes only. Your passcode is {{code}}."
-    },
-    {
-      "usageType": "ForgotPassword",
-      "type": "text/plain",
-      "subject": "Logto Forgot Password Template",
-      "content": "This is for forgot-password purposes only. Your passcode is {{code}}."
+      "content": "This is for testing purposes only. Your verification code is {{code}}."
     }
   ]
 }

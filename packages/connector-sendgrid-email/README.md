@@ -62,8 +62,8 @@ Fill out the `fromEmail` and `fromName` fields with the senders' _From Address_ 
 You can add multiple SendGrid mail connector templates for different cases. Here is an example of adding a single template:
 
 - Fill out the `subject` field, which works as the title of emails.
-- Fill out the `content` field with arbitrary string-typed contents. Do not forget to leave the `{{code}}` placeholder for the random passcode.
-- Fill out `usageType` field with either `Register`, `SignIn`, `ForgotPassword` or `Test` for different use cases.
+- Fill out the `content` field with arbitrary string-typed contents. Do not forget to leave the `{{code}}` placeholder for the random verification code.
+- Fill out `usageType` field with either `Register`, `SignIn`, `ForgotPassword`, `Generic` or `Test` for different use cases.
 - Fill out `type` field with either `text/plain` or `text/html` for different types of content.
 
 In order to enable full user flows, templates with usageType `Register`, `SignIn` and `ForgotPassword` are required.
@@ -78,25 +78,31 @@ Here is an example of SendGrid connector config JSON.
     "templates": [
         {
             "subject": "<register-template-subject>",
-            "content": "<Logto: Your passcode is {{code}}. (regitser template)>",
+            "content": "<Logto: Your verification code is {{code}}. (register template)>",
             "usageType": "Register",
             "type": "text/plain"
         },
         {
             "subject": "<sign-in-template-subject>",
-            "content": "<Logto: Your passcode is {{code}}. (sign-in template)>",
+            "content": "<Logto: Your verification code is {{code}}. (sign-in template)>",
             "usageType": "SignIn",
             "type": "text/plain"
         },
         {
             "subject": "<forgot-password-template-subject>",
-            "content": "<Logto: Your passcode is {{code}}. (forgot-password template)>",
+            "content": "<Logto: Your verification code is {{code}}. (forgot-password template)>",
             "usageType": "ForgotPassword",
             "type": "text/plain"
         },
         {
+            "subject": "<generic-template-subject>",
+            "content": "<Logto: Your verification code is {{code}}. (generic template)>",
+            "usageType": "Generic",
+            "type": "text/plain",
+        },
+        {
             "subject": "<test-template-subject>",
-            "content": "<Logto: Your passcode is {{code}}. (test template)>",
+            "content": "<Logto: Your verification code is {{code}}. (test template)>",
             "usageType": "Test",
             "type": "text/plain"
         },
@@ -123,7 +129,7 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 |---------------------|-------------|------------------------------------------------------|
 | subject             | string      | N/A                                                  |
 | content             | string      | N/A                                                  |
-| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Test' |
+| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' \| 'Test' |
 | type                | enum string | 'text/plain' \| 'text/html'                          |
 
 # SendGrid 邮件连接器
@@ -168,7 +174,7 @@ _Domain Authentication_ 是推荐，但是不强制的。你可以点按 "Authen
 
 - 填写 `subject` 栏，它是发送邮件的标题
 - 用字符型的值填入 `content` 栏，不要忘了用占位符 `{{code}}` 预留你想放置随机生成的验证码的位置
-- 从 `Register`，`SignIn`，`ForgotPassword` 或者 `Test` 中选一个填入 `usageType` 栏，以决定当前模板所使用的场景
+- 从 `Register`，`SignIn`，`ForgotPassword`，`Generic` 或者 `Test` 中选一个填入 `usageType` 栏，以决定当前模板所使用的场景
 - 用 `text/plain` 或 `text/html` 填入 `type` 栏，以表明内容的形式
 
 为了能够使用完成的流程，需要配置 `usageType` 为 `Register`，`SignIn` 以及 `ForgotPassword` 的模板。
@@ -183,25 +189,31 @@ _Domain Authentication_ 是推荐，但是不强制的。你可以点按 "Authen
     "templates": [
         {
             "subject": "<register-template-subject>",
-            "content": "<Logto: Your passcode is {{code}}. (regitser template)>",
+            "content": "<Logto: Your verification code is {{code}}. (register template)>",
             "usageType": "Register",
             "type": "text/plain"
         },
         {
             "subject": "<sign-in-template-subject>",
-            "content": "<Logto: Your passcode is {{code}}. (sign-in template)>",
+            "content": "<Logto: Your verification code is {{code}}. (sign-in template)>",
             "usageType": "SignIn",
             "type": "text/plain"
         },
         {
             "subject": "<forgot-password-template-subject>",
-            "content": "<Logto: Your passcode is {{code}}. (forgot-password template)>",
+            "content": "<Logto: Your verification code is {{code}}. (forgot-password template)>",
             "usageType": "ForgotPassword",
             "type": "text/plain"
         },
         {
+            "subject": "<generic-template-subject>",
+            "content": "<Logto: Your verification code is {{code}}. (generic template)>",
+            "usageType": "Generic",
+            "type": "text/plain"
+        },
+        {
             "subject": "<test-template-subject>",
-            "content": "<Logto: Your passcode is {{code}}. (test template)>",
+            "content": "<Logto: Your verification code is {{code}}. (test template)>",
             "usageType": "Test",
             "type": "text/plain"
         },
@@ -228,5 +240,5 @@ _Domain Authentication_ 是推荐，但是不强制的。你可以点按 "Authen
 |-----------|-------------|------------------------------------------------------|
 | subject   | string      | N/A                                                  |
 | content   | string      | N/A                                                  |
-| usageType | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Test' |
+| usageType | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' \| 'Test' |
 | type      | enum string | 'text/plain' \| 'text/html'                          |

@@ -11,7 +11,7 @@ export const mockedConfig: TwilioSmsConfig = {
   templates: [
     {
       usageType: 'Test',
-      content: 'This is for testing purposes only. Your passcode is {{code}}.',
+      content: 'This is for testing purposes only. Your verification code is {{code}}.',
     },
   ],
 };

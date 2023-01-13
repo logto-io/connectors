@@ -26,7 +26,7 @@ The official Logto connector for Aliyun short message service.
 
 ## Get started
 
-Aliyun is a primary cloud service provider in Asia, offering many cloud services, including SMS (short message service). Aliyun SMS Connector is a plugin provided by the Logto team to call the Aliyun SMS service, with the help of which Logto end-users can register and sign in to their Logto account via SMS verification code (or in other words, passcode).
+Aliyun is a primary cloud service provider in Asia, offering many cloud services, including SMS (short message service). Aliyun SMS Connector is a plugin provided by the Logto team to call the Aliyun SMS service, with the help of which Logto end-users can register and sign in to their Logto account via SMS verification code.
 
 ## Set up a short message service in Aliyun SMS Console
 
@@ -45,8 +45,8 @@ Go to the [Aliyun website](https://cn.aliyun.com/) and register your Aliyun acco
 3. Read and agree to the "SMS service activation Agreement" (短信服务开通条款) and click "Subscribe to a service" (开通服务) to move on.
 4. You are now on the [SMS service console page](https://dysms.console.aliyun.com/overview), go to either "Mainland China" (国内消息) or "Outside Mainland China" (国际/港澳台消息) button on the sidebar per your use case.
 5. Add signature and template following the guidelines, and provide the materials or information required for review.
-    - Remember to select "Verification Code Message" (验证码) as "Scenario" (适用场景) when filling out the signature application and also "Verification Code Message" (验证码) for "Type" (模板类型) when applying for a template review because we are using these signatures and templates to send passcode. Currently, we do not support sending SMS messages other than verification-code-related text messages.
-    - Also, use `{{code}}` as a placeholder where you want to place your digital passcode in template contents.
+    - Remember to select "Verification Code Message" (验证码) as "Scenario" (适用场景) when filling out the signature application and also "Verification Code Message" (验证码) for "Type" (模板类型) when applying for a template review because we are using these signatures and templates to send verification code. Currently, we do not support sending SMS messages other than verification-code-related text messages.
+    - Also, use `{{code}}` as a placeholder where you want to place your digital verification code in template contents.
 6. After submitting your SMS signature and template application, you need to wait for it to take effect. At this point, we can go back to the [SMS service console page](https://dysms.console.aliyun.com/overview) and send a test SMS. If your signatures and templates are ready for use, you can try them directly; if they are not taking effect yet, Aliyun also provides test templates.
     - You may need to recharge a small amount of money before sending test messages.
     - You may also be asked to bind a test phone number before sending test messages. For more details, go to "Quick Start" (快速学习) tab from the sidebar of the [SMS service console page](https://dysms.console.aliyun.com/overview).
@@ -61,7 +61,7 @@ Go to the [Aliyun website](https://cn.aliyun.com/) and register your Aliyun acco
     - Fill out the `signName` field with "Signature" (签名名称) which is mentioned in step 2. All templates will share this signature name.
     - You can add multiple SMS connector templates for different cases. Here is an example of adding a single template:
         - Fill the `templateCode` field, which is how you can control SMS context, with "Template Code" (模板 CODE) from step 2.
-        - Fill out `usageType` field with either `Register`, `SignIn`, `ForgotPassword` or `Test` for different use cases. (`usageType` is a Logto property to identify the proper use case.) In order to enable full user flows, templates with usageType `Register`, `SignIn` and `ForgotPassword` are required.
+        - Fill out `usageType` field with either `Register`, `SignIn`, `ForgotPassword`, `Generic` or `Test` for different use cases. (`usageType` is a Logto property to identify the proper use case.) In order to enable full user flows, templates with usageType `Register`, `SignIn` and `ForgotPassword` are required.
 
 Here is an example of Aliyun SMS connector config JSON.
 
@@ -82,6 +82,10 @@ Here is an example of Aliyun SMS connector config JSON.
         {
             "templateCode": "<SMS_345678>",
             "usageType": "ForgotPassword"
+        },
+        {
+            "templateCode": "<SMS_456789>",
+            "usageType": "Generic"
         },
         {
             "templateCode": "<SMS_567890>",
@@ -109,7 +113,7 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 | Template Properties | Type        | Enum values                                          |
 |---------------------|-------------|------------------------------------------------------|
 | templateCode        | string      | N/A                                                  |
-| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Test' |
+| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' \| 'Test' |
 
 
 ## References
@@ -155,7 +159,7 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
     - 用你在步骤 2 中拿到的「签名名称」填入 `signName` 栏。所有的模板都会共用这个签名。
     - 你可以添加多个短信服务模板以应对不同的用户场景。这里展示填写单个模板的例子：
       - `templateCode` 栏是你可以用来控制所发送短信内容的属性。它们的值从步骤 2 中的「模板 CODE」获取。
-      - `usageType` 栏填写 `Register`，`SignIn`，`ForgotPassword` 或者 `Test` 其中之一以分别对应 _注册_，_登录_，_忘记密码_，_用户档案补全_ 和 _测试_ 的不同场景。（`usageType` 是 Logto 的属性，用来确定使用场景。）为了能够使用完成的流程，需要配置 `usageType` 为 `Register`，`SignIn` 以及 `ForgotPassword` 的模板。
+      - `usageType` 栏填写 `Register`，`SignIn`，`ForgotPassword`，`Generic` 或者 `Test` 其中之一以分别对应 _注册_，_登录_，_忘记密码_，_用户档案补全_ 和 _测试_ 的不同场景。（`usageType` 是 Logto 的属性，用来确定使用场景。）为了能够使用完成的流程，需要配置 `usageType` 为 `Register`，`SignIn` 以及 `ForgotPassword` 的模板。
 
 这是一个阿里云短信服务连接器 JSON 配置的样例。
 
@@ -176,6 +180,10 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
         {
             "templateCode": "<SMS_345678>",
             "usageType": "ForgotPassword"
+        },
+        {
+            "templateCode": "<SMS_456789>",
+            "usageType": "Generic"
         },
         {
             "templateCode": "<SMS_567890>",
@@ -203,7 +211,7 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 | 模板属性      | 类型         | 枚举值                                                |
 |--------------|-------------|------------------------------------------------------|
 | templateCode | string      | N/A                                                  |
-| usageType    | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Test' |
+| usageType    | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' \| 'Test' |
 
 
 ## 参考

@@ -59,7 +59,7 @@ describe('sendMessage()', () => {
     await expect(
       connector.sendMessage({
         to: 'to@email.com',
-        type: VerificationCodeType.Register,
+        type: VerificationCodeType.Test,
         payload: { code: '1234' },
       })
     ).rejects.toThrow();

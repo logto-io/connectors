@@ -20,9 +20,9 @@
       "content": "<forgot-password-template-content>"
     },
     {
-      "usageType": "Continue",
-      "subject": "<continue-template-subject>",
-      "content": "<continue-template-content>"
+      "usageType": "Generic",
+      "subject": "<generic-template-subject>",
+      "content": "<generic-template-content>"
     },
     {
       "usageType": "Test",

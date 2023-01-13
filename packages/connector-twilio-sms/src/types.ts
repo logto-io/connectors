@@ -17,7 +17,7 @@ export type PublicParameters = {
 
 /**
  * UsageType here is used to specify the use case of the template, can be either
- * 'Register', 'SignIn', 'ForgotPassword' or 'Test'.
+ * 'Register', 'SignIn', 'ForgotPassword', 'Generic' or 'Test'.
  */
 const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword'];
 
