@@ -24,7 +24,7 @@ Amazon SES邮件推送服务 Logto 官方连接器[中文文档](#aws-ses邮件�
 ## Get started
 Amazon SES is a cloud email service provider that can integrate into any application for bulk email sending.
 
-Logto team to call the Amazon Simple Email Service APIs, with the help of which Logto end-users can register and sign in to their Logto account via mail verification code (or in other words, passcode).
+Logto team to call the Amazon Simple Email Service APIs, with the help of which Logto end-users can register and sign in to their Logto account via mail verification code.
 
 
 ## Configure a mail service in the AWS service console
@@ -84,6 +84,11 @@ Here is an example of the JSON of the `Amazon SES` connector:
       "content": "<forgot-password-template-content>"
     },
     {
+      "usageType": "Generic",
+      "subject": "<generic-template-subject>",
+      "content": "<generic-template-content>"
+    },
+    {
       "usageType": "Test",
       "subject": "<test-template-subject>",
       "content": "<test-template-content>"
@@ -117,7 +122,7 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 | ------------------- | ----------- | -----------------------------------------------------|
 | subject             | string      | N/A                                                  |
 | content             | string      | N/A                                                  |
-| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Test' |
+| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' \| 'Test' |
 
 
 # AWS SES 邮件连接器
@@ -183,6 +188,11 @@ Amazon SES 是云电子邮件发送服务，它可以集成到任何应用程序
       "content": "<forgot-password-template-content>"
     },
     {
+      "usageType": "Generic",
+      "subject": "<generic-template-subject>",
+      "content": "<generic-template-content>"
+    },
+    {
       "usageType": "Test",
       "subject": "<test-template-subject>",
       "content": "<test-template-content>"
@@ -216,4 +226,4 @@ Amazon SES 是云电子邮件发送服务，它可以集成到任何应用程序
 | --------- | ----------- | -----------------------------------------------------|
 | subject   | string      | N/A                                                  |
 | content   | string      | N/A                                                  |
-| usageType | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Test' |
+| usageType | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' \| 'Test' |

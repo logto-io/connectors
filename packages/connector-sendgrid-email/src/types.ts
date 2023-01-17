@@ -72,7 +72,7 @@ export type PublicParameters = {
   personalizations: Personalization[];
   from: EmailData;
   reply_to?: EmailData;
-  reply_to_list?: EmailData[]; // Maxitems: 1000, uniqueItems: true
+  reply_to_list?: EmailData[]; // MaxItems: 1000, uniqueItems: true
   subject: string; // MinLength: 1
   content: Content[];
   attachments?: Attachment[];
@@ -90,7 +90,7 @@ export type PublicParameters = {
 
 /**
  * UsageType here is used to specify the use case of the template, can be either
- * 'Register', 'SignIn', 'ForgotPassword' or 'Test'.
+ * 'Register', 'SignIn', 'ForgotPassword', 'Generic' or 'Test'.
  */
 const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword'];
 

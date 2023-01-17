@@ -9,5 +9,15 @@ export const mockedConfig = {
       content: 'Your code is {{code}}, {{code}} is your code',
       subject: 'subject',
     },
+    {
+      usageType: 'Register',
+      content: 'Your code is {{code}}, {{code}} is your code',
+      subject: 'subject',
+    },
+    {
+      usageType: 'ForgotPassword',
+      content: 'Your code is {{code}}, {{code}} is your code',
+      subject: 'subject',
+    },
   ],
 };

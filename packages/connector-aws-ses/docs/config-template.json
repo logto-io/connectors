@@ -24,6 +24,11 @@
       "content": "<forgot-password-template-content>"
     },
     {
+      "usageType": "Generic",
+      "subject": "<generic-template-subject>",
+      "content": "<generic-template-content>"
+    },
+    {
       "usageType": "Test",
       "subject": "<test-template-subject>",
       "content": "<test-template-content>"

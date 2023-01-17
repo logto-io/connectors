@@ -59,7 +59,7 @@ By following the post, your connector JSON should be like this:
     "templates": [
         {
             "subject": "<register-template-subject>",
-            "content": "<Logto: Your passcode is {{code}}. (regitser template)>",
+            "content": "<Logto: Your verification code is {{code}}. (register template)>",
             "usageType": "Register",
             "contentType": "text/plain"
         }
@@ -89,7 +89,7 @@ After going through the guide, your connector JSON should look like this:
     "templates": [
         {
             "subject": "<register-template-subject>",
-            "content": "<Logto: Your passcode is {{code}}. (regitser template)>",
+            "content": "<Logto: Your verification code is {{code}}. (register template)>",
             "usageType": "Register",
             "contentType": "text/plain"
         }
@@ -121,7 +121,7 @@ After going through the guide, your connector JSON should look like this:
     "templates": [
         {
             "subject": "<register-template-subject>",
-            "content": "<Logto: Your passcode is {{code}}. (regitser template)>",
+            "content": "<Logto: Your verification code is {{code}}. (register template)>",
             "usageType": "Register",
             "contentType": "text/plain"
         }
@@ -133,7 +133,7 @@ After going through the guide, your connector JSON should look like this:
 >
 > Only one sample template is provided in the previous cases to keep things simple. You should add more templates for other use cases.
 > You should change values wrapped with "<" and ">" according to your Gmail, SendGrid or Aliyun account settings and choose to keep other fields w/o "<" and ">".
-> Add `{{code}}` as a placeholder in templates' content to show random passcode in sending emails.
+> Add `{{code}}` as a placeholder in templates' content to show random verification code in sending emails.
 
 ### Test SMTP connector
 
@@ -154,7 +154,7 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 |---------------------|-------------|------------------------------------------------------|
 | subject             | string      | N/A                                                  |
 | content             | string      | N/A                                                  |
-| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Test' |
+| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' \| 'Test' |
 | contentType         | enum string | 'text/plain' \| 'text/html'                          |
 
 **Username and password Auth Options**
@@ -214,7 +214,7 @@ SMTP 是一个所有邮件服务提供商通用的传输协议。
     "templates": [
         {
             "subject": "<register-template-subject>",
-            "content": "<Logto: Your passcode is {{code}}. (regitser template)>",
+            "content": "<Logto: Your verification code is {{code}}. (register template)>",
             "usageType": "Register",
             "contentType": "text/plain"
         }
@@ -244,7 +244,7 @@ SMTP 是一个所有邮件服务提供商通用的传输协议。
     "templates": [
         {
             "subject": "<register-template-subject>",
-            "content": "<Logto: Your passcode is {{code}}. (regitser template)>",
+            "content": "<Logto: Your verification code is {{code}}. (register template)>",
             "usageType": "Register",
             "contentType": "text/plain"
         }
@@ -276,7 +276,7 @@ SMTP 是一个所有邮件服务提供商通用的传输协议。
     "templates": [
         {
             "subject": "<register-template-subject>",
-            "content": "<Logto: Your passcode is {{code}}. (regitser template)>",
+            "content": "<Logto: Your verification code is {{code}}. (register template)>",
             "usageType": "Register",
             "contentType": "text/plain"
         }
@@ -309,7 +309,7 @@ SMTP 是一个所有邮件服务提供商通用的传输协议。
 |-------------|-------------|------------------------------------------------------|
 | subject     | string      | N/A                                                  |
 | content     | string      | N/A                                                  |
-| usageType   | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Test' |
+| usageType   | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' \| 'Test' |
 | contentType | enum string | 'text/plain' \| 'text/html'                          |
 
 **用户名密码的授权配置**

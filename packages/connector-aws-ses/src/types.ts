@@ -2,8 +2,9 @@ import { z } from 'zod';
 
 /**
  * UsageType here is used to specify the use case of the template, can be either
- * 'Register', 'SignIn', 'ForgotPassword' or 'Test'.
+ * 'Register', 'SignIn', 'ForgotPassword', 'Generic' or 'Test'.
  */
+const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword'];
 const templateGuard = z.object({
   usageType: z.string(),
   subject: z.string(),
@@ -18,7 +19,19 @@ export const awsSesConfigGuard = z.object({
   region: z.string(),
   emailAddress: z.string().optional(),
   emailAddressIdentityArn: z.string().optional(),
-  templates: z.array(templateGuard),
+  templates: z.array(templateGuard).refine(
+    (templates) =>
+      requiredTemplateUsageTypes.every((requiredType) =>
+        templates.map((template) => template.usageType).includes(requiredType)
+      ),
+    (templates) => ({
+      message: `Template with UsageType (${requiredTemplateUsageTypes
+        .filter(
+          (requiredType) => !templates.map((template) => template.usageType).includes(requiredType)
+        )
+        .join(', ')}) should be provided!`,
+    })
+  ),
   feedbackForwardingEmailAddress: z.string().optional(),
   feedbackForwardingEmailAddressIdentityArn: z.string().optional(),
   configurationSetName: z.string().optional(),

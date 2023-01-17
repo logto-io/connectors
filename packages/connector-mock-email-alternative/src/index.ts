@@ -37,7 +37,7 @@ const sendMessage =
     );
 
     await fs.writeFile(
-      path.join('/tmp', 'logto_mock_passcode_record.txt'),
+      path.join('/tmp', 'logto_mock_verification_code_record.txt'),
       JSON.stringify({ address: to, code: payload.code, type }) + '\n'
     );
 
