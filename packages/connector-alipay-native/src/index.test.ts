@@ -19,6 +19,10 @@ describe('getAuthorizationUri', () => {
     const authorizationUri = await connector.getAuthorizationUri({
       state: 'dummy-state',
       redirectUri: 'dummy-redirect-uri',
+      connectorId: 'dummy-connector-id',
+      connectorFactoryId: 'dummy-connector-factory-id',
+      jti: 'dummy-jti',
+      headers: {},
     });
     expect(authorizationUri).toBe('alipay://?app_id=2021000000000000&state=dummy-state');
   });

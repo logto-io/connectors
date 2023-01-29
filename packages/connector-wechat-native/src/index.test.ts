@@ -19,6 +19,10 @@ describe('getAuthorizationUri', () => {
     const authorizationUri = await connector.getAuthorizationUri({
       state: 'dummy-state',
       redirectUri: 'dummy-redirect-uri',
+      connectorId: 'dummy-connector-id',
+      connectorFactoryId: 'dummy-connector-factory-id',
+      jti: 'dummy-jti',
+      headers: {},
     });
     expect(authorizationUri).toEqual(
       `${authorizationEndpoint}?app_id=%3Capp-id%3E&state=dummy-state`
