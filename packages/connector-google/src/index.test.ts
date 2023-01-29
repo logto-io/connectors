@@ -20,6 +20,10 @@ describe('google connector', () => {
       const authorizationUri = await connector.getAuthorizationUri({
         state: 'some_state',
         redirectUri: 'http://localhost:3000/callback',
+        connectorId: 'some_connector_id',
+        connectorFactoryId: 'some_connector_factory_id',
+        jti: 'some_jti',
+        headers: {},
       });
       expect(authorizationUri).toEqual(
         `${authorizationEndpoint}?client_id=%3Cclient-id%3E&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code&state=some_state&scope=openid+profile+email`

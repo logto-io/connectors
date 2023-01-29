@@ -25,7 +25,7 @@ importers:
   packages/connector-alipay-native:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -54,7 +54,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       dayjs: 1.11.5
       got: 12.5.3
@@ -88,7 +88,7 @@ importers:
   packages/connector-alipay-web:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@logto/core-kit': 1.0.0-beta.29
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
@@ -118,7 +118,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@logto/core-kit': 1.0.0-beta.29_zod@3.20.2
       '@silverhand/essentials': 2.1.0
       dayjs: 1.11.5
@@ -153,7 +153,7 @@ importers:
   packages/connector-aliyun-dm:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -179,7 +179,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -210,7 +210,7 @@ importers:
   packages/connector-aliyun-sms:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -236,7 +236,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -267,7 +267,7 @@ importers:
   packages/connector-apple:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@logto/core-kit': 1.0.0-beta.30
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
@@ -295,7 +295,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@logto/core-kit': 1.0.0-beta.30
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
@@ -330,7 +330,7 @@ importers:
       '@aws-sdk/client-sesv2': ^3.224.0
       '@aws-sdk/types': ^3.226.0
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -358,7 +358,7 @@ importers:
     dependencies:
       '@aws-sdk/client-sesv2': 3.226.0
       '@aws-sdk/types': 3.226.0
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -390,7 +390,7 @@ importers:
     specifiers:
       '@azure/msal-node': ^1.12.0
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -417,7 +417,7 @@ importers:
       zod: ^3.20.2
     dependencies:
       '@azure/msal-node': 1.12.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -448,7 +448,7 @@ importers:
   packages/connector-discord:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -474,7 +474,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -505,7 +505,7 @@ importers:
   packages/connector-facebook:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -531,7 +531,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -562,7 +562,7 @@ importers:
   packages/connector-feishu-web:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -588,7 +588,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -619,7 +619,7 @@ importers:
   packages/connector-github:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -646,7 +646,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       query-string: 7.1.1
@@ -678,7 +678,7 @@ importers:
   packages/connector-google:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -704,7 +704,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -735,7 +735,7 @@ importers:
   packages/connector-kakao:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -761,7 +761,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -792,7 +792,7 @@ importers:
   packages/connector-mock-email:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -818,7 +818,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -849,7 +849,7 @@ importers:
   packages/connector-mock-email-alternative:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -875,7 +875,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -906,7 +906,7 @@ importers:
   packages/connector-mock-sms:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -932,7 +932,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -963,7 +963,7 @@ importers:
   packages/connector-mock-social:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -989,7 +989,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -1020,7 +1020,7 @@ importers:
   packages/connector-naver:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -1046,7 +1046,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -1077,7 +1077,7 @@ importers:
   packages/connector-oauth2:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -1104,7 +1104,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       query-string: 7.1.1
@@ -1136,7 +1136,7 @@ importers:
   packages/connector-oidc:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -1164,7 +1164,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       jose: 4.9.2
@@ -1197,7 +1197,7 @@ importers:
   packages/connector-sendgrid-email:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -1223,7 +1223,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -1254,7 +1254,7 @@ importers:
   packages/connector-smtp:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@logto/shared': 1.0.0-beta.8
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
@@ -1283,7 +1283,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@logto/shared': 1.0.0-beta.8
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
@@ -1317,7 +1317,7 @@ importers:
   packages/connector-tencent-sms:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -1343,7 +1343,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -1374,7 +1374,7 @@ importers:
   packages/connector-twilio-sms:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -1400,7 +1400,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -1431,7 +1431,7 @@ importers:
   packages/connector-wechat-native:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -1457,7 +1457,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -1488,7 +1488,7 @@ importers:
   packages/connector-wechat-web:
     specifiers:
       '@jest/types': ^29.3.1
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -1514,7 +1514,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
-      '@logto/connector-kit': 1.0.0-beta.32
+      '@logto/connector-kit': 1.0.0-beta.33
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       snakecase-keys: 5.4.4
@@ -3291,9 +3291,9 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@logto/connector-kit/1.0.0-beta.32:
-    resolution: {integrity: sha512-/hfeFU2m5G7OWJA/K+AaJuaYvzDsw0Av5yqsQepHmOPmTx22rS/yt3AfKGFA2Pqoo9YVSkCM2gV85GivMYM/hA==}
-    engines: {node: ^16.13.0 || ^18.12.0}
+  /@logto/connector-kit/1.0.0-beta.33:
+    resolution: {integrity: sha512-1trqE4nnWstgjkYmDC6y/28eIKL0pYXXM/6m1xZ1egPYdmoXDDK35wAlU8Rf4byFd3T7/LVIAYZOvfbwYIgbzg==}
+    engines: {node: ^18.12.0}
     dependencies:
       '@logto/core-kit': 1.0.0-beta.30
       '@logto/language-kit': 1.0.0-beta.30

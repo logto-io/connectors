@@ -19,6 +19,10 @@ describe('getAuthorizationUri', () => {
     const authorizationUri = await connector.getAuthorizationUri({
       state: 'some_state',
       redirectUri: 'http://localhost:3001/callback',
+      connectorId: 'some_connector_id',
+      connectorFactoryId: 'some_connector_factory_id',
+      jti: 'some_jti',
+      headers: {},
     });
     expect(authorizationUri).toEqual(
       `${authorizationEndpoint}?app_id=2021000000000000&redirect_uri=http%3A%2F%2Flocalhost%3A3001%2Fcallback&scope=auth_user&state=some_state`

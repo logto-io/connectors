@@ -19,7 +19,14 @@ describe('Facebook connector', () => {
       const redirectUri = 'http://localhost:3000/callback';
       const state = 'some_state';
       const connector = await createConnector({ getConfig });
-      const authorizationUri = await connector.getAuthorizationUri({ state, redirectUri });
+      const authorizationUri = await connector.getAuthorizationUri({
+        state,
+        redirectUri,
+        connectorId: 'some_connector_id',
+        connectorFactoryId: 'some_connector_factory_id',
+        jti: 'some_jti',
+        headers: {},
+      });
 
       const encodedRedirectUri = encodeURIComponent(redirectUri);
       expect(authorizationUri).toEqual(

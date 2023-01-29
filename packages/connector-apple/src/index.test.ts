@@ -28,6 +28,10 @@ describe('getAuthorizationUri', () => {
       {
         state: 'some_state',
         redirectUri: 'http://localhost:3000/callback',
+        connectorId: 'some_connector_id',
+        connectorFactoryId: 'some_connector_factory_id',
+        jti: 'some_jti',
+        headers: {},
       },
       setSession
     );
