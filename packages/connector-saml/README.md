@@ -5,7 +5,7 @@
 
 SAML (Security Assertion Markup Language) is an open standard for exchanging authentication and authorization data between parties, in particular, between an identity provider (IdP) and a service provider (SP). It allows users to authenticate with one system and then access resources in another system without having to re-enter their credentials. SAML is commonly used in enterprise environments and in federation scenarios, where multiple organizations need to share user authentication and authorization information.
 
-Logto serve as a SP and SAML connector help to build bridge between Logto and SAML IdPs, as a result, end-users should be able to take advantage of SAML IdPs to sign in to Logto account.
+Logto serve as a SP and SAML connector help to build bridges between Logto and SAML IdPs, as a result, end-users should be able to take advantage of SAML IdPs to sign in to Logto account.
 
 ## Create social IdP's account and register SAML application (IdP)
 
@@ -19,7 +19,7 @@ You also need to configure the ACS (Assertion Consumer Service) URL as `${your_l
 
 > ℹ️ **Note**
 > 
-> Per current Logto's design, we only support Redirect-binding for sending authentication request and POST-binding for receiving SAML assertion. Although this sound not cool, but we believe that the current design can handle most of your use cases. If you have any problems, feel free to reach out!
+> Per current Logto's design, we only support Redirect-binding for sending authentication request and POST-binding for receiving SAML assertion. Although this sounds not cool, but we believe that the current design can handle most of your use cases. If you have any problems, feel free to reach out!
 
 ## Configure SAML connector (SP)
 
@@ -27,11 +27,11 @@ In this section, we will introduce each attribute in detail.
 
 ### entityID
 
-`entityID` is Entity identifier. It is used to identify your entity (SAML SP entity), and match the equivalence in each SAML request/response.
+`entityID` (i.e. `issuer`) is Entity identifier. It is used to identify your entity (SAML SP entity), and match the equivalence in each SAML request/response.
 
 ### signInEndpoint
 
-The IdP's endpoint that you send SAML authentication requests to. Usually, you can find this value in IdP details page.
+The IdP's endpoint that you send SAML authentication requests to. Usually, you can find this value in IdP details page (i.e. IdP's `SSO URL` or `Login URL`).
 
 ### x509Certificate
 
@@ -39,11 +39,15 @@ The x509 certificate generated from IdPs private key, IdP is expected to have th
 
 ### idpMetadataXml
 
-The field is used to place contents from your IdP metadata XML file.<br/>You should remove all newlines and multiple consecutive spaces (more than 1 space), and add a backslash `\` before all double quotes `"` symbol.
+The field is used to place contents from your IdP metadata XML file.<br/>You should remove all newlines and multiple consecutive spaces (more than 1 space), and add a backslash `\` before all double quotes `"` symbols.
+
+> ℹ️ **Note**
+> 
+> The XML parser we are using does not support customized namespace.<br/>If the IdP metadata comes with namespace, you should manually remove them.<br/>For namespace of XML file, see [reference](http://www.xmlmaster.org/en/article/d01/c10/).
 
 ### assertionConsumerServiceUrl
 
-The assertion consumer service (ACS) URL is the SP's endpoint to receive IdP's SAML Assertion POST requests. As we mentioned in previous part, it is usually configured at IdP settings but some IdP get this value from SAML authentication requests, we hence also add this value as a REQUIRED field.
+The assertion consumer service (ACS) URL is the SP's endpoint to receive IdP's SAML Assertion POST requests. As we mentioned in previous part, it is usually configured at IdP settings but some IdP get this value from SAML authentication requests, we hence also add this value as a REQUIRED field. It's value should look like `${your_logto_origin}/api/saml-assertion-handler/${connector_id}`.
 
 ### signAuthnRequest
 
@@ -59,7 +63,7 @@ The boolean value that controls whether SAML authentication request should be si
 
 ### requestSignatureAlgorithm
 
-This should be align with signature algorithms of IdP so that Logto can verify the signature of SAML assertion. It's value should be either `RSA_SHA1`, `RSA_SHA256` or `RSA_SHA512` and the default value is `RSA_SHA256`.
+This should be align with signature algorithms of IdP so that Logto can verify the signature of SAML assertion. It's value should be either `http://www.w3.org/2000/09/xmldsig#rsa-sha1`, `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256` or `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512` and the default value is `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`.
 
 ### messageSigningOrder
 
@@ -67,24 +71,22 @@ This should be align with signature algorithms of IdP so that Logto can verify t
 
 ### privateKey and privateKeyPass
 
-`priveteKey` is an OPTIONAL value and is required when `signAuthnRequest` is `true`.<br/>`privateKeyPass` is the password you've set when creating `privateKey`, required when necessary.
-
-If `signAuthnRequest` is `true`, the corresponding certificate generated from `privateKey` is required by IdP for checking the signature.
+`privateKey` is an OPTIONAL value and is required when `signAuthnRequest` is `true`.<br/>`privateKeyPass` is the password you've set when creating `privateKey`, required when necessary.<br/>If `signAuthnRequest` is `true`, the corresponding certificate generated from `privateKey` is required by IdP for checking the signature.
 
 ### encPrivateKey and encPrivateKeyPass
 
-`encPrivateKey` is an OPTIONAL value and is required when `encryptAssertion` is `true`.<br/>`encPrivateKeyPass` is the password you've set when creating `encPrivateKey`, required when necessary.
-
-If `encryptAssertion` is `true`, the corresponding certificate generated from `encPrivateKey` is required by IdP for encrypting SAML assertion.
+`encPrivateKey` is an OPTIONAL value and is required when `encryptAssertion` is `true`.<br/>`encPrivateKeyPass` is the password you've set when creating `encPrivateKey`, required when necessary.<br/>If `encryptAssertion` is `true`, the corresponding certificate generated from `encPrivateKey` is required by IdP for encrypting SAML assertion.
 
 > ℹ️ **Note**
 > 
 > For keys and certificates generation, `openssl` is a wonderful tool. Here is sample command line that might be helpful:
 > 
 > ```bash
-> openssl genrsa -passout pass:foobar -out encryptPrivateKey.pem 4096
-> openssl req -new -x509 -key encryptPrivateKey.pem -out encryptionCert.cer -days 3650
+> openssl genrsa -passout pass:${privateKeyPassword} -out ${encryptPrivateKeyFilename}.pem 4096
+> openssl req -new -x509 -key ${encryptPrivateKeyFilename}.pem -out ${encryptionCertificateFilename}.cer -days 3650
 > ```
+>
+> `privateKey` and `encPrivateKey` files are enforced to be encoded in `pkcs1` scheme as pem string, which means the private key files should start with `-----BEGIN RSA PRIVATE KEY-----` and end with `-----END RSA PRIVATE KEY-----`.
 
 ### nameIDFormat
 
@@ -134,8 +136,8 @@ Here is an example of SAML connector config JSON.
 | idpMetadataXml              | string     | true     |               |
 | entityID                    | string     | true     |               |
 | assertionConsumerServiceUrl | string     | true     |               |
-| messageSigningOrder         | 'encrypt-then-sign' \| 'sign-then-encrypt' | false | 'sign-then-encrypt' |
-| requestSignatureAlgorithm   | 'RSA_SHA1' \| 'RSA_SHA256' \| 'RSA_SHA512' | false | 'RSA_SHA256' |
+| messageSigningOrder         | `encrypt-then-sign` \| `sign-then-encrypt` | false | `sign-then-encrypt` |
+| requestSignatureAlgorithm   | `http://www.w3.org/2000/09/xmldsig#rsa-sha1` \| `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256` \| `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512` | false | `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256` |
 | signAuthnRequest            | boolean    | false    | false         |
 | encryptAssertion            | boolean    | false    | false         |
 | privateKey                  | string     | false    |               |

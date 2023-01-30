@@ -23,21 +23,6 @@ export const defaultMetadata: ConnectorMetadata = {
 
 export const defaultTimeout = 10_000;
 
-export const signingAlgorithms = ['RSA_SHA1', 'RSA_SHA256', 'RSA_SHA512'] as const;
-
-export const signingAlgorithmMapping = (signingAlgorithm: string): string => {
-  switch (signingAlgorithm) {
-    case 'RSA_SHA1':
-      return 'http://www.w3.org/2000/09/xmldsig#rsa-sha1';
-    case 'RSA_SHA512':
-      return 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha512';
-    // eslint-disable-next-line unicorn/no-useless-switch-case
-    case 'RSA_SHA256':
-    default:
-      return 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256';
-  }
-};
-
 export const authnRequestBinding = ['HTTP-Redirect'] as const;
 
 export const assertionBinding = ['HTTP-POST'] as const;

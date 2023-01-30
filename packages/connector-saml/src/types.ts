@@ -4,10 +4,15 @@ import { z } from 'zod';
 import {
   assertionBinding,
   authnRequestBinding,
-  signingAlgorithms,
   defaultTimeout,
   messageSigningOrders,
 } from './constant.js';
+
+export enum SigningAlgorithm {
+  RSA_SHA1 = 'http://www.w3.org/2000/09/xmldsig#rsa-sha1',
+  RSA_SHA256 = 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
+  RSA_SHA512 = 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha512',
+}
 
 export const profileMapGuard = z
   .object({
@@ -36,7 +41,10 @@ export const samlConfigGuard = z
     idpMetadataXml: z.string(),
     assertionConsumerServiceUrl: z.string(),
     signAuthnRequest: z.boolean().optional().default(false),
-    requestSignatureAlgorithm: z.enum(signingAlgorithms).optional().default('RSA_SHA256'),
+    requestSignatureAlgorithm: z
+      .nativeEnum(SigningAlgorithm)
+      .optional()
+      .default(SigningAlgorithm.RSA_SHA256),
     messageSigningOrder: z.enum(messageSigningOrders).optional().default('sign-then-encrypt'),
     encryptAssertion: z.boolean().optional().default(false),
     privateKey: z.string().optional(),

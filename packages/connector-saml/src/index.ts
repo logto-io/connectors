@@ -16,7 +16,7 @@ import { assert } from '@silverhand/essentials';
 import * as saml from 'samlify';
 import { z } from 'zod';
 
-import { defaultMetadata, signingAlgorithmMapping } from './constant.js';
+import { defaultMetadata } from './constant.js';
 import { samlConfigGuard } from './types.js';
 import type { SamlConfig } from './types.js';
 import { samlAssertionHandler, getUserInfoFromRawUserProfile } from './utils.js';
@@ -39,14 +39,14 @@ const getAuthorizationUri =
     } = samlConfigGuard.parse(config);
 
     assert(
-      connectorId !== '',
+      connectorId,
       new ConnectorError(ConnectorErrorCodes.InvalidRequestParameters, {
         message: 'Can not find string-typed variable `connectorId` from connector session.',
       })
     );
 
     assert(
-      connectorFactoryId !== '',
+      connectorFactoryId,
       new ConnectorError(ConnectorErrorCodes.InvalidRequestParameters, {
         message: 'Can not find string-typed variable `connectorFactoryId` from connector session.',
       })
@@ -75,7 +75,7 @@ const getAuthorizationUri =
         nameIDFormat,
         signingCert: x509Certificate,
         authnRequestsSigned: signAuthnRequest,
-        requestSignatureAlgorithm: signingAlgorithmMapping(requestSignatureAlgorithm),
+        requestSignatureAlgorithm,
         privateKey,
         privateKeyPass,
         assertionConsumerService: [
@@ -90,10 +90,6 @@ const getAuthorizationUri =
 
       return loginRequest.context;
     } catch (error: unknown) {
-      if (error instanceof ConnectorError) {
-        throw error;
-      }
-
       throw new ConnectorError(ConnectorErrorCodes.General, error);
     }
   };
@@ -119,13 +115,13 @@ export const validateSamlAssertion =
     await samlAssertionHandler(assertion, parsedConfig, setSession);
 
     assert(
-      state && state !== '',
+      state,
       new ConnectorError(ConnectorErrorCodes.General, {
         message: 'Can not find `state` from connector session.',
       })
     );
     assert(
-      redirectUri && redirectUri !== '',
+      redirectUri,
       new ConnectorError(ConnectorErrorCodes.General, {
         message: 'Can not find `redirectUri` from connector session.',
       })

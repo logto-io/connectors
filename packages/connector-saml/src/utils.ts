@@ -106,10 +106,6 @@ export const samlAssertionHandler = async (
       },
     });
   } catch (error: unknown) {
-    if (error instanceof ConnectorError) {
-      throw error;
-    }
-
     throw new ConnectorError(ConnectorErrorCodes.General, error);
   }
 };
