@@ -27,9 +27,13 @@
     "@logto/connector-tencent-sms": "1.0.0-beta.15",
     "@logto/connector-twilio-sms": "1.0.0-beta.15",
     "@logto/connector-wechat-native": "1.0.0-beta.15",
-    "@logto/connector-wechat-web": "1.0.0-beta.15"
+    "@logto/connector-wechat-web": "1.0.0-beta.15",
+    "@logto/connector-saml": "1.0.0-beta.0"
   },
   "changesets": [
+    "green-bees-cross",
+    "pretty-wombats-deny",
+    "rich-fans-sip",
     "selfish-beers-kiss",
     "short-mugs-return"
   ]
