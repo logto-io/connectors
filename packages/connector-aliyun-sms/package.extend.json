@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package",
   "name": "@logto/connector-aliyun-sms",
-  "version": "1.0.0-beta.16",
+  "version": "1.0.0-beta.17",
   "description": "Aliyun SMS connector implementation."
 }
