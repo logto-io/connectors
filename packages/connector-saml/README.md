@@ -110,7 +110,7 @@ Here is an example of SAML connector config JSON.
   "idpMetadataXml": "<EntityDescriptor entityID=\"urn:dev.logto.io\" xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\"><IDPSSODescriptor protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\"><KeyDescriptor use=\"signing\">...</IDPSSODescriptor></EntityDescriptor>",
   "signInEndpoint": "<idp-sign-in-endpoint>",
   "x509Certificate": "-----BEGIN CERTIFICATE-----MIIDHTCCAgWg[...]jel7/YMPLKwg+Iau7-----END CERTIFICATE-----",
-  "assertionConsumerServiceUrl": "https://<your-logto-domain>/api/saml-assertion/handler/<saml-connector-id>",
+  "assertionConsumerServiceUrl": "https://<your-logto-domain>/api/saml-assertion-handler/<saml-connector-id>",
   "messageSigningOrder": "encrypt-then-sign",
   "requestSignatureAlgorithm": "RSA_SHA1",
   "signAuthnRequest": true,
