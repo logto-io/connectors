@@ -25,19 +25,19 @@ You also need to configure the ACS (Assertion Consumer Service) URL as `${your_l
 
 In this section, we will introduce each attribute in detail.
 
-### entityID
+### entityID `Required`
 
 `entityID` (i.e. `issuer`) is Entity identifier. It is used to identify your entity (SAML SP entity), and match the equivalence in each SAML request/response.
 
-### signInEndpoint
+### signInEndpoint `Required`
 
 The IdP's endpoint that you send SAML authentication requests to. Usually, you can find this value in IdP details page (i.e. IdP's `SSO URL` or `Login URL`).
 
-### x509Certificate
+### x509Certificate `Required`
 
 The x509 certificate generated from IdPs private key, IdP is expected to have this value available.<br/>The content of the certificate comes with `-----BEGIN CERTIFICATE-----` header and `-----END CERTIFICATE-----` tail. You should remove or replace newlines in the content with `\n` and then fill-in the value as string.
 
-### idpMetadataXml
+### idpMetadataXml `Required`
 
 The field is used to place contents from your IdP metadata XML file.<br/>You should remove all newlines and multiple consecutive spaces (more than 1 space), and add a backslash `\` before all double quotes `"` symbols.
 
@@ -45,7 +45,7 @@ The field is used to place contents from your IdP metadata XML file.<br/>You sho
 > 
 > The XML parser we are using does not support customized namespace.<br/>If the IdP metadata comes with namespace, you should manually remove them.<br/>For namespace of XML file, see [reference](http://www.xmlmaster.org/en/article/d01/c10/).
 
-### assertionConsumerServiceUrl
+### assertionConsumerServiceUrl `Required`
 
 The assertion consumer service (ACS) URL is the SP's endpoint to receive IdP's SAML Assertion POST requests. As we mentioned in previous part, it is usually configured at IdP settings but some IdP get this value from SAML authentication requests, we hence also add this value as a REQUIRED field. It's value should look like `${your_logto_origin}/api/saml-assertion-handler/${connector_id}`.
 
@@ -63,7 +63,7 @@ The boolean value that controls whether SAML authentication request should be si
 
 ### requestSignatureAlgorithm
 
-This should be align with signature algorithms of IdP so that Logto can verify the signature of SAML assertion. It's value should be either `http://www.w3.org/2000/09/xmldsig#rsa-sha1`, `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256` or `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512` and the default value is `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`.
+This should be aligned with the signature algorithms of IdP so that Logto can verify the signature of the SAML assertion. Its value should be either `http://www.w3.org/2000/09/xmldsig#rsa-sha1`, `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256` or `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512` and the default value is `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`.
 
 ### messageSigningOrder
 
