@@ -1,5 +1,11 @@
 # @logto/connector-saml
 
+## 1.0.0-beta.2
+
+### Patch Changes
+
+- 9ff0638: update connector-kit version
+
 ## 1.0.0-beta.1
 
 ### Minor Changes

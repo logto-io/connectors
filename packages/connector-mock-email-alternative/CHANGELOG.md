@@ -1,5 +1,11 @@
 # @logto/connector-mock-standard-email
 
+## 1.0.0-beta.18
+
+### Patch Changes
+
+- 9ff0638: update connector-kit version
+
 ## 1.0.0-beta.17
 
 ### Minor Changes
