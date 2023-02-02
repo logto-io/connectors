@@ -2,5 +2,8 @@
   "$schema": "https://json.schemastore.org/package",
   "name": "@logto/connector-aliyun-sms",
   "version": "1.0.0-beta.17",
-  "description": "Aliyun SMS connector implementation."
+  "description": "Aliyun SMS connector implementation.",
+  "devDependencies": {
+    "libphonenumber-js": "^1.9.49"
+  }
 }

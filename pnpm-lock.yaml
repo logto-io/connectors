@@ -226,6 +226,7 @@ importers:
       got: ^12.5.3
       jest: ^29.3.1
       jest-matcher-specific-error: ^1.0.0
+      libphonenumber-js: ^1.9.49
       lint-staged: ^13.0.0
       nock: ^13.2.2
       prettier: ^2.8.1
@@ -256,6 +257,7 @@ importers:
       eslint: 8.23.0
       jest: 29.3.1_@types+node@16.11.56
       jest-matcher-specific-error: 1.0.0
+      libphonenumber-js: 1.10.19
       lint-staged: 13.0.3
       nock: 13.2.9
       prettier: 2.8.1
@@ -7036,6 +7038,10 @@ packages:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
+    dev: true
+
+  /libphonenumber-js/1.10.19:
+    resolution: {integrity: sha512-MDZ1zLIkfSDZV5xBta3nuvbEOlsnKCPe4z5r3hyup/AXveevkl9A1eSWmLhd2FX4k7pJDe4MrLeQsux0HI/VWg==}
     dev: true
 
   /lilconfig/2.0.5:

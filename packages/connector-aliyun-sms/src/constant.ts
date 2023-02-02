@@ -1,6 +1,6 @@
 import type { ConnectorMetadata } from '@logto/connector-kit';
 
-export const endpoint = 'https://dysmsapi.aliyuncs.com/';
+export const defaultEndpoint = 'https://dysmsapi.aliyuncs.com/';
 
 export const staticConfigs = {
   Format: 'json',

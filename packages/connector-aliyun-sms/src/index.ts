@@ -13,6 +13,7 @@ import {
 } from '@logto/connector-kit';
 import { assert } from '@silverhand/essentials';
 import { HTTPError } from 'got';
+import { parsePhoneNumberWithError } from 'libphonenumber-js';
 
 import { defaultMetadata } from './constant.js';
 import { sendSms } from './single-send-text.js';
@@ -25,13 +26,22 @@ const sendMessage =
     const { to, type, payload } = data;
     const config = inputConfig ?? (await getConfig(defaultMetadata.id));
     validateConfig<AliyunSmsConfig>(config, aliyunSmsConfigGuard);
+
+    const phoneNumber = parsePhoneNumberWithError(to); // Phone number has already been parsed to enforce that it consists with the pure digit format of "region code + phone number".
+    const { countryCallingCode, country } = phoneNumber; // `country` is 'CN'; `countryCallingCode` is '86', see https://gitlab.com/catamphetamine/libphonenumber-js for reference
+
     const { accessKeyId, accessKeySecret, signName, templates } = config;
-    const template = templates.find(({ usageType }) => usageType === type);
+    const template = templates.find(
+      ({ usageType, countryCode, regionCode }) =>
+        usageType === type && (country === countryCode || countryCallingCode === regionCode)
+    );
 
     assert(
       template,
       new ConnectorError(ConnectorErrorCodes.TemplateNotFound, `Cannot find template!`)
     );
+
+    const { regionId: RegionId, endpoint, templateCode, version: Version } = template;
 
     try {
       const httpResponse = await sendSms(
@@ -39,10 +49,13 @@ const sendMessage =
           AccessKeyId: accessKeyId,
           PhoneNumbers: to,
           SignName: signName,
-          TemplateCode: template.templateCode,
+          TemplateCode: templateCode,
           TemplateParam: JSON.stringify(payload),
+          // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+          ...(RegionId || Version ? { RegionId, Version } : {}),
         },
-        accessKeySecret
+        accessKeySecret,
+        endpoint
       );
 
       const { body: rawBody } = httpResponse;
