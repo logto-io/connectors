@@ -52,6 +52,8 @@ const templateGuard = z.object({
 });
 
 export const aliyunSmsConfigGuard = z.object({
+  // https://help.aliyun.com/document_detail/419270.html
+  endpoint: z.string().nullable().default('https://dysmsapi.aliyuncs.com/'),
   accessKeyId: z.string(),
   accessKeySecret: z.string(),
   signName: z.string(),

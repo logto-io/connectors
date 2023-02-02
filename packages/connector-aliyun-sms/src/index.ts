@@ -25,7 +25,7 @@ const sendMessage =
     const { to, type, payload } = data;
     const config = inputConfig ?? (await getConfig(defaultMetadata.id));
     validateConfig<AliyunSmsConfig>(config, aliyunSmsConfigGuard);
-    const { accessKeyId, accessKeySecret, signName, templates } = config;
+    const { endpoint, accessKeyId, accessKeySecret, signName, templates } = config;
     const template = templates.find(({ usageType }) => usageType === type);
 
     assert(
@@ -33,8 +33,11 @@ const sendMessage =
       new ConnectorError(ConnectorErrorCodes.TemplateNotFound, `Cannot find template!`)
     );
 
+    const _endpoint = endpoint ?? 'https://dysmsapi.aliyuncs.com/';
+
     try {
       const httpResponse = await sendSms(
+        _endpoint,
         {
           AccessKeyId: accessKeyId,
           PhoneNumbers: to,

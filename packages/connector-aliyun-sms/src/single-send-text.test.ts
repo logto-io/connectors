@@ -13,6 +13,7 @@ describe('sendSms', () => {
     const code = mockedRandomCode;
 
     await sendSms(
+      'https://dysmsapi.aliyuncs.com',
       {
         AccessKeyId: '<access-key-id>',
         PhoneNumbers: '13912345678',
