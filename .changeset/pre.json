@@ -31,6 +31,7 @@
     "@logto/connector-saml": "1.0.0-beta.0"
   },
   "changesets": [
+    "afraid-mangos-fly",
     "green-bees-cross",
     "pretty-wombats-deny",
     "rich-fans-sip",
