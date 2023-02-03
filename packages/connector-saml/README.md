@@ -90,7 +90,7 @@ This should be aligned with the signature algorithms of IdP so that Logto can ve
 
 ### nameIDFormat
 
-`nameIDFormat` is an OPTIONAL attribute that declares the name id format that would respond. The request will always pick the first one if multiple formats are specified.
+`nameIDFormat` is an OPTIONAL attribute that declares the name id format that would respond. The value can be among `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified`, `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`, `urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName`, `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` and `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`, and the default value is `urn:oasis:names:tc:SAML:2.0:nameid-format:unspecified`.
 
 ### timeout
 
@@ -142,7 +142,7 @@ Here is an example of SAML connector config JSON.
 | encryptAssertion            | boolean    | false    | false         |
 | privateKey                  | string     | false    |               |
 | privateKeyPass              | string     | false    |               |
-| nameIDFormat                | string[]   | false    |               |
+| nameIDFormat                | `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified` \| `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress` \| `urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName` \| `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` \| `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` | false | `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified` |
 | timeout                     | number     | false    | 5000          |
 | profileMap                  | ProfileMap | false    |               |
 

@@ -14,6 +14,14 @@ export enum SigningAlgorithm {
   RSA_SHA512 = 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha512',
 }
 
+export enum NameIDFormat {
+  Unspecified = 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified',
+  EmailAddress = 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
+  x590SubjectName = 'urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName',
+  Persistent = 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent',
+  Transient = 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
+}
+
 export const profileMapGuard = z
   .object({
     id: z.string().optional().default('id'),
@@ -51,7 +59,11 @@ export const samlConfigGuard = z
     privateKeyPass: z.string().optional(),
     encPrivateKey: z.string().optional(),
     encPrivateKeyPass: z.string().optional(),
-    nameIDFormat: z.string().array().optional(),
+    nameIDFormat: z
+      .nativeEnum(NameIDFormat)
+      .optional()
+      .default(NameIDFormat.Unspecified)
+      .transform((nameIDFormat) => [nameIDFormat]),
     timeout: z.number().optional().default(defaultTimeout), // In milliseconds.
     authnRequestBinding: z.enum(authnRequestBinding).optional().default('HTTP-Redirect'),
     assertionBinding: z.enum(assertionBinding).optional().default('HTTP-POST'),
