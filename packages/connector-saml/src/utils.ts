@@ -1,5 +1,6 @@
 import type { SetSession } from '@logto/connector-kit';
 import { ConnectorError, ConnectorErrorCodes, socialUserInfoGuard } from '@logto/connector-kit';
+import { conditional } from '@silverhand/essentials';
 import { XMLValidator } from 'fast-xml-parser';
 import * as saml from 'samlify';
 
@@ -61,17 +62,17 @@ export const samlAssertionHandler = async (
   // eslint-disable-next-line new-cap
   const identityProvider = saml.IdentityProvider({
     metadata: idpMetadataXml,
-    messageSigningOrder,
     isAssertionEncrypted: encryptAssertion,
+    messageSigningOrder,
   });
   // eslint-disable-next-line new-cap
   const serviceProvider = saml.ServiceProvider({
     entityID,
     signingCert: x509Certificate,
     isAssertionEncrypted: encryptAssertion,
-    encPrivateKey,
-    encPrivateKeyPass,
     clockDrifts: [-timeout, timeout],
+    encPrivateKey: conditional(encryptAssertion && encPrivateKey),
+    encPrivateKeyPass: conditional(encryptAssertion && encPrivateKeyPass),
   });
 
   // Used to check whether xml content is valid in format.

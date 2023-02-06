@@ -12,7 +12,7 @@ import {
   validateConfig,
   ConnectorType,
 } from '@logto/connector-kit';
-import { assert } from '@silverhand/essentials';
+import { assert, conditional } from '@silverhand/essentials';
 import * as saml from 'samlify';
 import { z } from 'zod';
 
@@ -75,15 +75,15 @@ const getAuthorizationUri =
         nameIDFormat,
         signingCert: x509Certificate,
         authnRequestsSigned: signAuthnRequest,
-        requestSignatureAlgorithm,
-        privateKey,
-        privateKeyPass,
         assertionConsumerService: [
           {
             Location: assertionConsumerServiceUrl,
             Binding: saml.Constants.BindingNamespace.Post,
           },
         ],
+        requestSignatureAlgorithm,
+        privateKey: conditional(signAuthnRequest && privateKey),
+        privateKeyPass: conditional(signAuthnRequest && privateKeyPass),
       });
 
       const loginRequest = serviceProvider.createLoginRequest(identityProvider, 'redirect');
