@@ -82,8 +82,7 @@ const getAuthorizationUri =
           },
         ],
         requestSignatureAlgorithm,
-        privateKey: conditional(signAuthnRequest && privateKey),
-        privateKeyPass: conditional(signAuthnRequest && privateKeyPass),
+        ...conditional(signAuthnRequest && { privateKey, privateKeyPass }),
       });
 
       const loginRequest = serviceProvider.createLoginRequest(identityProvider, 'redirect');

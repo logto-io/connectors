@@ -71,8 +71,7 @@ export const samlAssertionHandler = async (
     signingCert: x509Certificate,
     isAssertionEncrypted: encryptAssertion,
     clockDrifts: [-timeout, timeout],
-    encPrivateKey: conditional(encryptAssertion && encPrivateKey),
-    encPrivateKeyPass: conditional(encryptAssertion && encPrivateKeyPass),
+    ...conditional(encryptAssertion && { encPrivateKey, encPrivateKeyPass }),
   });
 
   // Used to check whether xml content is valid in format.
