@@ -35,15 +35,21 @@ The IdP's endpoint that you send SAML authentication requests to. Usually, you c
 
 ### x509Certificate `Required`
 
-The x509 certificate generated from IdPs private key, IdP is expected to have this value available.<br/>The content of the certificate comes with `-----BEGIN CERTIFICATE-----` header and `-----END CERTIFICATE-----` tail. You should remove or replace newlines in the content with `\n` and then fill-in the value as string.
+The x509 certificate generated from IdPs private key, IdP is expected to have this value available.
+
+The content of the certificate comes with `-----BEGIN CERTIFICATE-----` header and `-----END CERTIFICATE-----` tail. You should remove or replace newlines in the content with `\n` and then fill-in the value as string.
 
 ### idpMetadataXml `Required`
 
-The field is used to place contents from your IdP metadata XML file.<br/>You should remove all newlines and multiple consecutive spaces (more than 1 space), and add a backslash `\` before all double quotes `"` symbols.
+The field is used to place contents from your IdP metadata XML file.
+
+You should remove all newlines and multiple consecutive spaces (more than 1 space), and add a backslash `\` before all double quotes `"` symbols.
 
 > ℹ️ **Note**
 > 
-> The XML parser we are using does not support customized namespace.<br/>If the IdP metadata comes with namespace, you should manually remove them.<br/>For namespace of XML file, see [reference](http://www.xmlmaster.org/en/article/d01/c10/).
+> The XML parser we are using does not support customized namespace.
+> If the IdP metadata comes with namespace, you should manually remove them.
+> For namespace of XML file, see [reference](http://www.xmlmaster.org/en/article/d01/c10/).
 
 ### assertionConsumerServiceUrl `Required`
 
@@ -59,7 +65,8 @@ The boolean value that controls whether SAML authentication request should be si
 
 > ℹ️ **Note**
 > 
-> `signAuthnRequest` and `encryptAssertion` attributes should align with corresponding parameters of IdP setting, otherwise error will be thrown to show that configuration does not match.<br/>All SAML responses need to be signed.
+> `signAuthnRequest` and `encryptAssertion` attributes should align with corresponding parameters of IdP setting, otherwise error will be thrown to show that configuration does not match.
+> All SAML responses need to be signed.
 
 ### requestSignatureAlgorithm
 
@@ -71,11 +78,19 @@ This should be aligned with the signature algorithms of IdP so that Logto can ve
 
 ### privateKey and privateKeyPass
 
-`privateKey` is an OPTIONAL value and is required when `signAuthnRequest` is `true`.<br/>`privateKeyPass` is the password you've set when creating `privateKey`, required when necessary.<br/>If `signAuthnRequest` is `true`, the corresponding certificate generated from `privateKey` is required by IdP for checking the signature.
+`privateKey` is an OPTIONAL value and is required when `signAuthnRequest` is `true`.
+
+`privateKeyPass` is the password you've set when creating `privateKey`, required when necessary.
+
+If `signAuthnRequest` is `true`, the corresponding certificate generated from `privateKey` is required by IdP for checking the signature.
 
 ### encPrivateKey and encPrivateKeyPass
 
-`encPrivateKey` is an OPTIONAL value and is required when `encryptAssertion` is `true`.<br/>`encPrivateKeyPass` is the password you've set when creating `encPrivateKey`, required when necessary.<br/>If `encryptAssertion` is `true`, the corresponding certificate generated from `encPrivateKey` is required by IdP for encrypting SAML assertion.
+`encPrivateKey` is an OPTIONAL value and is required when `encryptAssertion` is `true`.
+
+`encPrivateKeyPass` is the password you've set when creating `encPrivateKey`, required when necessary.
+
+If `encryptAssertion` is `true`, the corresponding certificate generated from `encPrivateKey` is required by IdP for encrypting SAML assertion.
 
 > ℹ️ **Note**
 > 
