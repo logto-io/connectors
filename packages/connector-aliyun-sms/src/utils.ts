@@ -49,18 +49,11 @@ export const request = async (
   };
   const signature = getSignature(finalParameters, accessKeySecret, 'POST');
 
-  const payload = new URLSearchParams();
-
-  for (const [key, value] of Object.entries(finalParameters)) {
-    payload.append(key, value);
-  }
-  payload.append('Signature', signature);
-
   return got.post({
     url,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
-    form: payload,
+    form: { ...finalParameters, Signature: signature },
   });
 };
