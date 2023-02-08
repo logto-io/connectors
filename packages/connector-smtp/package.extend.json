@@ -5,8 +5,7 @@
   "description": "SMTP connector implementation.",
   "author": "Silverhand Inc. <contact@silverhand.io>",
   "dependencies": {
-    "nodemailer": "^6.7.5",
-    "@logto/shared": "1.0.0-beta.8"
+    "nodemailer": "^6.7.5"
   },
   "devDependencies": {
     "@types/nodemailer": "^6.4.4"
