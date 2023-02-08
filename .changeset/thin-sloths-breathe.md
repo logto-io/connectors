@@ -2,4 +2,5 @@
 "@logto/connector-smtp": patch
 ---
 
-Remove the dependency on @logto/shared.
+1. Remove the dependency on @logto/shared.
+2. Do not check the email format since we have blocked invalid inputs at FE.
