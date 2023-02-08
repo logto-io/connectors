@@ -29,10 +29,10 @@ describe('request', () => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const calledData = post.mock.calls[0];
     expect(calledData).not.toBeUndefined();
-    const payload = calledData?.[0].form as URLSearchParams;
-    expect(payload.get('AccessKeyId')).toEqual('testid');
-    expect(payload.get('Timestamp')).not.toBeNull();
-    expect(payload.get('SignatureNonce')).not.toBeNull();
-    expect(payload.get('Signature')).not.toBeNull();
+    const payload = calledData?.[0].form as Record<string, unknown>;
+    expect(payload.AccessKeyId).toEqual('testid');
+    expect(payload.Timestamp).not.toBeNull();
+    expect(payload.SignatureNonce).not.toBeNull();
+    expect(payload.Signature).not.toBeNull();
   });
 });
