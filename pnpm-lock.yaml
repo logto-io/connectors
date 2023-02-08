@@ -1316,7 +1316,6 @@ importers:
     specifiers:
       '@jest/types': ^29.3.1
       '@logto/connector-kit': 1.0.0-rc.0
-      '@logto/shared': 1.0.0-beta.8
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -1345,7 +1344,6 @@ importers:
       zod: ^3.20.2
     dependencies:
       '@logto/connector-kit': 1.0.0-rc.0
-      '@logto/shared': 1.0.0-beta.8
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       nodemailer: 6.7.8
@@ -3427,16 +3425,6 @@ packages:
     resolution: {integrity: sha512-8H3wIkw1xLtYCxCy6oAie3DK187aPqQiibpnPErRlnE57wQTtcJm5mCuRM5OvFxY5ANDDslHgvGTaZO0Umq+aA==}
     engines: {node: ^18.12.0}
     optionalDependencies:
-      zod: 3.20.2
-    dev: false
-
-  /@logto/shared/1.0.0-beta.8:
-    resolution: {integrity: sha512-qgG/vTTBCyfpveGRQZ7GcGDUz2dkoUhPkRO4eQhtYpxkV9lA8BP6gOQen6hnlwZKc4YnnbSuTqh2HZRZY0YyMw==}
-    engines: {node: ^16.0.0}
-    deprecated: this package has been deprecated, use `@logto/core-kit` instead
-    dependencies:
-      color: 4.2.3
-      nanoid: 3.3.4
       zod: 3.20.2
     dev: false
 

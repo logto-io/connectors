@@ -1,4 +1,3 @@
-import { emailRegEx } from '@logto/shared';
 import { z } from 'zod';
 
 /**
@@ -101,8 +100,8 @@ export const smtpBaseConfigGuard = z
     host: z.string(),
     port: z.number(),
     auth: authGuard,
-    fromEmail: z.string().regex(emailRegEx),
-    replyTo: z.string().regex(emailRegEx).optional(),
+    fromEmail: z.string(),
+    replyTo: z.string().optional(),
     templates: z.array(templateGuard).refine(
       (templates) =>
         requiredTemplateUsageTypes.every((requiredType) =>
