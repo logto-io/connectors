@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.0-beta.19
+
+### Patch Changes
+
+- 0581ba0: 1. Remove the dependency on @logto/shared. 2. Do not check the email format since we have blocked invalid inputs on frontend; Also no need to check the format for a custom sign-in since it should be decided by the developer.
+
 ## 1.0.0-beta.18
 
 ### Patch Changes

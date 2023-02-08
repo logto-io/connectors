@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.0-beta.19
+
+### Patch Changes
+
+- 5fab4c2: Update the format of parameters passed into got.post to fit the change of got v12.
+
 ## 1.0.0-beta.18
 
 ### Patch Changes
