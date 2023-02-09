@@ -24,7 +24,7 @@
     "prepack": "pnpm build"
   },
   "dependencies": {
-    "@logto/connector-kit": "1.0.0-rc.0",
+    "@logto/connector-kit": "1.0.0-rc.1",
     "@silverhand/essentials": "2.1.0",
     "got": "^12.5.3",
     "snakecase-keys": "^5.1.0",

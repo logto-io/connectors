@@ -1,5 +1,135 @@
-import type { ConnectorMetadata } from '@logto/connector-kit';
-import { ConnectorPlatform } from '@logto/connector-kit';
+import type { ConnectorConfigFormItem, ConnectorMetadata } from '@logto/connector-kit';
+import { ConnectorPlatform, ConnectorConfigFormItemType } from '@logto/connector-kit';
+
+export const formItems: ConnectorConfigFormItem[] = [
+  {
+    type: ConnectorConfigFormItemType.Text,
+    label: 'entityID',
+    key: 'entityID',
+    required: true,
+  },
+  {
+    type: ConnectorConfigFormItemType.Text,
+    label: 'signInEndpoint',
+    key: 'signInEndpoint',
+    required: true,
+  },
+  {
+    type: ConnectorConfigFormItemType.MultilineText,
+    label: 'x509Certificate',
+    key: 'x509Certificate',
+    required: true,
+    placeholder:
+      '-----BEGIN CERTIFICATE-----\nMIIDHTCCAgWg[...]jel7/YMPLKwg+Iau7\n-----END CERTIFICATE-----',
+  },
+  {
+    type: ConnectorConfigFormItemType.MultilineText,
+    label: 'idpMetadataXml',
+    key: 'idpMetadataXml',
+    required: true,
+  },
+  {
+    type: ConnectorConfigFormItemType.Text,
+    label: 'assertionConsumerServiceUrl',
+    key: 'assertionConsumerServiceUrl',
+    required: true,
+  },
+  {
+    type: ConnectorConfigFormItemType.Select,
+    label: 'requestSignatureAlgorithm',
+    key: 'requestSignatureAlgorithm',
+    selectItems: [
+      { value: 'http://www.w3.org/2000/09/xmldsig#rsa-sha1', title: 'RSA SHA1' },
+      {
+        value: 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
+        title: 'RSA SHA256',
+      },
+      {
+        value: 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha512',
+        title: 'RSA SHA512',
+      },
+    ],
+    defaultValue: 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
+  },
+  {
+    type: ConnectorConfigFormItemType.Select,
+    label: 'messageSigningOrder',
+    key: 'messageSigningOrder',
+    selectItems: [
+      { value: 'sign-then-encrypt', title: 'Sign then encrypt' },
+      {
+        value: 'encrypt-then-sign',
+        title: 'Encrypt then sign',
+      },
+    ],
+    defaultValue: 'sign-then-encrypt',
+  },
+  {
+    type: ConnectorConfigFormItemType.Switch,
+    label: 'signAuthnRequest',
+    key: 'signAuthnRequest',
+    defaultValue: false,
+  },
+  {
+    type: ConnectorConfigFormItemType.MultilineText,
+    label: 'privateKey',
+    key: 'privateKey',
+    required: true,
+    showConditions: [{ targetKey: 'signAuthnRequest', expectValue: true }],
+    placeholder:
+      '-----BEGIN RSA PRIVATE KEY-----\n[private-key-content]\n-----END RSA PRIVATE KEY-----',
+  },
+  {
+    type: ConnectorConfigFormItemType.Text,
+    label: 'privateKeyPass',
+    key: 'privateKeyPass',
+    showConditions: [{ targetKey: 'signAuthnRequest', expectValue: true }],
+  },
+  {
+    type: ConnectorConfigFormItemType.Switch,
+    label: 'encryptAssertion',
+    key: 'encryptAssertion',
+    defaultValue: false,
+  },
+  {
+    type: ConnectorConfigFormItemType.MultilineText,
+    label: 'encPrivateKey',
+    key: 'encPrivateKey',
+    required: true,
+    showConditions: [{ targetKey: 'encryptAssertion', expectValue: true }],
+    placeholder:
+      '-----BEGIN RSA PRIVATE KEY-----\n[private-key-content]\n-----END RSA PRIVATE KEY-----',
+  },
+  {
+    type: ConnectorConfigFormItemType.Text,
+    label: 'encPrivateKeyPass',
+    key: 'encPrivateKeyPass',
+    showConditions: [{ targetKey: 'encryptAssertion', expectValue: true }],
+  },
+  {
+    type: ConnectorConfigFormItemType.Json,
+    label: 'nameIDFormat',
+    key: 'nameIDFormat',
+    defaultValue: [],
+  },
+  {
+    type: ConnectorConfigFormItemType.Number,
+    label: 'timeout',
+    key: 'timeout',
+    defaultValue: 5000,
+  },
+  {
+    type: ConnectorConfigFormItemType.Json,
+    label: 'profileMap',
+    key: 'profileMap',
+    defaultValue: {
+      id: 'nameidentifier',
+      email: 'emailaddress',
+      avatar: 'picture',
+    },
+    required: true,
+  },
+];
 
 export const defaultMetadata: ConnectorMetadata = {
   id: 'saml',
@@ -17,8 +147,8 @@ export const defaultMetadata: ConnectorMetadata = {
       '安全断言标记语言 SAML 是一个基于 XML 的开源标准数据格式，它可用于在当事方之间交换身份验证和授权数据。',
   },
   readme: './README.md',
-  configTemplate: './docs/config-template.json',
   isStandard: true,
+  formItems,
 };
 
 export const defaultTimeout = 10_000;
