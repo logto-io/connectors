@@ -3,7 +3,7 @@
   "idpMetadataXml": "<EntityDescriptor entityID=\"urn:dev.logto.io\" xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\"><IDPSSODescriptor protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\"><KeyDescriptor use=\"signing\">...</IDPSSODescriptor></EntityDescriptor>",
   "signInEndpoint": "<idp-sign-in-endpoint>",
   "x509Certificate": "-----BEGIN CERTIFICATE-----MIIDHTCCAgWg[...]jel7/YMPLKwg+Iau7-----END CERTIFICATE-----",
-  "assertionConsumerServiceUrl": "https://<your-logto-domain>/api/saml-assertion-handler/<saml-connector-id>",
+  "assertionConsumerServiceUrl": "https://<your-logto-domain>/api/authn/saml/<saml-connector-id>",
   "messageSigningOrder": "sign-then-encrypt",
   "requestSignatureAlgorithm": "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256",
   "signAuthnRequest": false,

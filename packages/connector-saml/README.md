@@ -15,7 +15,7 @@ Before we kicking off, you can go to a social identity provider which supports S
 
 If your IdP mandate the encryption of SAML assertion and receiving of signed authentication requests, you should generate your private key and corresponding certificate using RSA algorithm. Keep the private key for your SP use and upload the certificate to IdP.
 
-You also need to configure the ACS (Assertion Consumer Service) URL as `${your_logto_origin}/api/saml-assertion-handler/${connector_id}` to handle IdP's SAML assertion. Where you can find your `connectorId` at SAML connector's details page in Logto's Admin Console.
+You also need to configure the ACS (Assertion Consumer Service) URL as `${your_logto_origin}/api/authn/saml/${connector_id}` to handle IdP's SAML assertion. Where you can find your `connectorId` at SAML connector's details page in Logto's Admin Console.
 
 > ℹ️ **Note**
 > 
@@ -53,7 +53,7 @@ You should remove all newlines and multiple consecutive spaces (more than 1 spac
 
 ### assertionConsumerServiceUrl `Required`
 
-The assertion consumer service (ACS) URL is the SP's endpoint to receive IdP's SAML Assertion POST requests. As we mentioned in previous part, it is usually configured at IdP settings but some IdP get this value from SAML authentication requests, we hence also add this value as a REQUIRED field. It's value should look like `${your_logto_origin}/api/saml-assertion-handler/${connector_id}`.
+The assertion consumer service (ACS) URL is the SP's endpoint to receive IdP's SAML Assertion POST requests. As we mentioned in previous part, it is usually configured at IdP settings but some IdP get this value from SAML authentication requests, we hence also add this value as a REQUIRED field. It's value should look like `${your_logto_origin}/api/authn/saml/${connector_id}`.
 
 ### signAuthnRequest
 
@@ -125,7 +125,7 @@ Here is an example of SAML connector config JSON.
   "idpMetadataXml": "<EntityDescriptor entityID=\"urn:dev.logto.io\" xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\"><IDPSSODescriptor protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\"><KeyDescriptor use=\"signing\">...</IDPSSODescriptor></EntityDescriptor>",
   "signInEndpoint": "<idp-sign-in-endpoint>",
   "x509Certificate": "-----BEGIN CERTIFICATE-----MIIDHTCCAgWg[...]jel7/YMPLKwg+Iau7-----END CERTIFICATE-----",
-  "assertionConsumerServiceUrl": "https://<your-logto-domain>/api/saml-assertion-handler/<saml-connector-id>",
+  "assertionConsumerServiceUrl": "https://<your-logto-domain>/api/authn/saml/<saml-connector-id>",
   "messageSigningOrder": "encrypt-then-sign",
   "requestSignatureAlgorithm": "RSA_SHA1",
   "signAuthnRequest": true,
