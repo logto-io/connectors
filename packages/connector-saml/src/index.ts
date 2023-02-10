@@ -90,11 +90,7 @@ const getAuthorizationUri =
 
       return loginRequest.context;
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        throw new ConnectorError(ConnectorErrorCodes.General, { message: error.message });
-      }
-
-      throw new ConnectorError(ConnectorErrorCodes.General, error);
+      throw new ConnectorError(ConnectorErrorCodes.General, String(error));
     }
   };
 
