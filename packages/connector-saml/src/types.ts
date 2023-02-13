@@ -22,6 +22,10 @@ export enum NameIDFormat {
   Transient = 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
 }
 
+const isInNameIdFormatEnum = (input: string) =>
+  // eslint-disable-next-line no-restricted-syntax
+  Object.values(NameIDFormat).includes(input as NameIDFormat);
+
 export const profileMapGuard = z
   .object({
     id: z.string().optional().default('id'),
@@ -63,7 +67,23 @@ export const samlConfigGuard = z
       .nativeEnum(NameIDFormat)
       .optional()
       .default(NameIDFormat.Unspecified)
-      .transform((nameIDFormat) => [nameIDFormat]),
+      .transform((nameIDFormat) => [nameIDFormat])
+      .or(
+        z
+          .string()
+          .array()
+          .transform((stringArray) => {
+            const filteredStringArray = stringArray.filter((element) =>
+              isInNameIdFormatEnum(element)
+            );
+
+            if (filteredStringArray.length === 0) {
+              return [NameIDFormat.Unspecified];
+            }
+
+            return filteredStringArray;
+          })
+      ),
     timeout: z.number().optional().default(defaultTimeout), // In milliseconds.
     authnRequestBinding: z.enum(authnRequestBinding).optional().default('HTTP-Redirect'),
     assertionBinding: z.enum(assertionBinding).optional().default('HTTP-POST'),

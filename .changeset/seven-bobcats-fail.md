@@ -1,5 +1,5 @@
 ---
-"@logto/connector-saml": major
+"@logto/connector-saml": minor
 ---
 
-Change `nameIDFormat` from string array to enum, since only some specific values are meaningful. Use enum type instead of string array since only the first element in the array is concerned.
+Change `nameIDFormat`'s preferred type from string array to enum (still compatible to string array, but invalid elements will be filtered).
