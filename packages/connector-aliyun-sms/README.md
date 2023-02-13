@@ -62,11 +62,13 @@ Go to the [Aliyun website](https://cn.aliyun.com/) and register your Aliyun acco
     - You can add multiple SMS connector templates for different cases. Here is an example of adding a single template:
         - Fill the `templateCode` field, which is how you can control SMS context, with "Template Code" (模板 CODE) from step 2.
         - Fill out `usageType` field with either `Register`, `SignIn`, `ForgotPassword`, `Generic` or `Test` for different use cases. (`usageType` is a Logto property to identify the proper use case.) In order to enable full user flows, templates with usageType `Register`, `SignIn` and `ForgotPassword` are required.
+    - If you need to send international SMS please set `endpoint` to the access point of the corresponding region
 
 Here is an example of Aliyun SMS connector config JSON.
 
 ```json
 {
+    "endpoint": "<sms-endpoint-url>",
     "accessKeyId": "<your-access-key-id>",
     "accessKeySecret": "<your-access-key-secret>",
     "signName": "<Aliyun>",
@@ -90,7 +92,7 @@ Here is an example of Aliyun SMS connector config JSON.
         {
             "templateCode": "<SMS_567890>",
             "usageType": "Test"
-        },
+        }
     ]
 }
 ```
@@ -103,12 +105,13 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 
 ### Config types
 
-| Name            | Type       |
-|-----------------|------------|
-| accessKeyId     | string     |
-| accessKeySecret | string     |
-| signName        | string     |
-| templates       | Template[] |
+| Name            | Type        | Description                            |
+|-----------------|-------------|----------------------------------------|
+| endpoint        | string null | Use mainland China endpoint when empty |
+| accessKeyId     | string      |                                        |
+| accessKeySecret | string      |                                        |
+| signName        | string      |                                        |
+| templates       | Template[]  |                                        |
 
 | Template Properties | Type        | Enum values                                          |
 |---------------------|-------------|------------------------------------------------------|
@@ -160,11 +163,13 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
     - 你可以添加多个短信服务模板以应对不同的用户场景。这里展示填写单个模板的例子：
       - `templateCode` 栏是你可以用来控制所发送短信内容的属性。它们的值从步骤 2 中的「模板 CODE」获取。
       - `usageType` 栏填写 `Register`，`SignIn`，`ForgotPassword`，`Generic` 或者 `Test` 其中之一以分别对应 _注册_，_登录_，_忘记密码_，_用户档案补全_ 和 _测试_ 的不同场景。（`usageType` 是 Logto 的属性，用来确定使用场景。）为了能够使用完成的流程，需要配置 `usageType` 为 `Register`，`SignIn` 以及 `ForgotPassword` 的模板。
+    - 如果你需要发送国际短息请设置 `endpoint` 为对应地区的接入点
 
 这是一个阿里云短信服务连接器 JSON 配置的样例。
 
 ```json
 {
+    "endpoint": "<sms-endpoint-url>",
     "accessKeyId": "<your-access-key-id>",
     "accessKeySecret": "<your-access-key-secret>",
     "signName": "<Aliyun>",
@@ -188,7 +193,7 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
         {
             "templateCode": "<SMS_567890>",
             "usageType": "Test"
-        },
+        }
     ]
 }
 ```
@@ -201,12 +206,13 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 
 ### 配置类型
 
-| 名称            | 类型        |
-|-----------------|------------|
-| accessKeyId     | string     |
-| accessKeySecret | string     |
-| signName        | string     |
-| templates       | Template[] |
+| 名称               | 类型          | 描述           |
+|------------------|-------------|--------------|
+| endpoint         | string null | 为空时使用中国大陆接入点 |
+| accessKeyId      | string      |              |
+| accessKeySecret  | string      |              |
+| signName         | string      |              |
+| templates        | Template[]  |              |
 
 | 模板属性      | 类型         | 枚举值                                                |
 |--------------|-------------|------------------------------------------------------|

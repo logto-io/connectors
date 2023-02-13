@@ -1,4 +1,5 @@
 {
+  "endpoint": "<sms-endpoint-url>",
   "accessKeyId": "<access-key-id>",
   "accessKeySecret": "<access-key-secret>",
   "signName": "<sign-name>",

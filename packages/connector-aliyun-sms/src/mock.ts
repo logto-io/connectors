@@ -1,4 +1,5 @@
 export const mockedConnectorConfig = {
+  endpoint: 'https://dysmsapi.aliyuncs.com/',
   accessKeyId: 'accessKeyId',
   accessKeySecret: 'accessKeySecret',
   signName: 'signName',
