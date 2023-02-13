@@ -1,4 +1,13 @@
+import type { Nullable, Optional } from '@silverhand/essentials';
 import { z } from 'zod';
+
+const nullishToUndefined = <T = unknown>(input: Nullable<T>): Optional<T> => {
+  if (!input) {
+    return;
+  }
+
+  return input;
+};
 
 export const discordConfigGuard = z.object({
   clientId: z.string(),
@@ -18,10 +27,10 @@ export type AccessTokenResponse = z.infer<typeof accessTokenResponseGuard>;
 
 export const userInfoResponseGuard = z.object({
   id: z.string(),
-  username: z.string().optional(),
-  avatar: z.string().optional(),
-  email: z.string().optional(),
-  verified: z.boolean().optional(),
+  username: z.string().nullish().transform(nullishToUndefined),
+  avatar: z.string().nullish().transform(nullishToUndefined),
+  email: z.string().nullish().transform(nullishToUndefined),
+  verified: z.boolean().nullish().transform(nullishToUndefined),
 });
 
 export type UserInfoResponse = z.infer<typeof userInfoResponseGuard>;

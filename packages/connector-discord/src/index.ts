@@ -11,6 +11,7 @@ import type {
   SocialConnector,
 } from '@logto/connector-kit';
 import {
+  socialUserInfoGuard,
   validateConfig,
   ConnectorError,
   ConnectorErrorCodes,
@@ -87,6 +88,7 @@ export const getAccessToken = async (
 
 const getUserInfo =
   (getConfig: GetConnectorConfig): GetUserInfo =>
+  // eslint-disable-next-line complexity
   async (data) => {
     const { code, redirectUri } = await authorizationCallbackHandler(data);
     const config = await getConfig(defaultMetadata.id);
@@ -109,13 +111,20 @@ const getUserInfo =
 
       const { id, username: name, avatar, email, verified } = result.data;
 
-      return {
+      const rawUserInfo = {
         id,
         name,
         avatar: conditional(avatar && `https://cdn.discordapp.com/avatars/${id}/${avatar}`),
-        email: conditional(email),
-        email_verified: verified,
+        email: conditional(verified && email),
       };
+
+      const userInfoResult = socialUserInfoGuard.safeParse(rawUserInfo);
+
+      if (!userInfoResult.success) {
+        throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, userInfoResult.error);
+      }
+
+      return userInfoResult.data;
     } catch (error: unknown) {
       if (error instanceof HTTPError) {
         const { statusCode, body: rawBody } = error.response;
