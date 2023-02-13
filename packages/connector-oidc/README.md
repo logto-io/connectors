@@ -18,8 +18,6 @@ For detailed steps on registering a Google App for Logto's social sign-in use, p
 
 ## Compose the connector JSON
 
-You can choose which OIDC authorization flow to use by configuring `oidcFlowType` as either 'AuthorizationCode', 'Implicit' or 'Hybrid'.
-
 `scope` determines the resource you can access to after a successful authorization.
 
 `clientId` and `clientSecret` can be found at your Google app details page.
@@ -32,6 +30,8 @@ Since an authentication request is required for all different flow types, an `au
 
 Here are some examples of OIDC connector config JSON connected to Google. Other vendor's config could vary.
 
+You may be curious as to why a standard OIDC protocol supports both the implicit and hybrid flows, yet the Logto connector only supports the authorization flow. It has been determined that the implicit and hybrid flows are less secure than the authorization flow. Due to Logto's focus on security, it only supports the authorization flow for the highest level of security for its users, despite its slightly less convenient nature.
+
 ### Authorization Code Flow
 
 `responseType` can only be 'code' with authorization code flow, so we make it optional and a default value will be automatically filled.
@@ -40,7 +40,6 @@ Here are some examples of OIDC connector config JSON connected to Google. Other 
 
 ```json
 {
-  "oidcFlowType": "AuthorizationCode",
   "scope": "profile email",
   "responseType": "<OPTIONAL-'code'>",
   "clientId": "<your-client-id>",
@@ -68,77 +67,6 @@ Here are some examples of OIDC connector config JSON connected to Google. Other 
 }
 ```
 
-### Implicit Flow
-
-`responseType` of implicit flow should either be 'id_token token' or 'id_token'.
-
-`tokenEndpoint` in this flow is not required.
-
-```json
-{
-  "oidcFlowType": "Implicit",
-  "scope": "profile email",
-  "responseType": "<OPTIONAL-'id_token token'>",
-  "clientId": "<your-client-id>",
-  "clientSecret": "<your-client-secret>",
-  "authorizationEndpoint": "<vendor-authorization-endpoint>",
-  "idTokenVerificationConfig": {
-    "jwksUri": "<vendor's-jwks-uri>",
-    "issuer": "<vendor's-token-issuer>",
-  },
-  "authRequestOptionalConfig": {
-    "responseMode": "<OPTIONAL-response-mode>",
-    "display": "<OPTIONAL-display>",
-    "prompt": "<OPTIONAL-prompt>",
-    "maxAge": "<OPTIONAL-max-age>",
-    "uiLocales": "<OPTIONAL-ui-locales>",
-    "idTokenHint": "<OPTIONAL-id-token-hint>",
-    "loginHint": "<OPTIONAL-login-hint>",
-    "acrValues": "<OPTIONAL-acr-values>",
-  },,
-  "customConfig": {
-    "customParameter1": "<custom-parameter-1>",
-    "customParameter2": "<custom-parameter-2>"
-  }
-}
-```
-
-### Hybrid Flow
-
-`responseType` in hybrid flow can be one of 'id_token code', 'id_token code token', 'code token'.
-
-If 'id_token' is not presented in `responseType`, then `tokenEndpoint` is required for fetching `idToken` via token request.
-
-```json
-{
-  "oidcFlowType": "Implicit",
-  "scope": "profile email",
-  "responseType": "<OPTIONAL-'code id_token token'>",
-  "clientId": "<your-client-id>",
-  "clientSecret": "<your-client-secret>",
-  "authorizationEndpoint": "<vendor-authorization-endpoint>",
-  "tokenEndpoint": "<OPTIONAL-vendor-token-endpoint>",
-  "idTokenVerificationConfig": {
-    "jwksUri": "<vendor's-jwks-uri>",
-    "issuer": "<vendor's-token-issuer>",
-  },
-  "authRequestOptionalConfig": {
-    "responseMode": "<OPTIONAL-response-mode>",
-    "display": "<OPTIONAL-display>",
-    "prompt": "<OPTIONAL-prompt>",
-    "maxAge": "<OPTIONAL-max-age>",
-    "uiLocales": "<OPTIONAL-ui-locales>",
-    "idTokenHint": "<OPTIONAL-id-token-hint>",
-    "loginHint": "<OPTIONAL-login-hint>",
-    "acrValues": "<OPTIONAL-acr-values>",
-  },,
-  "customConfig": {
-    "customParameter1": "<OPTIONAL-custom-parameter-1>",
-    "customParameter2": "<OPTIONAL-custom-parameter-2>"
-  }
-}
-```
-
 > ℹ️ **Note**
 > 
 > For all flow types, we provided an OPTIONAL `customConfig` key to put your customize parameters.
@@ -148,11 +76,11 @@ If 'id_token' is not presented in `responseType`, then `tokenEndpoint` is requir
 
 | Name                                | Type                                | Required  |
 |-------------------------------------|-------------------------------------|-----------|
-| oidcFlowType                        | enum                                | True      |
 | scope                               | string                              | True      |
 | clientId                            | string                              | True      |
 | clientSecret                        | string                              | True      |
 | authorizationEndpoint               | string                              | True      |
+| tokenEndpoint                       | string                              | True      |
 | idTokenVerificationConfig           | IdTokenVerificationConfig           | True      |
 | authRequestOptionalConfig | AuthRequestOptionalConfig | False     |
 | customConfig                        | Record<string, string>              | False     |
