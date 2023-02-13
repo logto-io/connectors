@@ -1137,6 +1137,7 @@ importers:
     specifiers:
       '@jest/types': ^29.3.1
       '@logto/connector-kit': 1.0.0-rc.1
+      '@logto/core-kit': 1.0.0-beta.30
       '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -1165,6 +1166,7 @@ importers:
       zod: ^3.20.2
     dependencies:
       '@logto/connector-kit': 1.0.0-rc.1
+      '@logto/core-kit': 1.0.0-beta.30
       '@silverhand/essentials': 2.1.0
       got: 12.5.3
       jose: 4.9.2

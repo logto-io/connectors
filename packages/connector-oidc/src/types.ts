@@ -3,12 +3,6 @@ import { z } from 'zod';
 const scopeOpenid = 'openid' as const;
 export const delimiter = /[ +]/;
 
-const allImplicitFlowResponseTypes = ['id_token', 'token'];
-const requiredImplicitFlowResponseTypes = new Set(['id_token']);
-
-const allHybridFlowResponseTypes = ['id_token', 'code', 'token'];
-const requiredHybridFlowResponseTypes = new Set(['code']);
-
 // Space-delimited 'scope' MUST contain 'openid', see https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth
 export const scopePostProcessor = (scope: string) => {
   const splitScopes = scope.split(delimiter).filter(Boolean);
@@ -19,93 +13,6 @@ export const scopePostProcessor = (scope: string) => {
 
   return scope;
 };
-
-export const implicitFlowResponsePostProcessor = (responseType: string) => {
-  const splitResponseTypes = responseType.split(delimiter).filter(Boolean);
-
-  if (splitResponseTypes.length === 0) {
-    return allImplicitFlowResponseTypes.join(' ');
-  }
-
-  if (
-    !splitResponseTypes.some((singleResponseType) =>
-      requiredImplicitFlowResponseTypes.has(singleResponseType)
-    )
-  ) {
-    throw new TypeError(
-      `Required responseType ${JSON.stringify(
-        Array.from(requiredImplicitFlowResponseTypes)
-      )} is not presented!`
-    );
-  }
-
-  if (
-    !splitResponseTypes.every((singleResponseType) =>
-      allImplicitFlowResponseTypes.includes(singleResponseType)
-    )
-  ) {
-    throw new TypeError(
-      `Some responseType ${JSON.stringify(
-        splitResponseTypes.filter(
-          (singleResponseType) => !allImplicitFlowResponseTypes.includes(singleResponseType)
-        )
-      )} is invalid.`
-    );
-  }
-
-  return splitResponseTypes.join(' ');
-};
-
-export const hybridFlowResponsePostProcessor = (responseType: string) => {
-  const splitResponseTypes = responseType.split(delimiter).filter(Boolean);
-
-  if (splitResponseTypes.length === 0) {
-    return allHybridFlowResponseTypes.join(' ');
-  }
-
-  if (
-    !splitResponseTypes.some((singleResponseType) =>
-      requiredHybridFlowResponseTypes.has(singleResponseType)
-    )
-  ) {
-    throw new TypeError(
-      `Required responseType ${JSON.stringify(
-        splitResponseTypes.filter(
-          (singleResponseType) => !allHybridFlowResponseTypes.includes(singleResponseType)
-        )
-      )} is not presented!`
-    );
-  }
-
-  if (
-    !splitResponseTypes.every((singleResponseType) =>
-      allHybridFlowResponseTypes.includes(singleResponseType)
-    )
-  ) {
-    throw new TypeError(
-      `Some responseType ${JSON.stringify(
-        splitResponseTypes.filter(
-          (singleResponseType) => !allHybridFlowResponseTypes.includes(singleResponseType)
-        )
-      )} is invalid.`
-    );
-  }
-
-  if (splitResponseTypes.length === 1) {
-    throw new TypeError("At least one of 'token' and 'id_token' is needed.");
-  }
-
-  // For hybrid flow, 'code' is always required in response type, at least one another response type among 'token' and 'id_token' is required.
-  return splitResponseTypes.join(' ');
-};
-
-export enum OidcFlowType {
-  AuthorizationCode = 'AuthorizationCode',
-  Implicit = 'Implicit',
-  Hybrid = 'Hybrid',
-}
-
-export const oidcFlowTypeGuard = z.nativeEnum(OidcFlowType);
 
 // See https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims.
 // We only concern a subset of them, and social identity provider usually does not provide a complete set of them.
@@ -177,9 +84,8 @@ export const idTokenVerificationConfigGuard = z.object({ jwksUri: z.string() }).
 
 export type IdTokenVerificationConfig = z.infer<typeof idTokenVerificationConfigGuard>;
 
-export const authorizationCodeConfigGuard = z
+export const oidcConfigGuard = z
   .object({
-    oidcFlowType: z.literal(OidcFlowType.AuthorizationCode),
     responseType: z.literal('code').optional().default('code'),
     grantType: z.literal('authorization_code').optional().default('authorization_code'),
     scope: z.string().transform(scopePostProcessor),
@@ -189,50 +95,6 @@ export const authorizationCodeConfigGuard = z
   })
   .merge(endpointConfigGuard)
   .merge(clientConfigGuard);
-
-export type AuthorizationCodeConfig = z.infer<typeof authorizationCodeConfigGuard>;
-
-export const implicitConfigGuard = z
-  .object({
-    oidcFlowType: z.literal(OidcFlowType.Implicit),
-    responseType: z
-      .string()
-      .optional()
-      .default('id_token')
-      .transform(implicitFlowResponsePostProcessor),
-    scope: z.string().transform(scopePostProcessor),
-    idTokenVerificationConfig: idTokenVerificationConfigGuard,
-    authRequestOptionalConfig: authRequestOptionalConfigGuard.optional(),
-    customConfig: z.record(z.string()).optional(),
-  })
-  .merge(endpointConfigGuard.pick({ authorizationEndpoint: true }))
-  .merge(clientConfigGuard);
-
-export const hybridConfigGuard = z
-  .object({
-    oidcFlowType: z.literal(OidcFlowType.Hybrid),
-    responseType: z
-      .string()
-      .optional()
-      .default('code id_token token')
-      .transform(hybridFlowResponsePostProcessor),
-    grantType: z.literal('authorization_code').optional().default('authorization_code'),
-    scope: z.string().transform(scopePostProcessor),
-    idTokenVerificationConfig: idTokenVerificationConfigGuard,
-    authRequestOptionalConfig: authRequestOptionalConfigGuard.optional(),
-    customConfig: z.record(z.string()).optional(),
-  })
-  .merge(endpointConfigGuard.pick({ authorizationEndpoint: true }))
-  .merge(endpointConfigGuard.pick({ tokenEndpoint: true }).partial())
-  .merge(clientConfigGuard);
-
-export type HybridConfig = z.infer<typeof hybridConfigGuard>;
-
-export const oidcConfigGuard = z.discriminatedUnion('oidcFlowType', [
-  authorizationCodeConfigGuard,
-  implicitConfigGuard,
-  hybridConfigGuard,
-]);
 
 export type OidcConfig = z.infer<typeof oidcConfigGuard>;
 
@@ -244,26 +106,6 @@ export const authResponseGuard = z
   .catchall(z.string());
 
 export type AuthResponse = z.infer<typeof authResponseGuard>;
-
-export const implicitAuthResponseGuard = z
-  .object({
-    id_token: z.string(),
-    access_token: z.string().optional(),
-    token_type: z.string().optional(),
-    expires_in: z.string().optional(),
-    scope: z.string().optional(),
-    state: z.string().optional(),
-  })
-  .catchall(z.string());
-
-export const hybridAuthResponseGuard = z
-  .object({
-    code: z.string(),
-    id_token: z.string().optional(),
-    access_token: z.string().optional(),
-    token_type: z.string().optional(),
-  })
-  .catchall(z.string());
 
 export const accessTokenResponseGuard = z.object({
   id_token: z.string(),

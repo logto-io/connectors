@@ -11,6 +11,7 @@ import {
   validateConfig,
   ConnectorType,
 } from '@logto/connector-kit';
+import { generateStandardId } from '@logto/core-kit';
 import { assert, conditional, pick } from '@silverhand/essentials';
 import { HTTPError } from 'got';
 import { createRemoteJWKSet, jwtVerify } from 'jose';
@@ -18,16 +19,10 @@ import snakecaseKeys from 'snakecase-keys';
 
 import { defaultMetadata } from './constant.js';
 import type { OidcConfig } from './types.js';
-import { idTokenProfileStandardClaimsGuard, oidcConfigGuard, OidcFlowType } from './types.js';
-import {
-  buildIdGenerator,
-  isIdTokenInResponseType,
-  getAuthorizationCodeFlowIdToken,
-  getImplicitFlowIdToken,
-  getHybridFlowIdToken,
-} from './utils.js';
+import { idTokenProfileStandardClaimsGuard, oidcConfigGuard } from './types.js';
+import { getIdToken } from './utils.js';
 
-const generateNonce = () => buildIdGenerator(12)();
+const generateNonce = () => generateStandardId();
 
 const getAuthorizationUri =
   (getConfig: GetConnectorConfig): GetAuthorizationUri =>
@@ -37,7 +32,6 @@ const getAuthorizationUri =
     const parsedConfig = oidcConfigGuard.parse(config);
 
     const nonce = generateNonce();
-    const needNonce = isIdTokenInResponseType(parsedConfig.responseType);
 
     assert(
       setSession,
@@ -56,25 +50,12 @@ const getAuthorizationUri =
         ...authRequestOptionalConfig,
         ...customConfig,
       }),
-      ...(needNonce ? { nonce } : {}),
+      nonce,
       redirect_uri: redirectUri,
     });
 
     return `${parsedConfig.authorizationEndpoint}?${queryParameters.toString()}`;
   };
-
-const getIdToken = async (config: OidcConfig, data: unknown, redirectUri?: string) => {
-  if (config.oidcFlowType === OidcFlowType.AuthorizationCode) {
-    return getAuthorizationCodeFlowIdToken(config, data, redirectUri);
-  }
-
-  if (config.oidcFlowType === OidcFlowType.Implicit) {
-    return getImplicitFlowIdToken(data);
-  }
-
-  // Hybrid Flow
-  return getHybridFlowIdToken(config, data, redirectUri);
-};
 
 const getUserInfo =
   (getConfig: GetConnectorConfig): GetUserInfo =>
@@ -91,6 +72,13 @@ const getUserInfo =
       })
     );
     const { nonce: validationNonce, redirectUri } = await getSession();
+
+    assert(
+      redirectUri,
+      new ConnectorError(ConnectorErrorCodes.General, {
+        message: "CAN NOT find 'redirectUri' from connector session.",
+      })
+    );
 
     const { id_token: idToken } = await getIdToken(parsedConfig, data, redirectUri);
 
