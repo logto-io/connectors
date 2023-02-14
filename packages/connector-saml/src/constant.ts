@@ -107,10 +107,29 @@ export const formItems: ConnectorConfigFormItem[] = [
     showConditions: [{ targetKey: 'encryptAssertion', expectValue: true }],
   },
   {
-    type: ConnectorConfigFormItemType.Json,
+    type: ConnectorConfigFormItemType.Select,
     label: 'nameIDFormat',
     key: 'nameIDFormat',
-    defaultValue: [],
+    selectItems: [
+      { value: 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified', title: 'Unspecified' },
+      {
+        value: 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
+        title: 'EmailAddress',
+      },
+      {
+        value: 'urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName',
+        title: 'x590SubjectName',
+      },
+      {
+        value: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent',
+        title: 'Persistent',
+      },
+      {
+        value: 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
+        title: 'Transient',
+      },
+    ],
+    defaultValue: 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified',
   },
   {
     type: ConnectorConfigFormItemType.Number,
