@@ -37,13 +37,11 @@ The IdP's endpoint that you send SAML authentication requests to. Usually, you c
 
 The x509 certificate generated from IdPs private key, IdP is expected to have this value available.
 
-The content of the certificate comes with `-----BEGIN CERTIFICATE-----` header and `-----END CERTIFICATE-----` tail. You should remove or replace newlines in the content with `\n` and then fill-in the value as string.
+The content of the certificate comes with `-----BEGIN CERTIFICATE-----` header and `-----END CERTIFICATE-----` tail.
 
 ### idpMetadataXml `Required`
 
 The field is used to place contents from your IdP metadata XML file.
-
-You should remove all newlines and multiple consecutive spaces (more than 1 space), and add a backslash `\` before all double quotes `"` symbols.
 
 > ℹ️ **Note**
 > 
