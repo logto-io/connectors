@@ -17,14 +17,17 @@ describe('Discord connector', () => {
 
     it('should get a valid authorizationUri with redirectUri and state', async () => {
       const connector = await createConnector({ getConfig });
-      const authorizationUri = await connector.getAuthorizationUri({
-        state: 'some_state',
-        redirectUri: 'http://localhost:3000/callback',
-        connectorId: 'some_connector_id',
-        connectorFactoryId: 'some_connector_factory_id',
-        jti: 'some_jti',
-        headers: {},
-      });
+      const authorizationUri = await connector.getAuthorizationUri(
+        {
+          state: 'some_state',
+          redirectUri: 'http://localhost:3000/callback',
+          connectorId: 'some_connector_id',
+          connectorFactoryId: 'some_connector_factory_id',
+          jti: 'some_jti',
+          headers: {},
+        },
+        jest.fn()
+      );
       expect(authorizationUri).toEqual(
         `${authorizationEndpoint}?client_id=%3Cclient-id%3E&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code&scope=identify+email&state=some_state`
       );
@@ -90,10 +93,13 @@ describe('Discord connector', () => {
         verified: true,
       });
       const connector = await createConnector({ getConfig });
-      const socialUserInfo = await connector.getUserInfo({
-        code: 'code',
-        redirectUri: 'dummyRedirectUri',
-      });
+      const socialUserInfo = await connector.getUserInfo(
+        {
+          code: 'code',
+          redirectUri: 'dummyRedirectUri',
+        },
+        jest.fn()
+      );
       expect(socialUserInfo).toMatchObject({
         id: '1234567890',
         name: 'Whumpus',
@@ -106,7 +112,7 @@ describe('Discord connector', () => {
       nock(userInfoEndpoint).get('').reply(401);
       const connector = await createConnector({ getConfig });
       await expect(
-        connector.getUserInfo({ code: 'code', redirectUri: 'dummyRedirectUri' })
+        connector.getUserInfo({ code: 'code', redirectUri: 'dummyRedirectUri' }, jest.fn())
       ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid));
     });
 
@@ -114,7 +120,7 @@ describe('Discord connector', () => {
       nock(userInfoEndpoint).get('').reply(500);
       const connector = await createConnector({ getConfig });
       await expect(
-        connector.getUserInfo({ code: 'code', redirectUri: 'dummyRedirectUri' })
+        connector.getUserInfo({ code: 'code', redirectUri: 'dummyRedirectUri' }, jest.fn())
       ).rejects.toThrow();
     });
   });

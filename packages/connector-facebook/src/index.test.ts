@@ -19,14 +19,17 @@ describe('Facebook connector', () => {
       const redirectUri = 'http://localhost:3000/callback';
       const state = 'some_state';
       const connector = await createConnector({ getConfig });
-      const authorizationUri = await connector.getAuthorizationUri({
-        state,
-        redirectUri,
-        connectorId: 'some_connector_id',
-        connectorFactoryId: 'some_connector_factory_id',
-        jti: 'some_jti',
-        headers: {},
-      });
+      const authorizationUri = await connector.getAuthorizationUri(
+        {
+          state,
+          redirectUri,
+          connectorId: 'some_connector_id',
+          connectorFactoryId: 'some_connector_factory_id',
+          jti: 'some_jti',
+          headers: {},
+        },
+        jest.fn()
+      );
 
       const encodedRedirectUri = encodeURIComponent(redirectUri);
       expect(authorizationUri).toEqual(
@@ -121,10 +124,13 @@ describe('Facebook connector', () => {
           picture: { data: { url: avatar } },
         });
       const connector = await createConnector({ getConfig });
-      const socialUserInfo = await connector.getUserInfo({
-        code,
-        redirectUri: dummyRedirectUri,
-      });
+      const socialUserInfo = await connector.getUserInfo(
+        {
+          code,
+          redirectUri: dummyRedirectUri,
+        },
+        jest.fn()
+      );
       expect(socialUserInfo).toMatchObject({
         id: '1234567890',
         avatar,
@@ -137,7 +143,7 @@ describe('Facebook connector', () => {
       nock(userInfoEndpoint).get('').query({ fields }).reply(400);
       const connector = await createConnector({ getConfig });
       await expect(
-        connector.getUserInfo({ code, redirectUri: dummyRedirectUri })
+        connector.getUserInfo({ code, redirectUri: dummyRedirectUri }, jest.fn())
       ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid));
     });
 
@@ -154,12 +160,15 @@ describe('Facebook connector', () => {
         });
       const connector = await createConnector({ getConfig });
       await expect(
-        connector.getUserInfo({
-          error: 'access_denied',
-          error_code: 200,
-          error_description: 'Permissions error.',
-          error_reason: 'user_denied',
-        })
+        connector.getUserInfo(
+          {
+            error: 'access_denied',
+            error_code: 200,
+            error_description: 'Permissions error.',
+            error_reason: 'user_denied',
+          },
+          jest.fn()
+        )
       ).rejects.toMatchError(
         new ConnectorError(ConnectorErrorCodes.AuthorizationFailed, 'Permissions error.')
       );
@@ -178,12 +187,15 @@ describe('Facebook connector', () => {
         });
       const connector = await createConnector({ getConfig });
       await expect(
-        connector.getUserInfo({
-          error: 'general_error',
-          error_code: 200,
-          error_description: 'General error encountered.',
-          error_reason: 'user_denied',
-        })
+        connector.getUserInfo(
+          {
+            error: 'general_error',
+            error_code: 200,
+            error_description: 'General error encountered.',
+            error_reason: 'user_denied',
+          },
+          jest.fn()
+        )
       ).rejects.toMatchError(
         new ConnectorError(ConnectorErrorCodes.General, {
           error: 'general_error',
@@ -198,7 +210,7 @@ describe('Facebook connector', () => {
       nock(userInfoEndpoint).get('').reply(500);
       const connector = await createConnector({ getConfig });
       await expect(
-        connector.getUserInfo({ code, redirectUri: dummyRedirectUri })
+        connector.getUserInfo({ code, redirectUri: dummyRedirectUri }, jest.fn())
       ).rejects.toThrow();
     });
   });

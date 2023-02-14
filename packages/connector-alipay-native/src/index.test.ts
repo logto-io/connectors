@@ -16,14 +16,17 @@ describe('getAuthorizationUri', () => {
 
   it('should get a valid uri by state', async () => {
     const connector = await createConnector({ getConfig });
-    const authorizationUri = await connector.getAuthorizationUri({
-      state: 'dummy-state',
-      redirectUri: 'dummy-redirect-uri',
-      connectorId: 'dummy-connector-id',
-      connectorFactoryId: 'dummy-connector-factory-id',
-      jti: 'dummy-jti',
-      headers: {},
-    });
+    const authorizationUri = await connector.getAuthorizationUri(
+      {
+        state: 'dummy-state',
+        redirectUri: 'dummy-redirect-uri',
+        connectorId: 'dummy-connector-id',
+        connectorFactoryId: 'dummy-connector-factory-id',
+        jti: 'dummy-jti',
+        headers: {},
+      },
+      jest.fn()
+    );
     expect(authorizationUri).toBe('alipay://?app_id=2021000000000000&state=dummy-state');
   });
 });
@@ -68,7 +71,7 @@ describe('getAccessToken', () => {
         sign: '<signature>',
       });
     const connector = await createConnector({ getConfig });
-    await expect(connector.getUserInfo({})).rejects.toMatchError(
+    await expect(connector.getUserInfo({}, jest.fn())).rejects.toMatchError(
       new ConnectorError(ConnectorErrorCodes.General, '{}')
     );
   });
@@ -152,7 +155,7 @@ describe('getUserInfo', () => {
         sign: '<signature>',
       });
     const connector = await createConnector({ getConfig });
-    const { id, name, avatar } = await connector.getUserInfo({ auth_code: 'code' });
+    const { id, name, avatar } = await connector.getUserInfo({ auth_code: 'code' }, jest.fn());
     expect(id).toEqual('2088000000000000');
     expect(name).toEqual('PlayboyEric');
     expect(avatar).toEqual('https://www.alipay.com/xxx.jpg');
@@ -172,7 +175,9 @@ describe('getUserInfo', () => {
         sign: '<signature>',
       });
     const connector = await createConnector({ getConfig });
-    await expect(connector.getUserInfo({ auth_code: 'wrong_code' })).rejects.toMatchError(
+    await expect(
+      connector.getUserInfo({ auth_code: 'wrong_code' }, jest.fn())
+    ).rejects.toMatchError(
       new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid, 'Invalid auth token')
     );
   });
@@ -191,7 +196,9 @@ describe('getUserInfo', () => {
         sign: '<signature>',
       });
     const connector = await createConnector({ getConfig });
-    await expect(connector.getUserInfo({ auth_code: 'wrong_code' })).rejects.toMatchError(
+    await expect(
+      connector.getUserInfo({ auth_code: 'wrong_code' }, jest.fn())
+    ).rejects.toMatchError(
       new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'Invalid auth code')
     );
   });
@@ -210,7 +217,9 @@ describe('getUserInfo', () => {
         sign: '<signature>',
       });
     const connector = await createConnector({ getConfig });
-    await expect(connector.getUserInfo({ auth_code: 'wrong_code' })).rejects.toMatchError(
+    await expect(
+      connector.getUserInfo({ auth_code: 'wrong_code' }, jest.fn())
+    ).rejects.toMatchError(
       new ConnectorError(ConnectorErrorCodes.General, {
         errorDescription: 'Invalid parameter',
         code: '40002',
@@ -235,14 +244,14 @@ describe('getUserInfo', () => {
         sign: '<signature>',
       });
     const connector = await createConnector({ getConfig });
-    await expect(connector.getUserInfo({ auth_code: 'wrong_code' })).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.InvalidResponse)
-    );
+    await expect(
+      connector.getUserInfo({ auth_code: 'wrong_code' }, jest.fn())
+    ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.InvalidResponse));
   });
 
   it('should throw with other request errors', async () => {
     nock(alipayEndpointUrl.origin).post(alipayEndpointUrl.pathname).query(true).reply(500);
     const connector = await createConnector({ getConfig });
-    await expect(connector.getUserInfo({ auth_code: 'wrong_code' })).rejects.toThrow();
+    await expect(connector.getUserInfo({ auth_code: 'wrong_code' }, jest.fn())).rejects.toThrow();
   });
 });
