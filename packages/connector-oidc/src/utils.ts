@@ -2,22 +2,11 @@ import { ConnectorError, ConnectorErrorCodes, parseJson } from '@logto/connector
 import { assert, pick } from '@silverhand/essentials';
 import type { Response } from 'got';
 import { got, HTTPError } from 'got';
-import { customAlphabet } from 'nanoid';
 import snakecaseKeys from 'snakecase-keys';
 
 import { defaultTimeout } from './constant.js';
-import type { AccessTokenResponse, AuthorizationCodeConfig, HybridConfig } from './types.js';
-import {
-  accessTokenResponseGuard,
-  delimiter,
-  authResponseGuard,
-  implicitAuthResponseGuard,
-  hybridAuthResponseGuard,
-} from './types.js';
-
-const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-// FIXME @darcy: Temporary use this workaround, this change has been made in @logto/core-kit but has not been published yet.
-export const buildIdGenerator = (size: number) => customAlphabet(alphabet, size);
+import type { AccessTokenResponse, OidcConfig } from './types.js';
+import { accessTokenResponseGuard, delimiter, authResponseGuard } from './types.js';
 
 export const accessTokenRequester = async (
   tokenEndpoint: string,
@@ -63,75 +52,12 @@ export const isIdTokenInResponseType = (responseType: string) => {
   return responseType.split(delimiter).includes('id_token');
 };
 
-export const getAuthorizationCodeFlowIdToken = async (
-  config: AuthorizationCodeConfig,
-  data: unknown,
-  redirectUri?: string
-) => {
+export const getIdToken = async (config: OidcConfig, data: unknown, redirectUri: string) => {
   const result = authResponseGuard.safeParse(data);
 
   if (!result.success) {
     throw new ConnectorError(ConnectorErrorCodes.General, data);
   }
-
-  const { code } = result.data;
-
-  assert(
-    redirectUri,
-    new ConnectorError(ConnectorErrorCodes.General, {
-      message: "CAN NOT find 'redirectUri' from connector session.",
-    })
-  );
-
-  const { customConfig, ...rest } = config;
-
-  const parameterObject = snakecaseKeys({
-    ...pick(rest, 'grantType', 'clientId', 'clientSecret'),
-    ...customConfig,
-    code,
-    redirectUri,
-  });
-
-  return accessTokenRequester(config.tokenEndpoint, parameterObject);
-};
-
-export const getImplicitFlowIdToken = async (data: unknown) => {
-  const result = implicitAuthResponseGuard.safeParse(data);
-
-  if (!result.success) {
-    throw new ConnectorError(ConnectorErrorCodes.General, data);
-  }
-
-  return result.data;
-};
-
-export const getHybridFlowIdToken = async (
-  config: HybridConfig,
-  data: unknown,
-  redirectUri?: string
-) => {
-  assert(
-    redirectUri,
-    new ConnectorError(ConnectorErrorCodes.General, {
-      message: "CAN NOT find 'redirectUri' from connector session.",
-    })
-  );
-  const result = hybridAuthResponseGuard.safeParse(data);
-
-  if (!result.success) {
-    throw new ConnectorError(ConnectorErrorCodes.General, data);
-  }
-
-  if (result.data.id_token) {
-    return result.data;
-  }
-
-  assert(
-    config.tokenEndpoint,
-    new ConnectorError(ConnectorErrorCodes.InvalidConfig, {
-      message: "'tokenEndpoint' should be provided since 'id_token' is missed in response type.",
-    })
-  );
 
   const { code } = result.data;
 

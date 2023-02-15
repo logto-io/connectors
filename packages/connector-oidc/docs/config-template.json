@@ -1,5 +1,4 @@
 {
-  "oidcFlowType": "AuthorizationCode",
   "authorizationEndpoint": "<authorization-endpoint>",
   "tokenEndpoint": "<token-endpoint>",
   "clientId": "<client-id>",
