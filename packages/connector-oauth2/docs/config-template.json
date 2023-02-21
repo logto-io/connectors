@@ -1,12 +1,11 @@
 {
-  "oauthGrantType": "AuthorizationCode",
   "authorizationEndpoint": "<authorization-endpoint>",
   "tokenEndpoint": "<token-endpoint>",
   "userInfoEndpoint": "<user-info-endpoint>",
   "clientId": "<client-id>",
   "clientSecret": "<client-secret>",
   "tokenEndpointResponseType": "query-string",
-  "scope": "<scope>",
+  "scope": "<OPTIONAL-scope>",
   "profileMap": {
     "id": "user_id",
     "email": "email_verified",

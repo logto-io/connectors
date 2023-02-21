@@ -18,12 +18,8 @@ import snakecaseKeys from 'snakecase-keys';
 
 import { defaultMetadata, defaultTimeout } from './constant.js';
 import type { OauthConfig } from './types.js';
-import { oauthConfigGuard, OauthGrantType } from './types.js';
-import {
-  userProfileMapping,
-  getAuthorizationCodeFlowAccessToken,
-  getImplicitFlowAccessToken,
-} from './utils.js';
+import { oauthConfigGuard } from './types.js';
+import { userProfileMapping, getAccessToken } from './utils.js';
 
 const removeUndefinedKeys = (object: Record<string, unknown>) =>
   Object.fromEntries(Object.entries(object).filter(([, value]) => value !== undefined));
@@ -42,12 +38,6 @@ const getAuthorizationUri =
       ...customConfig,
     });
 
-    assert(
-      setSession,
-      new ConnectorError(ConnectorErrorCodes.NotImplemented, {
-        message: 'Function `setSession()` is not implemented.',
-      })
-    );
     await setSession({ redirectUri });
 
     const queryParameters = new URLSearchParams({
@@ -59,14 +49,6 @@ const getAuthorizationUri =
     return `${parsedConfig.authorizationEndpoint}?${queryParameters.toString()}`;
   };
 
-const getAccessToken = async (config: OauthConfig, data: unknown, redirectUri: string) => {
-  if (config.oauthGrantType === OauthGrantType.AuthorizationCode) {
-    return getAuthorizationCodeFlowAccessToken(config, data, redirectUri);
-  }
-
-  return getImplicitFlowAccessToken(data);
-};
-
 const getUserInfo =
   (getConfig: GetConnectorConfig): GetUserInfo =>
   async (data, getSession) => {
@@ -74,12 +56,6 @@ const getUserInfo =
     validateConfig<OauthConfig>(config, oauthConfigGuard);
     const parsedConfig = oauthConfigGuard.parse(config);
 
-    assert(
-      getSession,
-      new ConnectorError(ConnectorErrorCodes.NotImplemented, {
-        message: 'Function `getSession()` is not implemented.',
-      })
-    );
     const { redirectUri } = await getSession();
     assert(
       redirectUri,

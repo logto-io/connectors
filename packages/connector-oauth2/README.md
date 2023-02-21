@@ -18,7 +18,7 @@ For detailed steps on registering a Google App for Logto's social sign-in use, p
 
 ## Compose the connector JSON
 
-You can choose which OAuth grant type to use by configuring `oauthGrantType` as either 'AuthorizationCode' or 'Implicit'. You may curious that there are other two grant types in OAuth protocol, why doesn't Logto also support them. The reason is that those two types (resource owner password credentials and client credentials) do not fit the use cases of Logto.
+We ONLY support "Authorization Code" grant type for security consideration and it can perfectly fit Logto's scenario.
 
 `scope` determines the resource you can access to after a successful authorization.
 
@@ -37,21 +37,20 @@ You can find [Google user profile response](https://developers.google.com/identi
 }
 ```
 
-Here are some examples of OAuth connector config JSON connected to Google server. Other vendor's config could vary.
+Here is an example of OAuth connector config JSON connected to Google server. Other vendor's config could vary.
 
 > ℹ️ **Note**
 > 
-> `responseType` and `grantType` can ONLY be FIXED values with both authorization code and implicit grant type, so we make them optional and default values will be automatically filled.
+> `responseType` and `grantType` can ONLY be FIXED values with authorization code grant type, so we make them optional and default values will be automatically filled.
 
 ### Authorization Code grant type
 
 `tokenEndpoint` is required since a token request is obligatory.
 
-`tokenEndpointResponseType` is an optional field, and should be either 'query-string' or 'json' if provided. The default value is 'query-string'. This field only work when the grant type is 'Authorization Code'. It will determine how OAuth connector parse the token response and an error could break the social sign-in flow if wrong value is set.
+`tokenEndpointResponseType` is an optional field, and should be either 'query-string' or 'json' if provided. The default value is 'query-string'. It will determine how OAuth connector parse the token response and an error could break the social sign-in flow if wrong value is set.
 
 ```json
 {
-  "oauthGrantType": "AuthorizationCode",
   "clientId": "<your-client-id>",
   "clientSecret": "<your-client-secret>",
   "scope": "<OPTIONAL-'profile email'>",
@@ -73,35 +72,9 @@ Here are some examples of OAuth connector config JSON connected to Google server
 }
 ```
 
-### Implicit grant type
-
-`tokenEndpoint` in this flow is not required for implicit grant type since we can get `access_token` from response of authorization request.
-
-```json
-{
-  "oauthGrantType": "Implicit",
-  "clientId": "<your-client-id>",
-  "clientSecret": "<your-client-secret>",
-  "scope": "<OPTIONAL-'profile email'>",
-  "authorizationEndpoint": "<vendor-authorization-endpoint>",
-  "userInfoEndpoint": "<vendor-user-info-endpoint>",
-  "profileMap": {
-    "id": "<OPTIONAL-'id'>",
-    "name": "<OPTIONAL-'name'>",
-    "avatar": "<OPTIONAL-'avatar'>",
-    "email": "<OPTIONAL-'email'>",
-    "phone": "<OPTIONAL-'phone'>"
-  },
-  "customConfig": {
-    "customParameter1": "<OPTIONAL-custom-parameter-1>",
-    "customParameter2": "<OPTIONAL-custom-parameter-2>"
-  }
-}
-```
-
 > ℹ️ **Note**
 > 
-> For both 'Authorization Code' and 'Implicit' grant types, we provided an OPTIONAL `customConfig` key to put your customize parameters.
+> We provided an OPTIONAL `customConfig` key to put your customize parameters.
 > Each social identity provider could have their own variant on OAuth standard protocol. If your desired social identity provider strictly stick to OAuth standard protocol, the you do not need to care about `customConfig`.
 
 
@@ -109,7 +82,6 @@ Here are some examples of OAuth connector config JSON connected to Google server
 
 | Name                      | Type                   | Required |
 |---------------------------|------------------------|----------|
-| oauthGrantType            | enum                   | true     |
 | authorizationEndpoint     | string                 | true     |
 | userInfoEndpoint          | string                 | true     |
 | clientId                  | string                 | true     |
