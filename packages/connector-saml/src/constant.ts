@@ -142,11 +142,13 @@ export const formItems: ConnectorConfigFormItem[] = [
     label: 'profileMap',
     key: 'profileMap',
     defaultValue: {
-      id: 'nameidentifier',
-      email: 'emailaddress',
-      avatar: 'picture',
+      id: 'id',
+      email: 'email',
+      phone: 'phone',
+      name: 'name',
+      avatar: 'avatar',
     },
-    required: true,
+    required: false,
   },
 ];
 
