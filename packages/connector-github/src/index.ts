@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import type {
   GetAuthorizationUri,
   GetUserInfo,
@@ -13,6 +15,7 @@ import {
   parseJson,
 } from '@logto/connector-kit';
 import { assert, conditional } from '@silverhand/essentials';
+import equal from 'fast-deep-equal';
 import { got, HTTPError } from 'got';
 import qs from 'query-string';
 
@@ -103,11 +106,36 @@ export const getAccessToken = async (config: GithubConfig, codeObject: { code: s
 
 const getUserInfo =
   (getConfig: GetConnectorConfig): GetUserInfo =>
-  async (data) => {
+  async (data, _, { get, set }) => {
     const { code } = await authorizationCallbackHandler(data);
     const config = await getConfig(defaultMetadata.id);
     validateConfig<GithubConfig>(config, githubConfigGuard);
     const { accessToken } = await getAccessToken(config, { code });
+
+    const at = await get('accessToken');
+    console.log('null accessToken', at, equal(at, null));
+    await set('accessToken', accessToken);
+    const setAt = await get('accessToken');
+    console.log('latest accessToken', equal(setAt, accessToken));
+    const rawObject = {
+      a: 1,
+      b: '2',
+      c: true,
+      d: [1, null, 2, '3'],
+      e: { a: 1, b: '2', c: true, d: [null, 2, '3', false] },
+      f: null,
+    };
+    await set('rawObject', rawObject);
+    const getRawObject = await get('rawObject');
+    console.log('rawObject:', rawObject);
+    console.log('getRawObject:', getRawObject);
+    console.log('getRawObject equals rawObject', equal(getRawObject, rawObject));
+    const atAndTime = { accessToken, isoTimeString: new Date().toISOString() };
+    await set('rawObject', atAndTime);
+    const getNewRawObject = await get('rawObject');
+    console.log('atAndTime:', atAndTime);
+    console.log('getNewRawObject:', getNewRawObject);
+    console.log('getNewRawObject equals atAndTime', equal(getNewRawObject, atAndTime));
 
     try {
       const httpResponse = await got.get(userInfoEndpoint, {
@@ -157,3 +185,5 @@ const createGithubConnector: CreateConnector<SocialConnector> = async ({ getConf
 };
 
 export default createGithubConnector;
+/* eslint-enable @typescript-eslint/no-unsafe-assignment */
+/* eslint-enable @typescript-eslint/no-unsafe-call */
