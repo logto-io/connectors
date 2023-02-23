@@ -40,6 +40,8 @@ Follow the [creating an OAuth App](https://docs.github.com/en/developers/apps/bu
 Name your new OAuth application in **Application name** and fill up **Homepage URL** of the app.
 You can leave **Application description** field blank and customize **Authorization callback URL** as `${your_logto_origin}/callback/${connector_id}`. The `connector_id` can be found on the top bar of the Logto Admin Console connector details page.
 
+> Note: If you encounter the error message "The redirect_uri MUST match the registered callback URL for this application." when logging in, try aligning the Authorization Callback URL of your GitHub OAuth App and your Logto App's redirect URL (of course, including the protocol) to resolve the issue.
+
 We suggest not to check the box before **Enable Device Flow**, or users who sign in with GitHub on mobile devices must confirm the initial sign-in action in the GitHub app. Many GitHub users do not install the GitHub mobile app on their phones, which could block the sign-in flow. Please ignore our suggestion if you are expecting end-users to confirm their sign-in flow. See details of [device flow](https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps#device-flow).
 
 ## Managing OAuth apps
@@ -93,6 +95,8 @@ GitHub 连接器让终端用户可以用 GitHub 账号，通过 GitHub OAuth 2.0
 
 为新 _OAuth 应用程序_ 取名，并填入「Application name」栏；并填写应用的网页地址「Homepage URL」。
 你需要将 `${your_logto_origin}/callback/${connector_id}` 填写到「Authorization callback URL」栏；「Application description」栏可以选择留白。`connector_id` 在管理控制台相应连接器的详情页的顶栏中可以找到。
+
+> 注意：如果登录时报错 `The redirect_uri MUST match the registered callback URL for this application.`，可以尝试将 Authorization Callback URL 和 Logto App 的 Redirect URL 保持严格一致（包括协议类型）以解决该问题。
 
 我们建议不要勾选「Enable Device Flow」，否则希望在移动设备上登录的用户需要在 GitHub 应用中确认登录的动作。许多 GitHub 用户在移动端设备上不会安装应用，这可能阻碍这些用户的登录流程。
 
