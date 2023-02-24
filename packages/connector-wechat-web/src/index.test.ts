@@ -139,7 +139,8 @@ describe('getUserInfo', () => {
       {
         code: 'code',
       },
-      jest.fn()
+      jest.fn(),
+      { set: jest.fn(), get: jest.fn() }
     );
     expect(socialUserInfo).toMatchObject({
       id: 'this_is_an_arbitrary_wechat_union_id',
@@ -150,9 +151,9 @@ describe('getUserInfo', () => {
 
   it('throws General error if code not provided in input', async () => {
     const connector = await createConnector({ getConfig });
-    await expect(connector.getUserInfo({}, jest.fn())).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.General, '{}')
-    );
+    await expect(
+      connector.getUserInfo({}, jest.fn(), { set: jest.fn(), get: jest.fn() })
+    ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.General, '{}'));
   });
 
   it('throws error if `openid` is missing', async () => {
@@ -165,7 +166,9 @@ describe('getUserInfo', () => {
         errmsg: 'missing openid',
       });
     const connector = await createConnector({ getConfig });
-    await expect(connector.getUserInfo({ code: 'code' }, jest.fn())).rejects.toMatchError(
+    await expect(
+      connector.getUserInfo({ code: 'code' }, jest.fn(), { set: jest.fn(), get: jest.fn() })
+    ).rejects.toMatchError(
       new ConnectorError(ConnectorErrorCodes.General, {
         errorDescription: 'missing openid',
         errcode: 41_009,
@@ -179,7 +182,9 @@ describe('getUserInfo', () => {
       .query(parameters)
       .reply(200, { errcode: 40_001, errmsg: 'invalid credential' });
     const connector = await createConnector({ getConfig });
-    await expect(connector.getUserInfo({ code: 'code' }, jest.fn())).rejects.toMatchError(
+    await expect(
+      connector.getUserInfo({ code: 'code' }, jest.fn(), { set: jest.fn(), get: jest.fn() })
+    ).rejects.toMatchError(
       new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid, 'invalid credential')
     );
   });
@@ -187,7 +192,9 @@ describe('getUserInfo', () => {
   it('throws unrecognized error', async () => {
     nock(userInfoEndpointUrl.origin).get(userInfoEndpointUrl.pathname).query(parameters).reply(500);
     const connector = await createConnector({ getConfig });
-    await expect(connector.getUserInfo({ code: 'code' }, jest.fn())).rejects.toThrow();
+    await expect(
+      connector.getUserInfo({ code: 'code' }, jest.fn(), { set: jest.fn(), get: jest.fn() })
+    ).rejects.toThrow();
   });
 
   it('throws Error if request failed and errcode is not 40001', async () => {
@@ -196,7 +203,9 @@ describe('getUserInfo', () => {
       .query(parameters)
       .reply(200, { errcode: 40_003, errmsg: 'invalid openid' });
     const connector = await createConnector({ getConfig });
-    await expect(connector.getUserInfo({ code: 'code' }, jest.fn())).rejects.toMatchError(
+    await expect(
+      connector.getUserInfo({ code: 'code' }, jest.fn(), { set: jest.fn(), get: jest.fn() })
+    ).rejects.toMatchError(
       new ConnectorError(ConnectorErrorCodes.General, {
         errorDescription: 'invalid openid',
         errcode: 40_003,
@@ -207,8 +216,8 @@ describe('getUserInfo', () => {
   it('throws SocialAccessTokenInvalid error if response code is 401', async () => {
     nock(userInfoEndpointUrl.origin).get(userInfoEndpointUrl.pathname).query(parameters).reply(401);
     const connector = await createConnector({ getConfig });
-    await expect(connector.getUserInfo({ code: 'code' }, jest.fn())).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid)
-    );
+    await expect(
+      connector.getUserInfo({ code: 'code' }, jest.fn(), { set: jest.fn(), get: jest.fn() })
+    ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid));
   });
 });

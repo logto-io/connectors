@@ -100,7 +100,8 @@ describe('naver connector', () => {
           code: 'code',
           redirectUri: 'redirectUri',
         },
-        jest.fn()
+        jest.fn(),
+        { set: jest.fn(), get: jest.fn() }
       );
       expect(socialUserInfo).toMatchObject({
         id: '32742776',
@@ -114,7 +115,10 @@ describe('naver connector', () => {
       nock(userInfoEndpoint).post('').reply(401);
       const connector = await createConnector({ getConfig });
       await expect(
-        connector.getUserInfo({ code: 'code', redirectUri: '' }, jest.fn())
+        connector.getUserInfo({ code: 'code', redirectUri: '' }, jest.fn(), {
+          set: jest.fn(),
+          get: jest.fn(),
+        })
       ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid));
     });
 
@@ -136,7 +140,8 @@ describe('naver connector', () => {
             error: 'general_error',
             error_description: 'General error encountered.',
           },
-          jest.fn()
+          jest.fn(),
+          { set: jest.fn(), get: jest.fn() }
         )
       ).rejects.toMatchError(
         new ConnectorError(
@@ -150,7 +155,10 @@ describe('naver connector', () => {
       nock(userInfoEndpoint).post('').reply(500);
       const connector = await createConnector({ getConfig });
       await expect(
-        connector.getUserInfo({ code: 'code', redirectUri: '' }, jest.fn())
+        connector.getUserInfo({ code: 'code', redirectUri: '' }, jest.fn(), {
+          set: jest.fn(),
+          get: jest.fn(),
+        })
       ).rejects.toThrow();
     });
   });

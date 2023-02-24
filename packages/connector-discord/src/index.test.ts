@@ -98,7 +98,8 @@ describe('Discord connector', () => {
           code: 'code',
           redirectUri: 'dummyRedirectUri',
         },
-        jest.fn()
+        jest.fn(),
+        { set: jest.fn(), get: jest.fn() }
       );
       expect(socialUserInfo).toMatchObject({
         id: '1234567890',
@@ -112,7 +113,10 @@ describe('Discord connector', () => {
       nock(userInfoEndpoint).get('').reply(401);
       const connector = await createConnector({ getConfig });
       await expect(
-        connector.getUserInfo({ code: 'code', redirectUri: 'dummyRedirectUri' }, jest.fn())
+        connector.getUserInfo({ code: 'code', redirectUri: 'dummyRedirectUri' }, jest.fn(), {
+          set: jest.fn(),
+          get: jest.fn(),
+        })
       ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid));
     });
 
@@ -120,7 +124,10 @@ describe('Discord connector', () => {
       nock(userInfoEndpoint).get('').reply(500);
       const connector = await createConnector({ getConfig });
       await expect(
-        connector.getUserInfo({ code: 'code', redirectUri: 'dummyRedirectUri' }, jest.fn())
+        connector.getUserInfo({ code: 'code', redirectUri: 'dummyRedirectUri' }, jest.fn(), {
+          set: jest.fn(),
+          get: jest.fn(),
+        })
       ).rejects.toThrow();
     });
   });

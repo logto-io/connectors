@@ -72,7 +72,10 @@ describe('getUserInfo', () => {
 
   it('get right profile', async () => {
     getSession.mockResolvedValue({ extractedRawProfile: mockAttributes });
-    const userInfo = await connector.getUserInfo(undefined, getSession);
+    const userInfo = await connector.getUserInfo(undefined, getSession, {
+      set: jest.fn(),
+      get: jest.fn(),
+    });
     expect(userInfo).toEqual({
       avatar: 'https://logto.io/logo.4667af9d.svg',
       email: 'test@logto.io',
