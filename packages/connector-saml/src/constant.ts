@@ -4,27 +4,31 @@ import { ConnectorPlatform, ConnectorConfigFormItemType } from '@logto/connector
 export const formItems: ConnectorConfigFormItem[] = [
   {
     type: ConnectorConfigFormItemType.Text,
-    label: 'entityID',
+    label: 'SP Entity ID (Audience)',
     key: 'entityID',
     required: true,
+    description:
+      'The application-defined unique identifier that is the intended audience of the SAML assertion. This is most often the SP Entity ID of your application.',
   },
   {
     type: ConnectorConfigFormItemType.Text,
-    label: 'signInEndpoint',
+    label: 'IdP Single Sign-On URL',
     key: 'signInEndpoint',
     required: true,
   },
   {
     type: ConnectorConfigFormItemType.MultilineText,
-    label: 'x509Certificate',
+    label: 'X.509 Certificate',
     key: 'x509Certificate',
     required: true,
     placeholder:
       '-----BEGIN CERTIFICATE-----\nMIIDHTCCAgWg[...]jel7/YMPLKwg+Iau7\n-----END CERTIFICATE-----',
+    description:
+      'The certificate is provided by the IdP, and will be used to validate the signature of the SAML assertion.',
   },
   {
     type: ConnectorConfigFormItemType.MultilineText,
-    label: 'idpMetadataXml',
+    label: "IdP's Metadata in XML format",
     key: 'idpMetadataXml',
     required: true,
   },
@@ -38,7 +42,7 @@ export const formItems: ConnectorConfigFormItem[] = [
   },
   {
     type: ConnectorConfigFormItemType.Select,
-    label: 'requestSignatureAlgorithm',
+    label: 'Signature Algorithm',
     key: 'requestSignatureAlgorithm',
     selectItems: [
       { value: 'http://www.w3.org/2000/09/xmldsig#rsa-sha1', title: 'RSA SHA1' },
@@ -55,7 +59,7 @@ export const formItems: ConnectorConfigFormItem[] = [
   },
   {
     type: ConnectorConfigFormItemType.Select,
-    label: 'messageSigningOrder',
+    label: 'Message Signing Order',
     key: 'messageSigningOrder',
     selectItems: [
       { value: 'sign-then-encrypt', title: 'Sign then encrypt' },
@@ -68,34 +72,35 @@ export const formItems: ConnectorConfigFormItem[] = [
   },
   {
     type: ConnectorConfigFormItemType.Switch,
-    label: 'signAuthnRequest',
+    label: 'Sign Authentication Request',
     key: 'signAuthnRequest',
     defaultValue: false,
   },
   {
     type: ConnectorConfigFormItemType.MultilineText,
-    label: 'privateKey',
+    label: 'Signature Private Key',
     key: 'privateKey',
     required: true,
     showConditions: [{ targetKey: 'signAuthnRequest', expectValue: true }],
     placeholder:
       '-----BEGIN RSA PRIVATE KEY-----\n[private-key-content]\n-----END RSA PRIVATE KEY-----',
+    description: 'The private key is used to sign the authentication request.',
   },
   {
     type: ConnectorConfigFormItemType.Text,
-    label: 'privateKeyPass',
+    label: 'Signature Private Key Password',
     key: 'privateKeyPass',
     showConditions: [{ targetKey: 'signAuthnRequest', expectValue: true }],
   },
   {
     type: ConnectorConfigFormItemType.Switch,
-    label: 'encryptAssertion',
+    label: 'SAML Assertion Encrypted',
     key: 'encryptAssertion',
     defaultValue: false,
   },
   {
     type: ConnectorConfigFormItemType.MultilineText,
-    label: 'encPrivateKey',
+    label: 'Decryption Private Key',
     key: 'encPrivateKey',
     required: true,
     showConditions: [{ targetKey: 'encryptAssertion', expectValue: true }],
@@ -104,13 +109,14 @@ export const formItems: ConnectorConfigFormItem[] = [
   },
   {
     type: ConnectorConfigFormItemType.Text,
-    label: 'encPrivateKeyPass',
+    label: 'Decryption Private Key Password',
     key: 'encPrivateKeyPass',
     showConditions: [{ targetKey: 'encryptAssertion', expectValue: true }],
+    description: 'The private key is used to decrypt the encrypted SAML assertion.',
   },
   {
     type: ConnectorConfigFormItemType.Select,
-    label: 'nameIDFormat',
+    label: 'Name ID Format',
     key: 'nameIDFormat',
     selectItems: [
       { value: 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified', title: 'Unspecified' },
@@ -132,16 +138,18 @@ export const formItems: ConnectorConfigFormItem[] = [
       },
     ],
     defaultValue: 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified',
+    description:
+      "Identifies the SAML processing rules and constraints for the assertion's subject statement. Use the default value of 'Unspecified' unless the application explicitly requires a specific format.",
   },
   {
     type: ConnectorConfigFormItemType.Number,
-    label: 'timeout',
+    label: 'Timeout',
     key: 'timeout',
     defaultValue: 5000,
   },
   {
     type: ConnectorConfigFormItemType.Json,
-    label: 'profileMap',
+    label: 'Profile Mapping',
     key: 'profileMap',
     defaultValue: {
       id: 'id',
