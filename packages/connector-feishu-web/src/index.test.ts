@@ -135,7 +135,8 @@ describe('getUserInfo', () => {
         code: 'code',
         redirectUri: 'http://localhost:3000',
       },
-      jest.fn()
+      jest.fn(),
+      { set: jest.fn(), get: jest.fn() }
     );
     expect(id).toEqual('ou_caecc734c2e3328a62489fe0648c4b98779515d3');
     expect(name).toEqual('李雷');
@@ -144,9 +145,9 @@ describe('getUserInfo', () => {
 
   it('throw General error if code not provided in input', async () => {
     const connector = await createConnector({ getConfig });
-    await expect(connector.getUserInfo({}, jest.fn())).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.InvalidResponse, '{}')
-    );
+    await expect(
+      connector.getUserInfo({}, jest.fn(), { set: jest.fn(), get: jest.fn() })
+    ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.InvalidResponse, '{}'));
   });
 
   it('should throw SocialAccessTokenInvalid with code invalid_token', async () => {
@@ -156,7 +157,11 @@ describe('getUserInfo', () => {
     });
     const connector = await createConnector({ getConfig });
     await expect(
-      connector.getUserInfo({ code: 'error_code', redirectUri: 'http://localhost:3000' }, jest.fn())
+      connector.getUserInfo(
+        { code: 'error_code', redirectUri: 'http://localhost:3000' },
+        jest.fn(),
+        { set: jest.fn(), get: jest.fn() }
+      )
     ).rejects.toMatchError(
       new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid, 'invalid access token')
     );
@@ -168,7 +173,10 @@ describe('getUserInfo', () => {
     });
     const connector = await createConnector({ getConfig });
     await expect(
-      connector.getUserInfo({ code: 'code', redirectUri: 'http://localhost:3000' }, jest.fn())
+      connector.getUserInfo({ code: 'code', redirectUri: 'http://localhost:3000' }, jest.fn(), {
+        set: jest.fn(),
+        get: jest.fn(),
+      })
     ).rejects.toMatchError(
       new ConnectorError(ConnectorErrorCodes.InvalidResponse, 'invalid user response')
     );
@@ -178,7 +186,10 @@ describe('getUserInfo', () => {
     nock(userInfoUrl.origin).get(userInfoUrl.pathname).query(true).reply(500);
     const connector = await createConnector({ getConfig });
     await expect(
-      connector.getUserInfo({ code: 'code', redirectUri: 'http://localhost:3000' }, jest.fn())
+      connector.getUserInfo({ code: 'code', redirectUri: 'http://localhost:3000' }, jest.fn(), {
+        set: jest.fn(),
+        get: jest.fn(),
+      })
     ).rejects.toThrow();
   });
 });
