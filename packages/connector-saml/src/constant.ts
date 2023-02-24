@@ -30,9 +30,11 @@ export const formItems: ConnectorConfigFormItem[] = [
   },
   {
     type: ConnectorConfigFormItemType.Text,
-    label: 'assertionConsumerServiceUrl',
+    label: 'Assertion Consumer Service URL',
     key: 'assertionConsumerServiceUrl',
     required: true,
+    description:
+      'Copy and paste the unique Assertion Consumer Service URL (ACS URL) into the {{Connector Name}} provider configuration. It will take effect after the connector is created.',
   },
   {
     type: ConnectorConfigFormItemType.Select,
