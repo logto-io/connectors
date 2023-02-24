@@ -1,13 +1,5 @@
 import { z } from 'zod';
 
-// DO NOT support 'resource owner password credentials' and 'client credentials' since they do not fit our Logto use cases.
-export enum OauthGrantType {
-  AuthorizationCode = 'AuthorizationCode',
-  Implicit = 'Implicit',
-}
-
-export const oauthGrantTypeGuard = z.nativeEnum(OauthGrantType);
-
 export const profileMapGuard = z
   .object({
     id: z.string().optional().default('id'),
@@ -42,8 +34,9 @@ const tokenEndpointResponseTypeGuard = z
   .optional()
   .default('query-string');
 
-export const authorizationCodeConfigGuard = z.object({
-  oauthGrantType: z.literal(OauthGrantType.AuthorizationCode),
+export type TokenEndpointResponseType = z.input<typeof tokenEndpointResponseTypeGuard>;
+
+export const oauthConfigGuard = z.object({
   responseType: z.literal('code').optional().default('code'),
   grantType: z.literal('authorization_code').optional().default('authorization_code'),
   tokenEndpointResponseType: tokenEndpointResponseTypeGuard,
@@ -57,29 +50,6 @@ export const authorizationCodeConfigGuard = z.object({
   customConfig: z.record(z.string()).optional(),
 });
 
-export type TokenEndpointResponseType = z.input<typeof tokenEndpointResponseTypeGuard>;
-
-export type AuthorizationCodeConfig = z.infer<typeof authorizationCodeConfigGuard>;
-
-export const implicitConfigGuard = z.object({
-  oauthGrantType: z.literal(OauthGrantType.Implicit),
-  responseType: z.literal('token').optional().default('token'),
-  authorizationEndpoint: z.string(),
-  userInfoEndpoint: z.string(),
-  clientId: z.string().optional(),
-  clientSecret: z.string().optional(),
-  scope: z.string().optional(),
-  profileMap: profileMapGuard,
-  customConfig: z.record(z.string()).optional(),
-});
-
-export type ImplicitConfig = z.infer<typeof implicitConfigGuard>;
-
-export const oauthConfigGuard = z.discriminatedUnion('oauthGrantType', [
-  authorizationCodeConfigGuard,
-  implicitConfigGuard,
-]);
-
 export type OauthConfig = z.infer<typeof oauthConfigGuard>;
 
 export const authResponseGuard = z.object({
@@ -88,14 +58,6 @@ export const authResponseGuard = z.object({
 });
 
 export type AuthResponse = z.infer<typeof authResponseGuard>;
-
-export const implicitAuthResponseGuard = z.object({
-  access_token: z.string(),
-  token_type: z.string(),
-  expires_in: z.string().optional(),
-  scope: z.string().optional(),
-  state: z.string().optional(),
-});
 
 export const accessTokenResponseGuard = z.object({
   access_token: z.string(),

@@ -7,17 +7,12 @@ import snakecaseKeys from 'snakecase-keys';
 
 import { defaultTimeout } from './constant.js';
 import type {
-  AuthorizationCodeConfig,
+  OauthConfig,
   TokenEndpointResponseType,
   AccessTokenResponse,
   ProfileMap,
 } from './types.js';
-import {
-  authResponseGuard,
-  accessTokenResponseGuard,
-  userProfileGuard,
-  implicitAuthResponseGuard,
-} from './types.js';
+import { authResponseGuard, accessTokenResponseGuard, userProfileGuard } from './types.js';
 
 export const accessTokenRequester = async (
   tokenEndpoint: string,
@@ -87,11 +82,7 @@ export const userProfileMapping = (
   return result.data;
 };
 
-export const getAuthorizationCodeFlowAccessToken = async (
-  config: AuthorizationCodeConfig,
-  data: unknown,
-  redirectUri?: string
-) => {
+export const getAccessToken = async (config: OauthConfig, data: unknown, redirectUri: string) => {
   const result = authResponseGuard.safeParse(data);
 
   if (!result.success) {
@@ -106,7 +97,7 @@ export const getAuthorizationCodeFlowAccessToken = async (
     ...pick(rest, 'grantType', 'clientId', 'clientSecret'),
     ...customConfig,
     code,
-    ...(redirectUri ? { redirectUri } : {}),
+    redirectUri,
   });
 
   return accessTokenRequester(
@@ -114,14 +105,4 @@ export const getAuthorizationCodeFlowAccessToken = async (
     parameterObject,
     config.tokenEndpointResponseType
   );
-};
-
-export const getImplicitFlowAccessToken = async (data: unknown) => {
-  const result = implicitAuthResponseGuard.safeParse(data);
-
-  if (!result.success) {
-    throw new ConnectorError(ConnectorErrorCodes.General, data);
-  }
-
-  return result.data;
 };
