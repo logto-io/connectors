@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.0-beta.20
+
+### Patch Changes
+
+- 7b0bf69: Bump version to upgrade connector kit
+
 ## 1.0.0-beta.19
 
 ### Patch Changes
