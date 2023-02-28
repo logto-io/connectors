@@ -1,5 +1,5 @@
 import type { ConnectorMetadata } from '@logto/connector-kit';
-import { ConnectorPlatform } from '@logto/connector-kit';
+import { ConnectorPlatform, ConnectorConfigFormItemType } from '@logto/connector-kit';
 
 export const authorizationEndpoint = 'https://github.com/login/oauth/authorize';
 export const scope = 'read:user';
@@ -25,7 +25,22 @@ export const defaultMetadata: ConnectorMetadata = {
     ko: 'GitHub는 소프트웨어 개발과 버전 관리를 위한 온라인 커뮤니티입니다.',
   },
   readme: './README.md',
-  configTemplate: './docs/config-template.json',
+  formItems: [
+    {
+      key: 'clientId',
+      type: ConnectorConfigFormItemType.Text,
+      label: 'Client ID',
+      required: true,
+      placeholder: '<client-id>',
+    },
+    {
+      key: 'clientSecret',
+      type: ConnectorConfigFormItemType.Text,
+      label: 'Client Secret',
+      required: true,
+      placeholder: '<client-secret>',
+    },
+  ],
 };
 
 export const defaultTimeout = 5000;

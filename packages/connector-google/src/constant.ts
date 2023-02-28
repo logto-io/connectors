@@ -1,5 +1,5 @@
 import type { ConnectorMetadata } from '@logto/connector-kit';
-import { ConnectorPlatform } from '@logto/connector-kit';
+import { ConnectorConfigFormItemType, ConnectorPlatform } from '@logto/connector-kit';
 
 export const authorizationEndpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
 export const accessTokenEndpoint = 'https://oauth2.googleapis.com/token';
@@ -25,7 +25,22 @@ export const defaultMetadata: ConnectorMetadata = {
     ko: 'Google은 가장 큰 검색 엔진 기술과 이메일 서비스 제공자입니다.', // UNTRANSLATED
   },
   readme: './README.md',
-  configTemplate: './docs/config-template.json',
+  formItems: [
+    {
+      key: 'clientId',
+      type: ConnectorConfigFormItemType.Text,
+      label: 'Client ID',
+      required: true,
+      placeholder: '<client-id>',
+    },
+    {
+      key: 'clientSecret',
+      type: ConnectorConfigFormItemType.Text,
+      label: 'Client Secret',
+      required: true,
+      placeholder: '<client-secret>',
+    },
+  ],
 };
 
 export const defaultTimeout = 5000;
