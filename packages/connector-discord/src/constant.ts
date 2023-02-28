@@ -1,5 +1,5 @@
 import type { ConnectorMetadata } from '@logto/connector-kit';
-import { ConnectorPlatform } from '@logto/connector-kit';
+import { ConnectorConfigFormItemType, ConnectorPlatform } from '@logto/connector-kit';
 
 /**
  * Base authorization URL.
@@ -37,7 +37,22 @@ export const defaultMetadata: ConnectorMetadata = {
     ko: 'Discord는 음성, 비디오 및 텍스트로 대화하는 가장 쉬운 방법입니다.',
   },
   readme: './README.md',
-  configTemplate: './docs/config-template.json',
+  formItems: [
+    {
+      key: 'clientId',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      label: 'Client ID',
+      placeholder: '<client-id>',
+    },
+    {
+      key: 'clientSecret',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      label: 'Client Secret',
+      placeholder: '<client-secret>',
+    },
+  ],
 };
 
 export const defaultTimeout = 5000;
