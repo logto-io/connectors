@@ -1,5 +1,5 @@
 import type { ConnectorMetadata } from '@logto/connector-kit';
-import { ConnectorPlatform } from '@logto/connector-kit';
+import { ConnectorPlatform, ConnectorConfigFormItemType } from '@logto/connector-kit';
 
 export const authorizationEndpoint = 'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm';
 export const alipayEndpoint = 'https://openapi.alipay.com/gateway.do';
@@ -38,7 +38,42 @@ export const defaultMetadata: ConnectorMetadata = {
     ko: 'Alipay는 서드파티 모바일 및 온라인 결제 플랫폼 입니다.',
   },
   readme: './README.md',
-  configTemplate: './docs/config-template.json',
+  formItems: [
+    {
+      key: 'appId',
+      label: 'App ID',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      placeholder: '<app-id-with-maximum-length-16>',
+    },
+    {
+      key: 'privateKey',
+      label: 'Private Key',
+      type: ConnectorConfigFormItemType.MultilineText,
+      required: true,
+      placeholder: '<private-key>',
+    },
+    {
+      key: 'signType',
+      label: 'Signing Algorithm',
+      type: ConnectorConfigFormItemType.Select,
+      selectItems: [
+        { title: 'RSA-SHA1', value: 'RSA' },
+        { title: 'RSA-SHA256', value: 'RSA2' },
+      ],
+      defaultValue: 'RSA2',
+    },
+    {
+      key: 'charset',
+      label: 'Char Set',
+      type: ConnectorConfigFormItemType.Select,
+      selectItems: [
+        { title: 'gbk', value: 'gbk' },
+        { title: 'utf8', value: 'utf8' },
+      ],
+      defaultValue: 'utf8',
+    },
+  ],
 };
 
 export const defaultTimeout = 5000;
