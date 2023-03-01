@@ -1,5 +1,5 @@
 import type { ConnectorMetadata } from '@logto/connector-kit';
-import { ConnectorPlatform } from '@logto/connector-kit';
+import { ConnectorConfigFormItemType, ConnectorPlatform } from '@logto/connector-kit';
 
 export const authorizationEndpoint = 'https://open.weixin.qq.com/connect/qrconnect';
 export const accessTokenEndpoint = 'https://api.weixin.qq.com/sns/oauth2/access_token';
@@ -30,7 +30,22 @@ export const defaultMetadata: ConnectorMetadata = {
     ko: 'WeChat은 크로스 플랫폼 메시징 앱입니다.',
   },
   readme: './README.md',
-  configTemplate: './docs/config-template.json',
+  formItems: [
+    {
+      key: 'appId',
+      label: 'App ID',
+      required: true,
+      type: ConnectorConfigFormItemType.Text,
+      placeholder: '<app-id>',
+    },
+    {
+      key: 'appSecret',
+      label: 'App Secret',
+      required: true,
+      type: ConnectorConfigFormItemType.Text,
+      placeholder: '<app-secret>',
+    },
+  ],
 };
 
 export const defaultTimeout = 5000;
