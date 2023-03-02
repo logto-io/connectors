@@ -1,5 +1,5 @@
 import type { ConnectorMetadata } from '@logto/connector-kit';
-import { ConnectorPlatform } from '@logto/connector-kit';
+import { ConnectorPlatform, ConnectorConfigFormItemType } from '@logto/connector-kit';
 
 export const graphAPIEndpoint = 'https://graph.microsoft.com/v1.0/me';
 export const scopes = ['User.Read'];
@@ -23,7 +23,36 @@ export const defaultMetadata: ConnectorMetadata = {
     ko: 'Azure Active Directory is the biggest AD provider.', // UNTRANSLATED
   },
   readme: './README.md',
-  configTemplate: './docs/config-template.json',
+  formItems: [
+    {
+      key: 'clientId',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      label: 'Client ID',
+      placeholder: '<client-id>',
+    },
+    {
+      key: 'clientSecret',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      label: 'Client Secret',
+      placeholder: '<client-secret>',
+    },
+    {
+      key: 'cloudInstance',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      label: 'Cloud Instance',
+      placeholder: '<cloud-instance>',
+    },
+    {
+      key: 'tenantId',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      label: 'Tenant ID',
+      placeholder: '<tenant-id>',
+    },
+  ],
 };
 
 export const defaultTimeout = 5000;

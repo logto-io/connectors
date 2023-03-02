@@ -1,5 +1,5 @@
 import type { ConnectorMetadata } from '@logto/connector-kit';
-import { ConnectorPlatform } from '@logto/connector-kit';
+import { ConnectorPlatform, ConnectorConfigFormItemType } from '@logto/connector-kit';
 
 // https://appleid.apple.com/.well-known/openid-configuration
 export const issuer = 'https://appleid.apple.com';
@@ -29,7 +29,15 @@ export const defaultMetadata: ConnectorMetadata = {
     ko: 'Apple은 하드웨어와 소프트웨어의 다국적 공급자 입니다.',
   },
   readme: './README.md',
-  configTemplate: './docs/config-template.json',
+  formItems: [
+    {
+      key: 'clientId',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      label: 'Client ID',
+      placeholder: '<client-id>',
+    },
+  ],
 };
 
 export const defaultTimeout = 5000;
