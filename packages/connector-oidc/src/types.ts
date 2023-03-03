@@ -38,15 +38,15 @@ export const userProfileGuard = z.object({
 
 export type UserProfile = z.infer<typeof userProfileGuard>;
 
-export const endpointConfigGuard = z.object({
+const endpointConfigObject = {
   authorizationEndpoint: z.string(),
   tokenEndpoint: z.string(),
-});
+};
 
-const clientConfigGuard = z.object({
+const clientConfigObject = {
   clientId: z.string(),
   clientSecret: z.string(),
-});
+};
 
 /**
  * We remove `nonce` in `authRequestOptionalConfigGuard` because it should be a randomly generated string,
@@ -84,17 +84,16 @@ export const idTokenVerificationConfigGuard = z.object({ jwksUri: z.string() }).
 
 export type IdTokenVerificationConfig = z.infer<typeof idTokenVerificationConfigGuard>;
 
-export const oidcConfigGuard = z
-  .object({
-    responseType: z.literal('code').optional().default('code'),
-    grantType: z.literal('authorization_code').optional().default('authorization_code'),
-    scope: z.string().transform(scopePostProcessor),
-    idTokenVerificationConfig: idTokenVerificationConfigGuard,
-    authRequestOptionalConfig: authRequestOptionalConfigGuard.optional(),
-    customConfig: z.record(z.string()).optional(),
-  })
-  .merge(endpointConfigGuard)
-  .merge(clientConfigGuard);
+export const oidcConfigGuard = z.object({
+  responseType: z.literal('code').optional().default('code'),
+  grantType: z.literal('authorization_code').optional().default('authorization_code'),
+  scope: z.string().transform(scopePostProcessor),
+  idTokenVerificationConfig: idTokenVerificationConfigGuard,
+  authRequestOptionalConfig: authRequestOptionalConfigGuard.optional(),
+  customConfig: z.record(z.string()).optional(),
+  ...endpointConfigObject,
+  ...clientConfigObject,
+});
 
 export type OidcConfig = z.infer<typeof oidcConfigGuard>;
 
