@@ -1,4 +1,5 @@
 import type { ConnectorMetadata } from '@logto/connector-kit';
+import { ConnectorConfigFormItemType } from '@logto/connector-kit';
 
 export const endpoint = 'https://dysmsapi.aliyuncs.com/';
 
@@ -44,5 +45,55 @@ export const defaultMetadata: ConnectorMetadata = {
     ko: 'Aliyun는 온라인 비지니스를 위해 클라우딩 컴퓨팅 서비스를 제공합니다.',
   },
   readme: './README.md',
-  configTemplate: './docs/config-template.json',
+  formItems: [
+    {
+      key: 'accessKeyId',
+      label: 'Access Key ID',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      placeholder: '<access-key-id>',
+    },
+    {
+      key: 'accessKeySecret',
+      label: 'Access Key Secret',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      placeholder: '<access-key-secret>',
+    },
+    {
+      key: 'signName',
+      label: 'Signature Name',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      placeholder: '<signature-name>',
+    },
+    {
+      key: 'templates',
+      label: 'Templates',
+      type: ConnectorConfigFormItemType.Json,
+      required: true,
+      defaultValue: [
+        {
+          usageType: 'SignIn',
+          templateCode: '<template-code>',
+        },
+        {
+          usageType: 'Register',
+          templateCode: '<template-code>',
+        },
+        {
+          usageType: 'ForgotPassword',
+          templateCode: '<template-code>',
+        },
+        {
+          usageType: 'Generic',
+          templateCode: '<template-code>',
+        },
+        {
+          usageType: 'Test',
+          templateCode: '<template-code>',
+        },
+      ],
+    },
+  ],
 };

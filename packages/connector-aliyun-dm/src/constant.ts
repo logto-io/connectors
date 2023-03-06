@@ -1,4 +1,5 @@
 import type { ConnectorMetadata } from '@logto/connector-kit';
+import { ConnectorConfigFormItemType } from '@logto/connector-kit';
 
 export const endpoint = 'https://dm.aliyuncs.com/';
 
@@ -28,5 +29,67 @@ export const defaultMetadata: ConnectorMetadata = {
     ko: 'Aliyun는 온라인 비지니스를 위해 클라우딩 컴퓨팅 서비스를 제공합니다.',
   },
   readme: './README.md',
-  configTemplate: './docs/config-template.json',
+  formItems: [
+    {
+      key: 'accessKeyId',
+      label: 'Access Key ID',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      placeholder: '<access-key-id>',
+    },
+    {
+      key: 'accessKeySecret',
+      label: 'Access Key Secret',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      placeholder: '<access-key-secret>',
+    },
+    {
+      key: 'accountName',
+      label: 'Account Name',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      placeholder: '<account-name>',
+    },
+    {
+      key: 'fromAlias',
+      label: 'From Alias',
+      type: ConnectorConfigFormItemType.Text,
+      required: false,
+      placeholder: '<from-alias>',
+    },
+    {
+      key: 'templates',
+      label: 'Templates',
+      type: ConnectorConfigFormItemType.Json,
+      required: true,
+      defaultValue: [
+        {
+          usageType: 'SignIn',
+          subject: '<sign-in-template-subject>',
+          content: '<sign-in-template-content>',
+        },
+        {
+          usageType: 'Register',
+          subject: '<register-template-subject>',
+          content: '<register-template-content>',
+        },
+        {
+          usageType: 'ForgotPassword',
+          subject: '<forgot-password-template-subject>',
+          content: '<forgot-password-template-content>',
+        },
+        {
+          usageType: 'Generic',
+          subject: '<generic-template-subject>',
+          content: '<generic-template-content>',
+        },
+        {
+          usageType: 'Test',
+          subject: '<test-template-subject>',
+          content: '<test-template-content>',
+        },
+      ],
+    },
+  ],
 };
