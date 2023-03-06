@@ -1,4 +1,5 @@
 import type { ConnectorMetadata } from '@logto/connector-kit';
+import { ConnectorConfigFormItemType } from '@logto/connector-kit';
 
 export const endpoint = 'https://api.sendgrid.com/v3/mail/send';
 
@@ -21,5 +22,67 @@ export const defaultMetadata: ConnectorMetadata = {
     ko: 'SendGrids는 마케팅 및 이메일을 전송할 수 있는 플랫폼 입니다.',
   },
   readme: './README.md',
-  configTemplate: './docs/config-template.json',
+  formItems: [
+    {
+      key: 'apiKey',
+      label: 'API Key',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      placeholder: '<api-key>',
+    },
+    {
+      key: 'fromEmail',
+      label: 'From Email',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      placeholder: '<from-Email>',
+    },
+    {
+      key: 'fromName',
+      label: 'From Name',
+      type: ConnectorConfigFormItemType.Text,
+      required: false,
+      placeholder: '<from-name>',
+    },
+    {
+      key: 'templates',
+      label: 'Templates',
+      type: ConnectorConfigFormItemType.Json,
+      required: true,
+      defaultValue: [
+        {
+          usageType: 'SignIn',
+          type: 'text/plain',
+          subject: 'Logto SignIn Template',
+          content: 'This is for sign-in purposes only. Your verification code is {{code}}.',
+        },
+        {
+          usageType: 'Register',
+          type: 'text/plain',
+          subject: 'Logto Register Template',
+          content: 'This is for registering purposes only. Your verification code is {{code}}.',
+        },
+        {
+          usageType: 'ForgotPassword',
+          type: 'text/plain',
+          subject: 'Logto ForgotPassword Template',
+          content:
+            'This is for resetting password purposes only. Your verification code is {{code}}.',
+        },
+        {
+          usageType: 'Generic',
+          type: 'text/plain',
+          subject: 'Logto Generic Template',
+          content:
+            'This is for generic purpose through management API only. Your verification code is {{code}}.',
+        },
+        {
+          usageType: 'Test',
+          type: 'text/plain',
+          subject: 'Logto Test Template',
+          content: 'This is for testing purposes only. Your verification code is {{code}}.',
+        },
+      ],
+    },
+  ],
 };
