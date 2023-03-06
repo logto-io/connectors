@@ -1,5 +1,5 @@
 import type { ConnectorMetadata } from '@logto/connector-kit';
-import { ConnectorPlatform } from '@logto/connector-kit';
+import { ConnectorPlatform, ConnectorConfigFormItemType } from '@logto/connector-kit';
 
 /**
  * Note: If you do not include a version number we will default to the oldest available version, so it's recommended to include the version number in your requests.
@@ -34,7 +34,22 @@ export const defaultMetadata: ConnectorMetadata = {
     ko: '페이스북은 가장 활동적인 사용자를 가진 세계적인 소셜 미디어 플랫폼입니다.', // UNTRANSLATED
   },
   readme: './README.md',
-  configTemplate: './docs/config-template.json',
+  formItems: [
+    {
+      key: 'clientId',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      label: 'Client ID',
+      placeholder: '<client-id>',
+    },
+    {
+      key: 'clientSecret',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      label: 'Client Secret',
+      placeholder: '<client-secret>',
+    },
+  ],
 };
 
 export const defaultTimeout = 5000;
