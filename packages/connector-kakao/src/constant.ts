@@ -1,5 +1,5 @@
 import type { ConnectorMetadata } from '@logto/connector-kit';
-import { ConnectorPlatform } from '@logto/connector-kit';
+import { ConnectorPlatform, ConnectorConfigFormItemType } from '@logto/connector-kit';
 
 export const authorizationEndpoint = 'https://kauth.kakao.com/oauth/authorize';
 export const accessTokenEndpoint = 'https://kauth.kakao.com/oauth/token';
@@ -24,7 +24,22 @@ export const defaultMetadata: ConnectorMetadata = {
     ko: '카카오는 한국에서 가장 유명한 SNS 서비스 제공자 입니다.', // UNTRANSLATED
   },
   readme: './README.md',
-  configTemplate: './docs/config-template.json',
+  formItems: [
+    {
+      key: 'clientId',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      label: 'Client ID',
+      placeholder: '<client-id>',
+    },
+    {
+      key: 'clientSecret',
+      type: ConnectorConfigFormItemType.Text,
+      required: false,
+      label: 'Client Secret',
+      placeholder: '<client-secret>',
+    },
+  ],
 };
 
 export const defaultTimeout = 5000;
