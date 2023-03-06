@@ -1,5 +1,5 @@
 import type { ConnectorMetadata } from '@logto/connector-kit';
-import { ConnectorPlatform } from '@logto/connector-kit';
+import { ConnectorConfigFormItemType, ConnectorPlatform } from '@logto/connector-kit';
 
 export const codeEndpoint = 'https://passport.feishu.cn/suite/passport/oauth/authorize';
 
@@ -22,5 +22,20 @@ export const defaultMetadata: ConnectorMetadata = {
     en: 'Feishu is an enterprise collaboration platform developed by ByteDance',
   },
   readme: './README.md',
-  configTemplate: './docs/config-template.json',
+  formItems: [
+    {
+      key: 'appId',
+      label: 'App ID',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      placeholder: '<app-id>',
+    },
+    {
+      key: 'appSecret',
+      label: 'App Secret',
+      type: ConnectorConfigFormItemType.Text,
+      required: true,
+      placeholder: '<app-secret>',
+    },
+  ],
 };
