@@ -63,38 +63,6 @@ Go to the [Aliyun website](https://cn.aliyun.com/) and register your Aliyun acco
         - Fill the `templateCode` field, which is how you can control SMS context, with "Template Code" (模板 CODE) from step 2.
         - Fill out `usageType` field with either `Register`, `SignIn`, `ForgotPassword`, `Generic` or `Test` for different use cases. (`usageType` is a Logto property to identify the proper use case.) In order to enable full user flows, templates with usageType `Register`, `SignIn` and `ForgotPassword` are required.
 
-Here is an example of Aliyun SMS connector config JSON.
-
-```json
-{
-    "accessKeyId": "<your-access-key-id>",
-    "accessKeySecret": "<your-access-key-secret>",
-    "signName": "<Aliyun>",
-    "templates": [
-        {
-            "templateCode": "<SMS_123456>",
-            "usageType": "Register"
-        },
-        {
-            "templateCode": "<SMS_234567>",
-            "usageType": "SignIn"
-        },
-        {
-            "templateCode": "<SMS_345678>",
-            "usageType": "ForgotPassword"
-        },
-        {
-            "templateCode": "<SMS_456789>",
-            "usageType": "Generic"
-        },
-        {
-            "templateCode": "<SMS_567890>",
-            "usageType": "Test"
-        },
-    ]
-}
-```
-
 ### Test Aliyun SMS connector
 
 You can type in a phone number and click on "Send" to see whether the settings can work before "Save and Done".
@@ -160,38 +128,6 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
     - 你可以添加多个短信服务模板以应对不同的用户场景。这里展示填写单个模板的例子：
       - `templateCode` 栏是你可以用来控制所发送短信内容的属性。它们的值从步骤 2 中的「模板 CODE」获取。
       - `usageType` 栏填写 `Register`，`SignIn`，`ForgotPassword`，`Generic` 或者 `Test` 其中之一以分别对应 _注册_，_登录_，_忘记密码_，_用户档案补全_ 和 _测试_ 的不同场景。（`usageType` 是 Logto 的属性，用来确定使用场景。）为了能够使用完成的流程，需要配置 `usageType` 为 `Register`，`SignIn` 以及 `ForgotPassword` 的模板。
-
-这是一个阿里云短信服务连接器 JSON 配置的样例。
-
-```json
-{
-    "accessKeyId": "<your-access-key-id>",
-    "accessKeySecret": "<your-access-key-secret>",
-    "signName": "<Aliyun>",
-    "templates": [
-        {
-            "templateCode": "<SMS_123456>",
-            "usageType": "Register"
-        },
-        {
-            "templateCode": "<SMS_234567>",
-            "usageType": "SignIn"
-        },
-        {
-            "templateCode": "<SMS_345678>",
-            "usageType": "ForgotPassword"
-        },
-        {
-            "templateCode": "<SMS_456789>",
-            "usageType": "Generic"
-        },
-        {
-            "templateCode": "<SMS_567890>",
-            "usageType": "Test"
-        },
-    ]
-}
-```
 
 ### 测试阿里云短信连接器
 

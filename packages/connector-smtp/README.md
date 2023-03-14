@@ -45,28 +45,6 @@ You can get a new Gmail account at [Gmail](https://mail.google.com/), or you can
 
 A [Gmail official post](https://support.google.com/a/answer/176600) shows how to determine required properties' values to operate Gmail via an SMTP connector.
 
-By following the post, your connector JSON should be like this:
-
-```jsonc
-{
-    "host": "smtp.gmail.com",
-    "port": 587, // your SMTP port
-    "auth": {
-        "user": "<your-gmail-address>",
-        "pass": "<password-to-previous-gmail-address>",
-    },
-    "fromEmail": "<your-gmail-address>",
-    "templates": [
-        {
-            "subject": "<register-template-subject>",
-            "content": "<Logto: Your verification code is {{code}}. (register template)>",
-            "usageType": "Register",
-            "contentType": "text/plain"
-        }
-    ]
-}
-```
-
 ### Integrate with SendGrid SMTP API
 
 Initially, we assume that you already have a SendGrid account. If not, create a new account at the [SendGrid website](https://app.sendgrid.com/).
@@ -74,28 +52,6 @@ Initially, we assume that you already have a SendGrid account. If not, create a 
 You can find a step-by-step guide on ["Integrating with the SMTP API"](https://docs.sendgrid.com/for-developers/sending-email/integrating-with-the-smtp-api).
 
 Developers can access _sender_ details on the ["Sender Management"](https://mc.sendgrid.com/senders).
-
-After going through the guide, your connector JSON should look like this:
-
-```jsonc
-{
-    "host": "smtp.sendgrid.net",
-    "port": 587, // your SMTP port
-    "auth": {
-        "user": "apiKey",
-        "pass": "<api-key-with-at-least-mail-permission>",
-    },
-    "fromEmail": "<email-address-of-a-verified-sender>",
-    "templates": [
-        {
-            "subject": "<register-template-subject>",
-            "content": "<Logto: Your verification code is {{code}}. (register template)>",
-            "usageType": "Register",
-            "contentType": "text/plain"
-        }
-    ]
-}
-```
 
 ### Configure with Aliyun direct mail account
 
@@ -106,28 +62,6 @@ Follow the [Send emails using SMTP guide](https://www.alibabacloud.com/help/en/d
 You can go to [SMTP service address page](https://www.alibabacloud.com/help/en/directmail/latest/smtp-service-address) to choose a proper SMTP service address host and port number.
 
 To check "Sender Addresses", you can find the entrance on the left-side navigation pane on [DirectMail console](https://dm.console.aliyun.com/). You should see `Sender address` and `SMTP Password` here.
-
-After going through the guide, your connector JSON should look like this:
-
-```jsonc
-{
-    "host": "<SMTP-service-address>",
-    "port": 1234, // your SMTP port
-    "auth": {
-        "user": "<email-address-of-chosen-sender-address>",
-        "pass": "<api-key-with-at-least-mail-permission>",
-    },
-    "fromEmail": "<email-address-of-a-verified-sender-should-be-the-same-as-`username`>",
-    "templates": [
-        {
-            "subject": "<register-template-subject>",
-            "content": "<Logto: Your verification code is {{code}}. (register template)>",
-            "usageType": "Register",
-            "contentType": "text/plain"
-        }
-    ]
-}
-```
 
 > ℹ️ **Note**
 >

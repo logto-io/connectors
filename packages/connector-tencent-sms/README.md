@@ -68,40 +68,6 @@ The official Logto connector for Tencent short message service.
     - 在 [发送文档](https://cloud.tencent.com/document/api/382/52071#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)
       可以获取短信产品支持的地域，填写入 `region` 栏。
 
-这是一个腾讯云短信服务连接器 JSON 配置的样例。
-
-```json
-{
-  "accessKeyId": "<access-key-id>",
-  "accessKeySecret": "<access-key-secret>",
-  "signName": "<sign-name>",
-  "sdkAppId": "<sdk-app-id>",
-  "region": "<region>",
-  "templates": [
-    {
-      "usageType": "SignIn",
-      "templateCode": "<template-code>"
-    },
-    {
-      "usageType": "Register",
-      "templateCode": "<template-code>"
-    },
-    {
-      "usageType": "ForgotPassword",
-      "templateCode": "<template-code>"
-    },
-    {
-      "usageType": "Generic",
-      "templateCode": "<template-code>"
-    },
-    {
-      "usageType": "Test",
-      "templateCode": "<template-code>"
-    }
-  ]
-}
-```
-
 ### 测试腾讯云短信连接器
 
 你可以在「保存并完成」之前输入一个手机号码并点按「发送」来测试配置是否可以正常工作。

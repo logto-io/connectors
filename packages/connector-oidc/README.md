@@ -16,7 +16,7 @@ In the following guide, let's take Google as an example to show how to set up a 
 
 For detailed steps on registering a Google App for Logto's social sign-in use, please refer to [Logto Google Connector configuration guide](https://github.com/logto-io/connectors/tree/master/packages/connector-google#set-up-a-project-in-the-google-api-console).
 
-## Compose the connector JSON
+## Configure your connector
 
 `scope` determines the resource you can access to after a successful authorization.
 
@@ -32,40 +32,9 @@ Here are some examples of OIDC connector config JSON connected to Google. Other 
 
 You may be curious as to why a standard OIDC protocol supports both the implicit and hybrid flows, yet the Logto connector only supports the authorization flow. It has been determined that the implicit and hybrid flows are less secure than the authorization flow. Due to Logto's focus on security, it only supports the authorization flow for the highest level of security for its users, despite its slightly less convenient nature.
 
-### Authorization Code Flow
-
 `responseType` can only be 'code' with authorization code flow, so we make it optional and a default value will be automatically filled.
 
 `tokenEndpoint` is required since a token request is obligatory.
-
-```json
-{
-  "scope": "profile email",
-  "responseType": "<OPTIONAL-'code'>",
-  "clientId": "<your-client-id>",
-  "clientSecret": "<your-client-secret>",
-  "authorizationEndpoint": "<vendor-authorization-endpoint>",
-  "tokenEndpoint": "<vendor-token-endpoint>",
-  "idTokenVerificationConfig": {
-    "jwksUri": "<vendor's-jwks-uri>",
-    "issuer": "<vendor's-token-issuer>",
-  },
-  "authRequestOptionalConfig": {
-    "responseMode": "<OPTIONAL-response-mode>",
-    "display": "<OPTIONAL-display>",
-    "prompt": "<OPTIONAL-prompt>",
-    "maxAge": "<OPTIONAL-max-age>",
-    "uiLocales": "<OPTIONAL-ui-locales>",
-    "idTokenHint": "<OPTIONAL-id-token-hint>",
-    "loginHint": "<OPTIONAL-login-hint>",
-    "acrValues": "<OPTIONAL-acr-values>",
-  },,
-  "customConfig": {
-    "customParameter1": "<custom-parameter-1>",
-    "customParameter2": "<custom-parameter-2>"
-  }
-}
-```
 
 > ℹ️ **Note**
 > 
