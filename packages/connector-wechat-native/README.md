@@ -14,7 +14,6 @@ The official Logto connector for WeChat social sign-in in native apps (iOS and A
       - [Basic info](#basic-info)
       - [Platform info](#platform-info)
       - [Waiting for the review result](#waiting-for-the-review-result)
-  - [Compose the connector JSON](#compose-the-connector-json)
   - [Enable WeChat native sign-in in your app](#enable-wechat-native-sign-in-in-your-app)
     - [iOS](#ios)
     - [Android](#android)
@@ -27,7 +26,6 @@ The official Logto connector for WeChat social sign-in in native apps (iOS and A
       - [基础信息](#基础信息)
       - [平台信息](#平台信息)
       - [等待审核结果](#等待审核结果)
-  - [编写连接器的 JSON](#编写连接器的-json)
   - [在你的应用中启用微信原生登录](#在你的应用中启用微信原生登录)
     - [iOS](#ios-1)
     - [Android](#android-1)
@@ -120,18 +118,6 @@ E.g. `1A:2B:3C:4D` -> `1a2b3c4d`.
 After completing the platform info, click "Submit Review" to continue. Usually, the review goes fast, which will end within 1-2 days.
 
 We suspect the reviewer is allocated randomly on each submission since the standard is floating. You may get rejected the first time, but don't give up! State your status quo and ask the reviewer how to modify it.
-
-## Compose the connector JSON
-
-Once passed the review, go to the application details page and generate an AppSecret. Compose the connector JSON with the following format:
-
-```json
-{
-  "appId": "wx123456789",
-  "appSecret": "some-random-string",
-  "universalLink": "https://your.universal.link/path/"
-}
-```
 
 ## Enable WeChat native sign-in in your app
 
@@ -367,18 +353,6 @@ Once WeChat native connector is enabled, you can build and run your app to see i
 在填写完平台信息后，点按「提交审核」以继续。审核速度通常很快，1-2 天即可完成。
 
 我们怀疑每次提交审核者都是随机分配的，因为审核标准飘忽不定。第一次提交也许会被拒绝，但别灰心！陈述你的现状并询问审核者如何修改。
-
-## 编写连接器的 JSON
-
-在通过审核后，进入应用详情页生成 AppSecret；并用以下格式编写连接器的 JSON：
-
-```json
-{
-  "appId": "wx123456789",
-  "appSecret": "some-random-string",
-  "universalLink": "https://your.universal.link/path/"
-}
-```
 
 ## 在你的应用中启用微信原生登录
 

@@ -11,14 +11,12 @@ Apple 社交登录 Logto 官方连接器 [中文文档](#apple-连接器)
     - [Enable Sign in with Apple for your app](#enable-sign-in-with-apple-for-your-app)
     - [Create an identifier](#create-an-identifier)
     - [Enable Sign in with Apple for your identifier](#enable-sign-in-with-apple-for-your-identifier)
-  - [Compose the connector JSON](#compose-the-connector-json)
   - [Test Apple connector](#test-apple-connector)
 - [Apple 连接器](#apple-连接器)
   - [开始上手](#开始上手)
     - [为你的应用启用「通过 Apple 登录」](#为你的应用启用通过-apple-登录)
     - [创建一个 identifier](#创建一个-identifier)
     - [为你的 identifier 启用「通过 Apple 登录」](#为你的-identifier-启用通过-apple-登录)
-  - [编写连接器的 JSON](#编写连接器的-json)
   - [测试 Apple 连接器](#测试-apple-连接器)
 
 ## Get started
@@ -70,16 +68,6 @@ Click "Next" then "Done" to close the modal. Click "Continue" on the top-right c
 > Apple does NOT allow Return URLs with HTTP protocol and `localhost` domain.
 > 
 > If you want to test locally, you need to edit `/etc/hosts` file to map localhost to a custom domain and set up a local HTTPS environment. [mkcert](https://github.com/FiloSottile/mkcert) can help you for setting up local HTTPS.
-
-## Compose the connector JSON
-
-You need to use the identifier that fills in the [Create an identifier](#create-an-identifier) section to compose the JSON:
-
-```json
-{
-  "clientId": "io.logto.test"
-}
-```
 
 > ℹ️ **Note**
 > 
@@ -142,16 +130,6 @@ That's it. The Apple connector should be available in both web and native apps. 
 > Apple _不允许_ HTTP 协议或 `localhost` 域名作为 Return URL。
 > 
 > 如果你想在本地进行测试，你需要编辑 `/etc/hosts` 文件以映射 localhost 到一个自定义域名，并设置一个本地的 HTTPS 环境。[mkcert](https://github.com/FiloSottile/mkcert) 可以帮助你设置本地 HTTPS。
-
-## 编写连接器的 JSON
-
-你需要使用在 [创建一个 identifier](#创建一个-identifier) 章节中填写的 identifier 来编写此 JSON：
-
-```json
-{
-  "clientId": "io.logto.test"
-}
-```
 
 > ℹ️ **Note**
 > 

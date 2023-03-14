@@ -113,33 +113,6 @@ If `encryptAssertion` is `true`, the corresponding certificate generated from `e
 
 Logto also provide a `profileMap` field that users can customize the mapping from the social vendors' profiles which are usually not standard. Each `profileMap` keys is Logto's standard user profile field name and corresponding value should be social profiles field name. In current stage, Logto only concern 'id', 'name', 'avatar', 'email' and 'phone' from social profile, only 'id' is REQUIRED and others are optional fields.
 
-## Compose the connector JSON
-
-Here is an example of SAML connector config JSON.
-
-```json
-{
-  "entityID": "<saml-sp-entity-id>",
-  "idpMetadataXml": "<EntityDescriptor entityID=\"urn:dev.logto.io\" xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\"><IDPSSODescriptor protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\"><KeyDescriptor use=\"signing\">...</IDPSSODescriptor></EntityDescriptor>",
-  "signInEndpoint": "<idp-sign-in-endpoint>",
-  "x509Certificate": "-----BEGIN CERTIFICATE-----MIIDHTCCAgWg[...]jel7/YMPLKwg+Iau7-----END CERTIFICATE-----",
-  "assertionConsumerServiceUrl": "https://<your-logto-domain>/api/authn/saml/<saml-connector-id>",
-  "messageSigningOrder": "encrypt-then-sign",
-  "requestSignatureAlgorithm": "RSA_SHA1",
-  "signAuthnRequest": true,
-  "encryptAssertion": true,
-  "privateKey": "-----BEGIN RSA PRIVATE KEY-----[private-key-content]-----END RSA PRIVATE KEY-----",
-  "privateKeyPass": "<password>",
-  "encPrivateKey": "-----BEGIN RSA PRIVATE KEY-----[encryption-private-key-content]-----END RSA PRIVATE KEY-----",
-  "encPrivateKeyPass": "<password>",
-  "profileMap": {
-    "id": "nameidentifier",
-    "email": "emailaddress",
-    "avatar": "picture"
-  }
-}
-```
-
 ### Config types
 
 | Name                        | Type       | Required | Default Value |
