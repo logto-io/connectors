@@ -53,86 +53,78 @@ const oauth2AuthWithTokenGuard = z.object({
 const authGuard = loginAuthGuard.or(oauth2AuthWithKeyGuard).or(oauth2AuthWithTokenGuard);
 
 /**
- * TLS Options
- */
-const tlsGuard = z.object({
-  secure: z.boolean().default(false),
-  // See https://nodejs.org/api/tls.html#new-tlstlssocketsocket-options and https://nodemailer.com/smtp/#tls-options for more information.
-  tls: z.union([z.object({}).catchall(z.unknown()), z.object({})]),
-  servername: z.string().optional(),
-  ignoreTLS: z.boolean().optional(),
-  requireTLS: z.boolean().optional(),
-});
-
-/**
- * Connection Options
- * See https://nodemailer.com/smtp/#connection-options.
- */
-const connectionGuard = z.object({
-  name: z.string().optional(),
-  localAddress: z.string(),
-  connectionTimeout: z.number().default(2 * 60 * 1000), // In ms, default is 2 mins.
-  greetingTimeout: z.number().default(30 * 1000), // In ms, default is 30 seconds.
-  socketTimeout: z.number().default(10 * 60 * 1000), // In ms, default is 10 mins.
-  dnsTimeout: z.number().default(30 * 1000), // In ms, default is 30 seconds.
-});
-
-/**
  * Debug Options
  * See https://nodemailer.com/smtp/#debug-options.
  */
-const debuggingGuard = z.object({
+const debuggingGuardObject = {
   logger: z.boolean().optional(),
   debug: z.boolean().optional(),
-});
+};
 
 /**
  * Security Options
  * See https://nodemailer.com/smtp/#security-options.
  */
-const securityGuard = z.object({
+const securityGuardObject = {
   disableFileAccess: z.boolean().optional(),
   disableUrlAccess: z.boolean().optional(),
+};
+
+export const smtpConfigGuard = z.object({
+  host: z.string(),
+  port: z.number(),
+  auth: authGuard,
+  fromEmail: z.string(),
+  replyTo: z.string().optional(),
+  templates: z.array(templateGuard).refine(
+    (templates) =>
+      requiredTemplateUsageTypes.every((requiredType) =>
+        templates.map((template) => template.usageType).includes(requiredType)
+      ),
+    (templates) => ({
+      message: `Template with UsageType (${requiredTemplateUsageTypes
+        .filter(
+          (requiredType) => !templates.map((template) => template.usageType).includes(requiredType)
+        )
+        .join(', ')}) should be provided!`,
+    })
+  ),
+  ...debuggingGuardObject,
+  ...securityGuardObject,
+  /**
+   * Connection Options
+   * See https://nodemailer.com/smtp/#connection-options.
+   */
+  name: z.string().optional(),
+  localAddress: z.string().optional(),
+  connectionTimeout: z
+    .number()
+    .optional()
+    .default(2 * 60 * 1000), // In ms, default is 2 mins.
+  greetingTimeout: z
+    .number()
+    .optional()
+    .default(30 * 1000), // In ms, default is 30 seconds.
+  socketTimeout: z
+    .number()
+    .optional()
+    .default(10 * 60 * 1000), // In ms, default is 10 mins.
+  dnsTimeout: z
+    .number()
+    .optional()
+    .default(30 * 1000), // In ms, default is 30 seconds.
+  /**
+   * TLS Options
+   */
+  secure: z.boolean().default(false),
+  // See https://nodejs.org/api/tls.html#new-tlstlssocketsocket-options and https://nodemailer.com/smtp/#tls-options for more information.
+  tls: z
+    .union([z.object({}).catchall(z.unknown()), z.object({})])
+    .optional()
+    .default({}),
+  servername: z.string().optional(),
+  ignoreTLS: z.boolean().optional(),
+  requireTLS: z.boolean().optional(),
 });
-
-export const smtpBaseConfigGuard = z
-  .object({
-    host: z.string(),
-    port: z.number(),
-    auth: authGuard,
-    fromEmail: z.string(),
-    replyTo: z.string().optional(),
-    templates: z.array(templateGuard).refine(
-      (templates) =>
-        requiredTemplateUsageTypes.every((requiredType) =>
-          templates.map((template) => template.usageType).includes(requiredType)
-        ),
-      (templates) => ({
-        message: `Template with UsageType (${requiredTemplateUsageTypes
-          .filter(
-            (requiredType) =>
-              !templates.map((template) => template.usageType).includes(requiredType)
-          )
-          .join(', ')}) should be provided!`,
-      })
-    ),
-  })
-  .merge(debuggingGuard)
-  .merge(securityGuard);
-
-export const smtpBaseConfigWithTlsGuard = smtpBaseConfigGuard.merge(tlsGuard);
-
-export const smtpBaseConfigWithConnectionGuard = smtpBaseConfigGuard.merge(connectionGuard);
-
-export const smtpBaseConfigWithTlsAndConnectionGuard = smtpBaseConfigGuard
-  .merge(tlsGuard)
-  .merge(connectionGuard);
-
-export const smtpConfigGuard = z.union([
-  smtpBaseConfigWithTlsAndConnectionGuard,
-  smtpBaseConfigWithConnectionGuard,
-  smtpBaseConfigWithTlsGuard,
-  smtpBaseConfigGuard,
-]);
 
 export type SmtpConfig = z.infer<typeof smtpConfigGuard>;
