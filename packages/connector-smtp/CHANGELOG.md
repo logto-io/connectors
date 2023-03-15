@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.0-beta.21
+
+### Minor Changes
+
+- 269d701: The console connector configuration page has been changed from JSON format to form view.
+
 ## 1.0.0-beta.20
 
 ### Patch Changes
