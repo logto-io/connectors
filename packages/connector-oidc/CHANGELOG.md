@@ -1,5 +1,11 @@
 # @logto/connector-oidc
 
+## 1.0.0-beta.20
+
+### Minor Changes
+
+- 269d701: The console connector configuration page has been changed from JSON format to form view.
+
 ## 1.0.0-beta.19
 
 ### Major Changes
