@@ -29,7 +29,9 @@
     "@logto/connector-wechat-native": "1.0.0-beta.15",
     "@logto/connector-wechat-web": "1.0.0-beta.15",
     "@logto/connector-saml": "1.0.0-beta.0",
-    "@logto/connector-logto-email": "1.0.0-beta.19"
+    "@logto/connector-logto-email": "1.0.0-beta.19",
+    "@logto/connector-logto-sms": "1.0.0-beta.20",
+    "@logto/connector-logto-social-demo": "1.0.0-beta.20"
   },
   "changesets": [
     "afraid-mangos-fly",
@@ -37,6 +39,7 @@
     "green-bees-cross",
     "green-humans-smoke",
     "lazy-ways-boil",
+    "light-grapes-compete",
     "pretty-wombats-deny",
     "rich-fans-sip",
     "selfish-beers-kiss",
@@ -45,6 +48,7 @@
     "thin-sloths-breathe",
     "tiny-cups-double",
     "tiny-tomatoes-warn",
+    "two-gifts-attack",
     "witty-coins-end"
   ]
 }
