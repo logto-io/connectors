@@ -133,7 +133,7 @@ const getUserInfo =
       };
     } catch (error: unknown) {
       if (error instanceof HTTPError) {
-        const { statusCode, body: rawBody } =error.response;
+        const { statusCode, body: rawBody } = error.response;
 
         if (statusCode === 401) {
           throw new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid);
