@@ -116,7 +116,7 @@ export const smtpConfigGuard = z.object({
   /**
    * TLS Options
    */
-  secure: z.boolean().default(false),
+  secure: z.boolean().optional().default(false),
   // See https://nodejs.org/api/tls.html#new-tlstlssocketsocket-options and https://nodemailer.com/smtp/#tls-options for more information.
   tls: z
     .union([z.object({}).catchall(z.unknown()), z.object({})])

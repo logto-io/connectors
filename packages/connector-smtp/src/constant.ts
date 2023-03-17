@@ -173,7 +173,7 @@ export const defaultMetadata: ConnectorMetadata = {
       key: 'secure',
       label: 'Secure',
       type: ConnectorConfigFormItemType.Switch,
-      required: true,
+      required: false,
       defaultValue: false,
     },
     {
