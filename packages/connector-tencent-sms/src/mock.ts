@@ -18,6 +18,10 @@ export const mockedConnectorConfig = {
       usageType: 'ForgotPassword',
       templateCode: mockedTemplateCode,
     },
+    {
+      usageType: 'Generic',
+      templateCode: mockedTemplateCode,
+    },
   ],
 };
 

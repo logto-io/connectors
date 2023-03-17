@@ -18,10 +18,6 @@
     {
       "usageType": "Generic",
       "content": "This is for generic purpose through management API only. Your verification code is {{code}}."
-    },
-    {
-      "usageType": "Test",
-      "content": "This is for testing purposes only. Your verification code is {{code}}."
     }
   ]
 }

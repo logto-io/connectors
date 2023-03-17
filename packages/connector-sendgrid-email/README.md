@@ -53,12 +53,12 @@ You can add multiple SendGrid mail connector templates for different cases. Here
 
 - Fill out the `subject` field, which works as the title of emails.
 - Fill out the `content` field with arbitrary string-typed contents. Do not forget to leave the `{{code}}` placeholder for the random verification code.
-- Fill out `usageType` field with either `Register`, `SignIn`, `ForgotPassword`, `Generic` or `Test` for different use cases.
+- Fill out `usageType` field with either `Register`, `SignIn`, `ForgotPassword`, `Generic` for different use cases.
 - Fill out `type` field with either `text/plain` or `text/html` for different types of content.
 
-In order to enable full user flows, templates with usageType `Register`, `SignIn` and `ForgotPassword` are required.
+In order to enable full user flows, templates with usageType `Register`, `SignIn`, `ForgotPassword` and `Generic` are required.
 
-Here is an example of SendGrid connector config JSON.
+Here is an example of SendGrid connector template JSON.
 
 ```jsonc
 [
@@ -86,12 +86,6 @@ Here is an example of SendGrid connector config JSON.
         "usageType": "Generic",
         "type": "text/plain",
     },
-    {
-        "subject": "<test-template-subject>",
-        "content": "<Logto: Your verification code is {{code}}. (test template)>",
-        "usageType": "Test",
-        "type": "text/plain"
-    },
 ]
 ```
 
@@ -114,5 +108,5 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 |---------------------|-------------|------------------------------------------------------|
 | subject             | string      | N/A                                                  |
 | content             | string      | N/A                                                  |
-| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' \| 'Test' |
+| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' |
 | type                | enum string | 'text/plain' \| 'text/html'                          |
