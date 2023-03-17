@@ -86,14 +86,15 @@ export const getAccessToken = async (code: string, config: AlipayNativeConfig) =
 
   const { error_response, alipay_system_oauth_token_response } = result.data;
 
-  const { msg, sub_msg } = error_response ?? {};
-
   assert(
     alipay_system_oauth_token_response,
-    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, msg ?? sub_msg)
+    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, JSON.stringify(error_response))
   );
   const { access_token: accessToken } = alipay_system_oauth_token_response;
-  assert(accessToken, new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid));
+  assert(
+    accessToken,
+    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'accessToken is missing.')
+  );
 
   return { accessToken };
 };
@@ -110,7 +111,10 @@ const getUserInfo =
 
     assert(
       accessToken && config,
-      new ConnectorError(ConnectorErrorCodes.InsufficientRequestParameters)
+      new ConnectorError(
+        ConnectorErrorCodes.InsufficientRequestParameters,
+        'accessToken or config is missing.'
+      )
     );
 
     const initSearchParameters = {
@@ -144,7 +148,7 @@ const getUserInfo =
     const { user_id: id, avatar, nick_name: name } = alipay_user_info_share_response;
 
     if (!id) {
-      throw new ConnectorError(ConnectorErrorCodes.InvalidResponse);
+      throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, 'user `id` is not found.');
     }
 
     return { id, avatar, name };

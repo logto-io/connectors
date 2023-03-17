@@ -78,16 +78,15 @@ describe('getAccessToken', () => {
   });
 
   it('should fail with wrong code', async () => {
-    nock(accessTokenUrl.origin).post(accessTokenUrl.pathname).query(true).reply(400, {
+    const error = {
       error: 'invalid_grant',
       error_description: 'invalid code',
-    });
+    };
+    nock(accessTokenUrl.origin).post(accessTokenUrl.pathname).query(true).reply(400, error);
 
     await expect(
       getAccessToken('code', '123', '123', 'http://localhost:3000')
-    ).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'invalid code')
-    );
+    ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, error));
   });
 });
 
@@ -150,16 +149,15 @@ describe('getUserInfo', () => {
   });
 
   it('should throw SocialAccessTokenInvalid with code invalid_token', async () => {
-    nock(userInfoUrl.origin).get(userInfoUrl.pathname).query(true).reply(400, {
+    const error = {
       error: 'invalid_token',
       error_description: 'invalid access token',
-    });
+    };
+    nock(userInfoUrl.origin).get(userInfoUrl.pathname).query(true).reply(400, error);
     const connector = await createConnector({ getConfig });
     await expect(
       connector.getUserInfo({ code: 'error_code', redirectUri: 'http://localhost:3000' }, jest.fn())
-    ).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid, 'invalid access token')
-    );
+    ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid, error));
   });
 
   it('should throw with right accessToken but empty userInfo', async () => {

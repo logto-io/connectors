@@ -85,7 +85,9 @@ describe('Facebook connector', () => {
 
       await expect(
         getAccessToken(mockedConfig, { code, redirectUri: dummyRedirectUri })
-      ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid));
+      ).rejects.toMatchError(
+        new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'accessToken is missing.')
+      );
     });
   });
 
@@ -144,7 +146,7 @@ describe('Facebook connector', () => {
       const connector = await createConnector({ getConfig });
       await expect(
         connector.getUserInfo({ code, redirectUri: dummyRedirectUri }, jest.fn())
-      ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid));
+      ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.General));
     });
 
     it('throws AuthorizationFailed error if error is access_denied', async () => {
@@ -159,6 +161,12 @@ describe('Facebook connector', () => {
           picture: { data: { url: avatar } },
         });
       const connector = await createConnector({ getConfig });
+      const error = {
+        error: 'access_denied',
+        error_code: 200,
+        error_description: 'Permissions error.',
+        error_reason: 'user_denied',
+      };
       await expect(
         connector.getUserInfo(
           {
@@ -169,9 +177,7 @@ describe('Facebook connector', () => {
           },
           jest.fn()
         )
-      ).rejects.toMatchError(
-        new ConnectorError(ConnectorErrorCodes.AuthorizationFailed, 'Permissions error.')
-      );
+      ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.General, error));
     });
 
     it('throws General error if error is not access_denied', async () => {
@@ -186,23 +192,14 @@ describe('Facebook connector', () => {
           picture: { data: { url: avatar } },
         });
       const connector = await createConnector({ getConfig });
-      await expect(
-        connector.getUserInfo(
-          {
-            error: 'general_error',
-            error_code: 200,
-            error_description: 'General error encountered.',
-            error_reason: 'user_denied',
-          },
-          jest.fn()
-        )
-      ).rejects.toMatchError(
-        new ConnectorError(ConnectorErrorCodes.General, {
-          error: 'general_error',
-          error_code: 200,
-          errorDescription: 'General error encountered.',
-          error_reason: 'user_denied',
-        })
+      const error = {
+        error: 'general_error',
+        error_code: 200,
+        error_description: 'General error encountered.',
+        error_reason: 'user_denied',
+      };
+      await expect(connector.getUserInfo(error, jest.fn())).rejects.toMatchError(
+        new ConnectorError(ConnectorErrorCodes.General, error)
       );
     });
 

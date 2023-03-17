@@ -40,7 +40,10 @@ const sendMessage =
 
     assert(
       template,
-      new ConnectorError(ConnectorErrorCodes.TemplateNotFound, `Cannot find template!`)
+      new ConnectorError(
+        ConnectorErrorCodes.TemplateNotFound,
+        `Cannot find template for type: ${type}`
+      )
     );
 
     try {
@@ -77,7 +80,13 @@ const sendMessage =
         response: { body: rawBody },
       } = error;
 
-      assert(typeof rawBody === 'string', new ConnectorError(ConnectorErrorCodes.InvalidResponse));
+      assert(
+        typeof rawBody === 'string',
+        new ConnectorError(
+          ConnectorErrorCodes.InvalidResponse,
+          `wrong response body type: ${typeof rawBody}`
+        )
+      );
 
       const { Code, Message, ...rest } = parseResponseString(rawBody);
 

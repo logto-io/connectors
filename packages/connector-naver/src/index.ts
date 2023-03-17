@@ -78,7 +78,10 @@ export const getAccessToken = async (
 
   const { access_token: accessToken } = result.data;
 
-  assert(accessToken, new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid));
+  assert(
+    accessToken,
+    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'accessToken is missing.')
+  );
 
   return { accessToken };
 };
@@ -133,11 +136,12 @@ const getUserInfoErrorHandler = (error: unknown) => {
   if (error instanceof HTTPError) {
     const { statusCode, body: rawBody } = error.response;
 
-    if (statusCode === 401) {
-      throw new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid);
-    }
-
-    throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify(rawBody));
+    throw new ConnectorError(
+      statusCode === 401
+        ? ConnectorErrorCodes.SocialAccessTokenInvalid
+        : ConnectorErrorCodes.General,
+      JSON.stringify(rawBody)
+    );
   }
 
   throw error;

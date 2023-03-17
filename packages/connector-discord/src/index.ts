@@ -81,14 +81,16 @@ export const getAccessToken = async (
 
   const { access_token: accessToken } = result.data;
 
-  assert(accessToken, new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid));
+  assert(
+    accessToken,
+    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'accessToken is missing.')
+  );
 
   return { accessToken };
 };
 
 const getUserInfo =
   (getConfig: GetConnectorConfig): GetUserInfo =>
-  // eslint-disable-next-line complexity
   async (data) => {
     const { code, redirectUri } = await authorizationCallbackHandler(data);
     const config = await getConfig(defaultMetadata.id);
@@ -127,11 +129,7 @@ const getUserInfo =
       return userInfoResult.data;
     } catch (error: unknown) {
       if (error instanceof HTTPError) {
-        const { statusCode, body: rawBody } = error.response;
-
-        if (statusCode === 401) {
-          throw new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid);
-        }
+        const { body: rawBody } = error.response;
 
         throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify(rawBody));
       }

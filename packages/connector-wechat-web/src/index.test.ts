@@ -61,35 +61,35 @@ describe('getAccessToken', () => {
   });
 
   it('throws SocialAuthCodeInvalid error if errcode is 40029', async () => {
+    const error = { errcode: 40_029, errmsg: 'invalid code' };
     nock(accessTokenEndpointUrl.origin)
       .get(accessTokenEndpointUrl.pathname)
       .query(parameters)
-      .reply(200, { errcode: 40_029, errmsg: 'invalid code' });
+      .reply(200, error);
     await expect(getAccessToken('code', mockedConfig)).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'invalid code')
+      new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, error)
     );
   });
 
   it('throws SocialAuthCodeInvalid error if errcode is 40163', async () => {
+    const error = { errcode: 40_163, errmsg: 'code been used' };
     nock(accessTokenEndpointUrl.origin)
       .get(accessTokenEndpointUrl.pathname)
       .query(true)
-      .reply(200, { errcode: 40_163, errmsg: 'code been used' });
+      .reply(200, error);
     await expect(getAccessToken('code', mockedConfig)).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'code been used')
+      new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, error)
     );
   });
 
   it('throws error with message otherwise', async () => {
+    const error = { errcode: -1, errmsg: 'system error' };
     nock(accessTokenEndpointUrl.origin)
       .get(accessTokenEndpointUrl.pathname)
       .query(true)
-      .reply(200, { errcode: -1, errmsg: 'system error' });
+      .reply(200, error);
     await expect(getAccessToken('wrong_code', mockedConfig)).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.General, {
-        errorDescription: 'system error',
-        errcode: -1,
-      })
+      new ConnectorError(ConnectorErrorCodes.General, error)
     );
   });
 });
@@ -156,31 +156,30 @@ describe('getUserInfo', () => {
   });
 
   it('throws error if `openid` is missing', async () => {
+    const error = {
+      errcode: 41_009,
+      errmsg: 'missing openid',
+    };
     nockNoOpenIdAccessTokenResponse();
     nock(userInfoEndpointUrl.origin)
       .get(userInfoEndpointUrl.pathname)
       .query(parameters)
-      .reply(200, {
-        errcode: 41_009,
-        errmsg: 'missing openid',
-      });
+      .reply(200, error);
     const connector = await createConnector({ getConfig });
     await expect(connector.getUserInfo({ code: 'code' }, jest.fn())).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.General, {
-        errorDescription: 'missing openid',
-        errcode: 41_009,
-      })
+      new ConnectorError(ConnectorErrorCodes.General, error)
     );
   });
 
   it('throws SocialAccessTokenInvalid error if errcode is 40001', async () => {
+    const error = { errcode: 40_001, errmsg: 'invalid credential' };
     nock(userInfoEndpointUrl.origin)
       .get(userInfoEndpointUrl.pathname)
       .query(parameters)
-      .reply(200, { errcode: 40_001, errmsg: 'invalid credential' });
+      .reply(200, error);
     const connector = await createConnector({ getConfig });
     await expect(connector.getUserInfo({ code: 'code' }, jest.fn())).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid, 'invalid credential')
+      new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid, error)
     );
   });
 
@@ -191,16 +190,14 @@ describe('getUserInfo', () => {
   });
 
   it('throws Error if request failed and errcode is not 40001', async () => {
+    const error = { errcode: 40_003, errmsg: 'invalid openid' };
     nock(userInfoEndpointUrl.origin)
       .get(userInfoEndpointUrl.pathname)
       .query(parameters)
-      .reply(200, { errcode: 40_003, errmsg: 'invalid openid' });
+      .reply(200, error);
     const connector = await createConnector({ getConfig });
     await expect(connector.getUserInfo({ code: 'code' }, jest.fn())).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.General, {
-        errorDescription: 'invalid openid',
-        errcode: 40_003,
-      })
+      new ConnectorError(ConnectorErrorCodes.General, error)
     );
   });
 
@@ -208,7 +205,7 @@ describe('getUserInfo', () => {
     nock(userInfoEndpointUrl.origin).get(userInfoEndpointUrl.pathname).query(parameters).reply(401);
     const connector = await createConnector({ getConfig });
     await expect(connector.getUserInfo({ code: 'code' }, jest.fn())).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid)
+      new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid, JSON.stringify(''))
     );
   });
 });

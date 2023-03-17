@@ -17,7 +17,7 @@ import {
   ConnectorType,
   parseJson,
 } from '@logto/connector-kit';
-import { assert } from '@silverhand/essentials';
+import { assert, conditional } from '@silverhand/essentials';
 import { got, HTTPError } from 'got';
 
 import {
@@ -81,7 +81,10 @@ export const getAccessToken = async (
 
   const { access_token: accessToken } = result.data;
 
-  assert(accessToken, new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid));
+  assert(
+    accessToken,
+    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'accessToken is missing.')
+  );
 
   return { accessToken };
 };
@@ -121,13 +124,12 @@ const getUserInfo =
       };
     } catch (error: unknown) {
       if (error instanceof HTTPError) {
-        const { statusCode, body: rawBody } = error.response;
+        const { body: rawBody } = error.response;
 
-        if (statusCode === 400) {
-          throw new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid);
-        }
-
-        throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify(rawBody));
+        throw new ConnectorError(
+          ConnectorErrorCodes.General,
+          conditional(rawBody && JSON.stringify(rawBody))
+        );
       }
 
       throw error;
@@ -147,18 +149,7 @@ const authorizationCallbackHandler = async (parameterObject: unknown) => {
     throw new ConnectorError(ConnectorErrorCodes.InvalidResponse, JSON.stringify(parameterObject));
   }
 
-  const { error, error_code, error_description, error_reason } = parsedError.data;
-
-  if (error === 'access_denied') {
-    throw new ConnectorError(ConnectorErrorCodes.AuthorizationFailed, error_description);
-  }
-
-  throw new ConnectorError(ConnectorErrorCodes.General, {
-    error,
-    error_code,
-    errorDescription: error_description,
-    error_reason,
-  });
+  throw new ConnectorError(ConnectorErrorCodes.General, parsedError.data);
 };
 
 const createFacebookConnector: CreateConnector<SocialConnector> = async ({ getConfig }) => {
