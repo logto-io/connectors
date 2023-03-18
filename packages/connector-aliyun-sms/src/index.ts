@@ -16,8 +16,18 @@ import { HTTPError } from 'got';
 
 import { defaultMetadata } from './constant.js';
 import { sendSms } from './single-send-text.js';
-import type { AliyunSmsConfig } from './types.js';
+import type { AliyunSmsConfig, Template } from './types.js';
 import { aliyunSmsConfigGuard, sendSmsResponseGuard } from './types.js';
+
+const isChinaNumber = (to: string) => /^(\+86|0086|86)?\d{11}$/.test(to);
+
+const getTemplateCode = ({ templateCode }: Template, to: string) => {
+  if (typeof templateCode === 'string') {
+    return templateCode;
+  }
+
+  return isChinaNumber(to) ? templateCode.china : templateCode.overseas;
+};
 
 const sendMessage =
   (getConfig: GetConnectorConfig): SendMessageFunction =>
@@ -39,7 +49,7 @@ const sendMessage =
           AccessKeyId: accessKeyId,
           PhoneNumbers: to,
           SignName: signName,
-          TemplateCode: template.templateCode,
+          TemplateCode: getTemplateCode(template, to),
           TemplateParam: JSON.stringify(payload),
         },
         accessKeySecret
