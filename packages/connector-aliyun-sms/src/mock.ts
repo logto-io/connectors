@@ -11,7 +11,10 @@ export const mockedConnectorConfig = {
     {
       type: 2,
       usageType: 'Register',
-      templateCode: 'TemplateCode',
+      templateCode: {
+        china: 'TemplateCode1',
+        overseas: 'TemplateCode2',
+      },
     },
     {
       type: 2,

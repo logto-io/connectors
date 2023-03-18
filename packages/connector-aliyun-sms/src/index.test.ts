@@ -41,6 +41,39 @@ describe('sendMessage()', () => {
     );
   });
 
+  it('should use template per region', async () => {
+    const connector = await createConnector({ getConfig });
+
+    for (const to of [phoneTest, `86${phoneTest}`, `0086${phoneTest}`, `+86${phoneTest}`]) {
+      // eslint-disable-next-line no-await-in-loop
+      await connector.sendMessage({
+        to,
+        type: VerificationCodeType.Register,
+        payload: { code: codeTest },
+      });
+      expect(sendSms).toHaveBeenCalledWith(
+        expect.objectContaining({
+          TemplateCode: 'TemplateCode1',
+        }),
+        mockedConnectorConfig.accessKeySecret
+      );
+
+      sendSms.mockClear();
+    }
+
+    await connector.sendMessage({
+      to: '+1123123123',
+      type: VerificationCodeType.Register,
+      payload: { code: codeTest },
+    });
+    expect(sendSms).toHaveBeenCalledWith(
+      expect.objectContaining({
+        TemplateCode: 'TemplateCode2',
+      }),
+      mockedConnectorConfig.accessKeySecret
+    );
+  });
+
   it('throws if template is missing', async () => {
     const connector = await createConnector({ getConfig });
     await expect(

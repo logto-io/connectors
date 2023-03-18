@@ -45,11 +45,13 @@ export type PublicParameters = {
  */
 const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword'];
 
-const templateGuard = z.object({
+export const templateGuard = z.object({
   type: z.nativeEnum(SmsTemplateType).default(2),
   usageType: z.string(),
-  templateCode: z.string(),
+  templateCode: z.string().or(z.object({ china: z.string(), overseas: z.string() })),
 });
+
+export type Template = z.infer<typeof templateGuard>;
 
 export const aliyunSmsConfigGuard = z.object({
   accessKeyId: z.string(),
@@ -61,11 +63,11 @@ export const aliyunSmsConfigGuard = z.object({
         templates.map((template) => template.usageType).includes(requiredType)
       ),
     (templates) => ({
-      message: `Template with UsageType (${requiredTemplateUsageTypes
+      message: `UsageType (${requiredTemplateUsageTypes
         .filter(
           (requiredType) => !templates.map((template) => template.usageType).includes(requiredType)
         )
-        .join(', ')}) should be provided!`,
+        .join(', ')}) should be provided in templates.`,
     })
   ),
 });
