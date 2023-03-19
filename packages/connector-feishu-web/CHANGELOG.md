@@ -1,5 +1,11 @@
 # @logto/connector-feishu-web
 
+## 1.0.0-beta.19
+
+### Patch Changes
+
+- 4ec0889: bump connector-kit version
+
 ## 1.0.0-beta.18
 
 ### Minor Changes

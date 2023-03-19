@@ -1,5 +1,11 @@
 # @logto/connector-saml
 
+## 1.0.0-beta.4
+
+### Patch Changes
+
+- 4ec0889: bump connector-kit version
+
 ## 1.0.0-beta.3
 
 ### Major Changes

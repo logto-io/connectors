@@ -1,5 +1,11 @@
 # @logto/connector-logto-sms
 
+## 1.0.0-beta.23
+
+### Patch Changes
+
+- 4ec0889: bump connector-kit version
+
 ## 1.0.0-beta.22
 
 ### Patch Changes

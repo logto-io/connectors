@@ -1,5 +1,11 @@
 # @logto/connector-tencent-sms
 
+## 1.0.0-beta.22
+
+### Patch Changes
+
+- 4ec0889: bump connector-kit version
+
 ## 1.0.0-beta.21
 
 ### Patch Changes
