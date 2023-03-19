@@ -60,7 +60,7 @@ describe('naver connector', () => {
       await expect(
         getAccessToken(mockedConfig, { code: 'code', redirectUri: 'dummyRedirectUri' })
       ).rejects.toMatchError(
-        new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'accessToken is missing.')
+        new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, '`accessToken` is missing.')
       );
     });
   });
@@ -118,7 +118,10 @@ describe('naver connector', () => {
       await expect(
         connector.getUserInfo({ code: 'code', redirectUri: '' }, jest.fn())
       ).rejects.toMatchError(
-        new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid, JSON.stringify(''))
+        new ConnectorError(
+          ConnectorErrorCodes.General,
+          JSON.stringify({ body: '', statusCode: 401 })
+        )
       );
     });
 

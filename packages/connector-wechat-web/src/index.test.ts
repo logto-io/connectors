@@ -205,7 +205,7 @@ describe('getUserInfo', () => {
     nock(userInfoEndpointUrl.origin).get(userInfoEndpointUrl.pathname).query(parameters).reply(401);
     const connector = await createConnector({ getConfig });
     await expect(connector.getUserInfo({ code: 'code' }, jest.fn())).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid, JSON.stringify(''))
+      new ConnectorError(ConnectorErrorCodes.General, JSON.stringify({ body: '', statusCode: 401 }))
     );
   });
 });

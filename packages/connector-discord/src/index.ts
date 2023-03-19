@@ -91,6 +91,7 @@ export const getAccessToken = async (
 
 const getUserInfo =
   (getConfig: GetConnectorConfig): GetUserInfo =>
+  // eslint-disable-next-line complexity
   async (data) => {
     const { code, redirectUri } = await authorizationCallbackHandler(data);
     const config = await getConfig(defaultMetadata.id);
@@ -131,7 +132,10 @@ const getUserInfo =
       if (error instanceof HTTPError) {
         const { body: rawBody } = error.response;
 
-        throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify(rawBody));
+        throw new ConnectorError(
+          ConnectorErrorCodes.General,
+          conditional(rawBody && JSON.stringify(rawBody))
+        );
       }
 
       throw error;

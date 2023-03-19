@@ -93,7 +93,7 @@ export const getAccessToken = async (config: GithubConfig, codeObject: { code: s
 
   assert(
     accessToken,
-    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'accessToken is missing.')
+    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, '`accessToken` is missing.')
   );
 
   return { accessToken };

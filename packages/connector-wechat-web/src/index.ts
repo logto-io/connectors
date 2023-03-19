@@ -152,14 +152,9 @@ const userInfoResponseMessageParser: UserInfoResponseMessageParser = (userInfo) 
 
 const getUserInfoErrorHandler = (error: unknown) => {
   if (error instanceof HTTPError) {
-    const { statusCode, body: rawBody } = error.response;
+    const { statusCode, body } = error.response;
 
-    throw new ConnectorError(
-      statusCode === 401
-        ? ConnectorErrorCodes.SocialAccessTokenInvalid
-        : ConnectorErrorCodes.General,
-      JSON.stringify(rawBody)
-    );
+    throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify({ body, statusCode }));
   }
 
   throw error;

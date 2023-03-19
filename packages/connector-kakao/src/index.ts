@@ -80,7 +80,7 @@ export const getAccessToken = async (
 
   assert(
     accessToken,
-    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'accessToken is missing.')
+    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, '`accessToken` is missing.')
   );
 
   return { accessToken };
@@ -138,14 +138,9 @@ const authorizationCallbackHandler = async (parameterObject: unknown) => {
 
 const getUserInfoErrorHandler = (error: unknown) => {
   if (error instanceof HTTPError) {
-    const { statusCode, body: rawBody } = error.response;
+    const { statusCode, body } = error.response;
 
-    throw new ConnectorError(
-      statusCode === 401
-        ? ConnectorErrorCodes.SocialAccessTokenInvalid
-        : ConnectorErrorCodes.General,
-      JSON.stringify(rawBody)
-    );
+    throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify({ body, statusCode }));
   }
 
   throw error;

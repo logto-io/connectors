@@ -115,7 +115,7 @@ describe('Discord connector', () => {
       const connector = await createConnector({ getConfig });
       await expect(
         connector.getUserInfo({ code: 'code', redirectUri: 'dummyRedirectUri' }, jest.fn())
-      ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.General, JSON.stringify('')));
+      ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.General));
     });
 
     it('throws unrecognized error', async () => {

@@ -93,7 +93,7 @@ describe('getAccessToken', () => {
     await expect(
       getAccessToken('code', mockedAlipayNativeConfigWithValidPrivateKey)
     ).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'accessToken is missing.')
+      new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, '`accessToken` is missing.')
     );
   });
 

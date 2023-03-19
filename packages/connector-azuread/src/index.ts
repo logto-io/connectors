@@ -136,16 +136,9 @@ const getUserInfo =
       };
     } catch (error: unknown) {
       if (error instanceof HTTPError) {
-        const { statusCode, body: rawBody } = error.response;
+        const { statusCode, body } = error.response;
 
-        if (statusCode === 401) {
-          throw new ConnectorError(
-            ConnectorErrorCodes.AuthorizationFailed,
-            JSON.stringify(rawBody)
-          );
-        }
-
-        throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify(rawBody));
+        throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify({ body, statusCode }));
       }
 
       throw error;
