@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.0-beta.21
+
+### Patch Changes
+
+- 0de1e1a: Update Azure AD connector's name, description, logo (using Microsoft logo instead of AAD logo) and README.
+
 ## 1.0.0-beta.20
 
 ### Minor Changes
