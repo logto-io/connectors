@@ -1,17 +1,17 @@
-# Azure AD connector
+# Microsoft Azure AD connector
 
-The Azure AD connector provides a succinct way for your application to use Azure’s OAuth 2.0 authentication system.
+The Microsoft Azure AD connector provides a succinct way for your application to use Azure’s OAuth 2.0 authentication system.
 
 **Table of contents**
-- [Azure AD connector](#azure-ad-connector)
-  - [Set up Azure AD in the Azure Portal](#set-up-azure-ad-in-the-azure-portal)
+- [Microsoft Azure AD connector](#microsoft-azure-ad-connector)
+  - [Set up Microsoft Azure AD in the Azure Portal](#set-up-microsoft-azure-ad-in-the-azure-portal)
   - [Configure your client secret](#configure-your-client-secret)
     - [Config types](#config-types)
   - [References](#references)
 
-## Set up Azure AD in the Azure Portal
+## Set up Microsoft Azure AD in the Azure Portal
 
-- Visit the [Azure Portal](https://portal.azure.com/#home) and sign in with your Azure account. You need to have an active subscription to access Azure AD.
+- Visit the [Azure Portal](https://portal.azure.com/#home) and sign in with your Azure account. You need to have an active subscription to access Microsoft Azure AD.
 - Click the **Azure Active Directory** from the services they offer, and click the **App Registrations** from the left menu.
 - Click **New Registration** at the top and enter a description, select your **access type** and add your **Redirect URI**, which redirect the user to the application after logging in. In our case, this will be `${your_logto_origin}/callback/${connector_id}`. e.g. `https://logto.dev/callback/${connector_id}`. You need to select Web as Platform. The `connector_id` can be found on the top bar of the Logto Admin Console connector details page.
   - If you select **Sign in users of a specific organization only** for access type then you need to enter **TenantID**.
