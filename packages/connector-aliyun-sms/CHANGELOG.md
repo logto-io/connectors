@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.0.0-beta.22
+
+### Minor Changes
+
+- e6dd3d3: Support separating global and China template
+
+### Patch Changes
+
+- a5f57f8: Update README, default value and type guard of passwordless connectors' template field since we will use Generic template for all other cases rather than Sign-in, Register and ForgotPassword.
+
 ## 1.0.0-beta.21
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.0-beta.21
+
+### Patch Changes
+
+- a5f57f8: Update README, default value and type guard of passwordless connectors' template field since we will use Generic template for all other cases rather than Sign-in, Register and ForgotPassword.
+
 ## 1.0.0-beta.20
 
 ### Minor Changes
