@@ -1,14 +1,14 @@
 ---
-"@logto/connector-mock-standard-email": minor
-"@logto/connector-sendgrid-email": minor
-"@logto/connector-tencent-sms": minor
-"@logto/connector-aliyun-sms": minor
-"@logto/connector-mock-email": minor
-"@logto/connector-twilio-sms": minor
-"@logto/connector-aliyun-dm": minor
-"@logto/connector-mock-sms": minor
-"@logto/connector-aws-ses": minor
-"@logto/connector-smtp": minor
+"@logto/connector-mock-standard-email": patch
+"@logto/connector-sendgrid-email": patch
+"@logto/connector-tencent-sms": patch
+"@logto/connector-aliyun-sms": patch
+"@logto/connector-mock-email": patch
+"@logto/connector-twilio-sms": patch
+"@logto/connector-aliyun-dm": patch
+"@logto/connector-mock-sms": patch
+"@logto/connector-aws-ses": patch
+"@logto/connector-smtp": patch
 ---
 
 Update README, default value and type guard of passwordless connectors' template field since we will use Generic template for all other cases rather than Sign-in, Register and ForgotPassword.
