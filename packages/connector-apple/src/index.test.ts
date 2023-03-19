@@ -58,18 +58,15 @@ describe('getUserInfo', () => {
     const mockJwtVerify = jwtVerify;
     mockJwtVerify.mockImplementationOnce(() => ({ payload: { sub: userId } }));
     const connector = await createConnector({ getConfig });
-    const userInfo = await connector.getUserInfo({ id_token: 'idToken' }, jest.fn(), {
-      set: jest.fn(),
-      get: jest.fn(),
-    });
+    const userInfo = await connector.getUserInfo({ id_token: 'idToken' }, jest.fn());
     expect(userInfo).toEqual({ id: userId });
   });
 
   it('should throw if id token is missing', async () => {
     const connector = await createConnector({ getConfig });
-    await expect(
-      connector.getUserInfo({}, jest.fn(), { set: jest.fn(), get: jest.fn() })
-    ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.General, '{}'));
+    await expect(connector.getUserInfo({}, jest.fn())).rejects.toMatchError(
+      new ConnectorError(ConnectorErrorCodes.General, '{}')
+    );
   });
 
   it('should throw if verify id token failed', async () => {
@@ -78,9 +75,9 @@ describe('getUserInfo', () => {
       throw new Error('jwtVerify failed');
     });
     const connector = await createConnector({ getConfig });
-    await expect(
-      connector.getUserInfo({ id_token: 'id_token' }, jest.fn(), { set: jest.fn(), get: jest.fn() })
-    ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid));
+    await expect(connector.getUserInfo({ id_token: 'id_token' }, jest.fn())).rejects.toMatchError(
+      new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid)
+    );
   });
 
   it('should throw if the id token payload does not contains sub', async () => {
@@ -89,8 +86,8 @@ describe('getUserInfo', () => {
       payload: { iat: 123_456 },
     }));
     const connector = await createConnector({ getConfig });
-    await expect(
-      connector.getUserInfo({ id_token: 'id_token' }, jest.fn(), { set: jest.fn(), get: jest.fn() })
-    ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid));
+    await expect(connector.getUserInfo({ id_token: 'id_token' }, jest.fn())).rejects.toMatchError(
+      new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid)
+    );
   });
 });

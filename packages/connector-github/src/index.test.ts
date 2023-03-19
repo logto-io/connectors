@@ -92,10 +92,7 @@ describe('getUserInfo', () => {
       email: 'octocat@github.com',
     });
     const connector = await createConnector({ getConfig });
-    const socialUserInfo = await connector.getUserInfo({ code: 'code' }, jest.fn(), {
-      set: jest.fn(),
-      get: jest.fn(),
-    });
+    const socialUserInfo = await connector.getUserInfo({ code: 'code' }, jest.fn());
     expect(socialUserInfo).toMatchObject({
       id: '1',
       avatar: 'https://github.com/images/error/octocat_happy.gif',
@@ -112,10 +109,7 @@ describe('getUserInfo', () => {
       email: null,
     });
     const connector = await createConnector({ getConfig });
-    const socialUserInfo = await connector.getUserInfo({ code: 'code' }, jest.fn(), {
-      set: jest.fn(),
-      get: jest.fn(),
-    });
+    const socialUserInfo = await connector.getUserInfo({ code: 'code' }, jest.fn());
     expect(socialUserInfo).toMatchObject({
       id: '1',
     });
@@ -124,9 +118,9 @@ describe('getUserInfo', () => {
   it('throws SocialAccessTokenInvalid error if remote response code is 401', async () => {
     nock(userInfoEndpoint).get('').reply(401);
     const connector = await createConnector({ getConfig });
-    await expect(
-      connector.getUserInfo({ code: 'code' }, jest.fn(), { set: jest.fn(), get: jest.fn() })
-    ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid));
+    await expect(connector.getUserInfo({ code: 'code' }, jest.fn())).rejects.toMatchError(
+      new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid)
+    );
   });
 
   it('throws AuthorizationFailed error if error is access_denied', async () => {
@@ -145,8 +139,7 @@ describe('getUserInfo', () => {
           error_uri:
             'https://docs.github.com/apps/troubleshooting-authorization-request-errors#access-denied',
         },
-        jest.fn(),
-        { set: jest.fn(), get: jest.fn() }
+        jest.fn()
       )
     ).rejects.toMatchError(
       new ConnectorError(
@@ -170,8 +163,7 @@ describe('getUserInfo', () => {
           error: 'general_error',
           error_description: 'General error encountered.',
         },
-        jest.fn(),
-        { set: jest.fn(), get: jest.fn() }
+        jest.fn()
       )
     ).rejects.toMatchError(
       new ConnectorError(
@@ -184,8 +176,6 @@ describe('getUserInfo', () => {
   it('throws unrecognized error', async () => {
     nock(userInfoEndpoint).get('').reply(500);
     const connector = await createConnector({ getConfig });
-    await expect(
-      connector.getUserInfo({ code: 'code' }, jest.fn(), { set: jest.fn(), get: jest.fn() })
-    ).rejects.toThrow();
+    await expect(connector.getUserInfo({ code: 'code' }, jest.fn())).rejects.toThrow();
   });
 });
