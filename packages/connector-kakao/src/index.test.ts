@@ -98,8 +98,7 @@ describe('kakao connector', () => {
           code: 'code',
           redirectUri: 'redirectUri',
         },
-        jest.fn(),
-        { set: jest.fn(), get: jest.fn() }
+        jest.fn()
       );
       expect(socialUserInfo).toMatchObject({
         id: '1234567890',
@@ -113,10 +112,7 @@ describe('kakao connector', () => {
       nock(userInfoEndpoint).post('').reply(401);
       const connector = await createConnector({ getConfig });
       await expect(
-        connector.getUserInfo({ code: 'code', redirectUri: '' }, jest.fn(), {
-          set: jest.fn(),
-          get: jest.fn(),
-        })
+        connector.getUserInfo({ code: 'code', redirectUri: '' }, jest.fn())
       ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid));
     });
 
@@ -138,8 +134,7 @@ describe('kakao connector', () => {
             error: 'general_error',
             error_description: 'General error encountered.',
           },
-          jest.fn(),
-          { set: jest.fn(), get: jest.fn() }
+          jest.fn()
         )
       ).rejects.toMatchError(
         new ConnectorError(
@@ -153,10 +148,7 @@ describe('kakao connector', () => {
       nock(userInfoEndpoint).post('').reply(500);
       const connector = await createConnector({ getConfig });
       await expect(
-        connector.getUserInfo({ code: 'code', redirectUri: '' }, jest.fn(), {
-          set: jest.fn(),
-          get: jest.fn(),
-        })
+        connector.getUserInfo({ code: 'code', redirectUri: '' }, jest.fn())
       ).rejects.toThrow();
     });
   });

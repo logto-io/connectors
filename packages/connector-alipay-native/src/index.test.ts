@@ -71,9 +71,9 @@ describe('getAccessToken', () => {
         sign: '<signature>',
       });
     const connector = await createConnector({ getConfig });
-    await expect(
-      connector.getUserInfo({}, jest.fn(), { set: jest.fn(), get: jest.fn() })
-    ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.General, '{}'));
+    await expect(connector.getUserInfo({}, jest.fn())).rejects.toMatchError(
+      new ConnectorError(ConnectorErrorCodes.General, '{}')
+    );
   });
 
   it('should throw when accessToken is empty', async () => {
@@ -155,10 +155,7 @@ describe('getUserInfo', () => {
         sign: '<signature>',
       });
     const connector = await createConnector({ getConfig });
-    const { id, name, avatar } = await connector.getUserInfo({ auth_code: 'code' }, jest.fn(), {
-      set: jest.fn(),
-      get: jest.fn(),
-    });
+    const { id, name, avatar } = await connector.getUserInfo({ auth_code: 'code' }, jest.fn());
     expect(id).toEqual('2088000000000000');
     expect(name).toEqual('PlayboyEric');
     expect(avatar).toEqual('https://www.alipay.com/xxx.jpg');
@@ -179,10 +176,7 @@ describe('getUserInfo', () => {
       });
     const connector = await createConnector({ getConfig });
     await expect(
-      connector.getUserInfo({ auth_code: 'wrong_code' }, jest.fn(), {
-        set: jest.fn(),
-        get: jest.fn(),
-      })
+      connector.getUserInfo({ auth_code: 'wrong_code' }, jest.fn())
     ).rejects.toMatchError(
       new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid, 'Invalid auth token')
     );
@@ -203,10 +197,7 @@ describe('getUserInfo', () => {
       });
     const connector = await createConnector({ getConfig });
     await expect(
-      connector.getUserInfo({ auth_code: 'wrong_code' }, jest.fn(), {
-        set: jest.fn(),
-        get: jest.fn(),
-      })
+      connector.getUserInfo({ auth_code: 'wrong_code' }, jest.fn())
     ).rejects.toMatchError(
       new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'Invalid auth code')
     );
@@ -227,10 +218,7 @@ describe('getUserInfo', () => {
       });
     const connector = await createConnector({ getConfig });
     await expect(
-      connector.getUserInfo({ auth_code: 'wrong_code' }, jest.fn(), {
-        set: jest.fn(),
-        get: jest.fn(),
-      })
+      connector.getUserInfo({ auth_code: 'wrong_code' }, jest.fn())
     ).rejects.toMatchError(
       new ConnectorError(ConnectorErrorCodes.General, {
         errorDescription: 'Invalid parameter',
@@ -257,21 +245,13 @@ describe('getUserInfo', () => {
       });
     const connector = await createConnector({ getConfig });
     await expect(
-      connector.getUserInfo({ auth_code: 'wrong_code' }, jest.fn(), {
-        set: jest.fn(),
-        get: jest.fn(),
-      })
+      connector.getUserInfo({ auth_code: 'wrong_code' }, jest.fn())
     ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.InvalidResponse));
   });
 
   it('should throw with other request errors', async () => {
     nock(alipayEndpointUrl.origin).post(alipayEndpointUrl.pathname).query(true).reply(500);
     const connector = await createConnector({ getConfig });
-    await expect(
-      connector.getUserInfo({ auth_code: 'wrong_code' }, jest.fn(), {
-        set: jest.fn(),
-        get: jest.fn(),
-      })
-    ).rejects.toThrow();
+    await expect(connector.getUserInfo({ auth_code: 'wrong_code' }, jest.fn())).rejects.toThrow();
   });
 });
