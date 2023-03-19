@@ -1,5 +1,11 @@
 # @logto/connector-oidc
 
+## 1.0.0-beta.21
+
+### Patch Changes
+
+- 4ec0889: bump connector-kit version
+
 ## 1.0.0-beta.20
 
 ### Minor Changes
