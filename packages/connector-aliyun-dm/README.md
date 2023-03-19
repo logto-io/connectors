@@ -59,7 +59,7 @@ After finishing setup, there are two different ways to test:
     - You can add multiple DM connector templates for different cases. Here is an example of adding a single template:
         - Fill out the `subject` field, which will work as title of the sending email.
         - Fill out the `content` field with arbitrary string-type contents. Do not forget to leave `{{code}}` placeholder for random verification code.
-        - Fill out `usageType` field with either `Register`, `SignIn`, `ForgotPassword`, `Generic` or `Test` for different use cases. (`usageType` is a Logto property to identify the proper use case.) In order to enable full user flows, templates with usageType `Register`, `SignIn` and `ForgotPassword` are required.
+        - Fill out `usageType` field with either `Register`, `SignIn`, `ForgotPassword` or `Generic` for different use cases. (`usageType` is a Logto property to identify the proper use case.) In order to enable full user flows, templates with usageType `Register`, `SignIn`, `ForgotPassword` and `Generic` are required.
 
 ### Test Aliyun DM connector
 
@@ -81,7 +81,7 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 |---------------------|-------------|------------------------------------------------------|
 | subject             | string      | N/A                                                  |
 | content             | string      | N/A                                                  |
-| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' \| 'Test' |
+| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' |
 
 # 阿里云邮件连接器
 
@@ -123,7 +123,7 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
     - 你可以添加多个邮件服务模板以应对不同的用户场景。这里展示填写单个模板的例子：
       - 在 `subject` 栏填写发送邮件的 _标题_。
       - 在 `content` 栏中填写字符形式的内容。不要忘了在内容中插入 `{{code}}` 占位符，在真实发送时他会被替换成随机生成的验证码。
-      - `usageType` 栏填写 `Register`，`SignIn`，`ForgotPassword`，`Generic` 或者 `Test` 其中之一以分别对应 _注册_，_登录_，_忘记密码_，_用户档案补全_ 和 _测试_ 的不同场景。（`usageType` 是 Logto 的属性，用来确定使用场景。）为了能够使用完成的流程，需要配置 `usageType` 为 `Register`，`SignIn` 以及 `ForgotPassword` 的模板。
+      - `usageType` 栏填写 `Register`，`SignIn`，`ForgotPassword` 或者`Generic` 其中之一以分别对应 _注册_，_登录_，_忘记密码_ 和 _通用_ 的不同场景。（`usageType` 是 Logto 的属性，用来确定使用场景。）为了能够使用完成的流程，需要配置 `usageType` 为 `Register`，`SignIn`, `ForgotPassword` 以及 `Generic` 的模板。
 
 ### 测试阿里云邮件连接器
 
@@ -145,4 +145,4 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 |-----------|-------------|------------------------------------------------------|
 | subject   | string      | N/A                                                  |
 | content   | string      | N/A                                                  |
-| usageType | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' \| 'Test' |
+| usageType | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' |

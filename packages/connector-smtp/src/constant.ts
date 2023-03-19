@@ -68,32 +68,29 @@ export const defaultMetadata: ConnectorMetadata = {
       defaultValue: [
         {
           contentType: 'text/plain',
-          content: 'This is for testing purposes only. Your verification code is {{code}}.',
-          subject: 'Logto Test with SMTP',
-          usageType: 'Test',
-        },
-        {
-          contentType: 'text/plain',
-          content: 'This is for sign-in purposes only. Your verification code is {{code}}.',
+          content:
+            'Your Logto sign-in verification code is {{code}}. The code will remain active for 10 minutes.',
           subject: 'Logto Sign In with SMTP',
           usageType: 'SignIn',
         },
         {
           contentType: 'text/plain',
-          content: 'This is for register purposes only. Your verification code is {{code}}.',
+          content:
+            'Your Logto sign-up verification code is {{code}}. The code will remain active for 10 minutes.',
           subject: 'Logto Register with SMTP',
           usageType: 'Register',
         },
         {
           contentType: 'text/plain',
-          content: 'This is for forgot-password purposes only. Your verification code is {{code}}.',
+          content:
+            'Your Logto password change verification code is {{code}}. The code will remain active for 10 minutes.',
           subject: 'Logto Forgot Password with SMTP',
           usageType: 'ForgotPassword',
         },
         {
           contentType: 'text/plain',
           content:
-            'This is for generic purpose through management API only. Your verification code is {{code}}.',
+            'Your Logto verification code is {{code}}. The code will remain active for 10 minutes.',
           subject: 'Logto Generic with SMTP',
           usageType: 'Generic',
         },

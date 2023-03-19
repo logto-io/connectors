@@ -90,9 +90,9 @@ export type PublicParameters = {
 
 /**
  * UsageType here is used to specify the use case of the template, can be either
- * 'Register', 'SignIn', 'ForgotPassword', 'Generic' or 'Test'.
+ * 'Register', 'SignIn', 'ForgotPassword', 'Generic'.
  */
-const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword'];
+const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword', 'Generic'];
 
 const templateGuard = z.object({
   usageType: z.string(),

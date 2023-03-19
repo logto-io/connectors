@@ -89,10 +89,6 @@ export const defaultMetadata: ConnectorMetadata = {
           usageType: 'Generic',
           templateCode: '<template-code>',
         },
-        {
-          usageType: 'Test',
-          templateCode: '<template-code>',
-        },
       ],
     },
   ],

@@ -53,25 +53,23 @@ export const defaultMetadata: ConnectorMetadata = {
       defaultValue: [
         {
           usageType: 'SignIn',
-          content: 'This is for sign-in purposes only. Your verification code is {{code}}.',
+          content:
+            'Your Logto sign-in verification code is {{code}}. The code will remain active for 10 minutes.',
         },
         {
           usageType: 'Register',
-          content: 'This is for registering purposes only. Your verification code is {{code}}.',
+          content:
+            'Your Logto sign-up verification code is {{code}}. The code will remain active for 10 minutes.',
         },
         {
           usageType: 'ForgotPassword',
           content:
-            'This is for resetting password purposes only. Your verification code is {{code}}.',
+            'Your Logto password change verification code is {{code}}. The code will remain active for 10 minutes.',
         },
         {
           usageType: 'Generic',
           content:
-            'This is for generic purposes through management API only. Your verification code is {{code}}.',
-        },
-        {
-          usageType: 'Test',
-          content: 'This is for testing purposes only. Your verification code is {{code}}.',
+            'Your Logto verification code is {{code}}. The code will remain active for 10 minutes.',
         },
       ],
     },

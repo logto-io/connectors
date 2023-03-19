@@ -88,7 +88,7 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 |---------------------|-------------|------------------------------------------------------|
 | subject             | string      | N/A                                                  |
 | content             | string      | N/A                                                  |
-| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' \| 'Test' |
+| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' |
 | contentType         | enum string | 'text/plain' \| 'text/html'                          |
 
 **Username and password Auth Options**
@@ -134,28 +134,6 @@ SMTP 是一个所有邮件服务提供商通用的传输协议。
 
 前往这篇 [Gmail 官方帮助文档](https://support.google.com/a/answer/176600)，查看如何得到 SMTP 连接器调用 Gmail 服务所 **必须的** 属性。
 
-根据文档的描述，并结合 Logto 的实现，你的 SMTP 连接器配置 JSON 应该如下：
-
-```jsonc
-{
-    "host": "smtp.gmail.com",
-    "port": 587, // your SMTP port
-    "auth": {
-        "user": "<your-gmail-address>",
-        "pass": "<password-to-previous-gmail-address>",
-    },
-    "fromEmail": "<your-gmail-address>",
-    "templates": [
-        {
-            "subject": "<register-template-subject>",
-            "content": "<Logto: Your verification code is {{code}}. (register template)>",
-            "usageType": "Register",
-            "contentType": "text/plain"
-        }
-    ]
-}
-```
-
 ### 集成 SendGrid SMTP API
 
 我们假设你已经有了 SendGrid 账号，否则就在 [SendGrid](https://app.sendgrid.com/) 创建新账号。
@@ -163,28 +141,6 @@ SMTP 是一个所有邮件服务提供商通用的传输协议。
 在 [集成 SendGrid SMTP API](https://docs.sendgrid.com/for-developers/sending-email/integrating-with-the-smtp-api) 可以找到详尽的集成指南。
 
 开发者可以前往 [_Sender Management_](https://mc.sendgrid.com/senders) 以访问相应的 _sender_ 详情。
-
-跟随配置指南，你的连接器配置 JSON 应该如下：
-
-```jsonc
-{
-    "host": "smtp.sendgrid.net",
-    "port": 587, // your SMTP port
-    "auth": {
-        "user": "apiKey",
-        "pass": "<api-key-with-at-least-mail-permission>",
-    },
-    "fromEmail": "<email-address-of-a-verified-sender>",
-    "templates": [
-        {
-            "subject": "<register-template-subject>",
-            "content": "<Logto: Your verification code is {{code}}. (register template)>",
-            "usageType": "Register",
-            "contentType": "text/plain"
-        }
-    ]
-}
-```
 
 ### 针对阿里云邮件帐号的配置
 
@@ -195,28 +151,6 @@ SMTP 是一个所有邮件服务提供商通用的传输协议。
 前往 [SMTP 服务地址](https://www.alibabacloud.com/help/zh/directmail/latest/smtp-service-address) 并选择合适的 SMTP 服务地址与端口号。
 
 在 [阿里云工作台](https://dm.console.aliyun.com/) 侧边栏中找到「发信地址」，在这里你可以找到 `Sender address` 和 `SMTP Password`。
-
-跟随配置指南，你的连接器配置 JSON 应该如下：
-
-```jsonc
-{
-    "host": "<SMTP-service-address>",
-    "port": 1234, // your SMTP port
-    "auth": {
-        "user": "<email-address-of-chosen-sender-address>",
-        "pass": "<api-key-with-at-least-mail-permission>",
-    },
-    "fromEmail": "<email-address-of-a-verified-sender-should-be-the-same-as-`username`>",
-    "templates": [
-        {
-            "subject": "<register-template-subject>",
-            "content": "<Logto: Your verification code is {{code}}. (register template)>",
-            "usageType": "Register",
-            "contentType": "text/plain"
-        }
-    ]
-}
-```
 
 > ℹ️ **注意**
 >
@@ -243,7 +177,7 @@ SMTP 是一个所有邮件服务提供商通用的传输协议。
 |-------------|-------------|------------------------------------------------------|
 | subject     | string      | N/A                                                  |
 | content     | string      | N/A                                                  |
-| usageType   | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' \| 'Test' |
+| usageType   | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' |
 | contentType | enum string | 'text/plain' \| 'text/html'                          |
 
 **用户名密码的授权配置**

@@ -8,7 +8,7 @@ export const mockedConfig = {
       contentType: 'text/plain',
       content: 'This is for testing purposes only. Your verification code is {{    code }}.',
       subject: 'Logto Test with SMTP',
-      usageType: 'Test',
+      usageType: 'Generic',
     },
     {
       contentType: 'text/plain',

@@ -56,7 +56,7 @@ Fill out the _accountSID_, _authToken_ and _fromMessagingServiceSID_ fields with
 You can add multiple SMS connector templates for different cases. Here is an example of adding a single template:
 
 - Fill out the `content` field with arbitrary string-typed contents. Do not forget to leave `{{code}}` placeholder for random verification code.
-- Fill out the `usageType` field with either `Register`, `SignIn`, `ForgotPassword`, `Generic` or `Test` for different use cases. In order to enable full user flows, templates with usageType `Register`, `SignIn` and `ForgotPassword` are required.
+- Fill out the `usageType` field with either `Register`, `SignIn`, `ForgotPassword`, `Generic` for different use cases. In order to enable full user flows, templates with usageType `Register`, `SignIn`, `ForgotPassword` and `Generic` are required.
 
 ### Test Twilio SMS connector
 
@@ -76,7 +76,7 @@ That's it. Don't forget to [Enable connector in sign-in experience](https://docs
 | Template Properties | Type        | Enum values                                          |
 |---------------------|-------------|------------------------------------------------------|
 | content             | string      | N/A                                                  |
-| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' \| 'Test' |
+| usageType           | enum string | 'Register' \| 'SignIn' \| 'ForgotPassword' \| 'Generic' |
 
 ## Reference
 

@@ -2,9 +2,9 @@ import { z } from 'zod';
 
 /**
  * UsageType here is used to specify the use case of the template, can be either
- * 'Register', 'SignIn', 'ForgotPassword', 'Generic' or 'Test'.
+ * 'Register', 'SignIn', 'ForgotPassword', 'Generic'.
  */
-const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword'];
+const requiredTemplateUsageTypes = ['Register', 'SignIn', 'ForgotPassword', 'Generic'];
 
 export const SingleSmsConfig = z.object({
   usageType: z.string(),
