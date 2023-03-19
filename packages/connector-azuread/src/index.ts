@@ -96,7 +96,7 @@ const getAccessToken = async (config: AzureADConfig, code: string, redirectUri: 
 
   assert(
     accessToken,
-    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'accessToken is missing.')
+    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, '`accessToken` is missing.')
   );
 
   return { accessToken };

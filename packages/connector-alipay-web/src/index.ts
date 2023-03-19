@@ -96,7 +96,7 @@ export const getAccessToken = async (code: string, config: AlipayConfig) => {
   const { access_token: accessToken } = alipay_system_oauth_token_response;
   assert(
     accessToken,
-    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'accessToken is missing.')
+    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, '`accessToken` is missing.')
   );
 
   return { accessToken };
@@ -115,7 +115,7 @@ const getUserInfo =
       accessToken && config,
       new ConnectorError(
         ConnectorErrorCodes.InsufficientRequestParameters,
-        'accessToken or config is missing.'
+        '`accessToken` or config is missing.'
       )
     );
 

@@ -86,7 +86,7 @@ describe('Facebook connector', () => {
       await expect(
         getAccessToken(mockedConfig, { code, redirectUri: dummyRedirectUri })
       ).rejects.toMatchError(
-        new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'accessToken is missing.')
+        new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, '`accessToken` is missing.')
       );
     });
   });

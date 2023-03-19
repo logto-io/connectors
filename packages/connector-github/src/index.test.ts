@@ -60,7 +60,7 @@ describe('getAccessToken', () => {
       .post('')
       .reply(200, qs.stringify({ access_token: '', scope: 'scope', token_type: 'token_type' }));
     await expect(getAccessToken(mockedConfig, { code: 'code' })).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'accessToken is missing.')
+      new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, '`accessToken` is missing.')
     );
   });
 });

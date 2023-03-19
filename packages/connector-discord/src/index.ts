@@ -83,7 +83,7 @@ export const getAccessToken = async (
 
   assert(
     accessToken,
-    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'accessToken is missing.')
+    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, '`accessToken` is missing.')
   );
 
   return { accessToken };

@@ -75,7 +75,7 @@ const sendMessage =
           typeof rawBody === 'string',
           new ConnectorError(
             ConnectorErrorCodes.InvalidResponse,
-            `wrong response rawBody type: ${typeof rawBody}`
+            `Invalid response raw body type: ${typeof rawBody}`
           )
         );
 
