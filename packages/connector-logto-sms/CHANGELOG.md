@@ -1,5 +1,11 @@
 # @logto/connector-logto-sms
 
+## 1.0.0-beta.24
+
+### Patch Changes
+
+- cfbd22f: Fix logo for Logto Email and Logto SMS, remove border.
+
 ## 1.0.0-beta.23
 
 ### Patch Changes
