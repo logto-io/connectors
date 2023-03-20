@@ -1,5 +1,12 @@
 # @logto/connector-oidc
 
+## 1.0.0-beta.22
+
+### Patch Changes
+
+- 69acfc8: Update OIDC and OAuth connector README.
+- 9deb220: Add UTs for OIDC and OAuth connector happy path.
+
 ## 1.0.0-beta.21
 
 ### Patch Changes
