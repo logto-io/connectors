@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.0.0
+
+### Major Changes
+
+- 4ed07d2: bump connector-kit to v1.0.0
+
+### Minor Changes
+
+- 269d701: The console connector configuration page has been changed from JSON format to form view.
+
+### Patch Changes
+
+- 9ff0638: update connector-kit version
+- 7b0bf69: Bump version to upgrade connector kit
+- 4ec0889: bump connector-kit version
+- d8b9dea: 1. Update `@logto/connector-kit` from `1.0.0-beta.32` to `1.0.0-beta.33`.
+- 0de1e1a: Update Azure AD connector's name, description, logo (using Microsoft logo instead of AAD logo) and README.
+- d183d6d: Upgrade connector-kit
+
 ## 1.0.0-beta.22
 
 ### Patch Changes
