@@ -57,14 +57,10 @@ const sendMessage =
 
       const { body: rawBody } = httpResponse;
 
-      const { Code, Message, ...rest } = parseResponseString(rawBody);
+      const { Code, Message } = parseResponseString(rawBody);
 
       if (Code !== 'OK') {
-        throw new ConnectorError(ConnectorErrorCodes.General, {
-          errorDescription: Message,
-          Code,
-          ...rest,
-        });
+        throw new ConnectorError(ConnectorErrorCodes.General, Message);
       }
 
       return httpResponse;
@@ -79,13 +75,9 @@ const sendMessage =
 
       assert(typeof rawBody === 'string', new ConnectorError(ConnectorErrorCodes.InvalidResponse));
 
-      const { Code, Message, ...rest } = parseResponseString(rawBody);
+      const { Message } = parseResponseString(rawBody);
 
-      throw new ConnectorError(ConnectorErrorCodes.General, {
-        errorDescription: Message,
-        Code,
-        ...rest,
-      });
+      throw new ConnectorError(ConnectorErrorCodes.General, Message);
     }
   };
 
