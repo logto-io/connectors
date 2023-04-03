@@ -1,12 +1,18 @@
 <p align="center">
   <a href="https://logto.io" target="_blank" align="center" alt="Logto Logo">
-      <img src="./logo.png" width="100">
+      <img src="https://raw.githubusercontent.com/logto-io/logto/master/logo.png" width="240">
   </a>
   <br/>
-  <span><i><a href="https://logto.io" target="_blank">Logto</a> helps you build the sign-in experience and user identity within minutes.</i></span>
+  <span><i><a href="https://logto.io" target="_blank">Logto</a> is a cost-effective open-source alternative to Auth0. It offers a seamless developer experience and is well-suited for individuals and growing companies.</i></span>
 </p>
 
-# Logto Connectors
+---
+
+### This repository has been archived in favor of the [connectors directory in the Logto monorepo](https://github.com/logto-io/logto/tree/master/packages/connectors).
+
+---
+
+# [ARCHIVED] Logto Connectors
 
 The monorepo for official connectors.
 
