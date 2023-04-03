@@ -1,0 +1,72 @@
+{
+  "accessKeyId": "<access-key-id>",
+  "accessKeySecret": "<access-key-secret>",
+  "region": "<ap-hongkong|ap-singapore>",
+  "fromAddress": "<from-address>",
+  "fromName": "<from-alias>",
+  "replyAddress": "<reply-address>",
+  "templates": [
+    {
+      "fromAddress": "<from-address>",
+      "fromName": "<from-alias>",
+      "replyAddress": "<reply-address>",
+      "usageType": "SignIn",
+      "subject": "<subject>",
+      "templateId": "<templateId>",
+      "params": [
+        {
+          "name": "<tencent-cloud-template-param-name>",
+          "value": "code or toAddress or fromAddress or fromName or replayAddress or subject"
+        },
+        {
+          "name": "<tencent-cloud-template-param-name>",
+          "value": "code or toAddress or fromAddress or fromName or replayAddress or subject"
+        }
+      ]
+    },
+    {
+      "usageType": "Register",
+      "templateId": "<templateId>",
+      "subject": "<subject>",
+      "params": [
+        {
+          "name": "code",
+          "value": "code"
+        }
+      ]
+    },
+    {
+      "usageType": "ForgotPassword",
+      "templateId": "<templateId>",
+      "subject": "<subject>",
+      "params": [
+        {
+          "name": "code",
+          "value": "code"
+        }
+      ]
+    },
+    {
+      "usageType": "Continue",
+      "templateId": "<templateId>",
+      "subject": "<subject>",
+      "params": [
+        {
+          "name": "code",
+          "value": "code"
+        }
+      ]
+    },
+    {
+      "usageType": "Test",
+      "templateId": "<templateId>",
+      "subject": "<subject>",
+      "params": [
+        {
+          "name": "code",
+          "value": "code"
+        }
+      ]
+    }
+  ]
+}
