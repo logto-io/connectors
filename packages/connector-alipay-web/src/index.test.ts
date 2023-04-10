@@ -77,26 +77,26 @@ describe('getAccessToken', () => {
 
     await expect(
       getAccessToken('code', mockedAlipayConfigWithValidPrivateKey)
-    ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid));
+    ).rejects.toMatchError(
+      new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, '`accessToken` is missing.')
+    );
   });
 
   it('should fail with wrong code', async () => {
-    nock(alipayEndpointUrl.origin)
-      .post(alipayEndpointUrl.pathname)
-      .query(true)
-      .reply(200, {
-        error_response: {
-          code: '20001',
-          msg: 'Invalid code',
-          sub_code: 'isv.code-invalid	',
-        },
-        sign: '<signature>',
-      });
+    const errorResponse = {
+      code: '20001',
+      msg: 'Invalid code',
+      sub_code: 'isv.code-invalid	',
+    };
+    nock(alipayEndpointUrl.origin).post(alipayEndpointUrl.pathname).query(true).reply(200, {
+      error_response: errorResponse,
+      sign: '<signature>',
+    });
 
     await expect(
       getAccessToken('wrong_code', mockedAlipayConfigWithValidPrivateKey)
     ).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, 'Invalid code')
+      new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, JSON.stringify(errorResponse))
     );
   });
 });
@@ -238,7 +238,7 @@ describe('getUserInfo', () => {
       });
     const connector = await createConnector({ getConfig });
     await expect(connector.getUserInfo({ auth_code: 'code' }, jest.fn())).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.InvalidResponse)
+      new ConnectorError(ConnectorErrorCodes.InvalidResponse, 'user `id` is not found.')
     );
   });
 

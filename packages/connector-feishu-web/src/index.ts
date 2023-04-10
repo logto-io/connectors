@@ -110,10 +110,7 @@ export async function getAccessToken(
         new ConnectorError(ConnectorErrorCodes.InvalidResponse, JSON.stringify(error.response.body))
       );
 
-      throw new ConnectorError(
-        ConnectorErrorCodes.SocialAuthCodeInvalid,
-        result.data.error_description
-      );
+      throw new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, result.data);
     }
 
     throw new ConnectorError(ConnectorErrorCodes.General, {
@@ -170,10 +167,7 @@ export function getUserInfo(getConfig: GetConnectorConfig): GetUserInfo {
           )
         );
 
-        throw new ConnectorError(
-          ConnectorErrorCodes.SocialAccessTokenInvalid,
-          result.data.error_description
-        );
+        throw new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid, result.data);
       }
 
       throw new ConnectorError(ConnectorErrorCodes.General, {

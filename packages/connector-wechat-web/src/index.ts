@@ -82,7 +82,10 @@ export const getAccessToken = async (
 
   getAccessTokenErrorHandler(result.data);
 
-  assert(accessToken && openid, new ConnectorError(ConnectorErrorCodes.InvalidResponse));
+  assert(
+    accessToken && openid,
+    new ConnectorError(ConnectorErrorCodes.InvalidResponse, 'accessToken or openid is missing.')
+  );
 
   return { accessToken, openid };
 };
@@ -125,12 +128,12 @@ const getAccessTokenErrorHandler: GetAccessTokenErrorHandler = (accessToken) => 
   const { errcode, errmsg } = accessToken;
 
   if (errcode) {
-    assert(
-      !invalidAuthCodeErrcode.includes(errcode),
-      new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, errmsg)
+    throw new ConnectorError(
+      invalidAuthCodeErrcode.includes(errcode)
+        ? ConnectorErrorCodes.SocialAuthCodeInvalid
+        : ConnectorErrorCodes.General,
+      { errcode, errmsg }
     );
-
-    throw new ConnectorError(ConnectorErrorCodes.General, { errorDescription: errmsg, errcode });
   }
 };
 
@@ -138,24 +141,20 @@ const userInfoResponseMessageParser: UserInfoResponseMessageParser = (userInfo) 
   const { errcode, errmsg } = userInfo;
 
   if (errcode) {
-    assert(
-      !invalidAccessTokenErrcode.includes(errcode),
-      new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid, errmsg)
+    throw new ConnectorError(
+      invalidAccessTokenErrcode.includes(errcode)
+        ? ConnectorErrorCodes.SocialAccessTokenInvalid
+        : ConnectorErrorCodes.General,
+      { errcode, errmsg }
     );
-
-    throw new ConnectorError(ConnectorErrorCodes.General, { errorDescription: errmsg, errcode });
   }
 };
 
 const getUserInfoErrorHandler = (error: unknown) => {
   if (error instanceof HTTPError) {
-    const { statusCode, body: rawBody } = error.response;
+    const { statusCode, body } = error.response;
 
-    if (statusCode === 401) {
-      throw new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid);
-    }
-
-    throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify(rawBody));
+    throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify({ body, statusCode }));
   }
 
   throw error;

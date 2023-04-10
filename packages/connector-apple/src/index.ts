@@ -58,7 +58,7 @@ const getUserInfo =
     const { id_token: idToken } = await authorizationCallbackHandler(data);
 
     if (!idToken) {
-      throw new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid);
+      throw new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid, '`idToken` is missing.');
     }
 
     const config = await getConfig(defaultMetadata.id);
@@ -98,14 +98,21 @@ const getUserInfo =
       }
 
       if (!payload.sub) {
-        throw new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid);
+        throw new ConnectorError(
+          ConnectorErrorCodes.SocialIdTokenInvalid,
+          '`sub` is missing in `idToken`.'
+        );
       }
 
       return {
         id: payload.sub,
       };
-    } catch {
-      throw new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid);
+    } catch (error: unknown) {
+      if (error instanceof ConnectorError) {
+        throw error;
+      }
+
+      throw new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid, JSON.stringify(error));
     }
   };
 

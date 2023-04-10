@@ -76,7 +76,7 @@ describe('getUserInfo', () => {
     });
     const connector = await createConnector({ getConfig });
     await expect(connector.getUserInfo({ id_token: 'id_token' }, jest.fn())).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid)
+      new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid, '{}')
     );
   });
 
@@ -87,7 +87,7 @@ describe('getUserInfo', () => {
     }));
     const connector = await createConnector({ getConfig });
     await expect(connector.getUserInfo({ id_token: 'id_token' }, jest.fn())).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid)
+      new ConnectorError(ConnectorErrorCodes.SocialIdTokenInvalid, '`sub` is missing in `idToken`.')
     );
   });
 });

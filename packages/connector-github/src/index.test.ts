@@ -60,7 +60,7 @@ describe('getAccessToken', () => {
       .post('')
       .reply(200, qs.stringify({ access_token: '', scope: 'scope', token_type: 'token_type' }));
     await expect(getAccessToken(mockedConfig, { code: 'code' })).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid)
+      new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, '`accessToken` is missing.')
     );
   });
 });
@@ -119,7 +119,7 @@ describe('getUserInfo', () => {
     nock(userInfoEndpoint).get('').reply(401);
     const connector = await createConnector({ getConfig });
     await expect(connector.getUserInfo({ code: 'code' }, jest.fn())).rejects.toMatchError(
-      new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid)
+      new ConnectorError(ConnectorErrorCodes.General)
     );
   });
 
@@ -131,21 +131,14 @@ describe('getUserInfo', () => {
       email: 'octocat@github.com',
     });
     const connector = await createConnector({ getConfig });
-    await expect(
-      connector.getUserInfo(
-        {
-          error: 'access_denied',
-          error_description: 'The user has denied your application access.',
-          error_uri:
-            'https://docs.github.com/apps/troubleshooting-authorization-request-errors#access-denied',
-        },
-        jest.fn()
-      )
-    ).rejects.toMatchError(
-      new ConnectorError(
-        ConnectorErrorCodes.AuthorizationFailed,
-        'The user has denied your application access.'
-      )
+    const error = {
+      error: 'access_denied',
+      error_description: 'The user has denied your application access.',
+      error_uri:
+        'https://docs.github.com/apps/troubleshooting-authorization-request-errors#access-denied',
+    };
+    await expect(connector.getUserInfo(error, jest.fn())).rejects.toMatchError(
+      new ConnectorError(ConnectorErrorCodes.AuthorizationFailed, error)
     );
   });
 

@@ -81,7 +81,10 @@ export const getAccessToken = async (
 
   const { access_token: accessToken } = result.data;
 
-  assert(accessToken, new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid));
+  assert(
+    accessToken,
+    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, '`accessToken` is missing.')
+  );
 
   return { accessToken };
 };
@@ -127,13 +130,12 @@ const getUserInfo =
       return userInfoResult.data;
     } catch (error: unknown) {
       if (error instanceof HTTPError) {
-        const { statusCode, body: rawBody } = error.response;
+        const { body: rawBody } = error.response;
 
-        if (statusCode === 401) {
-          throw new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid);
-        }
-
-        throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify(rawBody));
+        throw new ConnectorError(
+          ConnectorErrorCodes.General,
+          conditional(rawBody && JSON.stringify(rawBody))
+        );
       }
 
       throw error;

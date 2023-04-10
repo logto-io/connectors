@@ -59,7 +59,9 @@ describe('google connector', () => {
         .reply(200, { access_token: '', scope: 'scope', token_type: 'token_type' });
       await expect(
         getAccessToken(mockedConfig, { code: 'code', redirectUri: 'dummyRedirectUri' })
-      ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid));
+      ).rejects.toMatchError(
+        new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, '`accessToken` is missing.')
+      );
     });
   });
 
@@ -109,7 +111,12 @@ describe('google connector', () => {
       const connector = await createConnector({ getConfig });
       await expect(
         connector.getUserInfo({ code: 'code', redirectUri: '' }, jest.fn())
-      ).rejects.toMatchError(new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid));
+      ).rejects.toMatchError(
+        new ConnectorError(
+          ConnectorErrorCodes.General,
+          JSON.stringify({ body: '', statusCode: 401 })
+        )
+      );
     });
 
     it('throws General error', async () => {

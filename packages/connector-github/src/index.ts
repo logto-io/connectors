@@ -61,17 +61,12 @@ const authorizationCallbackHandler = async (parameterObject: unknown) => {
     throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify(parameterObject));
   }
 
-  const { error, error_description, error_uri } = parsedError.data;
-
-  if (error === 'access_denied') {
-    throw new ConnectorError(ConnectorErrorCodes.AuthorizationFailed, error_description);
-  }
-
-  throw new ConnectorError(ConnectorErrorCodes.General, {
-    error,
-    errorDescription: error_description,
-    error_uri,
-  });
+  throw new ConnectorError(
+    parsedError.data.error === 'access_denied'
+      ? ConnectorErrorCodes.AuthorizationFailed
+      : ConnectorErrorCodes.General,
+    parsedError.data
+  );
 };
 
 export const getAccessToken = async (config: GithubConfig, codeObject: { code: string }) => {
@@ -96,7 +91,10 @@ export const getAccessToken = async (config: GithubConfig, codeObject: { code: s
 
   const { access_token: accessToken } = result.data;
 
-  assert(accessToken, new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid));
+  assert(
+    accessToken,
+    new ConnectorError(ConnectorErrorCodes.SocialAuthCodeInvalid, '`accessToken` is missing.')
+  );
 
   return { accessToken };
 };
@@ -133,13 +131,12 @@ const getUserInfo =
       };
     } catch (error: unknown) {
       if (error instanceof HTTPError) {
-        const { statusCode, body: rawBody } = error.response;
+        const { body: rawBody } = error.response;
 
-        if (statusCode === 401) {
-          throw new ConnectorError(ConnectorErrorCodes.SocialAccessTokenInvalid);
-        }
-
-        throw new ConnectorError(ConnectorErrorCodes.General, JSON.stringify(rawBody));
+        throw new ConnectorError(
+          ConnectorErrorCodes.General,
+          conditional(rawBody && JSON.stringify(rawBody))
+        );
       }
 
       throw error;
